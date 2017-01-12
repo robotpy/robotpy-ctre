@@ -1,0 +1,13 @@
+*.pyc
+*.so
+__pycache__
+
+.project
+.pydevproject
+
+*.egg-info
+
+ctre/version.py
+
+docs/_build
+docs/_sidebar.rst.inc
