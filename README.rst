@@ -1,7 +1,8 @@
 robotpy-ctre
 ============
 
-This is a python wrapper around the CTRE 3rd party library.
+This is a python wrapper around the CTRE 3rd party library. Documentation can be
+found at http://robotpy-ctre.readthedocs.io/
 
 **NOTE**: The RobotPy project is not associated with or endorsed by Cross The 
 Road Electronics.

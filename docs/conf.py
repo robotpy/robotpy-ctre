@@ -10,7 +10,7 @@ from os.path import abspath, join, dirname
 sys.path.insert(0, abspath(dirname(__file__)))
 sys.path.insert(0, abspath(join(dirname(__file__), '..')))
 
-import robotpy_ext
+import ctre
 
 # -- RTD configuration ------------------------------------------------
 
@@ -52,9 +52,9 @@ intersphinx_mapping = {
 # built documents.
 #
 # The short X.Y version.
-version = '.'.join(robotpy_ext.__version__.split('.')[:2])
+version = '.'.join(ctre.__version__.split('.')[:2])
 # The full version, including alpha/beta/rc tags.
-release = robotpy_ext.__version__
+release = ctre.__version__
 
 autoclass_content = 'both'
 
