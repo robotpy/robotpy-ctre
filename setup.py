@@ -162,6 +162,7 @@ if exists('/etc/natinst/share/scs_imagemetadata.ini'):
     install_requires.append('robotpy-hal-roborio>=2017.0.2,<2018.0.0')
     cmdclass = {'build_ext': BuildExt}
 else:
+    install_requires.append('robotpy-hal-sim>=2017.0.2,<2018.0.0')
     ext_modules = None
     cmdclass = {}
 

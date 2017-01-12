@@ -8,7 +8,7 @@ python:
   - "3.6"
 # command to install dependencies
 install:
-  - "pip install . pytest"
+  - "pip install . pytest coverage"
 # command to run tests
 script:
   - tests/run_tests.sh
