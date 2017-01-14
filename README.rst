@@ -23,7 +23,7 @@ and install it. Use the precompiled wheel that we've published instead.
 
 * Download the latest robotpy-ctre whl from https://www.tortall.net/~robotpy/wheels/2017/
 * Copy the whl to your RoboRIO using WinSCP/scp or equivalent
-* ssh in to the RoboRIO and run ``pip3 install roborio-ctre*.whl``
+* ssh in to the RoboRIO and run ``pip3 install robotpy_ctre*.whl``
 
 Compilation
 ===========
