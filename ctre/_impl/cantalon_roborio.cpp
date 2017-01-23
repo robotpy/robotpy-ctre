@@ -732,5 +732,11 @@ PYBIND11_PLUGIN(cantalon_roborio) {
       .value("eMotionMeas_EnterCalibration", CanTalonSRX::param_t::eMotionMeas_EnterCalibration)
       .value("eMotionMeas_FusedHeadingOffset", CanTalonSRX::param_t::eMotionMeas_FusedHeadingOffset);
 
+#ifdef VERSION_INFO
+    m.attr("__version__") = py::str(VERSION_INFO);
+#else
+    m.attr("__version__") = py::str("dev");
+#endif
+
     return m.ptr();
 }
