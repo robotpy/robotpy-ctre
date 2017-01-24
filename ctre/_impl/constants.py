@@ -10,6 +10,7 @@ class TalonSRXConst:
     kMode_VoltCompen = 4
     kMode_SlaveFollower = 5
     kMode_MotionProfile = 6
+    kMode_MotionMagic = 7
     kMode_NoDrive = 15
 
     # limit switch enumerations
