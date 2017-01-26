@@ -161,6 +161,7 @@ class CANTalon(LiveWindowSendable, MotorSafety):
         Voltage = TalonSRXConst.kMode_VoltCompen
         Follower = TalonSRXConst.kMode_SlaveFollower
         MotionProfile = TalonSRXConst.kMode_MotionProfile
+        MotionMagic = TalonSRXConst.kMode_MotionMagic
         Disabled = TalonSRXConst.kMode_NoDrive
 
     class FeedbackDevice:
@@ -442,7 +443,9 @@ class CANTalon(LiveWindowSendable, MotorSafety):
             self.handle.SetDemand(int(mA))
         elif self.controlMode == self.ControlMode.MotionProfile:
             self.handle.SetDemand(outputValue)
-            
+        elif self.controlMode == self.ControlMode.MotionMagic:
+            self.handle.SetDemand(self._scaleRotationsToNativeUnits(self.feedbackDevice, outputValue))
+
         self.handle.SetModeSelect(self.controlMode)
         
     def setInverted(self, isInverted):
@@ -1510,6 +1513,34 @@ class CANTalon(LiveWindowSendable, MotorSafety):
         motionProfileStatus.activePoint.zeroPos = False # this signal is only used sending pts to Talon
         motionProfileStatus.activePoint.timeDurMs = 0   # this signal is only used sending pts to Talon
     
+    def setMotionMagicCruiseVelocity(self, motMagicCruiseVel):
+        """Set the cruise velocity for a trapezoidal motion profile while in Motion Magic Control Mode
+        :param motMagicCruiseVel: RPM of current feedback device at cruise (peak) velocity
+        """
+        velNative = self._scaleVelocityToNativeUnits(self.feedbackDevice, motMagicCruiseVel)
+        self.setParameter(param_t.eMotMag_VelCruise, velNative)
+
+    def setMotionMagicAcceleration(self, motMagicAccel):
+        """Set the max acceleration for a trapezoidal motion profile while in Motion Magic Control Mode
+        :param motMagicAccel: Acceleration of current feedback device in RPM per second
+        """
+        accel = self._scaleVelocityToNativeUnits(self.feedbackDevice, motMagicAccel)
+        self.setParameter(param_t.eMotMag_Accel, accel)
+
+    def getMotionMagicCruiseVelocity(self):
+        """
+        :return: Current Motion Magic cruise (peak) velocity in RPM
+        """
+        retval = self.getParameter(param_t.eMotMag_VelCruise)
+        return(self._scaleNativeUnitsToRpm(self.feedbackDevice, int(retval)))
+
+    def getMotionMagicAcceleration(self):
+        """
+        :return: Current Motion Magic acceleration in RPM
+        """
+        retval = self.getParameter(param_t.eMotMag_Accel)
+        return(self._scaleNativeUnitsToRpm(self.feedbackDevice, int(retval)))
+
     def clearMotionProfileHasUnderrun(self):
         """Clear the hasUnderrun flag in Talon's Motion Profile Executer when MPE is ready for another point,
         but the low level buffer is empty.
