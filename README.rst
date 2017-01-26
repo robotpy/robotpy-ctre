@@ -15,15 +15,16 @@ Setup (simulator)
 Setup (RoboRIO)
 ---------------
 
-**NOTE**: These are manual instructions, we'll have support to install this via
-          the RobotPy installer in a few days
-
 You really don't want to compile this yourself, so don't download this from pypi
-and install it. Use the precompiled wheel that we've published instead. 
+and install it. Instead, you can download a pre-packaged version from our opkg repository. Use the RobotPy installation script (comes with the RobotPy download), and run the following on your computer while connected to the internet::
 
-* Download the latest robotpy-ctre whl from https://www.tortall.net/~robotpy/wheels/2017/
-* Copy the whl to your RoboRIO using WinSCP/scp or equivalent
-* ssh in to the RoboRIO and run ``pip3 install robotpy_ctre*.whl``
+  py -3 installer.py download-opkg python36-robotpy-ctre
+  
+Then, when connected to the roborio's network, run::
+
+  py -3 installer.py install-opkg python36-robotpy-ctre
+
+For more information about installing packages, see https://github.com/robotpy/roborio-packages
 
 Compilation
 ===========
