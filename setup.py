@@ -182,5 +182,7 @@ setup(
     install_requires=install_requires,
     cmdclass=cmdclass,
     zip_safe=False,
-    entry_points={'robotpylib': ['info = ctre._impl.info:Info']}
+    entry_points={
+        'robotpylib': ['info = ctre._impl.info:Info'],
+        'robotpysim': ['ctre = ctre._impl.sim_ui:CtreUI']}
 )

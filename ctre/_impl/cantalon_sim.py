@@ -124,15 +124,14 @@ class CanTalonSRX:
         self.deviceNumber = deviceNumber
         
         # Initialize items based on their param type
-        hal_data['CAN'][deviceNumber] = NotifyDict({
+        self.hal_data = NotifyDict({
             v: 0 for v in _srx_param_map.values()
         })
-        
-        self.hal_data = hal_data['CAN'][deviceNumber]
         
         # Initialize non-zero items or items that don't have an associated parameter
         self.hal_data.update({
             'type': 'talonsrx',
+            'sim_display': False, # used in sim
             
             'override_limit_switch': 0,
             'override_braketype': None,
@@ -157,6 +156,8 @@ class CanTalonSRX:
             'mp_zeroPos': 0,
             'mp_outputEnable': TalonSRXConst.kMotionProfile_Disable
         })
+        
+        hal_data['CAN'][deviceNumber] = self.hal_data
         
     def Destroy(self):
         del hal_data['CAN'][self.deviceNumber]
