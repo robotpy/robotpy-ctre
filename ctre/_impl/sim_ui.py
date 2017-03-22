@@ -48,7 +48,14 @@ class CtreUI:
                 
             elif mode == tsrxc.kMode_SlaveFollower:
                 #follow the value of the motor value is equal too
-                motor.set_value(self.data[data['value']][0].get_value())
+                try:
+                    followed = self.can[data['value']]
+                except KeyError:
+                    value = 0
+                else:
+                    value = followed[0].get_value()
+                
+                motor.set_value(value)
             #
             # currently other control modes are not correctly implemented
             #
