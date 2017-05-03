@@ -16,7 +16,8 @@ class CtreUI:
          tsrxc.kMode_PositionCloseLoop:'Position',
          tsrxc.kMode_SlaveFollower:'Follower',
          tsrxc.kMode_VelocityCloseLoop:'Speed',
-         tsrxc.kMode_VoltCompen:'Voltage'
+         tsrxc.kMode_VoltCompen:'Voltage',
+         tsrxc.kMode_MotionMagic:'Motion Magic'
     }
     
     def __init__(self):
