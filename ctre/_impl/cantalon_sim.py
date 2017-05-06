@@ -116,7 +116,35 @@ class CanTalonSRX:
         eMotionProfileHasUnderrunErr = 119
         eReserved120 = 120
         eLegacyControlMode = 121
-    
+        
+        eMotMag_Accel = 122
+        eMotMag_VelCruise = 123
+        eStatus10FrameRate = 124  # TALON_Status_10_MotMag_100ms_t
+        eCurrentLimThreshold = 125
+
+        eBldcStatus1FrameRate = 129  # CYCLONE_BLDC_Status_1_BTC_MEC
+        eBldcStatus2FrameRate = 130  # CYCLONE_BLDC_Status_2_SLC
+        eBldcStatus3FrameRate = 131  #  CYCLONE_BLDC_Status_3_SLD
+
+
+        eCustomParam0 = 137
+        eCustomParam1 = 138
+        ePersStorageSaving = 139
+
+        eClearPositionOnLimitF = 144
+        eClearPositionOnLimitR = 145
+        eNominalBatteryVoltage = 146
+        eSampleVelocityPeriod = 147
+        eSampleVelocityWindow = 148
+
+        eMotionMeas_YawOffset = 160
+        eMotionMeas_CompassOffset = 161
+        eMotionMeas_BetaGain = 162
+        eMotionMeas_Reserved163 = 163
+        eMotionMeas_GyroNoMotionCal = 164
+        eMotionMeas_EnterCalibration = 165
+        eMotionMeas_FusedHeadingOffset = 166
+      
     def __init__(self, deviceNumber, controlPeriodMs, enablePeriodMs):
         
         assert deviceNumber not in hal_data['CAN']
@@ -131,7 +159,7 @@ class CanTalonSRX:
         # Initialize non-zero items or items that don't have an associated parameter
         self.hal_data.update({
             'type': 'talonsrx',
-            'sim_display': False, # used in sim
+            'sim_display': False,  # used in sim
             
             'override_limit_switch': 0,
             'override_braketype': None,
@@ -164,7 +192,7 @@ class CanTalonSRX:
         del self.hal_data
         
     def Set(self, value):
-        self.hal_data['value'] = int(value*1023)
+        self.hal_data['value'] = int(value * 1023)
 
     def SetParam(self, paramEnum, value):
         self.hal_data[_srx_param_map[paramEnum]] = value
@@ -622,12 +650,12 @@ def __create_srx_param_map():
         param_t.eSettingsChanged :                        'settings_changed',
         param_t.eQuadFilterEn :                           'quad_filter_en',
         param_t.ePidIaccum :                              'pid_iaccum',
-        #param_t.eStatus1FrameRate : 94  # TALON_Status_1_General_10ms_t,
-        #param_t.eStatus2FrameRate : 95  # TALON_Status_2_Feedback_20ms_t,
-        #param_t.eStatus3FrameRate : 96  # TALON_Status_3_Enc_100ms_t,
-        #param_t.eStatus4FrameRate : 97  # TALON_Status_4_AinTempVbat_100ms_t,
-        #param_t.eStatus6FrameRate : 98  # TALON_Status_6_Eol_t,
-        #param_t.eStatus7FrameRate : 99  # TALON_Status_7_Debug_200ms_t,
+        # param_t.eStatus1FrameRate : 94  # TALON_Status_1_General_10ms_t,
+        # param_t.eStatus2FrameRate : 95  # TALON_Status_2_Feedback_20ms_t,
+        # param_t.eStatus3FrameRate : 96  # TALON_Status_3_Enc_100ms_t,
+        # param_t.eStatus4FrameRate : 97  # TALON_Status_4_AinTempVbat_100ms_t,
+        # param_t.eStatus6FrameRate : 98  # TALON_Status_6_Eol_t,
+        # param_t.eStatus7FrameRate : 99  # TALON_Status_7_Debug_200ms_t,
         param_t.eClearPositionOnIdx :                     'clear_position_on_idx',
         
         param_t.ePeakPosOutput :                          'peak_pos_output',
@@ -635,7 +663,7 @@ def __create_srx_param_map():
         param_t.ePeakNegOutput :                          'peak_neg_output',
         param_t.eNominalNegOutput :                       'nominal_neg_output',
         param_t.eQuadIdxPolarity :                        'quad_idx_polarity',
-        #param_t.eStatus8FrameRate : 109  # TALON_Status_8_PulseWid_100ms_t,
+        # param_t.eStatus8FrameRate : 109  # TALON_Status_8_PulseWid_100ms_t,
         param_t.eAllowPosOverflow :                       'allow_pos_overflow',
         param_t.eProfileParamSlot0_AllowableClosedLoopErr: 'profile0_allowable_closed_loop_err',
         param_t.eNumberPotTurns :                         'number_pot_turns',
@@ -644,10 +672,29 @@ def __create_srx_param_map():
         param_t.eAinPosition :                            'analog_in_position',
         param_t.eProfileParamVcompRate :                  'profile_vcomp_rate',
         param_t.eProfileParamSlot1_AllowableClosedLoopErr : 'profile1_allowable_closed_loop_err',
-        #param_t.eStatus9FrameRate : 118  # TALON_Status_9_MotProfBuffer_100ms_t,
+        # param_t.eStatus9FrameRate : 118  # TALON_Status_9_MotProfBuffer_100ms_t,
         param_t.eMotionProfileHasUnderrunErr :            'motion_profile_has_underrun',
-        #param_t.eReserved120 : 120,
-        param_t.eLegacyControlMode :                      'legacy_mode'
+        # param_t.eReserved120 : 120,
+        param_t.eLegacyControlMode :                      'legacy_mode',
+        param_t.eMotMag_Accel:                            'eMotMag_Accel',
+        param_t.eMotMag_VelCruise:                        'eMotMag_VelCruise',
+        param_t.eStatus10FrameRate:                       'eStatus10FrameRate',
+        param_t.eCurrentLimThreshold:                     'eCurrentLimThreshold',
+        param_t.eBldcStatus1FrameRate:                    'eBldcStatus1FrameRate',
+        param_t.eBldcStatus2FrameRate:                    'eBldcStatus2FrameRate',
+        param_t.eBldcStatus3FrameRate:                    'eBldcStatus3FrameRate',
+        param_t.eCustomParam0:                            'eCustomParam0',
+        param_t.eCustomParam1:                            'eCustomParam1',
+        param_t.ePersStorageSaving:                       'ePersStorageSaving',
+        param_t.eClearPositionOnLimitF:                   'eClearPositionOnLimitF',
+        param_t.eClearPositionOnLimitR:                   'eClearPositionOnLimitR',
+        param_t.eMotionMeas_YawOffset:                    'eMotionMeas_YawOffset',
+        param_t.eMotionMeas_CompassOffset:                'eMotionMeas_CompassOffset',
+        param_t.eMotionMeas_BetaGain:                     'eMotionMeas_BetaGain',
+        param_t.eMotionMeas_Reserved163:                  'eMotionMeas_Reserved163',
+        param_t.eMotionMeas_GyroNoMotionCal:              'eMotionMeas_GyroNoMotionCal',
+        param_t.eMotionMeas_EnterCalibration:             'eMotionMeas_EnterCalibration',
+        param_t.eMotionMeas_FusedHeadingOffset:             'eMotionMeas_FusedHeadingOffset'
     }
 
 def __create_srx_sensor_position_map():
