@@ -182,7 +182,9 @@ class CanTalonSRX:
             'mp_btmBufferCnt': 0,
             'mp_topBufferRem': 0,
             'mp_zeroPos': 0,
-            'mp_outputEnable': TalonSRXConst.kMotionProfile_Disable
+            'mp_outputEnable': TalonSRXConst.kMotionProfile_Disable,
+
+            'current_limit_enable': False
         })
         
         hal_data['CAN'][deviceNumber] = self.hal_data
@@ -574,6 +576,9 @@ class CanTalonSRX:
 
     def SetRevFeedbackSensor(self, param):
         self.hal_data['rev_feedback_sensor'] = param
+
+    def SetCurrentLimEnable(self, param):
+        self.hal_data['current_limit_enable'] = param
 
 
 

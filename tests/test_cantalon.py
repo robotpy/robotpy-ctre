@@ -109,6 +109,10 @@ def test_ct_basic(cantalon_and_data):
     
     status = ctre.CANTalon.MotionProfileStatus()
     ct.getMotionProfileStatus(status)
+
+    # test current threshold
+    ct.setCurrentLimit(30)
+    ct.enableCurrentLimit(True)
     
     
     
