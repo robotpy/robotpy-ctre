@@ -63,8 +63,8 @@ class CtreUI:
             else:
                 motor.set_value(data['value'])
                 
-            enc_txt.set('E: %s' % data['enc_position'])
-            analog_txt.set('A: %s' % data['analog_in_position'])
+            enc_txt.set('E: %s' % round(data['enc_position']))
+            analog_txt.set('A: %s' % round(data['analog_in_position']))
             pwm_txt.set('P: %s' % data['pulse_width_position'])
             
             ret = fl.sync_value(data['limit_switch_closed_for'])
