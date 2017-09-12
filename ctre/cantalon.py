@@ -1552,6 +1552,17 @@ class CANTalon(LiveWindowSendable, MotorSafety):
         """
         self.setParameter(param_t.eMotionProfileHasUnderrunErr, 0)
 
+    def setCurrentLimit(self, amps):
+        """
+        
+        :param amps: 
+        :return: 
+        """
+        self.setParameter(param_t.eCurrentLimThreshold, amps)
+
+    def enableCurrentLimit(self, enable):
+        self.handle.SetCurrentLimEnable(enable)
+
     def getDescription(self):
         return "CANTalon ID %d" % self.deviceNumber
     
