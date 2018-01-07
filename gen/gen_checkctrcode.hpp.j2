@@ -1,0 +1,29 @@
+
+#include <ctre/phoenix/ErrorCode.h>
+
+ctre::phoenix::ErrorCode CheckCTRCode(ctre::phoenix::ErrorCode code) {
+
+  if (code != 0) {
+    const char * err;
+
+    #define ERR(x) case ctre::phoenix::ErrorCode::x: err = "CTRE error: " #x; break;
+
+// TODO: duplicates probably won't compile
+
+    switch (code) {
+    {% for e in header.enums %}
+    {% for v in e['values'] %}
+    //ERR({{ v.name }})
+    {% endfor %}
+    {% endfor %}
+    default:
+        err = "Invalid CTR error code";
+    }
+
+    if (PyErr_WarnEx(PyExc_UserWarning, err, 1) == -1) {
+      throw new py::error_already_set;
+    }
+  }
+
+  return code;
+}

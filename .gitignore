@@ -6,8 +6,11 @@ __pycache__
 .pydevproject
 
 *.egg-info
+build
 
 ctre/version.py
+ctre/_impl/autogen
+
 
 docs/_build
 docs/_sidebar.rst.inc

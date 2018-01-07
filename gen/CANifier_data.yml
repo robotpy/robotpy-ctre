@@ -1,0 +1,77 @@
+---
+c_CANifier_Create1:
+  code: |
+    raise NotImplementedError
+c_CANifier_GetDescription:
+  ignore: true # TODO
+  get: description
+c_CANifier_SetLEDOutput:
+  code: |
+    raise NotImplementedError
+c_CANifier_SetGeneralOutputs:
+  code: |
+    raise NotImplementedError
+c_CANifier_SetGeneralOutput:
+  code: |
+    raise NotImplementedError
+c_CANifier_SetPWMOutput:
+  code: |
+    raise NotImplementedError
+c_CANifier_EnablePWMOutput:
+  code: |
+    raise NotImplementedError
+c_CANifier_GetGeneralInputs:
+  ignore: true # TODO
+  code: |
+    raise NotImplementedError
+c_CANifier_GetGeneralInput:
+  code: |
+    raise NotImplementedError
+c_CANifier_GetPWMInput:
+  code: |
+    raise NotImplementedError
+c_CANifier_GetLastError:
+  code: |
+    raise NotImplementedError
+c_CANifier_GetBusVoltage:
+  code: |
+    raise NotImplementedError
+c_CANifier_SetLastError:
+  code: |
+    raise NotImplementedError
+c_CANifier_ConfigSetParameter:
+  code: |
+    raise NotImplementedError
+c_CANifier_ConfigGetParameter:
+  code: |
+    raise NotImplementedError
+c_CANifier_ConfigSetCustomParam:
+  code: |
+    raise NotImplementedError
+c_CANifier_ConfigGetCustomParam:
+  code: |
+    raise NotImplementedError
+c_CANifier_GetFaults:
+  code: |
+    raise NotImplementedError
+c_CANifier_GetStickyFaults:
+  code: |
+    raise NotImplementedError
+c_CANifier_ClearStickyFaults:
+  code: |
+    raise NotImplementedError
+c_CANifier_GetFirmwareVersion:
+  code: |
+    raise NotImplementedError
+c_CANifier_HasResetOccurred:
+  code: |
+    raise NotImplementedError
+c_CANifier_SetStatusFramePeriod:
+  code: |
+    raise NotImplementedError
+c_CANifier_GetStatusFramePeriod:
+  code: |
+    raise NotImplementedError
+c_CANifier_SetControlFramePeriod:
+  code: |
+    raise NotImplementedError

@@ -3,14 +3,16 @@
 # Much of this copied from https://github.com/pybind/python_example.git
 #
 
+import os
 from os.path import dirname, exists, join
 from setuptools import find_packages, setup, Extension
 from setuptools.command.build_ext import build_ext
+import shutil
 import subprocess
 import sys
 import setuptools
 
-ctre_lib_version = '4.4.1.9'
+ctre_lib_version = '5.1.3.1'
 
 setup_dir = dirname(__file__)
 git_dir = join(setup_dir, '.git')
@@ -124,48 +126,73 @@ class BuildExt(build_ext):
         build_ext.build_extensions(self)
 
 
-install_requires = ['wpilib>=2017.0.0,<2018.0.0']
+install_requires = ['wpilib>=2018.0.0,<2019.0.0']
 
 # Detect roboRIO.. not foolproof, but good enough
-if exists('/etc/natinst/share/scs_imagemetadata.ini'):
-    
-    # Download/install the CTRE and HAL binaries necessary to compile
-    # -> must have robotpy-hal-roborio installed for this to work
-    import hal_impl.distutils
-    
-    # no version info available
-    url = 'http://www.ctr-electronics.com//downloads/lib/CTRE_FRCLibs_NON-WINDOWS_v%s.zip' % ctre_lib_version
-    
-    halsrc = hal_impl.distutils.extract_halzip()
-    zipsrc = hal_impl.distutils.download_and_extract_zip(url)
-    
+ctre_devdir = os.environ.get("RPY_CTRE_DEVDIR")
+if ctre_devdir or exists('/etc/natinst/share/scs_imagemetadata.ini'):
+    if ctre_devdir:
+        # development use only -- preextracted files so it doesn't have
+        # to download it over and over again
+        # - TODO: provide a mechanism to create this directory
+
+        halsrc = join(ctre_devdir, 'hal')
+        zipsrc = join(ctre_devdir, 'ctre')
+    else:
+
+        # Download/install the CTRE and HAL binaries necessary to compile
+        # -> must have robotpy-hal-roborio installed for this to work
+        import hal_impl.distutils
+
+        # no version info available
+        url = 'http://www.ctr-electronics.com/downloads/lib/CTRE_Phoenix_FRCLibs_NON-WINDOWS_v%s.zip' % ctre_lib_version
+
+        halsrc = hal_impl.distutils.extract_hal_libs()
+        zipsrc = hal_impl.distutils.download_and_extract_zip(url)
+
+    # TODO: autogen files as part of the build?
+    # .. this is probably something that needs to be a separate command?
+
+    # TODO: this has to run after the download of the lib/headers,
+    # but also needs to run after setup.py does its thing because
+    # we have a setup_requires on header2whatever
+
+    from header2whatever import batch_convert
+
+    config_path = join(setup_dir, 'gen', 'gen.yml')
+    outdir = join(setup_dir, 'ctre', '_impl', 'autogen')
+
+    shutil.rmtree(outdir, ignore_errors=True)
+
+    batch_convert(config_path, outdir, zipsrc)
+
+
     ext_modules = [
         Extension(
-            'ctre._impl.cantalon_roborio',
-            ['ctre/_impl/cantalon_roborio.cpp'],
+            'ctre._impl.ctre_roborio',
+            ['ctre/_impl/ctre_roborio.cpp'],
             include_dirs=[
                 # Path to pybind11 headers
                 get_pybind_include(),
                 get_pybind_include(user=True),
-                join(halsrc, 'include'),
                 join(zipsrc, 'cpp', 'include'),
             ],
-            libraries=['HALAthena', 'CTRLib'],
+            libraries=['wpiHal', 'CTRE_PhoenixCCI'],
             library_dirs=[
-                join(halsrc, 'lib'),
+                join(halsrc, 'linux', 'athena', 'shared'),
                 join(zipsrc, 'cpp', 'lib'),
             ],
             language='c++',
         ),
     ]
-    
+
     # This doesn't actually work, as it needs to be installed before setup.py is ran
-    # ... but we specify it 
+    # ... but we specify it
     #install_requires = ['pybind11>=1.7']
-    install_requires.append('robotpy-hal-roborio>=2017.0.2,<2018.0.0')
+    install_requires.append('robotpy-hal-roborio>=2018.0.0,<2019.0.0')
     cmdclass = {'build_ext': BuildExt}
 else:
-    install_requires.append('robotpy-hal-sim>=2017.0.2,<2018.0.0')
+    install_requires.append('robotpy-hal-sim>=2018.0.0,<2019.0.0')
     ext_modules = None
     cmdclass = {}
 

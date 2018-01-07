@@ -1,0 +1,147 @@
+---
+c_PigeonIMU_Create2:
+  code: |
+    raise NotImplementedError
+c_PigeonIMU_Create1:
+  code: |
+    raise NotImplementedError
+c_PigeonIMU_GetDescription:
+  ignore: true # TODO
+  code: |
+    raise NotImplementedError
+c_PigeonIMU_ConfigSetParameter:
+  ignore: true # CTRE bug
+  code: |
+    raise NotImplementedError
+c_PigeonIMU_ConfigGetParameter:
+  ignore: true # CTRE bug
+  code: |
+    raise NotImplementedError
+c_PigeonIMU_ConfigSetCustomParam:
+  ignore: true # CTRE bug
+  code: |
+    raise NotImplementedError
+c_PigeonIMU_ConfigGetCustomParam:
+  ignore: true # CTRE bug
+  code: |
+    raise NotImplementedError
+c_PigeonIMU_SetYaw:
+  code: |
+    raise NotImplementedError
+c_PigeonIMU_AddYaw:
+  code: |
+    raise NotImplementedError
+c_PigeonIMU_SetYawToCompass:
+  code: |
+    raise NotImplementedError
+c_PigeonIMU_SetFusedHeading:
+  code: |
+    raise NotImplementedError
+c_PigeonIMU_AddFusedHeading:
+  code: |
+    raise NotImplementedError
+c_PigeonIMU_SetFusedHeadingToCompass:
+  code: |
+    raise NotImplementedError
+c_PigeonIMU_SetAccumZAngle:
+  code: |
+    raise NotImplementedError
+c_PigeonIMU_ConfigTemperatureCompensationEnable:
+  code: |
+    raise NotImplementedError
+c_PigeonIMU_SetCompassDeclination:
+  code: |
+    raise NotImplementedError
+c_PigeonIMU_SetCompassAngle:
+  code: |
+    raise NotImplementedError
+c_PigeonIMU_EnterCalibrationMode:
+  code: |
+    raise NotImplementedError
+c_PigeonIMU_GetGeneralStatus:
+  code: |
+    raise NotImplementedError
+c_PigeonIMU_GetLastError:
+  code: |
+    raise NotImplementedError
+c_PigeonIMU_Get6dQuaternion:
+  code: |
+    raise NotImplementedError
+c_PigeonIMU_GetYawPitchRoll:
+  code: |
+    raise NotImplementedError
+c_PigeonIMU_GetAccumGyro:
+  code: |
+    raise NotImplementedError
+c_PigeonIMU_GetAbsoluteCompassHeading:
+  code: |
+    raise NotImplementedError
+c_PigeonIMU_GetCompassHeading:
+  code: |
+    raise NotImplementedError
+c_PigeonIMU_GetCompassFieldStrength:
+  code: |
+    raise NotImplementedError
+c_PigeonIMU_GetTemp:
+  code: |
+    raise NotImplementedError
+c_PigeonIMU_GetState:
+  code: |
+    raise NotImplementedError
+c_PigeonIMU_GetUpTime:
+  code: |
+    raise NotImplementedError
+c_PigeonIMU_GetRawMagnetometer:
+  code: |
+    raise NotImplementedError
+c_PigeonIMU_GetBiasedMagnetometer:
+  code: |
+    raise NotImplementedError
+c_PigeonIMU_GetBiasedAccelerometer:
+  code: |
+    raise NotImplementedError
+c_PigeonIMU_GetRawGyro:
+  code: |
+    raise NotImplementedError
+c_PigeonIMU_GetAccelerometerAngles:
+  code: |
+    raise NotImplementedError
+c_PigeonIMU_GetFusedHeading2:
+  code: |
+    raise NotImplementedError
+c_PigeonIMU_GetFusedHeading1:
+  code: |
+    raise NotImplementedError
+c_PigeonIMU_GetResetCount:
+  code: |
+    raise NotImplementedError
+c_PigeonIMU_GetResetFlags:
+  code: |
+    raise NotImplementedError
+c_PigeonIMU_GetFirmwareVersion:
+  code: |
+    raise NotImplementedError
+c_PigeonIMU_HasResetOccurred:
+  code: |
+    raise NotImplementedError
+c_PigeonIMU_SetLastError:
+  code: |
+    raise NotImplementedError
+c_PigeonIMU_GetFaults:
+  code: |
+    raise NotImplementedError
+c_PigeonIMU_GetStickyFaults:
+  code: |
+    raise NotImplementedError
+c_PigeonIMU_ClearStickyFaults:
+  code: |
+    raise NotImplementedError
+c_PigeonIMU_SetStatusFramePeriod:
+  code: |
+    raise NotImplementedError
+c_PigeonIMU_GetStatusFramePeriod:
+  code: |
+    raise NotImplementedError
+c_PigeonIMU_SetControlFramePeriod:
+  code: |
+    raise NotImplementedError

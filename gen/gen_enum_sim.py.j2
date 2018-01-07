@@ -1,0 +1,13 @@
+import enum
+
+{% for header in headers %}
+{% for enum in header.enums %}
+class {{ enum.name }}(enum.IntEnum):
+{% for e in header.enums %}
+{% for val in e['values'] %}
+    {{ val.name }} = {{ val.value | replace(' ', '') }}
+{% endfor %}
+{% endfor %}
+{% endfor %}
+
+{% endfor %}
