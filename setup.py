@@ -165,7 +165,9 @@ if ctre_devdir or exists('/etc/natinst/share/scs_imagemetadata.ini'):
     shutil.rmtree(outdir, ignore_errors=True)
 
     batch_convert(config_path, outdir, zipsrc)
-
+    
+    with open(join(outdir, '__init__.py'), 'w') as fp:
+        pass
 
     ext_modules = [
         Extension(
