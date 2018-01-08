@@ -104,7 +104,7 @@ def function_hook(fn, data):
             x_return = 'return std::make_tuple(__ret, %s);'
             x_return %= ', '.join([p['name'] for p in x_out_params])
 
-            x_pyann_ret = 'typing.Tuple(%s, %s)'
+            x_pyann_ret = 'typing.Tuple[%s, %s]'
             x_pyann_ret %= (_to_annotation(fn['returns']),
                             ', '.join([p['x_pyann_type'] for p in x_out_params]))
         else:
