@@ -14,6 +14,19 @@ _annotations = {
 def _to_annotation(ctypename):
     return _annotations[ctypename]
 
+def header_hook(header, data):
+    '''Called for each header'''
+
+    # fix enum names
+    for e in header.enums:
+        ename = e['name'].split('_')[0] + '_'
+        for v in e['values']:
+            name = v['name']
+            if name.startswith(ename):
+                name = name[len(ename):]
+            if name == 'None':
+                name = 'NONE'
+            v['x_name'] = name
 
 def function_hook(fn, data):
     '''Called for each function in the header'''

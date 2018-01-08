@@ -14,9 +14,27 @@
 - headers:
   - cpp/include/ctre/phoenix/ErrorCode.h
   - cpp/include/ctre/phoenix/paramEnum.h
+  - cpp/include/ctre/phoenix/CANifierControlFrame.h
+  - cpp/include/ctre/phoenix/CANifierStatusFrame.h
+
+  - cpp/include/ctre/phoenix/Motion/SetValueMotionProfile.h
+
+  - cpp/include/ctre/phoenix/MotorControl/ControlMode.h
+  - cpp/include/ctre/phoenix/MotorControl/FeedbackDevice.h
+  - cpp/include/ctre/phoenix/MotorControl/LimitSwitchType.h
+  - cpp/include/ctre/phoenix/MotorControl/NeutralMode.h
+  - cpp/include/ctre/phoenix/MotorControl/SensorTerm.h
+  - cpp/include/ctre/phoenix/MotorControl/StatusFrame.h
+  - cpp/include/ctre/phoenix/MotorControl/VelocityMeasPeriod.h
+
+  - cpp/include/ctre/phoenix/Sensors/PigeonIMU_ControlFrame.h
+  - cpp/include/ctre/phoenix/Sensors/PigeonIMU_StatusFrame.h
+  hooks: hooks.py
   templates:
   - src: gen_enum_pybind11.cpp.j2
     dst: ctre_enums.cpp.inc
+  - src: gen_enum_sim.py.j2
+    dst: ctre_sim_enums.py
 
 
 #- headers:

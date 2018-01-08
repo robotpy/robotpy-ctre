@@ -15,6 +15,24 @@ typedef py::call_guard<py::gil_scoped_release> release_gil;
 #include "ctre/phoenix/ErrorCode.h"
 #include "ctre/phoenix/paramEnum.h"
 
+
+#include "ctre/phoenix/CANifierControlFrame.h"
+#include "ctre/phoenix/CANifierStatusFrame.h"
+
+#include "ctre/phoenix/Motion/SetValueMotionProfile.h"
+
+#include "ctre/phoenix/MotorControl/ControlMode.h"
+#include "ctre/phoenix/MotorControl/FeedbackDevice.h"
+#include "ctre/phoenix/MotorControl/LimitSwitchType.h"
+#include "ctre/phoenix/MotorControl/NeutralMode.h"
+#include "ctre/phoenix/MotorControl/SensorTerm.h"
+#include "ctre/phoenix/MotorControl/StatusFrame.h"
+#include "ctre/phoenix/MotorControl/VelocityMeasPeriod.h"
+
+#include "ctre/phoenix/Sensors/PigeonIMU_ControlFrame.h"
+#include "ctre/phoenix/Sensors/PigeonIMU_StatusFrame.h"
+
+
 //#include "autogen/CheckCTRCode.hpp"
 
 
