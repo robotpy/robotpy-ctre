@@ -8,6 +8,11 @@ c_CANifier_GetDescription:
 c_CANifier_SetLEDOutput:
   code: |
     raise NotImplementedError
+  doc: |
+    Sets the LED Output
+    
+    :param percentOutput: Output duty cycle expressed as percentage.
+    :param ledChannel: Channel to set the output of.
 c_CANifier_SetGeneralOutputs:
   code: |
     raise NotImplementedError
