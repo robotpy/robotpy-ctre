@@ -7,6 +7,7 @@ import os
 from os.path import dirname, exists, join
 from setuptools import find_packages, setup, Extension
 from setuptools.command.build_ext import build_ext
+from setuptools.command.sdist import sdist
 import shutil
 import subprocess
 import sys
@@ -128,46 +129,46 @@ class BuildExt(build_ext):
 
 install_requires = ['wpilib>=2018.0.0,<2019.0.0']
 
+class Downloader:
+    '''
+        Utility object to allow lazily retrieving needed artifacts on demand,
+        instead of distributing several extra MB with the pypi build.
+    '''
+
+    def __init__(self):
+        self._halsrc = None
+        self._ctresrc = None
+
+        ctre_devdir = os.environ.get("RPY_CTRE_DEVDIR")
+        if ctre_devdir:
+            # development use only -- preextracted files so it doesn't have
+            # to download it over and over again
+            # -> if the directory doesn't exist, it will download the current
+            #    files to that directory
+
+            self._halsrc = join(ctre_devdir, 'hal')
+            self._ctresrc = join(ctre_devdir, 'ctre')
+
+    @property
+    def halsrc(self):
+        if not self._halsrc or not exists(self._halsrc):
+            import hal_impl.distutils
+            self._halsrc = hal_impl.distutils.extract_hal_libs(to=self._halsrc)
+        return self._halsrc
+
+    @property
+    def ctresrc(self):
+        if not self._ctresrc or not exists(self._ctresrc):
+            import hal_impl.distutils
+            url = 'http://www.ctr-electronics.com/downloads/lib/CTRE_Phoenix_FRCLibs_NON-WINDOWS_v%s.zip' % ctre_lib_version
+            self._ctresrc = hal_impl.distutils.download_and_extract_zip(url, to=self._ctresrc)
+        return self._ctresrc
+
+get = Downloader()
+
 # Detect roboRIO.. not foolproof, but good enough
-ctre_devdir = os.environ.get("RPY_CTRE_DEVDIR")
-if ctre_devdir or exists('/etc/natinst/share/scs_imagemetadata.ini'):
-    if ctre_devdir:
-        # development use only -- preextracted files so it doesn't have
-        # to download it over and over again
-        # - TODO: provide a mechanism to create this directory
+if exists('/etc/natinst/share/scs_imagemetadata.ini'):
 
-        halsrc = join(ctre_devdir, 'hal')
-        zipsrc = join(ctre_devdir, 'ctre')
-    else:
-
-        # Download/install the CTRE and HAL binaries necessary to compile
-        # -> must have robotpy-hal-roborio installed for this to work
-        import hal_impl.distutils
-
-        # no version info available
-        url = 'http://www.ctr-electronics.com/downloads/lib/CTRE_Phoenix_FRCLibs_NON-WINDOWS_v%s.zip' % ctre_lib_version
-
-        halsrc = hal_impl.distutils.extract_hal_libs()
-        zipsrc = hal_impl.distutils.download_and_extract_zip(url)
-
-    # TODO: autogen files as part of the build?
-    # .. this is probably something that needs to be a separate command?
-
-    # TODO: this has to run after the download of the lib/headers,
-    # but also needs to run after setup.py does its thing because
-    # we have a setup_requires on header2whatever
-
-    from header2whatever import batch_convert
-
-    config_path = join(setup_dir, 'gen', 'gen.yml')
-    outdir = join(setup_dir, 'ctre', '_impl', 'autogen')
-
-    shutil.rmtree(outdir, ignore_errors=True)
-
-    batch_convert(config_path, outdir, zipsrc)
-    
-    with open(join(outdir, '__init__.py'), 'w') as fp:
-        pass
 
     ext_modules = [
         Extension(
@@ -177,12 +178,12 @@ if ctre_devdir or exists('/etc/natinst/share/scs_imagemetadata.ini'):
                 # Path to pybind11 headers
                 get_pybind_include(),
                 get_pybind_include(user=True),
-                join(zipsrc, 'cpp', 'include'),
+                join(get.ctresrc, 'cpp', 'include'),
             ],
             libraries=['wpiHal', 'CTRE_PhoenixCCI'],
             library_dirs=[
-                join(halsrc, 'linux', 'athena', 'shared'),
-                join(zipsrc, 'cpp', 'lib'),
+                join(get.halsrc, 'linux', 'athena', 'shared'),
+                join(get.ctresrc, 'cpp', 'lib'),
             ],
             language='c++',
         ),
@@ -197,6 +198,37 @@ else:
     install_requires.append('robotpy-hal-sim>=2018.0.0,<2019.0.0')
     ext_modules = None
     cmdclass = {}
+
+#
+# Autogenerating the required CTRE files is something that
+# is done at sdist time. This means if you are testing builds,
+# you have to run 'setup.py sdist build'.
+#
+# The advantage of doing it this way is that the autogen files
+# are distributed with the pypi package, so simulation users
+# don't have to install anything special to build this
+#
+
+class SDist(sdist):
+    def run(self):
+        from header2whatever import batch_convert
+
+        # Do this before deleting the autogen directory, as it may fail
+        ctresrc = get.ctresrc
+
+        config_path = join(setup_dir, 'gen', 'gen.yml')
+        outdir = join(setup_dir, 'ctre', '_impl', 'autogen')
+
+        shutil.rmtree(outdir, ignore_errors=True)
+
+        batch_convert(config_path, outdir, ctresrc)
+
+        with open(join(outdir, '__init__.py'), 'w'):
+            pass
+
+        super().run()
+
+cmdclass['sdist'] = SDist
 
 setup(
     name='robotpy-ctre',

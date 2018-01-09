@@ -4,13 +4,6 @@
 # Enums
 #
 
-# - headers:
-#   - cpp/include/ctre/phoenix/ErrorCode.h
-#   - cpp/include/ctre/phoenix/paramEnum.h
-#   templates:
-#   - src: gen_enum_sim.py.j2
-#     dst: ctre_sim_enum.py
-#
 - headers:
   - cpp/include/ctre/phoenix/ErrorCode.h
   - cpp/include/ctre/phoenix/paramEnum.h
@@ -90,18 +83,3 @@
   data: PigeonIMU_data.yml
   vars:
     module_name: PigeonIMU
-
-
-# - file: cpp/include/ctre/phoenix/CCI/MotController_CCI.h
-#   hooks: hooks.py
-#   data: simdata.yml
-#   vars:
-#
-# - file: cpp/include/ctre/phoenix/CCI/PigeonIMU_CCI.h
-#   hooks: hooks.py
-#   vars:
-#     module_name: bar
-#
-# - file: cpp/include/ctre/phoenix/CCI/TalonSRX_CCI.h
-#   vars:
-#     module_name: foo
