@@ -11,6 +11,57 @@ _annotations = {
     'ctre::phoenix::ErrorCode': 'int',
 }
 
+def _gen_check(pname, ptype):
+
+    # TODO: This does checks on normal types, but if you pass a ctypes value
+    #       in then this does not check those properly.
+
+    if ptype == 'bool':
+        return 'isinstance(%s, bool)' % pname
+
+    elif ptype in ['float', 'double']:
+        return 'isinstance(%s, (int, float))' % pname
+
+    #elif ptype is C.c_char:
+    #    return 'isinstance(%s, bytes) and len(%s) == 1' % (pname, pname)
+    #elif ptype is C.c_wchar:
+    #    return 'isinstance(%s, str) and len(%s) == 1' % (pname, pname)
+    #elif ptype is C.c_char_p:
+    #    return "%s is None or isinstance(%s, bytes) or getattr(%s, '_type_') is _C.c_char" % (pname, pname, pname)
+    #elif ptype is C.c_wchar_p:
+    #    return '%s is None or isinstance(%s, bytes)' % (pname, pname)
+
+    elif ptype in ['int', 'long']:
+        return 'isinstance(%s, int)' % pname
+    #elif ptype in [C.c_byte, C.c_int8]:
+    #    return 'isinstance(%s, int) and %s < %d and %s > -%d' % (pname, pname, 1<<7, pname, 1<<7)
+    elif ptype in ['short', 'int16_t']:
+        return 'isinstance(%s, int) and %s < %d and %s > -%d' % (pname, pname, 1<<15, pname, 1<<15)
+    elif ptype == 'int32_t':
+        return 'isinstance(%s, int) and %s < %d and %s > -%d' % (pname, pname, 1<<31, pname, 1<<31)
+    elif ptype == 'int64_t':
+        return 'isinstance(%s, int) and %s < %d and %s > -%d' % (pname, pname, 1<<63, pname, 1<<63)
+
+    elif ptype == 'size_t':
+        return 'isinstance(%s, int)' % (pname)
+    elif ptype == 'uint8_t':
+        return 'isinstance(%s, int) and %s < %d and %s >= 0' % (pname, pname, 1<<8, pname)
+    elif ptype == 'uint16_t':
+        return 'isinstance(%s, int) and %s < %d and %s >= 0' % (pname, pname, 1<<16, pname)
+    elif ptype == 'uint32_t':
+        return 'isinstance(%s, int) and %s < %d and %s >= 0' % (pname, pname, 1<<32, pname)
+    elif ptype == 'uint64_t':
+        return 'isinstance(%s, int) and %s < %d and %s >= 0' % (pname, pname, 1<<64, pname)
+
+    elif ptype is None:
+        return '%s is None' % pname
+
+    else:
+        # TODO: do validation here
+        #return 'isinstance(%s, %s)' % (pname, type(ptype).__name__)
+        return None
+
+
 def _to_annotation(ctypename):
     return _annotations[ctypename]
 
@@ -60,6 +111,8 @@ def function_hook(fn, data):
     x_ret_names = []
     x_ret_types = []
 
+    x_param_checks = []
+
     param_offset = 0 if x_name.startswith('create') else 1
 
     for i, p in enumerate(fn['parameters'][param_offset:]):
@@ -87,6 +140,9 @@ def function_hook(fn, data):
 
             x_out_params.append(p)
         else:
+            chk = _gen_check(p['name'], p['raw_type'])
+            if chk:
+                x_param_checks.append('assert %s' % chk)
             x_in_params.append(p)
 
 

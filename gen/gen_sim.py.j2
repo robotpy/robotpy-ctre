@@ -19,6 +19,9 @@ class {{ module_name }}{% if inherits is defined %}({{ inherits }}){% endif %}:
         '''{{ fn.data['doc'] | indent(width=8) }}
         '''
     {% endif %}
+    {% if fn.x_param_checks %}
+        {{ fn.x_param_checks | join('\n') | indent(width=8) }}
+    {% endif %}
     {% if 'code' in fn.data %}
         {{ fn.data['code'] | trim }}
     {% elif 'get' in fn.data %}
