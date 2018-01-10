@@ -159,12 +159,11 @@ if exists('/etc/natinst/share/scs_imagemetadata.ini'):
         ),
     ]
     
-    # This doesn't actually work, as it needs to be installed before setup.py is ran
-    # ... but we specify it 
-    #install_requires = ['pybind11>=1.7']
+    setup_requires = ['pybind11>=1.7']
     install_requires.append('robotpy-hal-roborio>=2017.0.2,<2018.0.0')
     cmdclass = {'build_ext': BuildExt}
 else:
+    setup_requires = []
     install_requires.append('robotpy-hal-sim>=2017.0.2,<2018.0.0')
     ext_modules = None
     cmdclass = {}
@@ -179,6 +178,7 @@ setup(
     long_description=long_description,
     packages=find_packages(),
     ext_modules=ext_modules,
+    setup_requires=setup_requires,
     install_requires=install_requires,
     cmdclass=cmdclass,
     zip_safe=False,
