@@ -24,6 +24,7 @@ canifier module
     :members:
     :undoc-members:
     :show-inheritance:
+    :inherited-members:
 
 pigeonimu module
 --------------------
@@ -31,18 +32,13 @@ pigeonimu module
     :members:
     :undoc-members:
     :show-inheritance:
-
-basemotorcontroller module
----------------------------
-.. automodule:: ctre.basemotorcontroller
-    :members:
-    :undoc-members:
-    :show-inheritance:
+    :inherited-members:
 
 talonsrx module
 --------------------
 .. automodule:: ctre.talonsrx
     :members:
+    :inherited-members:
     :undoc-members:
     :show-inheritance:
 
@@ -50,6 +46,7 @@ victorspx module
 --------------------
 .. automodule:: ctre.victorspx
     :members:
+    :inherited-members:
     :undoc-members:
     :show-inheritance:
 

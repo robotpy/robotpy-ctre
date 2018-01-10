@@ -22,6 +22,8 @@
 # (INCLUDING NEGLIGENCE), BREACH OF WARRANTY, OR OTHERWISE
 #----------------------------------------------------------------------------
 import enum
+import typing
+
 import hal
 from collections import namedtuple
 from wpilib._impl.utils import match_arglist
