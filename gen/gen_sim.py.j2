@@ -5,9 +5,12 @@
 
 import typing
 
-from hal_impl import hal_data
+from hal_impl.data import hal_data
 
 class {{ module_name }}{% if inherits is defined %}({{ inherits }}){% endif %}:
+
+    def __init__(self):
+        self.create_called = False
 
   {% for fn in header.functions %}
   {% if 'ignore' not in fn.data %}
