@@ -35,23 +35,20 @@ else:
     from .ctre_roborio import (
         CANifier,
         MotController,
-        PigeonIMU,
+        PigeonIMU
+    )
+    from .ctre_roborio import (
         ErrorCode,
         NeutralMode,
-        ControlFrame,
         RemoteFeedbackDevice,
         FeedbackDevice,
-        RemoteSensorSource,
         StatusFrame,
         StatusFrameEnhanced,
         VelocityMeasPeriod,
         RemoteLimitSwitchSource,
         LimitSwitchNormal,
         LimitSwitchSource,
-        MotionProfileStatus,
-        StickyFaults,
         ParamEnum,
-        GeneralPin,
         CANifierStatusFrame,
         CANifierControlFrame,
         ParamEnum,
@@ -77,5 +74,5 @@ class ControlMode (enum.IntEnum):
     MotionProfileArc = 10
     Disabled = 15
 
-    
+
 GeneralPin = MagicMock()
