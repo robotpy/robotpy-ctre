@@ -83,6 +83,7 @@ class CANifier(CANifierImpl):
 
         :param deviceId: The CAN Device ID of the CANifier.
         """
+        super().__init__()
         self.create1(deviceId)
         self.tempPins = [False] * 11
         hal.report(hal.UsageReporting.kResourceType_CANifier, deviceId + 1)

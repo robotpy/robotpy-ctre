@@ -54,6 +54,8 @@ class BaseMotorController(MotController):
         
         :param arbId:
         """
+        super().__init__()
+
         self.create1(arbId)
         self.arbId = arbId
         self.sensorColl = SensorCollection(self)

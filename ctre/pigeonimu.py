@@ -204,6 +204,8 @@ class PigeonIMU(PigeonImuImpl):
         :param talonSrx:
             Object for the TalonSRX connected via ribbon cable.
         """
+        super().__init__()
+
         deviceNumber_arg = ("deviceNumber", [int])
         talonSrx_arg = ("talonSrx", [TalonSRX])
         templates = [[deviceNumber_arg], [talonSrx_arg]]
