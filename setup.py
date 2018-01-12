@@ -149,6 +149,47 @@ class Downloader:
             self._halsrc = join(ctre_devdir, 'hal')
             self._ctresrc = join(ctre_devdir, 'ctre')
 
+    # copy/paste from hal_impl.distutils
+    def _download(self, url):
+        import atexit
+        import posixpath
+        from urllib.request import urlretrieve, urlcleanup
+        import sys
+
+        print("Downloading", posixpath.basename(url))
+
+        def _reporthook(count, blocksize, totalsize):
+            percent = int(count*blocksize*100/totalsize)
+            sys.stdout.write("\r%02d%%" % percent)
+            sys.stdout.flush()
+
+        filename, _ = urlretrieve(url, reporthook=_reporthook)
+        atexit.register(urlcleanup)
+        return filename
+
+    def _download_and_extract_zip(self, url, to=None):
+        import atexit
+        import shutil
+        import tempfile
+        import zipfile
+
+        if to is None:
+            # generate temporary directory
+            tod = tempfile.TemporaryDirectory()
+            to = tod.name
+            atexit.register(tod.cleanup)
+
+        zip_fname = self._download(url)
+        with zipfile.ZipFile(zip_fname) as z:
+            if isinstance(to, str):
+                z.extractall(to)
+                return to
+            else:
+                for src, dst in to.items():
+                    with z.open(src, 'r') as zfp:
+                        with open(dst, 'wb') as fp:
+                            shutil.copyfileobj(zfp, fp)
+
     @property
     def halsrc(self):
         if not self._halsrc or not exists(self._halsrc):
@@ -159,9 +200,8 @@ class Downloader:
     @property
     def ctresrc(self):
         if not self._ctresrc or not exists(self._ctresrc):
-            import hal_impl.distutils
             url = 'http://www.ctr-electronics.com/downloads/lib/CTRE_Phoenix_FRCLibs_NON-WINDOWS_v%s.zip' % ctre_lib_version
-            self._ctresrc = hal_impl.distutils.download_and_extract_zip(url, to=self._ctresrc)
+            self._ctresrc = self._download_and_extract_zip(url, to=self._ctresrc)
         return self._ctresrc
 
 get = Downloader()
