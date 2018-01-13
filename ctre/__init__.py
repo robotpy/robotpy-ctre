@@ -4,6 +4,8 @@ from .wpi_victorspx import WPI_VictorSPX
 from .canifier import CANifier
 from .pigeonimu import PigeonIMU
 
+from ._impl import ControlMode
+
 try:
     from .version import __version__
 except ImportError:     # pragma: nocover
