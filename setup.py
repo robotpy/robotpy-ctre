@@ -270,6 +270,9 @@ class SDist(sdist):
 
 cmdclass['sdist'] = SDist
 
+if os.environ.get('READTHEDOCS', None) == 'True':
+    sys.argv.insert(1, 'sdist')
+
 setup(
     name='robotpy-ctre',
     version=__version__,
