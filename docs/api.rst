@@ -55,7 +55,7 @@ SensorCollection interface
 
 Motion Profile data transfer
 ----------------------------
-.. automodule:: ctre._impl.trajectorypoint
+.. automodule:: ctre.trajectorypoint
     :members:
     :undoc-members:
     :show-inheritance:

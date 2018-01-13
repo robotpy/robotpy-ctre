@@ -23,6 +23,7 @@
 #----------------------------------------------------------------------------
 import typing
 from .sensorcollection import SensorCollection
+from .trajectorypoint import TrajectoryPoint
 from ._impl import (
     MotController,
     ControlMode,
@@ -34,7 +35,6 @@ from ._impl import (
     RemoteLimitSwitchSource,
     LimitSwitchNormal,
     LimitSwitchSource,
-    TrajectoryPoint,
     MotionProfileStatus,
     Faults,
     StickyFaults,

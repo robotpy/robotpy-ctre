@@ -11,6 +11,8 @@ from ._impl import (
     NeutralMode,
 )
 
+from .trajectorypoint import TrajectoryPoint
+
 try:
     from .version import __version__
 except ImportError:     # pragma: nocover

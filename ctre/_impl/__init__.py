@@ -6,7 +6,6 @@ from .canifierfaults import CANifierFaults
 from .canifierstickyfaults import CANifierStickyFaults
 from .pigeonfaults import PigeonIMU_Faults
 from .pigeonstickyfaults import PigeonIMU_StickyFaults
-from .trajectorypoint import TrajectoryPoint
 from .motionprofilestatus import MotionProfileStatus
 
 if hal.isSimulation():
