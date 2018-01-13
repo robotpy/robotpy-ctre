@@ -21,8 +21,12 @@
 # SIMILAR COSTS, WHETHER ASSERTED ON THE BASIS OF CONTRACT, TORT
 # (INCLUDING NEGLIGENCE), BREACH OF WARRANTY, OR OTHERWISE
 #----------------------------------------------------------------------------
+
+import hal
+
 from wpilib import MotorSafety, LiveWindow, SendableBase
 from wpilib._impl.utils import match_arglist
+
 from .talonsrx import TalonSRX
 from ._impl import ControlMode
 
@@ -40,6 +44,7 @@ class WPI_TalonSRX(TalonSRX, SendableBase, MotorSafety):
 
     def __init__(self, deviceNumber):
         super().__init__(deviceNumber)
+        hal.report(hal.UsageReporting.kResourceType_CTRE_future2, deviceNumber + 1)
 
         self.description = "Talon SRX %s" % (deviceNumber,)
 
