@@ -158,45 +158,7 @@ class BaseMotorController(MotController):
         Retrieve all status information.
         For best performance, Caller can snapshot all status information regarding the
         motion profile executer.
-        
-        :param statusToFill: 
-            Caller supplied object to fill.
-        
-            The members are filled, as follows...
-            
-            topBufferRem:   The available empty slots in the trajectory buffer.
-            The robot API holds a "top buffer" of trajectory points, so your applicaion
-            can dump several points at once.  The API will then stream them into the
-            low-level buffer, allowing the motor controller to act on them.
-            
-            topBufferRem: The number of points in the top trajectory buffer.
-            
-            btmBufferCnt: The number of points in the low level controller buffer.
-            
-            hasUnderrun:    Set if isUnderrun ever gets set.
-            Only is cleared by clearMotionProfileHasUnderrun() to ensure
-            
-            isUnderrun:     This is set if controller needs to shift a point from its buffer into
-            the active trajectory point however
-            the buffer is empty.
-            This gets cleared automatically when is resolved.
-            
-            activePointValid:   True if the active trajectory point has not empty, false otherwise. The members in activePoint are only valid if this signal is set.
-            
-            isLast: is set/cleared based on the MP executer's current
-            trajectory point's IsLast value.  This assumes
-            IsLast was set when PushMotionProfileTrajectory
-            was used to insert the currently processed trajectory
-            point.
-            
-            profileSlotSelect: The currently processed trajectory point's
-            selected slot.  This can differ in the currently selected slot used
-            for Position and Velocity servo modes
-            
-            outputEnable:       The current output mode of the motion profile
-            executer (disabled, enabled, or hold).  When changing the set()
-            value in MP mode, it's important to check this signal to
-            confirm the change takes effect before interacting with the top buffer.
+
         :returns: (errorcode, :class:`.MotionProfileStatus`)
         """
         retval, *fields = super().getMotionProfileStatus()

@@ -32,8 +32,18 @@ MotionProfileStatus.activePointValid.__doc__ = """
      True if the active trajectory point has not empty, false otherwise.
      The members in activePoint are only valid if this signal is set.
 """
-#MotionProfileStatus.isLast.__doc__ = ""
-#MotionProfileStatus.profileSlotSelect.__doc__ = ""
+MotionProfileStatus.isLast.__doc__ = """
+    Is set/cleared based on the MP executer's current
+    trajectory point's IsLast value.  This assumes
+    IsLast was set when PushMotionProfileTrajectory
+    was used to insert the currently processed trajectory
+    point.
+"""
+MotionProfileStatus.profileSlotSelect.__doc__ = """
+    The currently processed trajectory point's
+    selected slot.  This can differ in the currently selected slot used
+    for Position and Velocity servo modes
+"""
 MotionProfileStatus.outputEnable.__doc__ = """
      The current output mode of the motion profile executer (disabled, enabled, or hold).
      When changing the set() value in MP mode, it's important to check this signal to
