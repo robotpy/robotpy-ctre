@@ -7,6 +7,7 @@ __pycache__
 
 *.egg-info
 build
+dist
 
 ctre/version.py
 ctre/_impl/autogen
