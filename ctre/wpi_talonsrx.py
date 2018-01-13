@@ -42,9 +42,12 @@ class WPI_TalonSRX(TalonSRX, SendableBase, MotorSafety):
         super().__init__(deviceNumber)
 
         self.description = "Talon SRX %s" % (deviceNumber,)
+
         MotorSafety.__init__(self)
         self.setExpiration(0.0)
         self.setSafetyEnabled(False)
+
+        SendableBase.__init__(self)
         LiveWindow.add(self)
         self.setName("Talon SRX ", deviceNumber)
         self.speed = 0.0

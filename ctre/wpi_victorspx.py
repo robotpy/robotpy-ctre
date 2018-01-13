@@ -47,10 +47,12 @@ class WPI_VictorSPX (VictorSPX, SendableBase, MotorSafety):
         super().__init__(deviceNumber)
         hal.report(hal.UsageReporting.kResourceType_CTRE_future3, deviceNumber + 1)
         self.description = "Victor SPX %s" % (deviceNumber,)
+
         MotorSafety.__init__(self)
         self.setExpiration(0.0)
         self.setSafetyEnabled(False)
 
+        SendableBase.__init__(self)
         LiveWindow.add(self)
         self.setName("Victor SPX ", deviceNumber)
         self.speed = 0.0
