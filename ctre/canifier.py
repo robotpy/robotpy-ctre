@@ -35,22 +35,7 @@ from ._impl import (
 )
 
 
-__all__ = ['CANifier', 'LEDChannel', 'PWMChannel']
-
-
-class LEDChannel(enum.IntEnum):
-    """Enum for the LED Output Channels"""
-    LEDChannelA = 0
-    LEDChannelB = 1
-    LEDChannelC = 2
-
-
-class PWMChannel(enum.IntEnum):
-    """Enum for the PWM Input Channels"""
-    PWMChannel0 = 0
-    PWMChannel1 = 1
-    PWMChannel2 = 2
-    PWMChannel3 = 3
+__all__ = ['CANifier']
 
 
 class PinValues:
@@ -75,7 +60,22 @@ class CANifier(CANifierImpl):
     Device for interfacing common devices to the CAN bus.
     """
 
-    PWMChannelCount = 4
+    class LEDChannel(enum.IntEnum):
+        """Enum for the LED Output Channels"""
+        LEDChannelA = 0
+        LEDChannelB = 1
+        LEDChannelC = 2
+
+    class PWMChannel(enum.IntEnum):
+        """Enum for the PWM Input Channels"""
+        PWMChannel0 = 0
+        PWMChannel1 = 1
+        PWMChannel2 = 2
+        PWMChannel3 = 3
+
+    PWMChannelCount = len(PWMChannel)
+
+    GeneralPin = GeneralPin
 
     def __init__(self, deviceId: int):
         """
