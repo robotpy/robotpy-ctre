@@ -7,8 +7,6 @@ found at http://robotpy-ctre.readthedocs.io/
 **NOTE**: The RobotPy project is not associated with or endorsed by Cross The
 Road Electronics.
 
-**NOTE**: This repository doesn't work for 2018 Robots yet. Soon!
-
 Setup (simulator)
 -----------------
 
