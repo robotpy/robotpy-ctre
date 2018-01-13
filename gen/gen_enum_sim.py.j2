@@ -1,0 +1,11 @@
+import enum
+
+{% for header in headers %}
+{% for enum in header.enums %}
+class {{ enum.name }}(enum.IntEnum):
+{% for val in enum['values'] %}
+    {{ 'None_' if val.name == 'None' else val.name }} = {{ val.value | replace(' ', '') }}
+{% endfor %}
+{% endfor %}
+
+{% endfor %}

@@ -3,14 +3,17 @@
 # Much of this copied from https://github.com/pybind/python_example.git
 #
 
+import os
 from os.path import dirname, exists, join
 from setuptools import find_packages, setup, Extension
 from setuptools.command.build_ext import build_ext
+from setuptools.command.sdist import sdist
+import shutil
 import subprocess
 import sys
 import setuptools
 
-ctre_lib_version = '4.4.1.9'
+ctre_lib_version = '5.1.3.1'
 
 setup_dir = dirname(__file__)
 git_dir = join(setup_dir, '.git')
@@ -124,50 +127,148 @@ class BuildExt(build_ext):
         build_ext.build_extensions(self)
 
 
-install_requires = ['wpilib>=2017.0.0,<2018.0.0']
+install_requires = ['wpilib>=2018.0.0,<2019.0.0']
+
+class Downloader:
+    '''
+        Utility object to allow lazily retrieving needed artifacts on demand,
+        instead of distributing several extra MB with the pypi build.
+    '''
+
+    def __init__(self):
+        self._halsrc = None
+        self._ctresrc = None
+
+        ctre_devdir = os.environ.get("RPY_CTRE_DEVDIR")
+        if ctre_devdir:
+            # development use only -- preextracted files so it doesn't have
+            # to download it over and over again
+            # -> if the directory doesn't exist, it will download the current
+            #    files to that directory
+
+            self._halsrc = join(ctre_devdir, 'hal')
+            self._ctresrc = join(ctre_devdir, 'ctre')
+
+    # copy/paste from hal_impl.distutils
+    def _download(self, url):
+        import atexit
+        import posixpath
+        from urllib.request import urlretrieve, urlcleanup
+        import sys
+
+        print("Downloading", posixpath.basename(url))
+
+        def _reporthook(count, blocksize, totalsize):
+            percent = int(count*blocksize*100/totalsize)
+            sys.stdout.write("\r%02d%%" % percent)
+            sys.stdout.flush()
+
+        filename, _ = urlretrieve(url, reporthook=_reporthook)
+        atexit.register(urlcleanup)
+        return filename
+
+    def _download_and_extract_zip(self, url, to=None):
+        import atexit
+        import shutil
+        import tempfile
+        import zipfile
+
+        if to is None:
+            # generate temporary directory
+            tod = tempfile.TemporaryDirectory()
+            to = tod.name
+            atexit.register(tod.cleanup)
+
+        zip_fname = self._download(url)
+        with zipfile.ZipFile(zip_fname) as z:
+            if isinstance(to, str):
+                z.extractall(to)
+                return to
+            else:
+                for src, dst in to.items():
+                    with z.open(src, 'r') as zfp:
+                        with open(dst, 'wb') as fp:
+                            shutil.copyfileobj(zfp, fp)
+
+    @property
+    def halsrc(self):
+        if not self._halsrc or not exists(self._halsrc):
+            import hal_impl.distutils
+            self._halsrc = hal_impl.distutils.extract_hal_libs(to=self._halsrc)
+        return self._halsrc
+
+    @property
+    def ctresrc(self):
+        if not self._ctresrc or not exists(self._ctresrc):
+            url = 'http://www.ctr-electronics.com/downloads/lib/CTRE_Phoenix_FRCLibs_NON-WINDOWS_v%s.zip' % ctre_lib_version
+            self._ctresrc = self._download_and_extract_zip(url, to=self._ctresrc)
+        return self._ctresrc
+
+get = Downloader()
 
 # Detect roboRIO.. not foolproof, but good enough
 if exists('/etc/natinst/share/scs_imagemetadata.ini'):
-    
-    # Download/install the CTRE and HAL binaries necessary to compile
-    # -> must have robotpy-hal-roborio installed for this to work
-    import hal_impl.distutils
-    
-    # no version info available
-    url = 'http://www.ctr-electronics.com//downloads/lib/CTRE_FRCLibs_NON-WINDOWS_v%s.zip' % ctre_lib_version
-    
-    halsrc = hal_impl.distutils.extract_halzip()
-    zipsrc = hal_impl.distutils.download_and_extract_zip(url)
-    
+
+
     ext_modules = [
         Extension(
-            'ctre._impl.cantalon_roborio',
-            ['ctre/_impl/cantalon_roborio.cpp'],
+            'ctre._impl.ctre_roborio',
+            ['ctre/_impl/ctre_roborio.cpp'],
             include_dirs=[
                 # Path to pybind11 headers
                 get_pybind_include(),
                 get_pybind_include(user=True),
-                join(halsrc, 'include'),
-                join(zipsrc, 'cpp', 'include'),
+                join(get.ctresrc, 'cpp', 'include'),
             ],
-            libraries=['HALAthena', 'CTRLib'],
+            libraries=['wpiHal', 'CTRE_PhoenixCCI'],
             library_dirs=[
-                join(halsrc, 'lib'),
-                join(zipsrc, 'cpp', 'lib'),
+                join(get.halsrc, 'linux', 'athena', 'shared'),
+                join(get.ctresrc, 'cpp', 'lib'),
             ],
             language='c++',
         ),
     ]
-    
+
     # This doesn't actually work, as it needs to be installed before setup.py is ran
-    # ... but we specify it 
+    # ... but we specify it
     #install_requires = ['pybind11>=1.7']
-    install_requires.append('robotpy-hal-roborio>=2017.0.2,<2018.0.0')
+    install_requires.append('robotpy-hal-roborio>=2018.0.0,<2019.0.0')
     cmdclass = {'build_ext': BuildExt}
 else:
-    install_requires.append('robotpy-hal-sim>=2017.0.2,<2018.0.0')
+    install_requires.append('robotpy-hal-sim>=2018.0.0,<2019.0.0')
     ext_modules = None
     cmdclass = {}
+
+#
+# Autogenerating the required CTRE files is something that
+# is done at sdist time. This means if you are testing builds,
+# you have to run 'setup.py sdist build'.
+#
+# The advantage of doing it this way is that the autogen files
+# are distributed with the pypi package, so simulation users
+# don't have to install anything special to build this
+#
+
+class SDist(sdist):
+    def run(self):
+        from header2whatever import batch_convert
+
+        # Do this before deleting the autogen directory, as it may fail
+        ctresrc = get.ctresrc
+
+        config_path = join(setup_dir, 'gen', 'gen.yml')
+        outdir = join(setup_dir, 'ctre', '_impl', 'autogen')
+
+        shutil.rmtree(outdir, ignore_errors=True)
+
+        batch_convert(config_path, outdir, ctresrc)
+
+        with open(join(outdir, '__init__.py'), 'w'):
+            pass
+
+        super().run()
+
+cmdclass['sdist'] = SDist
 
 setup(
     name='robotpy-ctre',

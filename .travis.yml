@@ -3,12 +3,13 @@ sudo: false
 env:
   - RUNCOVERAGE=1
 python:
-  - "3.4"
   - "3.5"
   - "3.6"
 # command to install dependencies
 install:
-  - "pip install . pytest coverage"
+  - pip install pytest coverage header2whatever
+  - python setup.py sdist
+  - "pip install dist/robotpy-ctre-*.tar.gz"
 # command to run tests
 script:
   - tests/run_tests.sh

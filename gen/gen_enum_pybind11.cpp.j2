@@ -1,0 +1,10 @@
+
+{% for header in headers %}
+{% for enum in header.enums %}
+  py::enum_<{{ enum.namespace }}{{ enum.name }}>(m, "{{ enum.name }}")
+  {% for val in enum['values'] %}
+    .value("{{ val.name }}", {{ enum.namespace }}{{ enum.name }}::{{ val.name }})
+  {% endfor %};
+
+{% endfor %}
+{% endfor %}

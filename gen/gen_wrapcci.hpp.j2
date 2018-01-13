@@ -1,0 +1,30 @@
+{% macro param_comma(fn) %}
+{% if fn.parameters | count > 1 %}, {% endif %}
+{% endmacro %}
+
+
+class {{ module_name }}{% if inherits is defined %} : public {{ inherits }}{% endif %} {
+
+  void * m_handle;
+
+public:
+  {% for header in headers %}
+  {% for fn in header.functions %}
+  {% if 'ignore' not in fn.data %}
+  {% if fn.x_name.startswith('create') %}
+  void {{ fn.x_name }}({{ fn.x_in_params | join(', ', attribute='x_decl') }}) {
+    m_handle = {{ fn.name }}({{ fn.parameters[0:] | join(', ', attribute='x_callname') }});
+  }
+  {% else %}
+  {{ fn.returns }} {{ fn.x_name }}({{ fn.x_in_params | join(', ', attribute='x_decl') }}) {
+    {{ fn.x_temprefs }}
+    {{ fn.x_callstart }} {{ fn.name }}(m_handle{{ param_comma(fn) }}{{ fn.parameters[1:] | join(', ', attribute='x_callname') }} {{ fn.x_callend }});
+    {{ fn.x_return }}
+  }
+
+  {% endif %}
+
+  {% endif %}
+  {% endfor %}
+  {% endfor %}
+};
