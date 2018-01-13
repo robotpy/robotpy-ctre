@@ -4,7 +4,12 @@ from .wpi_victorspx import WPI_VictorSPX
 from .canifier import CANifier
 from .pigeonimu import PigeonIMU
 
-from ._impl import ControlMode
+from ._impl import (
+    ControlMode,
+    FeedbackDevice,
+    RemoteFeedbackDevice,
+    NeutralMode,
+)
 
 try:
     from .version import __version__
