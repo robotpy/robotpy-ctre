@@ -3,7 +3,7 @@ CTRE Libraries
 
 .. warning:: These bindings are lightly tested, please report any bugs!
 
-wpi_talonsrx module
+TalonSRX
 --------------------
 
 .. automodule:: ctre.wpi_talonsrx
@@ -11,14 +11,26 @@ wpi_talonsrx module
     :undoc-members:
     :show-inheritance:
 
-wpi_victorspx module
+.. automodule:: ctre.talonsrx
+    :members:
+    :inherited-members:
+    :undoc-members:
+    :show-inheritance:
+
+VictorSPX
 ---------------------
 .. automodule:: ctre.wpi_victorspx
     :members:
     :undoc-members:
     :show-inheritance:
 
-canifier module
+.. automodule:: ctre.victorspx
+    :members:
+    :inherited-members:
+    :undoc-members:
+    :show-inheritance:
+
+CANifier
 --------------------
 .. automodule:: ctre.canifier
     :members:
@@ -26,7 +38,7 @@ canifier module
     :show-inheritance:
     :inherited-members:
 
-pigeonimu module
+PigeonIMU
 --------------------
 .. automodule:: ctre.pigeonimu
     :members:
@@ -34,38 +46,20 @@ pigeonimu module
     :show-inheritance:
     :inherited-members:
 
-talonsrx module
---------------------
-.. automodule:: ctre.talonsrx
-    :members:
-    :inherited-members:
-    :undoc-members:
-    :show-inheritance:
-
-victorspx module
---------------------
-.. automodule:: ctre.victorspx
-    :members:
-    :inherited-members:
-    :undoc-members:
-    :show-inheritance:
-
-sensorcollection module
------------------------
+SensorCollection interface
+--------------------------
 .. automodule:: ctre.sensorcollection
     :members:
     :undoc-members:
     :show-inheritance:
 
-trajectorypoint module
------------------------
+Motion Profile data transfer
+----------------------------
 .. automodule:: ctre._impl.trajectorypoint
     :members:
     :undoc-members:
     :show-inheritance:
 
-motionprofilestatus module
---------------------------
 .. automodule:: ctre._impl.motionprofilestatus
     :members:
     :undoc-members:
