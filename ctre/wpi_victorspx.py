@@ -77,7 +77,7 @@ class WPI_VictorSPX (VictorSPX, SendableBase, MotorSafety):
         :type speed: float
         :param demand0:
         :type demand0: float
-        :param demand1: 
+        :param demand1:
         :type demand1: float
         """
         speed_arg = ("speed", [float, int])
@@ -117,11 +117,11 @@ class WPI_VictorSPX (VictorSPX, SendableBase, MotorSafety):
         """
         return self.speed
 
-    def setInverted(self, isInverted: bool):
-        self.setInverted(isInverted)
+    #def setInverted(self, isInverted: bool):
+    #    super().setInverted(isInverted)
 
-    def getInverted(self):
-        return self.getInverted()
+    #def getInverted(self):
+    #    return super().getInverted()
 
     def disable(self):
         self.neutralOutput()
