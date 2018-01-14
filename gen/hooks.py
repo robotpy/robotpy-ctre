@@ -193,6 +193,11 @@ def function_hook(fn, data):
     # x_call_params
 
     data = data.get('data', {}).get(fn['name'])
+    if data is None:
+        # ensure every function is in our yaml
+        print('WARNING', fn['name'])
+        data = {}
+        #assert False, fn['name']
 
     # lazy :)
     fn.update(locals())
