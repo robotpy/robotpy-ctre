@@ -9,6 +9,7 @@
   - cpp/include/ctre/phoenix/paramEnum.h
   - cpp/include/ctre/phoenix/CANifierControlFrame.h
   - cpp/include/ctre/phoenix/CANifierStatusFrame.h
+  - cpp/include/ctre/phoenix/CCI/CANifier_CCI.h
 
   - cpp/include/ctre/phoenix/Motion/SetValueMotionProfile.h
 

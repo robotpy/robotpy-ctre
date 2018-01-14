@@ -67,7 +67,7 @@ class WPI_VictorSPX (VictorSPX, SendableBase, MotorSafety):
         - mode, value
         - mode, demand0, demand1
 
-        largely a wrapper around :meth:`.BaseMotorController.set`
+        largely a wrapper around :meth:`.VictorSPX.set`
 
         :param value:
         :type value: float

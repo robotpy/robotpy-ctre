@@ -82,6 +82,10 @@ def header_hook(header, data):
 def function_hook(fn, data):
     '''Called for each function in the header'''
 
+    # only output functions if a module name is defined
+    if 'module_name' not in data:
+        return
+
     # Mangle the name appropriately
     m = re.match(r'c_%s_(.*)' % data['module_name'], fn['name'])
     if not m:
