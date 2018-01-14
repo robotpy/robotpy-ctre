@@ -12,6 +12,7 @@
   - cpp/include/ctre/phoenix/CCI/CANifier_CCI.h
 
   - cpp/include/ctre/phoenix/Motion/SetValueMotionProfile.h
+  - cpp/include/ctre/phoenix/Motion/TrajectoryPoint.h
 
   - cpp/include/ctre/phoenix/MotorControl/ControlFrame.h
   - cpp/include/ctre/phoenix/MotorControl/ControlMode.h

@@ -318,7 +318,9 @@ c_PigeonIMU_GetRawMagnetometer:
   doc: |
     Get Raw Magnetometer data.
 
-    :param rm_xyz: [x, y, z]
+    :param rm_xyz: Array to fill with x[0], y[1], and z[2] data.
+                   Number is equal to 0.6 microTeslas per unit.
+
     :returns: The last ErrorCode generated.
 c_PigeonIMU_GetBiasedMagnetometer:
   code: |
@@ -326,7 +328,9 @@ c_PigeonIMU_GetBiasedMagnetometer:
   doc: |
     Get Biased Magnetometer data.
 
-    :param bm_xyz: [x, y, z]
+    :param bm_xyz: Array to fill with x[0], y[1], and z[2] data.
+                   Number is equal to 0.6 microTeslas per unit.
+
     :returns: The last ErrorCode generated.
 c_PigeonIMU_GetBiasedAccelerometer:
   code: |
@@ -334,15 +338,18 @@ c_PigeonIMU_GetBiasedAccelerometer:
   doc: |
     Get Biased Accelerometer data.
 
-    :param ba_xyz: [x, y, z]
+    :param ba_xyz: Array to fill with x[0], y[1], and z[2] data.
+                   These are in fixed point notation Q2.14.  e.g. 16384 = 1G
+
     :returns: The last ErrorCode generated.
 c_PigeonIMU_GetRawGyro:
   code: |
     raise NotImplementedError
   doc: |
-    Get Biased Accelerometer data.
+    Get Raw Gyro data.
 
-    :param xyz_dps: [x, y, z] in degrees per second.
+    :param xyz_dps: Array to fill with x[0], y[1], and z[2] data in degrees per second.
+
     :returns: The last ErrorCode generated.
 c_PigeonIMU_GetAccelerometerAngles:
   code: |
@@ -350,7 +357,8 @@ c_PigeonIMU_GetAccelerometerAngles:
   doc: |
     Get Accelerometer tilt angles.
     
-    :param tiltAngles: [x, y, z] angles.
+    :param tiltAngles: Array to fill with x[0], y[1], and z[2] angles in degrees.
+
     :returns: The last ErrorCode generated.
 c_PigeonIMU_GetFusedHeading2:
   code: |
