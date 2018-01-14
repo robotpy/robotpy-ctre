@@ -10,7 +10,7 @@ import subprocess
 import sys
 import setuptools
 
-ctre_lib_version = '4.4.1.9'
+ctre_lib_version = '4_Legacy'
 
 setup_dir = dirname(__file__)
 git_dir = join(setup_dir, '.git')
@@ -31,6 +31,8 @@ if exists(git_dir):
     # Convert git version to PEP440 compliant version
     # - Older versions of pip choke on local identifiers, so we can't include the git commit
     v, commits, local = out.decode('utf-8').rstrip().split('-', 2)
+    if v.endswith('_legacy'):
+        v = v[:-len('_legacy')]
     if commits != '0' or '-dirty' in local:
         v = '%s.post0.dev%s' % (v, commits)
 
@@ -124,7 +126,7 @@ class BuildExt(build_ext):
         build_ext.build_extensions(self)
 
 
-install_requires = ['wpilib>=2017.0.0,<2018.0.0']
+install_requires = ['wpilib>=2018.0.0,<2019.0.0']
 
 # Detect roboRIO.. not foolproof, but good enough
 if exists('/etc/natinst/share/scs_imagemetadata.ini'):
@@ -147,12 +149,11 @@ if exists('/etc/natinst/share/scs_imagemetadata.ini'):
                 # Path to pybind11 headers
                 get_pybind_include(),
                 get_pybind_include(user=True),
-                join(halsrc, 'include'),
                 join(zipsrc, 'cpp', 'include'),
             ],
-            libraries=['HALAthena', 'CTRLib'],
+            libraries=['wpiHal', 'CTRLib'],
             library_dirs=[
-                join(halsrc, 'lib'),
+                join(halsrc, 'linux', 'athena', 'shared'),
                 join(zipsrc, 'cpp', 'lib'),
             ],
             language='c++',
@@ -162,20 +163,20 @@ if exists('/etc/natinst/share/scs_imagemetadata.ini'):
     # This doesn't actually work, as it needs to be installed before setup.py is ran
     # ... but we specify it 
     #install_requires = ['pybind11>=1.7']
-    install_requires.append('robotpy-hal-roborio>=2017.0.2,<2018.0.0')
+    install_requires.append('robotpy-hal-roborio>=2018.0.0,<2019.0.0')
     cmdclass = {'build_ext': BuildExt}
 else:
-    install_requires.append('robotpy-hal-sim>=2017.0.2,<2018.0.0')
+    install_requires.append('robotpy-hal-sim>=2018.0.0,<2019.0.0')
     ext_modules = None
     cmdclass = {}
 
 setup(
-    name='robotpy-ctre',
+    name='robotpy-ctre-legacy',
     version=__version__,
     author='Dustin Spicuzza',
     author_email='dustin@virtualroadside.com',
     url='https://github.com/robotpy/robotpy-ctre',
-    description='RobotPy bindings for CTRE third party libraries',
+    description='RobotPy bindings for CTRE third party libraries (v4 legacy)',
     long_description=long_description,
     packages=find_packages(),
     ext_modules=ext_modules,
