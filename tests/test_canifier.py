@@ -26,6 +26,7 @@ def test_canifier_setGeneralOutputs(canifier):
     canifier.setGeneralOutputs(2, 1)
 
 
+@pytest.mark.xfail(raises=AttributeError)
 def test_canifier_getGeneralInputs(ctre, canifier):
     pin_values = ctre.canifier.PinValues()
     canifier.getGeneralInputs(pin_values)

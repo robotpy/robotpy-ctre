@@ -6,7 +6,6 @@ from .canifierfaults import CANifierFaults
 from .canifierstickyfaults import CANifierStickyFaults
 from .pigeonfaults import PigeonIMU_Faults
 from .pigeonstickyfaults import PigeonIMU_StickyFaults
-from .trajectorypoint import TrajectoryPoint
 from .motionprofilestatus import MotionProfileStatus
 
 if hal.isSimulation():
@@ -14,6 +13,7 @@ if hal.isSimulation():
     from .autogen.motcontroller_sim import MotController
     from .autogen.pigeonimu_sim import PigeonIMU
     from .autogen.ctre_sim_enums import (
+        ControlMode,
         ErrorCode,
         NeutralMode,
         RemoteFeedbackDevice,
@@ -27,7 +27,7 @@ if hal.isSimulation():
         ParamEnum,
         CANifierStatusFrame,
         CANifierControlFrame,
-        ParamEnum,
+        GeneralPin,
         PigeonIMU_StatusFrame,
         PigeonIMU_ControlFrame,
     )
@@ -38,6 +38,7 @@ else:
         PigeonIMU
     )
     from .ctre_roborio import (
+        ControlMode,
         ErrorCode,
         NeutralMode,
         RemoteFeedbackDevice,
@@ -51,28 +52,7 @@ else:
         ParamEnum,
         CANifierStatusFrame,
         CANifierControlFrame,
-        ParamEnum,
+        GeneralPin,
         PigeonIMU_StatusFrame,
         PigeonIMU_ControlFrame,
     )
-
-
-# todo: eliminate
-import enum
-from unittest.mock import MagicMock
-
-class ControlMode (enum.IntEnum):
-    PercentOutput = 0
-    Position = 1
-    Velocity = 2
-    Current = 3
-    Follower = 5
-    MotionProfile = 6
-    MotionMagic = 7
-    MotionMagicArc = 8
-    #TimedPercentOutput = 9
-    MotionProfileArc = 10
-    Disabled = 15
-
-
-GeneralPin = MagicMock()

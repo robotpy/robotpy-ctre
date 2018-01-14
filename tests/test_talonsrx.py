@@ -14,7 +14,6 @@ def test_talon_get(talon, ControlMode):
     assert talon.get() == 0
 
 
-@pytest.mark.xfail(raises=NotImplementedError)
 def test_talon_set1(talon, ControlMode):
     talon.setDemand = MagicMock()
     talon.set(1)
@@ -22,7 +21,6 @@ def test_talon_set1(talon, ControlMode):
     talon.setDemand.assert_called_with(ControlMode.PercentOutput, 1023, 0)
 
 
-@pytest.mark.xfail(raises=NotImplementedError)
 def test_talon_set2(talon, MotController, ControlMode):
     talon.setDemand = MagicMock()
     talon.set(ControlMode.Velocity, 1)
@@ -30,7 +28,6 @@ def test_talon_set2(talon, MotController, ControlMode):
     talon.setDemand.assert_called_with(ControlMode.Velocity, 1, 0)
 
 
-@pytest.mark.xfail(raises=NotImplementedError)
 def test_talon_set3(talon, MotController, ControlMode):
     talon.setDemand = MagicMock()
     talon.set(ControlMode.Position, 1, 55)
@@ -38,21 +35,18 @@ def test_talon_set3(talon, MotController, ControlMode):
     talon.setDemand.assert_called_with(ControlMode.Position, 1, 0)
 
 
-@pytest.mark.xfail(raises=NotImplementedError)
 def test_talon_set4(talon, ControlMode):
     talon.setDemand = MagicMock()
     talon.set(ControlMode.Current, 1.1)
     talon.setDemand.assert_called_with(ControlMode.Current, 1100, 0)
 
 
-@pytest.mark.xfail(raises=NotImplementedError)
 def test_talon_disable(talon, ControlMode):
     talon.setDemand = MagicMock()
     talon.disable()
     talon.setDemand.assert_called_with(ControlMode.Disabled, 0, 0)
 
 
-@pytest.mark.xfail(raises=NotImplementedError)
 def test_talon_stopMotor(talon, ControlMode):
     talon.setDemand = MagicMock()
     talon.stopMotor()
@@ -447,7 +441,7 @@ def test_basemotorcontroller_processMotionProfileBuffer(talon):
 
 @pytest.mark.xfail(raises=NotImplementedError)
 def test_basemotorcontroller_pushMotionProfileTrajectory(talon, ctre):
-    point = ctre._impl.TrajectoryPoint(1,2,3,4,True,True)
+    point = ctre.TrajectoryPoint(1, 2, 3, 4, True, True)
     talon.pushMotionProfileTrajectory(point)
 
 
@@ -498,6 +492,5 @@ def test_basemotorcontroller_setStatusFramePeriod(talon):
     talon.setStatusFramePeriod(1, 2, 3)
 
 
-@pytest.mark.xfail(raises=NotImplementedError)
 def test_basemotorcontroller_valueUpdated(talon):
     talon.valueUpdated()

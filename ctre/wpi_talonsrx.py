@@ -75,7 +75,7 @@ class WPI_TalonSRX(TalonSRX, SendableBase, MotorSafety):
         - mode, value
         - mode, demand0, demand1
 
-        largely a wrapper around :meth:`.BaseMotorController.set`
+        largely a wrapper around :meth:`.TalonSRX.set`
 
         :param value:
         :type value: float
