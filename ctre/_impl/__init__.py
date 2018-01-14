@@ -30,6 +30,7 @@ if hal.isSimulation():
         GeneralPin,
         PigeonIMU_StatusFrame,
         PigeonIMU_ControlFrame,
+        TrajectoryDuration,
     )
 else:
     from .ctre_roborio import (
@@ -55,4 +56,5 @@ else:
         GeneralPin,
         PigeonIMU_StatusFrame,
         PigeonIMU_ControlFrame,
+        TrajectoryDuration,
     )

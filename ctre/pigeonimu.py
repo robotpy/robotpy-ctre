@@ -1,4 +1,4 @@
-# validated: 2018-01-05 EN 8f8595a20145 java/src/com/ctre/phoenix/sensors/PigeonIMU.java
+# validated: 2018-01-14 DV 2a1c9b5fb45b java/src/com/ctre/phoenix/sensors/PigeonIMU.java
 #----------------------------------------------------------------------------
 #  Software License Agreement
 #

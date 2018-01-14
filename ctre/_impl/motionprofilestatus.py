@@ -1,4 +1,4 @@
-# validated: 2018-01-06 EN d090f9cdc6a1 libraries/driver/include/ctre/phoenix/Motion/MotionProfileStatus.h
+# validated: 2018-01-14 DV 3c71ef395e3d libraries/driver/include/ctre/phoenix/Motion/MotionProfileStatus.h
 from collections import namedtuple
 
 
@@ -7,8 +7,10 @@ __all__ = ['MotionProfileStatus']
 
 #: Motion Profile Status.
 #: This is simply a data transfer object.
-MotionProfileStatus = namedtuple("MotionProfileStatus", ["topBufferRem", "topBufferCnt", "btmBufferCnt", "hasUnderrun",
-                                                         "isUnderrun", "activePointValid", "isLast", "profileSlotSelect", "outputEnable"])
+MotionProfileStatus = namedtuple("MotionProfileStatus", [
+    "topBufferRem", "topBufferCnt", "btmBufferCnt", "hasUnderrun", "isUnderrun", "activePointValid",
+    "isLast", "profileSlotSelect0", "profileSlotSelect1", "outputEnable", "timeDurMs"
+])
 MotionProfileStatus.topBufferRem.__doc__ = """
      The available empty slots in the trajectory buffer.
 
@@ -39,13 +41,15 @@ MotionProfileStatus.isLast.__doc__ = """
     was used to insert the currently processed trajectory
     point.
 """
-MotionProfileStatus.profileSlotSelect.__doc__ = """
-    The currently processed trajectory point's
-    selected slot.  This can differ in the currently selected slot used
+MotionProfileStatus.profileSlotSelect0.__doc__ = """
+    The currently processed trajectory point's selected slot for PID Loop 0.
+    This can differ in the currently selected slot used
     for Position and Velocity servo modes
 """
+MotionProfileStatus.profileSlotSelect1.__doc__ = "Selected slot for PID Loop 0"
 MotionProfileStatus.outputEnable.__doc__ = """
      The current output mode of the motion profile executer (disabled, enabled, or hold).
      When changing the set() value in MP mode, it's important to check this signal to
      confirm the change takes effect before interacting with the top buffer.
 """
+MotionProfileStatus.timeDurMs.__doc__ = "The applied duration of the active trajectory point"
