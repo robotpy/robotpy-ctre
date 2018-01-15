@@ -19,6 +19,7 @@ typedef py::call_guard<py::gil_scoped_release> release_gil;
 #include "ctre/phoenix/CANifierStatusFrame.h"
 
 #include "ctre/phoenix/Motion/SetValueMotionProfile.h"
+#include "ctre/phoenix/Motion/TrajectoryPoint.h"
 
 #include "ctre/phoenix/MotorControl/ControlFrame.h"
 #include "ctre/phoenix/MotorControl/ControlMode.h"
