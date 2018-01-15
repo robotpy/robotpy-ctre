@@ -1,4 +1,5 @@
 ---
+# NOTE: Make sure to edit ctre_roborio.cpp if you add a header here
 
 #
 # Enums
