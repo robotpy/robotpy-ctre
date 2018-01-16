@@ -206,9 +206,17 @@ class Downloader:
 
 get = Downloader()
 
-# Detect roboRIO.. not foolproof, but good enough
-if exists('/etc/natinst/share/scs_imagemetadata.ini'):
+_travis_build = os.environ.get('TRAVIS_BUILD')
 
+# Detect roboRIO.. not foolproof, but good enough
+if exists('/etc/natinst/share/scs_imagemetadata.ini') or _travis_build:
+    
+    # Don't try to link when testing on travis, as it will fail
+    # -> We can still catch compile errors, which is good enough I suspect
+    if _travis_build:
+        libraries = None
+    else:
+        libraries = ['wpiHal', 'CTRE_PhoenixCCI']
 
     ext_modules = [
         Extension(
@@ -220,7 +228,7 @@ if exists('/etc/natinst/share/scs_imagemetadata.ini'):
                 get_pybind_include(user=True),
                 join(get.ctresrc, 'cpp', 'include'),
             ],
-            libraries=['wpiHal', 'CTRE_PhoenixCCI'],
+            libraries=libraries,
             library_dirs=[
                 join(get.halsrc, 'linux', 'athena', 'shared'),
                 join(get.ctresrc, 'cpp', 'lib'),

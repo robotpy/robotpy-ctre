@@ -1,18 +1,52 @@
-language: python
-sudo: false
-env:
-  - RUNCOVERAGE=1
-python:
-  - "3.5"
-  - "3.6"
-# command to install dependencies
-install:
-  - pip install pytest coverage header2whatever
-  - python setup.py sdist
-  - "pip install dist/robotpy-ctre-*.tar.gz"
-# command to run tests
-script:
-  - tests/run_tests.sh
+
+jobs:
+  include:
+    
+  # Normal tests
+  - stage: test
+    sudo: false
+    language: python
+    python: "3.5"
+    install:
+    - pip install pytest coverage header2whatever
+    - python setup.py sdist
+    - "pip install dist/robotpy-ctre-*.tar.gz"
+    script:
+    - RUNCOVERAGE=1 tests/run_tests.sh
+  
+  - stage: test
+    sudo: false
+    language: python
+    python: "3.6"
+    install:
+    - pip install pytest coverage header2whatever
+    - python setup.py sdist
+    - "pip install dist/robotpy-ctre-*.tar.gz"
+    script:
+    - RUNCOVERAGE=1 tests/run_tests.sh
+  
+  # Check to see if the compilation succeeds
+  - stage: test
+    sudo: false
+    language: python
+    python: "3.6"
+    install:
+    - FORCE_HAL_INSTALL=1 pip install pybind11 header2whatever robotpy-hal-roborio
+    script:
+    - TRAVIS_BUILD=1 python setup.py sdist build
+  
+  - stage: deploy-pypi
+    sudo: false
+    if: tag IS present
+    install:
+    - pip install header2whatever
+    deploy:
+    - provider: pypi
+      user: $PYPI_USERNAME
+      password: $PYPI_PASSWORD
+      on:
+        tags: true
+
 notifications:
   webhooks:
     urls:
