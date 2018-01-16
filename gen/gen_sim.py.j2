@@ -5,7 +5,7 @@
 
 import typing
 
-from hal_impl.data import hal_data
+from hal_impl.data import hal_data, NotifyDict
 
 class {{ module_name }}{% if inherits is defined %}({{ inherits }}){% endif %}:
 
@@ -23,11 +23,17 @@ class {{ module_name }}{% if inherits is defined %}({{ inherits }}){% endif %}:
         {{ fn.x_param_checks | join('\n') | indent(width=8) }}
     {% endif %}
     {% if 'code' in fn.data %}
-        {{ fn.data['code'] | trim }}
+        {{ fn.data['code'] | trim | indent(width=8) }}
     {% elif 'get' in fn.data %}
-        return self.hal_data['{{ fn.data['get'] }}']
+        retval = self.hal_data['{{ fn.data['get'] }}']
     {% elif 'set' in fn.data %}
         self.hal_data['{{ fn.data['set'] }}'] = {{ fn.parameters[1]['name'] }}
+    {% endif %}
+    {% if fn.x_return_checks %}
+        {{ fn.x_return_checks | join('\n') | indent(width=8) }}
+    {% endif %}
+    {% if fn.x_rets and not fn.x_name.startswith('create') %}
+        return retval
     {% endif %}
 
   {% endif %}

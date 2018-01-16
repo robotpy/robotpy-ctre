@@ -4,7 +4,7 @@ import enum
 {% for enum in header.enums %}
 class {{ enum.name }}(enum.IntEnum):
 {% for val in enum['values'] %}
-    {{ 'None_' if val.name == 'None' else val.name }} = {{ val.value | replace(' ', '') }}
+    {{ val.x_name }} = {{ val.value | replace(' ', '') }}
 {% endfor %}
 {% endfor %}
 

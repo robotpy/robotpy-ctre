@@ -16,10 +16,10 @@ public:
     m_handle = {{ fn.name }}({{ fn.parameters[0:] | join(', ', attribute='x_callname') }});
   }
   {% else %}
-  {{ fn.returns }} {{ fn.x_name }}({{ fn.x_in_params | join(', ', attribute='x_decl') }}) {
+  {{ fn.x_wrap_return_type }} {{ fn.x_name }}({{ fn.x_in_params | join(', ', attribute='x_decl') }}) {
     {{ fn.x_temprefs }}
     {{ fn.x_callstart }} {{ fn.name }}(m_handle{{ param_comma(fn) }}{{ fn.parameters[1:] | join(', ', attribute='x_callname') }} {{ fn.x_callend }});
-    {{ fn.x_return }}
+    {{ fn.x_wrap_return }}
   }
 
   {% endif %}
