@@ -212,5 +212,7 @@ def function_hook(fn, data):
     if data.get('internal', False):
         x_name = '_' + x_name
     
+    name = fn['name']
+    
     # lazy :)
     fn.update(locals())
