@@ -1,8 +1,10 @@
 ---
 c_PigeonIMU_Create2:
+  internal: true
   code: |
     self.create_called = True
 c_PigeonIMU_Create1:
+  internal: true
   code: |
     self.create_called = True
 c_PigeonIMU_GetDescription:
@@ -281,8 +283,8 @@ c_PigeonIMU_GetCompassHeading:
   doc: |
     Get the continuous compass heading.
 
-    :returns: 
-        continuous compass heading [-23040, 23040) degrees. 
+    :returns:
+        continuous compass heading [-23040, 23040) degrees.
         Use SetCompassHeading to modify the wrap-around portion.
 c_PigeonIMU_GetCompassFieldStrength:
   code: |
@@ -378,7 +380,7 @@ c_PigeonIMU_GetFirmwareVersion:
   doc: |
     Gets the firmware version of the device.
 
-    :returns: 
+    :returns:
         param holds the firmware version of the device. Device must be powered
         cycled at least once.
 c_PigeonIMU_HasResetOccurred:

@@ -1,5 +1,6 @@
 ---
 c_CANifier_Create1:
+  internal: true
   code: |
     assert deviceNumber not in hal_data['CAN']
     self.hal_data = NotifyDict({

@@ -99,7 +99,7 @@ def function_hook(fn, data):
     # Python exposed function name conveerted to camelcase
     x_name = m.group(1)
     x_name = x_name[0].lower() + x_name[1:]
-
+    
     x_in_params = []
     x_out_params = []
     x_rets = []
@@ -207,6 +207,10 @@ def function_hook(fn, data):
         print('WARNING', fn['name'])
         data = {}
         #assert False, fn['name']
+    
+    # Rename internal functions
+    if data.get('internal', False):
+        x_name = '_' + x_name
     
     # lazy :)
     fn.update(locals())

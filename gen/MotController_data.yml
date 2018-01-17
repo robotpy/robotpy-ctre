@@ -1,5 +1,6 @@
 ---
 c_MotController_Create1:
+  internal: true
   code: |
     self.create_called = True
 c_MotController_GetDeviceNumber:

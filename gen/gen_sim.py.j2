@@ -32,7 +32,7 @@ class {{ module_name }}{% if inherits is defined %}({{ inherits }}){% endif %}:
     {% if fn.x_return_checks %}
         {{ fn.x_return_checks | join('\n') | indent(width=8) }}
     {% endif %}
-    {% if fn.x_rets and not fn.x_name.startswith('create') %}
+    {% if fn.x_rets and not fn.x_name.startswith('_create') %}
         return retval
     {% endif %}
 
