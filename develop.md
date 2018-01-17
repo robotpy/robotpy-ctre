@@ -53,3 +53,17 @@ autogen first, then build the wheel.
 
     python setup.py sdist
     pip3 wheel .
+
+Compilation (correctness testing only)
+--------------------------------------
+
+If you need to determine if the changes you are making will compile (but don't
+actually care about executing the resulting library), then you can run a build
+on linux using the following:
+
+    TRAVIS_BUILD=1 python setup.py sdist build
+
+This will force the C++ extension to build, but it won't try to link it to the
+CTRE or HAL libraries. Note that you can also specify the `RPY_CTRE_DEVDIR`
+environment variable to ensure that you aren't downloading the library files
+over and over again.
