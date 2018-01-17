@@ -47,6 +47,17 @@ __all__ = ["BaseMotorController"]
 
 class BaseMotorController(MotController):
     """Base motor controller features for all CTRE CAN motor controllers."""
+    
+    ControlMode = ControlMode
+    FeedbackDevice = FeedbackDevice
+    LimitSwitchNormal = LimitSwitchNormal
+    LimitSwitchSource = LimitSwitchSource
+    NeutralMode = NeutralMode
+    ParamEnum = ParamEnum
+    RemoteLimitSwitchSource = RemoteLimitSwitchSource
+    StatusFrame = StatusFrame
+    StatusFrameEnhanced = StatusFrameEnhanced
+    VelocityMeasPeriod = VelocityMeasPeriod
 
     def __init__(self, arbId: int):
         """
@@ -69,7 +80,7 @@ class BaseMotorController(MotController):
         
         :returns: Device number.
         """
-        return self.getDeviceNumber()[1]
+        return self.getDeviceNumber()
 
     def set(self, mode: ControlMode, demand0: float, demand1: float = 0.0):
         """

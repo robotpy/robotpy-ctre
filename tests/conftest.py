@@ -35,19 +35,6 @@ def ctre(hal, hal_data):
 
 
 @pytest.fixture(scope='function')
-def MotController():
-    with patch('ctre._impl.MotController', new=MagicMock()) as m:
-        with patch('ctre.basemotorcontroller.MotController', new=m):
-            with patch('ctre.talonsrx.MotController', new=m):
-                yield m
-
-
-@pytest.fixture(scope='function')
-def ControlMode(ctre):
-    return ctre._impl.ControlMode
-
-
-@pytest.fixture(scope='function')
 def sendablebuilder(wpilib, networktables):
     builder = wpilib.SendableBuilder()
     table = networktables.NetworkTables.getTable("component")

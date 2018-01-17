@@ -7,6 +7,10 @@ import typing
 
 from hal_impl.data import hal_data, NotifyDict
 
+{% if data.sim_extra is defined %}
+{{ data.sim_extra }}
+{% endif %}
+
 class {{ module_name }}{% if inherits is defined %}({{ inherits }}){% endif %}:
 
     def __init__(self):

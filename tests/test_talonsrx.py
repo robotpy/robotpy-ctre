@@ -1,60 +1,68 @@
 import pytest
-from unittest.mock import MagicMock
 
 @pytest.fixture(scope='function')
-def talon(ctre, MotController):
+def talon(ctre):
     return ctre.WPI_TalonSRX(1)
 
+@pytest.fixture(scope='function')
+def cdata(talon, hal_data):
+    return hal_data['CAN'][1]
 
-def test_talon_init(ctre):
+
+
+def test_talon_init(ctre, hal_data):
+    assert 1 not in hal_data['CAN']
     ctre.WPI_TalonSRX(1)
+    assert 1 in hal_data['CAN']
+    assert hal_data['CAN'][1]['type'] == 'talonsrx'
 
 
-def test_talon_get(talon, ControlMode):
+def test_talon_get(talon):
     assert talon.get() == 0
 
 
-def test_talon_set1(talon, ControlMode):
-    talon.setDemand = MagicMock()
+def test_talon_set1(talon, cdata):
     talon.set(1)
     assert talon.get() == 1
-    talon.setDemand.assert_called_with(ControlMode.PercentOutput, 1023, 0)
+    assert cdata['control_mode'] == talon.ControlMode.PercentOutput
+    assert cdata['value'] == 1023
 
-
-def test_talon_set2(talon, MotController, ControlMode):
-    talon.setDemand = MagicMock()
-    talon.set(ControlMode.Velocity, 1)
+def test_talon_set2(talon, cdata):
+    talon.set(talon.ControlMode.Velocity, 1)
+    print(talon.get())
     assert talon.get() != 1
-    talon.setDemand.assert_called_with(ControlMode.Velocity, 1, 0)
+    assert cdata['control_mode'] == talon.ControlMode.Velocity
+    assert cdata['value'] == 1
 
-
-def test_talon_set3(talon, MotController, ControlMode):
-    talon.setDemand = MagicMock()
-    talon.set(ControlMode.Position, 1, 55)
+def test_talon_set3(talon, cdata):
+    talon.set(talon.ControlMode.Position, 1, 55)
     assert talon.get() != 1
-    talon.setDemand.assert_called_with(ControlMode.Position, 1, 0)
+    assert cdata['control_mode'] == talon.ControlMode.Position
+    assert cdata['value'] == 1
 
+def test_talon_set4(talon, cdata):
+    talon.set(talon.ControlMode.Current, 1.1)
+    assert cdata['control_mode'] == talon.ControlMode.Current
+    assert cdata['value'] == 1100
 
-def test_talon_set4(talon, ControlMode):
-    talon.setDemand = MagicMock()
-    talon.set(ControlMode.Current, 1.1)
-    talon.setDemand.assert_called_with(ControlMode.Current, 1100, 0)
-
-
-def test_talon_disable(talon, ControlMode):
-    talon.setDemand = MagicMock()
+def test_talon_disable(talon, cdata):
     talon.disable()
-    talon.setDemand.assert_called_with(ControlMode.Disabled, 0, 0)
+    assert cdata['control_mode'] == talon.ControlMode.Disabled
+    assert cdata['value'] == 0
 
-
-def test_talon_stopMotor(talon, ControlMode):
-    talon.setDemand = MagicMock()
+def test_talon_stopMotor(talon, cdata):
     talon.stopMotor()
-    talon.setDemand.assert_called_with(ControlMode.Disabled, 0, 0)
+    assert cdata['control_mode'] == talon.ControlMode.Disabled
+    assert cdata['value'] == 0
+
+def test_talon_setinverted(talon, cdata):
+    assert cdata['inverted'] == False
+    talon.setInverted(True)
+    assert cdata['inverted'] == True
 
 
 @pytest.mark.xfail(raises=NotImplementedError)
-def test_talon_initSendable(talon, ControlMode, sendablebuilder):
+def test_talon_initSendable(talon, sendablebuilder):
     talon.set(4)
 
     talon.initSendable(sendablebuilder)
@@ -442,7 +450,7 @@ def test_basemotorcontroller_processMotionProfileBuffer(talon):
 @pytest.mark.xfail(raises=NotImplementedError)
 def test_basemotorcontroller_pushMotionProfileTrajectory(talon, ctre):
     point = ctre.TrajectoryPoint(1, 2, 3, 0, 0, True, True,
-                                 ctre.TrajectoryPoint.TrajectoryDuration.TrajectoryDuration_0ms)
+                                 ctre.TrajectoryPoint.TrajectoryDuration.T0ms)
     talon.pushMotionProfileTrajectory(point)
 
 
