@@ -138,7 +138,7 @@ if exists('/etc/natinst/share/scs_imagemetadata.ini'):
     # no version info available
     url = 'http://www.ctr-electronics.com//downloads/lib/CTRE_FRCLibs_NON-WINDOWS_v%s.zip' % ctre_lib_version
     
-    halsrc = hal_impl.distutils.extract_halzip()
+    halsrc = hal_impl.distutils.extract_hal_libs()
     zipsrc = hal_impl.distutils.download_and_extract_zip(url)
     
     ext_modules = [
