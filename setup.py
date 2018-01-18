@@ -145,22 +145,26 @@ if exists('/etc/natinst/share/scs_imagemetadata.ini') or _travis_build:
     zipsrc = hal_impl.distutils.download_and_extract_zip(url)
 
     libraries = ['wpiHal', 'CTRLib']
-    # Don't try to link when testing, as it will fail.
-    # We can still catch compile errors though, so good enough.
+    include_dirs = [
+        # Path to pybind11 headers
+        get_pybind_include(),
+        get_pybind_include(user=True),
+        join(halsrc, 'include'),
+        join(zipsrc, 'FRC', 'cpp', 'include'),
+    ]
     if _travis_build:
+        # Don't try to link when testing, as it will fail.
+        # We can still catch compile errors though, so good enough.
         libraries = []
+        # We'll also need the NI libraries headers here.
+        # TODO: can we get these from anywhere else?
+        include_dirs.append(join(dirname(__file__), '..', 'allwpilib', 'ni-libraries', 'include'))
     
     ext_modules = [
         Extension(
             'ctre._impl.cantalon_roborio',
             ['ctre/_impl/cantalon_roborio.cpp'],
-            include_dirs=[
-                # Path to pybind11 headers
-                get_pybind_include(),
-                get_pybind_include(user=True),
-                join(halsrc, 'include'),
-                join(zipsrc, 'FRC', 'cpp', 'include'),
-            ],
+            include_dirs=include_dirs,
             libraries=libraries,
             library_dirs=[
                 join(halsrc, 'linux', 'athena', 'shared'),
