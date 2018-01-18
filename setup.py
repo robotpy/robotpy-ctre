@@ -142,6 +142,7 @@ if exists('/etc/natinst/share/scs_imagemetadata.ini') or _travis_build:
     url = 'http://www.ctr-electronics.com/downloads/lib/CTRE_FRCLibs_NON-WINDOWS_v%s.zip' % ctre_lib_version
     
     halsrc = hal_impl.distutils.extract_hal_libs()
+    niheaders = hal_impl.distutils.download_and_extract_zip('http://first.wpi.edu/FRC/roborio/maven/release/edu/wpi/first/ni-libraries/ni-libraries/2018.1.1/ni-libraries-2018.1.1-headers.zip')
     zipsrc = hal_impl.distutils.download_and_extract_zip(url)
 
     libraries = ['wpiHal', 'CTRLib']
@@ -150,15 +151,13 @@ if exists('/etc/natinst/share/scs_imagemetadata.ini') or _travis_build:
         get_pybind_include(),
         get_pybind_include(user=True),
         join(halsrc, 'include'),
+        niheaders,
         join(zipsrc, 'FRC', 'cpp', 'include'),
     ]
     if _travis_build:
         # Don't try to link when testing, as it will fail.
         # We can still catch compile errors though, so good enough.
         libraries = []
-        # We'll also need the NI libraries headers here.
-        # TODO: can we get these from anywhere else?
-        include_dirs.append(join(dirname(__file__), '..', 'allwpilib', 'ni-libraries', 'include'))
     
     ext_modules = [
         Extension(

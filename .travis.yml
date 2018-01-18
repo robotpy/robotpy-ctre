@@ -17,7 +17,6 @@ jobs:
     - python: 3.6
       install:
         - FORCE_HAL_INSTALL=1 pip install robotpy-hal-roborio pybind11
-        - "(cd .. && git clone --depth=1 https://github.com/wpilibsuite/allwpilib)"
       script:
         - python setup.py build
     - stage: deploy
