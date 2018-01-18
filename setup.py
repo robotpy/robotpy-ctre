@@ -141,16 +141,14 @@ if exists('/etc/natinst/share/scs_imagemetadata.ini') or _travis_build:
     # no version info available
     url = 'http://www.ctr-electronics.com/downloads/lib/CTRE_FRCLibs_NON-WINDOWS_v%s.zip' % ctre_lib_version
     
-    halsrc = hal_impl.distutils.extract_hal_libs()
     niheaders = hal_impl.distutils.download_and_extract_zip('http://first.wpi.edu/FRC/roborio/maven/release/edu/wpi/first/ni-libraries/ni-libraries/2018.1.1/ni-libraries-2018.1.1-headers.zip')
     zipsrc = hal_impl.distutils.download_and_extract_zip(url)
 
-    libraries = ['wpiHal', 'CTRLib']
+    libraries = ['CTRLib']
     include_dirs = [
         # Path to pybind11 headers
         get_pybind_include(),
         get_pybind_include(user=True),
-        join(halsrc, 'include'),
         niheaders,
         join(zipsrc, 'FRC', 'cpp', 'include'),
     ]
@@ -166,7 +164,6 @@ if exists('/etc/natinst/share/scs_imagemetadata.ini') or _travis_build:
             include_dirs=include_dirs,
             libraries=libraries,
             library_dirs=[
-                join(halsrc, 'linux', 'athena', 'shared'),
                 join(zipsrc, 'FRC', 'cpp', 'lib'),
             ],
             language='c++',
