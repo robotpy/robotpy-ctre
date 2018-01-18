@@ -3,6 +3,7 @@
 # Much of this copied from https://github.com/pybind/python_example.git
 #
 
+import os
 from os.path import dirname, exists, join
 from setuptools import find_packages, setup, Extension
 from setuptools.command.build_ext import build_ext
@@ -128,18 +129,26 @@ class BuildExt(build_ext):
 
 install_requires = ['wpilib>=2018.0.0,<2019.0.0']
 
+_travis_build = os.environ.get('TRAVIS_BUILD')
+
 # Detect roboRIO.. not foolproof, but good enough
-if exists('/etc/natinst/share/scs_imagemetadata.ini'):
+if exists('/etc/natinst/share/scs_imagemetadata.ini') or _travis_build:
     
     # Download/install the CTRE and HAL binaries necessary to compile
     # -> must have robotpy-hal-roborio installed for this to work
     import hal_impl.distutils
     
     # no version info available
-    url = 'http://www.ctr-electronics.com//downloads/lib/CTRE_FRCLibs_NON-WINDOWS_v%s.zip' % ctre_lib_version
+    url = 'http://www.ctr-electronics.com/downloads/lib/CTRE_FRCLibs_NON-WINDOWS_v%s.zip' % ctre_lib_version
     
     halsrc = hal_impl.distutils.extract_hal_libs()
     zipsrc = hal_impl.distutils.download_and_extract_zip(url)
+
+    libraries = ['wpiHal', 'CTRLib']
+    # Don't try to link when testing, as it will fail.
+    # We can still catch compile errors though, so good enough.
+    if _travis_build:
+        libraries = []
     
     ext_modules = [
         Extension(
@@ -151,7 +160,7 @@ if exists('/etc/natinst/share/scs_imagemetadata.ini'):
                 get_pybind_include(user=True),
                 join(zipsrc, 'cpp', 'include'),
             ],
-            libraries=['wpiHal', 'CTRLib'],
+            libraries=libraries,
             library_dirs=[
                 join(halsrc, 'linux', 'athena', 'shared'),
                 join(zipsrc, 'cpp', 'lib'),
