@@ -748,6 +748,7 @@ c_MotController_GetMotionProfileTopLevelBufferCount:
     
     :returns: number of trajectory points in the top buffer.
 c_MotController_PushMotionProfileTrajectory:
+  internal: true
   code: |
     raise NotImplementedError
   doc: |
@@ -780,6 +781,7 @@ c_MotController_PushMotionProfileTrajectory:
         CTR_OKAY if trajectory point push ok. ErrorCode if buffer is
         full due to kMotionProfileTopBufferCapacity.
 c_MotController_PushMotionProfileTrajectory_2:
+  internal: true
   code: |
     raise NotImplementedError
 c_MotController_IsMotionProfileTopLevelBufferFull:
@@ -804,6 +806,7 @@ c_MotController_ProcessMotionProfileBuffer:
     through the use of a mutex, so there is no harm in having the caller
     utilize threading.
 c_MotController_GetMotionProfileStatus:
+  internal: true
   code: |
     raise NotImplementedError
   doc: |
@@ -850,6 +853,7 @@ c_MotController_GetMotionProfileStatus:
         value in MP mode, it's important to check this signal to
         confirm the change takes effect before interacting with the top buffer.
 c_MotController_GetMotionProfileStatus_2:
+  internal: true
   code: |
     raise NotImplementedError
 c_MotController_ClearMotionProfileHasUnderrun:

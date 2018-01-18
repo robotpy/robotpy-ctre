@@ -172,7 +172,7 @@ class BaseMotorController(MotController):
 
         :returns: (errorcode, :class:`.MotionProfileStatus`)
         """
-        retval, *fields = super().getMotionProfileStatus_2()
+        retval, *fields = super()._getMotionProfileStatus_2()
         statusToFill = MotionProfileStatus(*fields)
         return retval, statusToFill
 
@@ -203,7 +203,7 @@ class BaseMotorController(MotController):
         :returns: CTR_OKAY if trajectory point push ok. ErrorCode if buffer is
             full due to kMotionProfileTopBufferCapacity.
         """
-        return super().pushMotionProfileTrajectory_2(
+        return super()._pushMotionProfileTrajectory_2(
                 trajPt.position, trajPt.velocity, trajPt.headingDeg,
                 trajPt.profileSlotSelect0, trajPt.profileSlotSelect1,
                 trajPt.isLastPoint, trajPt.zeroPos, trajPt.timeDur

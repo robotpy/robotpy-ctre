@@ -240,8 +240,8 @@ class PigeonIMU(PigeonImuImpl):
             Caller may pass null if flags are not needed.
         :returns: :class:`.FusionStatus`
         """
-        results = self.getFusedHeading2()
-        return FusionStatus(results)
+        results = self._getFusedHeading2()
+        return FusionStatus(*results)
         
     def getFaults(self) -> typing.Tuple[int, PigeonIMU_Faults]:
         """
