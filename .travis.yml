@@ -42,6 +42,7 @@ jobs:
     if: tag IS present
     install:
     - pip install header2whatever
+    script: true
     deploy:
     - provider: pypi
       user: $PYPI_USERNAME
