@@ -47,6 +47,17 @@ __all__ = ["BaseMotorController"]
 
 class BaseMotorController(MotController):
     """Base motor controller features for all CTRE CAN motor controllers."""
+    
+    ControlMode = ControlMode
+    FeedbackDevice = FeedbackDevice
+    LimitSwitchNormal = LimitSwitchNormal
+    LimitSwitchSource = LimitSwitchSource
+    NeutralMode = NeutralMode
+    ParamEnum = ParamEnum
+    RemoteLimitSwitchSource = RemoteLimitSwitchSource
+    StatusFrame = StatusFrame
+    StatusFrameEnhanced = StatusFrameEnhanced
+    VelocityMeasPeriod = VelocityMeasPeriod
 
     def __init__(self, arbId: int):
         """
@@ -56,7 +67,7 @@ class BaseMotorController(MotController):
         """
         super().__init__()
 
-        self.create1(arbId)
+        self._create1(arbId)
         self.arbId = arbId
         self.sensorColl = SensorCollection(self)
         self.motionProfStats = [0] * 9
@@ -69,7 +80,7 @@ class BaseMotorController(MotController):
         
         :returns: Device number.
         """
-        return self.getDeviceNumber()[1]
+        return self.getDeviceNumber()
 
     def set(self, mode: ControlMode, demand0: float, demand1: float = 0.0):
         """
@@ -77,19 +88,19 @@ class BaseMotorController(MotController):
 
         :param mode:
             The output mode to apply.
-        :param demand0: 
+        :param demand0:
             The output value to apply. such as advanced feed forward and/or cascaded close-looping in firmware.
 
             In :attr:`.ControlMode.PercentOutput`, the output is between -1.0 and 1.0, with 0.0 as
-            stopped. 
+            stopped.
             
-            In :attr:`.ControlMode.Voltage` mode, output value is in volts. 
+            In :attr:`.ControlMode.Voltage` mode, output value is in volts.
             
-            In :attr:`.ControlMode.Current` mode, output value is in amperes. 
+            In :attr:`.ControlMode.Current` mode, output value is in amperes.
             
-            In :attr:`.ControlMode.Speed` mode, output value is in position change / 100ms. 
+            In :attr:`.ControlMode.Speed` mode, output value is in position change / 100ms.
             
-            In :attr:`.ControlMode.Position` mode, output value is in encoder ticks or an analog value, depending on the sensor. 
+            In :attr:`.ControlMode.Position` mode, output value is in encoder ticks or an analog value, depending on the sensor.
             
             In :attr:`.ControlMode.Follower` mode, the output value is the integer device ID of the talon to duplicate.
         :type demand0: float
@@ -117,7 +128,7 @@ class BaseMotorController(MotController):
         elif self.controlMode in [ControlMode.Velocity, ControlMode.Position, ControlMode.MotionMagic, ControlMode.MotionMagicArc, ControlMode.MotionProfile]:
             self.setDemand(self.sendMode, int(demand0), 0)
         elif self.controlMode == ControlMode.Current:
-            self.setDemand(self.sendMode, int(1000. * demand0), 0) # milliamps 
+            self.setDemand(self.sendMode, int(1000. * demand0), 0) # milliamps
         else:
             self.setDemand(self.sendMode, 0, 0)
 
@@ -161,7 +172,7 @@ class BaseMotorController(MotController):
 
         :returns: (errorcode, :class:`.MotionProfileStatus`)
         """
-        retval, *fields = super().getMotionProfileStatus_2()
+        retval, *fields = super()._getMotionProfileStatus_2()
         statusToFill = MotionProfileStatus(*fields)
         return retval, statusToFill
 
@@ -192,7 +203,7 @@ class BaseMotorController(MotController):
         :returns: CTR_OKAY if trajectory point push ok. ErrorCode if buffer is
             full due to kMotionProfileTopBufferCapacity.
         """
-        return super().pushMotionProfileTrajectory_2(
+        return super()._pushMotionProfileTrajectory_2(
                 trajPt.position, trajPt.velocity, trajPt.headingDeg,
                 trajPt.profileSlotSelect0, trajPt.profileSlotSelect1,
                 trajPt.isLastPoint, trajPt.zeroPos, trajPt.timeDur

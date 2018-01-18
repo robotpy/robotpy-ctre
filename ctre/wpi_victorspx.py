@@ -91,7 +91,7 @@ class WPI_VictorSPX (VictorSPX, SendableBase, MotorSafety):
             [mode_arg, value_arg],
             [mode_arg, demand0_arg, demand1_arg]]
 
-        index, results = match_arglist('WPI_VictorSPX.__init__',
+        index, results = match_arglist('WPI_VictorSPX.set',
                                    args, kwargs, templates)
 
         if index == 2:

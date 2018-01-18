@@ -85,7 +85,7 @@ class WPI_TalonSRX(TalonSRX, SendableBase, MotorSafety):
         :type speed: float
         :param demand0:
         :type demand0: float
-        :param demand1: 
+        :param demand1:
         :type demand1: float
         """
         speed_arg = ("speed", [float, int])
@@ -99,7 +99,7 @@ class WPI_TalonSRX(TalonSRX, SendableBase, MotorSafety):
             [mode_arg, value_arg],
             [mode_arg, demand0_arg, demand1_arg]]
 
-        index, results = match_arglist('WPI_TalonSRX.__init__',
+        index, results = match_arglist('WPI_TalonSRX.set',
                                    args, kwargs, templates)
 
         self.speed = 0.0
@@ -124,9 +124,9 @@ class WPI_TalonSRX(TalonSRX, SendableBase, MotorSafety):
         self.neutralOutput()
 
     def initSendable(self, builder):
-        builder.setSmartDashboardType("Speed Controller");
-        builder.setSafeState(self.stopMotor);
-        builder.addDoubleProperty("Value", self.get, self.set);
+        builder.setSmartDashboardType("Speed Controller")
+        builder.setSafeState(self.stopMotor)
+        builder.addDoubleProperty("Value", self.get, self.set)
 
     def getDescription(self):
         return self.description

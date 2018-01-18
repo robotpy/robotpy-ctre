@@ -2,7 +2,7 @@
 import re
 
 _annotations = {
-    'short': int,
+    'short': 'int',
     'int': 'int',
     'uint32_t': 'int',
     'double': 'float',
@@ -76,7 +76,12 @@ def header_hook(header, data):
             if name.startswith(ename):
                 name = name[len(ename):]
             if name == 'None':
-                name = 'NONE'
+                name = 'None_'
+            try:
+                int(name[0])
+                name = v['name'][0] + name
+            except ValueError:
+                pass
             v['x_name'] = name
 
 def function_hook(fn, data):
@@ -91,31 +96,17 @@ def function_hook(fn, data):
     if not m:
         raise Exception("Unexpected fn %s" % fn['name'])
 
+    # Python exposed function name conveerted to camelcase
     x_name = m.group(1)
     x_name = x_name[0].lower() + x_name[1:]
-
-    # Setup the data for wrapping the CCI interface
-
-    returns = fn['returns']
-
+    
     x_in_params = []
     x_out_params = []
+    x_rets = []
 
-    # returns can be an out param
-    # -> but in a check, it's not
-
-    # final_out is really what we want?
-
-    # parameter names, types
-
-    # inner call
-
-    # return
-
-    x_ret_names = []
-    x_ret_types = []
-
+    # Simulation assertions
     x_param_checks = []
+    x_return_checks = []
 
     param_offset = 0 if x_name.startswith('create') else 1
 
@@ -135,7 +126,7 @@ def function_hook(fn, data):
         elif p['array']:
             asz = p.get('array_size', 0)
             if asz:
-                p['x_pyann_type'] = 'list'
+                p['x_pyann_type'] = 'typing.List[%s]' % _to_annotation(p['raw_type'])
                 p['x_type'] = 'std::array<%s, %s>' % (p['x_type'], asz)
                 p['x_callname'] = '%(x_callname)s.data()' % p
             else:
@@ -152,37 +143,53 @@ def function_hook(fn, data):
 
         p['x_decl'] = '%s %s' % (p['x_type'], p['name'])
 
-    # if there are out params, then change returns to be a tuple
-    if x_out_params:
-        p = ', '.join([p['x_type'] for p in x_out_params])
-        returns = 'std::tuple<%s, %s>' % (fn['returns'], p)
-
+    x_callstart = ''
     x_callend = ''
-    x_return = ''
-
-    if returns == 'void':
-        x_callstart = ''
-        x_pyann_ret = 'None'
+    x_wrap_return = ''
+    
+    # Return all out parameters
+    x_rets.extend(x_out_params)
+    
+    # if the function has out parameters and if the return value
+    # is an error code, suppress the error code. This matches the Java
+    # APIs, and the user can retrieve the error code from getLastError if
+    # they really care
+    if (not len(x_rets) or fn['returns'] != 'ctre::phoenix::ErrorCode') and \
+        fn['returns'] != 'void':
+        x_callstart = 'auto __ret ='
+        x_rets.insert(0, dict(
+            name='__ret',
+            x_type=fn['returns'],
+            x_pyann_type=_to_annotation(fn['returns']),
+        ))
+        
+    # Save some time in the common case -- set the error code to 0
+    # if there's a single retval and the type is ErrorCode
+    if len(x_rets) == 1 and fn['returns'] == 'ctre::phoenix::ErrorCode':
+        x_param_checks.append('retval = 0')
+    
+    if len(x_rets) == 1 and x_rets[0]['x_type'] != 'void':
+        x_wrap_return = 'return %s;' % x_rets[0]['name']
+        x_wrap_return_type = x_rets[0]['x_type']
+        x_pyann_ret = x_rets[0]['x_pyann_type']
+    elif len(x_rets) > 1:
+        x_pyann_ret = 'typing.Tuple[%s]' % (
+            ', '.join([p['x_pyann_type'] for p in x_rets]),
+        )
+        
+        x_wrap_return = 'return std::make_tuple(%s);' % ','.join([p['name'] for p in x_rets])
+        x_wrap_return_type = 'std::tuple<%s>' % (', '.join([p['x_type'] for p in x_rets]))
+        
+        x_return_checks.append('assert isinstance(retval, tuple) and len(retval) == %s' % len(x_rets))
+        for _p in x_rets:
+            chk = _gen_check(_p['name'], _p['raw_type'])
+            if chk:
+                x_return_checks.append('assert %s' % chk)
     else:
-        #if returns == 'ctre::phoenix::ErrorCode':
-        #    x_callstart = 'auto __ret = CheckCTRCode('
-        #    x_callend = ')'
-        #else:
-
-        # TODO: should we throw on a CTRE error? Their Java APIs don't,
-        #       so we probably shouldn't either
-        x_callstart = 'auto __ret = '
-
-        if x_out_params:
-            x_return = 'return std::make_tuple(__ret, %s);'
-            x_return %= ', '.join([p['name'] for p in x_out_params])
-
-            x_pyann_ret = 'typing.Tuple[%s, %s]'
-            x_pyann_ret %= (_to_annotation(fn['returns']),
-                            ', '.join([p['x_pyann_type'] for p in x_out_params]))
-        else:
-            x_return = 'return __ret;'
-            x_pyann_ret = _to_annotation(returns)
+        x_pyann_ret = 'None'
+        x_wrap_return_type = 'void'
+    
+    # return value checkign
 
     # Temporary values to store out parameters in
     x_temprefs = ''
@@ -194,14 +201,18 @@ def function_hook(fn, data):
 
     py_self_comma = ', ' if x_in_params else ''
 
-    # x_call_params
-
     data = data.get('data', {}).get(fn['name'])
     if data is None:
         # ensure every function is in our yaml
         print('WARNING', fn['name'])
         data = {}
         #assert False, fn['name']
-
+    
+    # Rename internal functions
+    if data.get('internal', False):
+        x_name = '_' + x_name
+    
+    name = fn['name']
+    
     # lazy :)
     fn.update(locals())

@@ -3,21 +3,13 @@ import tkinter as tk
 from pyfrc.sim.ui_widgets import CheckButtonWrapper, Tooltip, ValueWidget
 
 from hal_impl.data import hal_data
-from .constants import TalonSRXConst as tsrxc
 
-#from hal import TalonSRXConst as tsrxc
+from ctre.basemotorcontroller import ControlMode
 
 class CtreUI:
     
     can_mode_map = {
-         tsrxc.kMode_CurrentCloseLoop: 'PercentVbus',
-         tsrxc.kMode_DutyCycle:'PercentVbus',
-         tsrxc.kMode_NoDrive:'Disabled',
-         tsrxc.kMode_PositionCloseLoop:'Position',
-         tsrxc.kMode_SlaveFollower:'Follower',
-         tsrxc.kMode_VelocityCloseLoop:'Speed',
-         tsrxc.kMode_VoltCompen:'Voltage',
-         tsrxc.kMode_MotionMagic:'Motion Magic'
+        v: k for k,v in ControlMode.__members__.items()
     }
     
     def __init__(self):
@@ -27,7 +19,7 @@ class CtreUI:
         
         for k, data in hal_data['CAN'].items():
             
-            if data['type'] != 'talonsrx':
+            if data['type'] not in ['talonsrx', 'victorspx']:
                 continue
             
             if not data['sim_display']:
@@ -36,44 +28,44 @@ class CtreUI:
            
             (motor, fl, rl, mode_lbl_txt, enc_txt, analog_txt, pwm_txt) = self.can[k]
             data = hal_data['CAN'][k]
-            mode = data['mode_select']
-            mode_lbl_txt.set(self.can_mode_map[mode])
+            mode = data['control_mode']
+            mode_lbl_txt.set(self.can_mode_map.get(mode, 'Unknown'))
             #change how output works based on control mode
-            if   mode == tsrxc.kMode_DutyCycle :  
+            if   mode == ControlMode.PercentOutput:
                 #based on the fact that the vbus has 1023 steps
                 motor.set_value(data['value']/1023)
                 
-            elif mode == tsrxc.kMode_VoltCompen:
-                #assume voltage is 12 divide by muliplier in cantalon code (256)
-                motor.set_value(data['value']/12/256)
+            #elif mode == tsrxc.kMode_VoltCompen:
+            #    #assume voltage is 12 divide by muliplier in cantalon code (256)
+            #    motor.set_value(data['value']/12/256)
                 
-            elif mode == tsrxc.kMode_SlaveFollower:
+            #elif mode == tsrxc.kMode_SlaveFollower:
                 #follow the value of the motor value is equal too
-                try:
-                    followed = self.can[data['value']]
-                except KeyError:
-                    value = 0
-                else:
-                    value = followed[0].get_value()
-                
-                motor.set_value(value)
+            #    try:
+            #        followed = self.can[data['value']]
+            #    except KeyError:
+            #        value = 0
+            #    else:
+            #        value = followed[0].get_value()
+            #
+            #    motor.set_value(value)
             #
             # currently other control modes are not correctly implemented
             #
             else:
                 motor.set_value(data['value'])
                 
-            enc_txt.set('E: %s' % round(data['enc_position']))
-            analog_txt.set('A: %s' % round(data['analog_in_position']))
-            pwm_txt.set('P: %s' % data['pulse_width_position'])
-            
-            ret = fl.sync_value(data['limit_switch_closed_for'])
-            if ret is not None:
-                data['limit_switch_closed_for'] = ret
-                
-            ret = rl.sync_value(data['limit_switch_closed_rev'])
-            if ret is not None:
-                data['limit_switch_closed_rev'] = ret 
+            # enc_txt.set('E: %s' % round(data['enc_position']))
+            # analog_txt.set('A: %s' % round(data['analog_in_position']))
+            # pwm_txt.set('P: %s' % data['pulse_width_position'])
+            #
+            # ret = fl.sync_value(data['limit_switch_closed_for'])
+            # if ret is not None:
+            #     data['limit_switch_closed_for'] = ret
+            #
+            # ret = rl.sync_value(data['limit_switch_closed_rev'])
+            # if ret is not None:
+            #     data['limit_switch_closed_rev'] = ret
     
     def _add_CAN(self, sim, canId, device):
         
@@ -97,7 +89,7 @@ class CtreUI:
         Tooltip.create(fl, 'Forward limit switch')
         Tooltip.create(rl, 'Reverse limit switch')
         
-        mode_lbl_txt = tk.StringVar(value = self.can_mode_map[device['mode_select']])
+        mode_lbl_txt = tk.StringVar(value = '')
         mode_label = tk.Label(sim.can_slot, textvariable=mode_lbl_txt)
         mode_label.grid(column=4, row=row)
         

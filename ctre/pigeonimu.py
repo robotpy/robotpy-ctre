@@ -78,7 +78,7 @@ class PigeonState(enum.IntEnum):
 
 
 _GeneralStatus = namedtuple('_GeneralStatus', [
-    'state', 'currentMode', 'calibrationError', 'bCalIsBooting', 'tempC', 'upTimeSec', 
+    'state', 'currentMode', 'calibrationError', 'bCalIsBooting', 'tempC', 'upTimeSec',
     'noMotionBiasCount', 'tempCompensationCount', 'lastError'])
 
 
@@ -101,18 +101,18 @@ class GeneralStatus(_GeneralStatus):
     
     When a calibration mode is entered, caller can expect...
     
-    - 
+    -
         PigeonState to reset to Initializing and bCalIsBooting is set to true.
         Pigeon LEDs will blink the boot pattern. This is similar to the normal
         boot cal, however it can an additional ~30 seconds since calibration
         generally requires more information. currentMode will reflect the user's
         selected calibration mode.
     
-    - 
+    -
         PigeonState will eventually settle to UserCalibration and Pigeon LEDs
         will show cal specific blink patterns. bCalIsBooting is now false.
     
-    - 
+    -
         Follow the instructions in the Pigeon User Manual to meet the
         calibration specific requirements. When finished calibrationError will
         update with the result. Pigeon will solid-fill LEDs with red (for
@@ -159,7 +159,7 @@ class GeneralStatus(_GeneralStatus):
         elif self.bCalIsBooting:
             description = "Pigeon is boot-caling to properly bias accel and gyro.  Do not move Pigeon.  When finished biasing, calibration mode will start."
         elif self.state == PigeonState.UserCalibration:
-            # mode specific descriptions 
+            # mode specific descriptions
             if self.currentMode == CalibrationMode.BootTareGyroAccel:
                 description = "Boot-Calibration: Gyro and Accelerometer are being biased."
             elif self.currentMode == CalibrationMode.Temperature:
@@ -216,10 +216,10 @@ class PigeonIMU(PigeonImuImpl):
 
         if index == 0:
             self.deviceNumber = results['deviceNumber']
-            self.create1(self.deviceNumber)
+            self._create1(self.deviceNumber)
         elif index == 1:
             self.deviceNumber = results['talonSrx'].getDeviceID()
-            self.create2(self.deviceNumber)
+            self._create2(self.deviceNumber)
             hal.report(64, self.deviceNumber + 1)
         hal.report(hal.UsageReporting.kResourceType_PigeonIMU, self.deviceNumber + 1)
 
@@ -240,8 +240,8 @@ class PigeonIMU(PigeonImuImpl):
             Caller may pass null if flags are not needed.
         :returns: :class:`.FusionStatus`
         """
-        results = self.getFusedHeading2()
-        return FusionStatus(results)
+        results = self._getFusedHeading2()
+        return FusionStatus(*results)
         
     def getFaults(self) -> typing.Tuple[int, PigeonIMU_Faults]:
         """

@@ -23,7 +23,6 @@
 #----------------------------------------------------------------------------
 import hal
 from .basemotorcontroller import BaseMotorController
-from ._impl import MotController
 
 
 __all__ = ['TalonSRX']

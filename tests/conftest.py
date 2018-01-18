@@ -15,7 +15,10 @@ def _module_patch(request):
     
     m = patch.dict('sys.modules', {})
     m.start()
-    request.addfinalizer(m.stop)
+    try:
+        yield
+    finally:
+        m.stop()
 
 
 @pytest.fixture(scope="function")
@@ -26,22 +29,9 @@ def hal(_module_patch):
 
 
 @pytest.fixture(scope='function')
-def ctre():
+def ctre(hal, hal_data):
     import ctre
     return ctre
-
-
-@pytest.fixture(scope='function')
-def MotController():
-    with patch('ctre._impl.MotController', new=MagicMock()) as m:
-        with patch('ctre.basemotorcontroller.MotController', new=m):
-            with patch('ctre.talonsrx.MotController', new=m):
-                yield m
-
-
-@pytest.fixture(scope='function')
-def ControlMode(ctre):
-    return ctre._impl.ControlMode
 
 
 @pytest.fixture(scope='function')
@@ -53,7 +43,7 @@ def sendablebuilder(wpilib, networktables):
 
 
 @pytest.fixture(scope="function")
-def hal_data(_module_patch):
+def hal_data(hal):
     """Simulation data for HAL"""
     import hal_impl.functions
     import hal_impl.data
