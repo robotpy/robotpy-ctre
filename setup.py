@@ -158,12 +158,12 @@ if exists('/etc/natinst/share/scs_imagemetadata.ini') or _travis_build:
                 # Path to pybind11 headers
                 get_pybind_include(),
                 get_pybind_include(user=True),
-                join(zipsrc, 'cpp', 'include'),
+                join(zipsrc, 'FRC', 'cpp', 'include'),
             ],
             libraries=libraries,
             library_dirs=[
                 join(halsrc, 'linux', 'athena', 'shared'),
-                join(zipsrc, 'cpp', 'lib'),
+                join(zipsrc, 'FRC', 'cpp', 'lib'),
             ],
             language='c++',
         ),
