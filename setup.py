@@ -144,7 +144,7 @@ if exists('/etc/natinst/share/scs_imagemetadata.ini') or _travis_build:
     niheaders = hal_impl.distutils.download_and_extract_zip('http://first.wpi.edu/FRC/roborio/maven/release/edu/wpi/first/ni-libraries/ni-libraries/2018.1.1/ni-libraries-2018.1.1-headers.zip')
     zipsrc = hal_impl.distutils.download_and_extract_zip(url)
 
-    libraries = ['CTRLib']
+    libraries = ['CTRLib', 'FRC_NetworkCommunication']
     include_dirs = [
         # Path to pybind11 headers
         get_pybind_include(),
