@@ -55,17 +55,17 @@ class CtreUI:
             else:
                 motor.set_value(data['value'])
                 
-            # enc_txt.set('E: %s' % round(data['enc_position']))
+            enc_txt.set('E: %s' % round(data['quad_position']))
             # analog_txt.set('A: %s' % round(data['analog_in_position']))
             # pwm_txt.set('P: %s' % data['pulse_width_position'])
             #
-            # ret = fl.sync_value(data['limit_switch_closed_for'])
-            # if ret is not None:
-            #     data['limit_switch_closed_for'] = ret
-            #
-            # ret = rl.sync_value(data['limit_switch_closed_rev'])
-            # if ret is not None:
-            #     data['limit_switch_closed_rev'] = ret
+            ret = fl.sync_value(data['limit_switch_closed_for'])
+            if ret is not None:
+                data['limit_switch_closed_for'] = ret
+            
+            ret = rl.sync_value(data['limit_switch_closed_rev'])
+            if ret is not None:
+                data['limit_switch_closed_rev'] = ret
     
     def _add_CAN(self, sim, canId, device):
         

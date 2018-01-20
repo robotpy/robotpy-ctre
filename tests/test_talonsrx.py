@@ -136,14 +136,14 @@ def test_basemotorcontroller_configClosedLoopRamp(talon):
     talon.configClosedLoopRamp(1,2)
 
 
-@pytest.mark.xfail(raises=NotImplementedError)
-def test_basemotorcontroller_configForwardSoftLimitEnable(talon):
+def test_basemotorcontroller_configForwardSoftLimitEnable(talon, cdata):
     talon.configForwardSoftLimitEnable(True, 2)
+    assert cdata['soft_limit_for_enable'] == True
 
 
-@pytest.mark.xfail(raises=NotImplementedError)
-def test_basemotorcontroller_configForwardSoftLimitThreshold(talon):
+def test_basemotorcontroller_configForwardSoftLimitThreshold(talon, cdata):
     talon.configForwardSoftLimitThreshold(1, 2)
+    assert cdata['soft_limit_for'] == 1
 
 
 @pytest.mark.xfail(raises=NotImplementedError)
@@ -206,14 +206,14 @@ def test_basemotorcontroller_configRemoteFeedbackFilter(talon):
     talon.configRemoteFeedbackFilter(1,2,3,4)
 
 
-@pytest.mark.xfail(raises=NotImplementedError)
-def test_basemotorcontroller_configReverseSoftLimitEnable(talon):
+def test_basemotorcontroller_configReverseSoftLimitEnable(talon, cdata):
     talon.configReverseSoftLimitEnable(True,2)
+    assert cdata['soft_limit_rev_enable'] == True
 
 
-@pytest.mark.xfail(raises=NotImplementedError)
-def test_basemotorcontroller_configReverseSoftLimitThreshold(talon):
+def test_basemotorcontroller_configReverseSoftLimitThreshold(talon, cdata):
     talon.configReverseSoftLimitThreshold(1,2)
+    assert cdata['soft_limit_rev'] == 1
 
 
 @pytest.mark.xfail(raises=NotImplementedError)
@@ -437,9 +437,12 @@ def test_basemotorcontroller_overrideLimitSwitchesEnable(talon):
     talon.overrideLimitSwitchesEnable(True)
 
 
-@pytest.mark.xfail(raises=NotImplementedError)
-def test_basemotorcontroller_overrideSoftLimitsEnable(talon):
+def test_basemotorcontroller_overrideSoftLimitsEnable(talon, cdata):
     talon.overrideSoftLimitsEnable(True)
+    assert cdata['soft_limit_usable'] == True
+    
+    talon.overrideSoftLimitsEnable(False)
+    assert cdata['soft_limit_usable'] == False
 
 
 @pytest.mark.xfail(raises=NotImplementedError)

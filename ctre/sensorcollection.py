@@ -109,9 +109,9 @@ class SensorCollection:
         This function works regardless if limit switch feature is
         enabled.
 
-        :returns: '1' iff forward limit switch is closed, 0 iff switch is open.
+        :returns: True iff forward limit switch is closed, False iff switch is open.
         """
-        return self.impl.isFwdLimitSwitchClosed()[1] != 0
+        return self.impl.isFwdLimitSwitchClosed() != 0
 
     def isRevLimitSwitchClosed(self) -> bool:
         """
@@ -120,6 +120,6 @@ class SensorCollection:
         This function works regardless if limit switch feature is
         enabled.
 
-        :returns: '1' iff reverse limit switch is closed, 0 iff switch is open.
+        :returns: True iff reverse limit switch is closed, False iff switch is open.
         """
-        return self.impl.isRevLimitSwitchClosed()[1] != 0
+        return self.impl.isRevLimitSwitchClosed() != 0
