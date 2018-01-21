@@ -1,4 +1,6 @@
 ---
+sim_extra:
+    from .ctre_sim_enums import ControlMode
 c_MotController_Create1:
   internal: true
   code: |
@@ -46,6 +48,8 @@ c_MotController_Create1:
       
       'neutral_mode': self.NeutralMode.EEPROMSetting,
       
+      'follow_target': 0,
+      'followers': set(),
       'open_loop_ramp': 0,
       'closed_loop_ramp': 0,
     })
@@ -61,8 +65,23 @@ c_MotController_GetDescription:
     raise NotImplementedError
 c_MotController_SetDemand:
   code: |
+    if self.hal_data['control_mode'] == ControlMode.Follower and mode != ControlMode.Follower:
+        follow_target = self.hal_data['follow_target']
+        hal_data['CAN'][follow_target]['followers'].remove(self._deviceId)
     self.hal_data['control_mode'] = mode
-    self.hal_data['value'] = demand0
+    if mode == ControlMode.PercentOutput:
+        self.hal_data['value'] = demand0 / 1023.
+    elif mode == ControlMode.Follower:
+        follow_target = demand0 & 0xFF
+        assert follow_target != self._deviceId
+        self.hal_data['follow_target'] = follow_target
+        hal_data['CAN'][follow_target]['followers'].add(self._deviceId)
+        self.hal_data['value'] = hal_data['CAN'][follow_target]['value']
+    else:
+        self.hal_data['value'] = demand0
+
+    for follower_id in self.hal_data['followers']:
+        hal_data['CAN'][follower_id]['value'] = self.hal_data['value']
 c_MotController_SetNeutralMode:
   set: neutral_mode
   doc: |
