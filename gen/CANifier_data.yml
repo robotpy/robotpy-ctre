@@ -16,7 +16,7 @@ c_CANifier_Create1:
         'led_b': 0.0,
         'led_c': 0.0,
         
-        'last_error': 0,
+        'last_error': ErrorCode.OK,
         
         'reset_occurred': False,
     })
@@ -147,7 +147,8 @@ c_CANifier_GetBusVoltage:
     
     :returns: The bus voltage value (in volts).
 c_CANifier_SetLastError:
-  set: last_error
+  code: |
+    self.hal_data['last_error'] = ErrorCode(error)
 c_CANifier_ConfigSetParameter:
   code: |
     raise NotImplementedError("Not implemented in simulation (file a bug on github if you need it")

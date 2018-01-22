@@ -46,9 +46,9 @@ def test_canifier_getGeneralInput(canifier, cdata):
     assert canifier.getGeneralInput(2) == False
     assert canifier.getGeneralInput(3) == True
 
-def test_canifier_lastError(canifier, cdata):
-    canifier.setLastError(42)
-    assert canifier.getLastError() == 42
+def test_canifier_lastError(ctre, canifier, cdata):
+    canifier.setLastError(int(ctre.ErrorCode.GeneralWarning))
+    assert canifier.getLastError() == ctre.ErrorCode.GeneralWarning
 
 def test_canifier_setPWMOutput(canifier, cdata):
     output = 102 / 1023.0

@@ -6,6 +6,7 @@ from .pigeonimu import PigeonIMU
 
 from ._impl import (
     ControlMode,
+    ErrorCode,
     FeedbackDevice,
     RemoteFeedbackDevice,
     NeutralMode,
