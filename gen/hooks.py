@@ -8,10 +8,10 @@ _annotations = {
     'double': 'float',
     'char': 'str',
     'bool': 'bool',
-    'ctre::phoenix::ErrorCode': 'int',
+    'ctre::phoenix::ErrorCode': 'ErrorCode',
 }
 
-def _gen_check(pname, ptype):
+def _gen_check(pname, ptype, strict=False):
 
     # TODO: This does checks on normal types, but if you pass a ctypes value
     #       in then this does not check those properly.
@@ -20,7 +20,10 @@ def _gen_check(pname, ptype):
         return 'isinstance(%s, bool)' % pname
 
     elif ptype in ['float', 'double']:
-        return 'isinstance(%s, (int, float))' % pname
+        if strict:
+            return 'isinstance(%s, (float))' % pname
+        else:
+            return 'isinstance(%s, (int, float))' % pname
 
     #elif ptype is C.c_char:
     #    return 'isinstance(%s, bytes) and len(%s) == 1' % (pname, pname)
@@ -55,6 +58,9 @@ def _gen_check(pname, ptype):
 
     elif ptype is None:
         return '%s is None' % pname
+    
+    elif ptype == 'ctre::phoenix::ErrorCode':
+        return 'isinstance(%s, ErrorCode)' % (pname,)
 
     else:
         # TODO: do validation here
@@ -163,15 +169,18 @@ def function_hook(fn, data):
             x_pyann_type=_to_annotation(fn['returns']),
         ))
         
-    # Save some time in the common case -- set the error code to 0
-    # if there's a single retval and the type is ErrorCode
-    if len(x_rets) == 1 and fn['returns'] == 'ctre::phoenix::ErrorCode':
-        x_param_checks.append('retval = 0')
+        # Save some time in the common case -- set the error code to 0
+        # if there's a single retval and the type is ErrorCode
+        if fn['returns'] == 'ctre::phoenix::ErrorCode':
+            x_param_checks.append('retval = ErrorCode.OK')
     
     if len(x_rets) == 1 and x_rets[0]['x_type'] != 'void':
         x_wrap_return = 'return %s;' % x_rets[0]['name']
         x_wrap_return_type = x_rets[0]['x_type']
         x_pyann_ret = x_rets[0]['x_pyann_type']
+        chk = _gen_check('retval', x_wrap_return_type, strict=True)
+        if chk:
+            x_return_checks.append('assert %s' % chk)
     elif len(x_rets) > 1:
         x_pyann_ret = 'typing.Tuple[%s]' % (
             ', '.join([p['x_pyann_type'] for p in x_rets]),
@@ -181,16 +190,14 @@ def function_hook(fn, data):
         x_wrap_return_type = 'std::tuple<%s>' % (', '.join([p['x_type'] for p in x_rets]))
         
         x_return_checks.append('assert isinstance(retval, tuple) and len(retval) == %s' % len(x_rets))
-        for _p in x_rets:
-            chk = _gen_check(_p['name'], _p['raw_type'])
+        for i, _p in enumerate(x_rets):
+            chk = _gen_check('retval[%d]' % i, _p['raw_type'], strict=True)
             if chk:
                 x_return_checks.append('assert %s' % chk)
     else:
         x_pyann_ret = 'None'
         x_wrap_return_type = 'void'
     
-    # return value checkign
-
     # Temporary values to store out parameters in
     x_temprefs = ''
     if x_out_params:

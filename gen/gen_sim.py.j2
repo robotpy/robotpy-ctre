@@ -7,6 +7,8 @@ import typing
 
 from hal_impl.data import hal_data, NotifyDict
 
+from .ctre_sim_enums import ErrorCode
+
 {% if data.sim_extra is defined %}
 {{ data.sim_extra }}
 {% endif %}
