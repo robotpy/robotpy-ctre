@@ -208,6 +208,9 @@ def function_hook(fn, data):
         data = {}
         #assert False, fn['name']
     
+    if 'return' in data.get('code', ''):
+        raise ValueError("%s: Do not use return, assign to retval instead" % fn['name'])
+    
     # Rename internal functions
     if data.get('internal', False):
         x_name = '_' + x_name
