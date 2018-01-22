@@ -31,9 +31,8 @@ class CtreUI:
             mode = data['control_mode']
             mode_lbl_txt.set(self.can_mode_map.get(mode, 'Unknown'))
             #change how output works based on control mode
-            if   mode == ControlMode.PercentOutput:
-                #based on the fact that the vbus has 1023 steps
-                motor.set_value(data['value']/1023)
+            if mode == ControlMode.PercentOutput:
+                motor.set_value(data['value'])
                 
             #elif mode == tsrxc.kMode_VoltCompen:
             #    #assume voltage is 12 divide by muliplier in cantalon code (256)

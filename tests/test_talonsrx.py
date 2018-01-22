@@ -25,7 +25,7 @@ def test_talon_set1(talon, cdata):
     talon.set(1)
     assert talon.get() == 1
     assert cdata['control_mode'] == talon.ControlMode.PercentOutput
-    assert cdata['value'] == 1023
+    assert cdata['value'] == 1
 
 def test_talon_set2(talon, cdata):
     talon.set(talon.ControlMode.Velocity, 1)
