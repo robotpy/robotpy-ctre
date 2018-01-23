@@ -7,13 +7,23 @@ found at http://robotpy-ctre.readthedocs.io/
 **NOTE**: The RobotPy project is not associated with or endorsed by Cross The
 Road Electronics.
 
-Setup (simulator)
------------------
+Setup (tests/simulator)
+-----------------------
 
-    pip3 install robotpy-ctre
+If you intend to use robotpy-ctre in your robot tests or via the pyfrc
+simulator, you must install this package locally::
+
+    pip3 install -U robotpy-ctre
+
+Or on Windows::
+    
+    py -3 -m pip install -U robotpy-ctre
 
 Setup (RoboRIO)
 ---------------
+
+Even if you have robotpy-ctre installed locally, you need to install it on your
+robot separately.
 
 Python package
 ~~~~~~~~~~~~~~
