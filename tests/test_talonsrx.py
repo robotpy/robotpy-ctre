@@ -61,7 +61,6 @@ def test_talon_setinverted(talon, cdata):
     assert cdata['inverted'] == True
 
 
-@pytest.mark.xfail(raises=NotImplementedError)
 def test_talon_initSendable(talon, sendablebuilder):
     talon.set(4)
 
@@ -155,10 +154,9 @@ def test_basemotorcontroller_configGetCustomParam(talon):
 def test_basemotorcontroller_configGetParameter(talon):
     talon.configGetParameter(1,2,3)
 
-
-@pytest.mark.xfail(raises=NotImplementedError)
-def test_basemotorcontroller_configMaxIntegralAccumulator(talon):
-    talon.configMaxIntegralAccumulator(1,2,3)
+def test_basemotorcontroller_configMaxIntegralAccumulator(talon, cdata):
+    talon.configMaxIntegralAccumulator(1, 2.0, 3)
+    assert cdata['profile1_max_iaccum'] == 2.0
 
 
 @pytest.mark.xfail(raises=NotImplementedError)
@@ -186,9 +184,9 @@ def test_basemotorcontroller_configNominalOutputReverse(talon):
     talon.configNominalOutputReverse(1,2)
 
 
-@pytest.mark.xfail(raises=NotImplementedError)
-def test_basemotorcontroller_configOpenLoopRamp(talon):
+def test_basemotorcontroller_configOpenLoopRamp(talon, cdata):
     talon.configOpenLoopRamp(1,2)
+    assert cdata['open_loop_ramp'] == 1
 
 
 @pytest.mark.xfail(raises=NotImplementedError)
@@ -256,29 +254,25 @@ def test_basemotorcontroller_configVoltageMeasurementFilter(talon):
     talon.configVoltageMeasurementFilter(1,2)
 
 
-@pytest.mark.xfail(raises=NotImplementedError)
-def test_basemotorcontroller_config_IntegralZone(talon):
+def test_basemotorcontroller_config_IntegralZone(talon, cdata):
     talon.config_IntegralZone(1,2,3)
+    assert cdata['profile1_izone'] == 2
 
-
-@pytest.mark.xfail(raises=NotImplementedError)
-def test_basemotorcontroller_config_kD(talon):
+def test_basemotorcontroller_config_kD(talon, cdata):
     talon.config_kD(1, 2, 3)
+    assert cdata['profile1_d'] == 2
 
-
-@pytest.mark.xfail(raises=NotImplementedError)
-def test_basemotorcontroller_config_kF(talon):
+def test_basemotorcontroller_config_kF(talon, cdata):
     talon.config_kF(1, 2, 3)
+    assert cdata['profile1_f'] == 2
 
-
-@pytest.mark.xfail(raises=NotImplementedError)
-def test_basemotorcontroller_config_kI(talon):
+def test_basemotorcontroller_config_kI(talon, cdata):
     talon.config_kI(1, 2, 3)
+    assert cdata['profile1_i'] == 2
 
-
-@pytest.mark.xfail(raises=NotImplementedError)
-def test_basemotorcontroller_config_kP(talon):
+def test_basemotorcontroller_config_kP(talon, cdata):
     talon.config_kP(1, 2, 3)
+    assert cdata['profile1_p'] == 2
 
 
 @pytest.mark.xfail(raises=NotImplementedError)
@@ -322,9 +316,9 @@ def test_basemotorcontroller_getBusVoltage(talon):
     talon.getBusVoltage()
 
 
-@pytest.mark.xfail(raises=NotImplementedError)
-def test_basemotorcontroller_getClosedLoopError(talon):
-    talon.getClosedLoopError(1)
+def test_basemotorcontroller_getClosedLoopError(talon, cdata):
+    cdata['pid1_error'] = 42
+    assert talon.getClosedLoopError(1) == 42
 
 
 @pytest.mark.xfail(raises=NotImplementedError)
@@ -347,14 +341,13 @@ def test_basemotorcontroller_getFaults(talon, ctre):
     errcode, faults = talon.getFaults()
 
 
-@pytest.mark.xfail(raises=NotImplementedError)
 def test_basemotorcontroller_getFirmwareVersion(talon):
     talon.getFirmwareVersion()
 
 
-@pytest.mark.xfail(raises=NotImplementedError)
-def test_basemotorcontroller_getIntegralAccumulator(talon):
-    talon.getIntegralAccumulator(1)
+def test_basemotorcontroller_getIntegralAccumulator(talon, cdata):
+    cdata['pid1_iaccum'] = 22.0
+    assert talon.getIntegralAccumulator(1) == 22.0
 
 
 @pytest.mark.xfail(raises=NotImplementedError)
@@ -412,9 +405,9 @@ def test_basemotorcontroller_getStickyFaults(talon):
     errcode, stickyfaults = talon.getStickyFaults()
 
 
-@pytest.mark.xfail(raises=NotImplementedError)
-def test_basemotorcontroller_getTemperature(talon):
-    talon.getTemperature()
+def test_basemotorcontroller_getTemperature(talon, cdata):
+    cdata['temp'] = 42.0
+    assert talon.getTemperature() == 42.0
 
 
 @pytest.mark.xfail(raises=NotImplementedError)
