@@ -44,3 +44,7 @@ class {{ module_name }}{% if inherits is defined %}({{ inherits }}){% endif %}:
 
   {% endif %}
   {% endfor %}
+
+{% if data.sim_class_extra is defined %}
+    {{ data.sim_class_extra | indent(width=4) }}
+{% endif %}

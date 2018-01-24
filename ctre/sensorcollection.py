@@ -100,7 +100,7 @@ class SensorCollection:
 
         :returns: Digital level of QUAD Index pin (1 if asserted, 0 if not asserted).
         """
-        return self.impl.getPinStateQuadIdx()[1] != 0
+        return self.impl.getPinStateQuadIdx() != 0
 
     def isFwdLimitSwitchClosed(self) -> bool:
         """

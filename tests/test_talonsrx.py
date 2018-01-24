@@ -215,11 +215,6 @@ def test_basemotorcontroller_configReverseSoftLimitThreshold(talon, cdata):
 
 
 @pytest.mark.xfail(raises=NotImplementedError)
-def test_basemotorcontroller_configSelectedFeedbackSensor(talon):
-    talon.configSelectedFeedbackSensor(1, 2, 3)
-
-
-@pytest.mark.xfail(raises=NotImplementedError)
 def test_basemotorcontroller_configSensorTerm(talon):
     talon.configSensorTerm(1,2,3)
 
@@ -379,17 +374,6 @@ def test_basemotorcontroller_getMotorOutputVoltage(talon):
 def test_basemotorcontroller_getOutputCurrent(talon):
     talon.getOutputCurrent()
 
-
-@pytest.mark.xfail(raises=NotImplementedError)
-def test_basemotorcontroller_getSelectedSensorPosition(talon):
-    talon.getSelectedSensorPosition(1)
-
-
-@pytest.mark.xfail(raises=NotImplementedError)
-def test_basemotorcontroller_getSelectedSensorVelocity(talon):
-    talon.getSelectedSensorVelocity(1)
-
-
 @pytest.mark.xfail(raises=NotImplementedError)
 def test_basemotorcontroller_getSensorCollection(talon):
     talon.getSensorCollection()
@@ -482,9 +466,23 @@ def test_basemotorcontroller_setNeutralMode(talon):
     talon.setNeutralMode(1)
 
 
-@pytest.mark.xfail(raises=NotImplementedError)
-def test_basemotorcontroller_setSelectedSensorPosition(talon):
-    talon.setSelectedSensorPosition(1, 2, 3)
+def test_basemotorcontroller_selectedSensorPosition(talon, cdata):
+    # no selected device, should not fail
+    talon.setSelectedSensorPosition(32, 0, 0)
+    
+    assert talon.getSelectedSensorPosition(0) == 0
+    assert talon.getSelectedSensorPosition(1) == 0
+    
+    # select a device
+    talon.configSelectedFeedbackSensor(talon.FeedbackDevice.QuadEncoder, 0, 0)
+    
+    assert cdata['pid0_feedback'] == talon.FeedbackDevice.QuadEncoder
+    
+    talon.setSelectedSensorPosition(32, 0, 0)
+    
+    assert cdata['quad_position'] == 32
+    assert talon.getSelectedSensorPosition(0) == 32
+    assert talon.getSelectedSensorPosition(1) == 0
 
 
 @pytest.mark.xfail(raises=NotImplementedError)
