@@ -165,6 +165,7 @@ if exists('/etc/natinst/share/scs_imagemetadata.ini') or _travis_build:
             libraries=libraries,
             library_dirs=[
                 join(zipsrc, 'FRC', 'cpp', 'lib'),
+                '/usr/local/frc/lib',
             ],
             language='c++',
         ),
