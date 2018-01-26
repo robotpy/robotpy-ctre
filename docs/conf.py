@@ -45,7 +45,8 @@ project = 'RobotPy CTRE'
 copyright = '2017, RobotPy development team'
 
 intersphinx_mapping = {
-    'wpilib': ('http://robotpy-wpilib.readthedocs.org/en/%s/' % rtd_version, None),
+    'robotpy': ('http://robotpy.readthedocs.io/en/%s/' % rtd_version, None),
+    'wpilib': ('http://robotpy-wpilib.readthedocs.io/en/%s/' % rtd_version, None),
 }
 
 # The version info for the project you're documenting, acts as replacement for
