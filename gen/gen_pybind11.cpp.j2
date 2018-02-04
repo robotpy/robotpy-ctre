@@ -7,7 +7,7 @@
   cls.def(py::init<>())
   {% for fn in header.functions %}
   {% if 'ignore' not in fn.data %}
-    .def("{{ 'None_' if fn.x_name == 'None' else fn.x_name }}", &{{ module_name }}::{{ fn.x_name }}, release_gil())
+    .def("{{ 'None_' if fn.x_name == 'None' else fn.x_name }}", &{{ module_name }}::{{ fn.x_name }}{{ fn.args_comma }}{{ fn.x_in_params | join(', ', attribute='x_pyarg') }}, release_gil())
   {% endif %}
   {% endfor %}
   ;

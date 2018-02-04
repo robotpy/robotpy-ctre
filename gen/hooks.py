@@ -125,6 +125,7 @@ def function_hook(fn, data):
         # Python annotations for sim
         p['x_pyann_type'] = _to_annotation(p['raw_type'])
         p['x_pyann'] = '%(name)s: %(x_pyann_type)s' % p
+        p['x_pyarg'] = 'py::arg("%(name)s")' % p
 
         if p['pointer']:
             p['x_callname'] = '&%(x_callname)s' % p
@@ -206,7 +207,7 @@ def function_hook(fn, data):
                 '%(x_type)s %(name)s' % p for p in x_out_params
             ]) + ';'
 
-    py_self_comma = ', ' if x_in_params else ''
+    args_comma = ', ' if x_in_params else ''
 
     data = data.get('data', {}).get(fn['name'])
     if data is None:

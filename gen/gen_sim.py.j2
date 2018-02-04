@@ -20,7 +20,7 @@ class {{ module_name }}{% if inherits is defined %}({{ inherits }}){% endif %}:
 
   {% for fn in header.functions %}
   {% if 'ignore' not in fn.data %}
-    def {{ fn.x_name }}(self{{ fn.py_self_comma }}{{ fn.x_in_params | join(', ', attribute='x_pyann') }}) -> {{ fn.x_pyann_ret }}:
+    def {{ fn.x_name }}(self{{ fn.args_comma }}{{ fn.x_in_params | join(', ', attribute='x_pyann') }}) -> {{ fn.x_pyann_ret }}:
     {% if 'doc' in fn.data %}
         '''{{ fn.data['doc'] | indent(width=8) }}
         '''
