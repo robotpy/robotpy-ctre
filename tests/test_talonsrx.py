@@ -370,9 +370,9 @@ def test_basemotorcontroller_getMotorOutputVoltage(talon):
     talon.getMotorOutputVoltage()
 
 
-@pytest.mark.xfail(raises=NotImplementedError)
-def test_basemotorcontroller_getOutputCurrent(talon):
-    talon.getOutputCurrent()
+def test_basemotorcontroller_getOutputCurrent(talon, cdata):
+    cdata['output_current'] = 42.0
+    assert 41.99 < talon.getOutputCurrent() < 42.01
 
 @pytest.mark.xfail(raises=NotImplementedError)
 def test_basemotorcontroller_getSensorCollection(talon):

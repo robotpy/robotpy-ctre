@@ -31,6 +31,7 @@ c_MotController_Create1:
       'sensor_phase': False,
       'temp': 0.0,
       'bus_voltage': 12.0,
+      'output_current': 0.1,
       
       'inverted': False,
       'last_error': ErrorCode.OK,
@@ -320,8 +321,7 @@ c_MotController_GetMotorOutputPercent:
     
     :returns: Output of the motor controller (in percent).
 c_MotController_GetOutputCurrent:
-  code: |
-    raise NotImplementedError
+  get: output_current
   doc: |
     Gets the output current of the motor controller.
     
