@@ -164,17 +164,15 @@ class BaseMotorController(MotController):
         """:returns: applied voltage to motor in volts"""
         return self.getBusVoltage() * self.getMotorOutputPercent()
 
-    def getMotionProfileStatus(self):
+    def getMotionProfileStatus(self) -> MotionProfileStatus:
         """
         Retrieve all status information.
         For best performance, Caller can snapshot all status information regarding the
         motion profile executer.
-
-        :returns: (errorcode, :class:`.MotionProfileStatus`)
         """
-        retval, *fields = super()._getMotionProfileStatus_2()
+        fields = super()._getMotionProfileStatus_2()
         statusToFill = MotionProfileStatus(*fields)
-        return retval, statusToFill
+        return statusToFill
 
     def pushMotionProfileTrajectory(self, trajPt: TrajectoryPoint):
         """Push another trajectory point into the top level buffer (which is emptied

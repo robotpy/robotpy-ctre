@@ -9,7 +9,7 @@ __all__ = ['MotionProfileStatus']
 #: This is simply a data transfer object.
 MotionProfileStatus = namedtuple("MotionProfileStatus", [
     "topBufferRem", "topBufferCnt", "btmBufferCnt", "hasUnderrun", "isUnderrun", "activePointValid",
-    "isLast", "profileSlotSelect0", "profileSlotSelect1", "outputEnable", "timeDurMs"
+    "isLast", "profileSlotSelect0", "outputEnable", "timeDurMs", "profileSlotSelect1",
 ])
 MotionProfileStatus.topBufferRem.__doc__ = """
      The available empty slots in the trajectory buffer.

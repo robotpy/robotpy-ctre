@@ -1,4 +1,5 @@
 import pytest
+from unittest.mock import MagicMock, patch
 
 @pytest.fixture(scope='function')
 def talon(ctre):
@@ -350,9 +351,13 @@ def test_basemotorcontroller_getLastError(talon):
     talon.getLastError()
 
 
-@pytest.mark.xfail(raises=NotImplementedError)
 def test_basemotorcontroller_getMotionProfileStatus(talon, ctre):
-    retcode, m = talon.getMotionProfileStatus()
+    with patch('ctre._impl.MotController._getMotionProfileStatus_2') as mock:
+        mock.return_value = in_val = (1, 2, 3, True, False, True, False, 4, 5 , 6, 7)
+        m = talon.getMotionProfileStatus()
+
+        for i in range(10):
+            assert m[i] == in_val[i]
 
 
 @pytest.mark.xfail(raises=NotImplementedError)
