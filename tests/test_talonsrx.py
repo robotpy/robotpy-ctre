@@ -1,8 +1,10 @@
+import math
 import pytest
 from unittest.mock import MagicMock, patch
 
 @pytest.fixture(scope='function')
 def talon(ctre):
+    ctre.WPI_TalonSRX.Notifier = None
     return ctre.WPI_TalonSRX(1)
 
 @pytest.fixture(scope='function')
@@ -33,18 +35,18 @@ def test_talon_set2(talon, cdata):
     print(talon.get())
     assert talon.get() != 1
     assert cdata['control_mode'] == talon.ControlMode.Velocity
-    assert cdata['value'] == 1
+    assert cdata['pid0_target'] == 1
 
 def test_talon_set3(talon, cdata):
     talon.set(talon.ControlMode.Position, 1, 55)
     assert talon.get() != 1
     assert cdata['control_mode'] == talon.ControlMode.Position
-    assert cdata['value'] == 1
+    assert cdata['pid0_target'] == 1
 
 def test_talon_set4(talon, cdata):
     talon.set(talon.ControlMode.Current, 1.1)
     assert cdata['control_mode'] == talon.ControlMode.Current
-    assert cdata['value'] == 1100
+    assert cdata['pid0_target'] == 1100
 
 def test_talon_disable(talon, cdata):
     talon.disable()
@@ -86,22 +88,18 @@ def test_talon_configReverseLimitSwitchSource(talon):
     talon.configReverseLimitSwitchSource(1, 2, 3)
 
 
-@pytest.mark.xfail(raises=NotImplementedError)
 def test_talon_configPeakCurrentLimit(talon):
     talon.configPeakCurrentLimit(1, 2)
 
 
-@pytest.mark.xfail(raises=NotImplementedError)
 def test_talon_configPeakCurrentDuration(talon):
     talon.configPeakCurrentDuration(1, 2)
 
 
-@pytest.mark.xfail(raises=NotImplementedError)
 def test_talon_configContinuousCurrentLimit(talon):
     talon.configContinuousCurrentLimit(1, 2)
 
 
-@pytest.mark.xfail(raises=NotImplementedError)
 def test_talon_enableCurrentLimit(talon):
     talon.enableCurrentLimit(True)
 
@@ -126,12 +124,6 @@ def test_basemotorcontroller_clearStickyFaults(talon):
     talon.clearStickyFaults(1)
 
 
-@pytest.mark.xfail(raises=NotImplementedError)
-def test_basemotorcontroller_configAllowableClosedloopError(talon):
-    talon.configAllowableClosedloopError(1, 2, 3)
-
-
-@pytest.mark.xfail(raises=NotImplementedError)
 def test_basemotorcontroller_configClosedLoopRamp(talon):
     talon.configClosedLoopRamp(1,2)
 
@@ -160,29 +152,19 @@ def test_basemotorcontroller_configMaxIntegralAccumulator(talon, cdata):
     assert cdata['profile1_max_iaccum'] == 2.0
 
 
-@pytest.mark.xfail(raises=NotImplementedError)
-def test_basemotorcontroller_configMotionAcceleration(talon):
-    talon.configMotionAcceleration(1, 2)
+def test_basemotorcontroller_configNeutralDeadband(talon, cdata):
+    talon.configNeutralDeadband(0.3, 0)
+    assert cdata['neutral_deadband'] == 0.3
 
 
-@pytest.mark.xfail(raises=NotImplementedError)
-def test_basemotorcontroller_configMotionCruiseVelocity(talon):
-    talon.configMotionCruiseVelocity(1,2)
+def test_basemotorcontroller_configNominalOutputForward(talon, cdata):
+    talon.configNominalOutputForward(0.7, 0)
+    assert cdata['nom_fwd_output'] == 0.7
 
 
-@pytest.mark.xfail(raises=NotImplementedError)
-def test_basemotorcontroller_configNeutralDeadband(talon):
-    talon.configNeutralDeadband(1,2)
-
-
-@pytest.mark.xfail(raises=NotImplementedError)
-def test_basemotorcontroller_configNominalOutputForward(talon):
-    talon.configNominalOutputForward(1, 2)
-
-
-@pytest.mark.xfail(raises=NotImplementedError)
-def test_basemotorcontroller_configNominalOutputReverse(talon):
-    talon.configNominalOutputReverse(1,2)
+def test_basemotorcontroller_configNominalOutputReverse(talon, cdata):
+    talon.configNominalOutputReverse(-0.7, 0)
+    assert cdata['nom_rev_output'] == -0.7
 
 
 def test_basemotorcontroller_configOpenLoopRamp(talon, cdata):
@@ -190,14 +172,14 @@ def test_basemotorcontroller_configOpenLoopRamp(talon, cdata):
     assert cdata['open_loop_ramp'] == 1
 
 
-@pytest.mark.xfail(raises=NotImplementedError)
-def test_basemotorcontroller_configPeakOutputForward(talon):
-    talon.configPeakOutputForward(1,2)
+def test_basemotorcontroller_configPeakOutputForward(talon, cdata):
+    talon.configPeakOutputForward(0.9, 0)
+    assert cdata['peak_fwd_output'] == 0.9
 
 
-@pytest.mark.xfail(raises=NotImplementedError)
-def test_basemotorcontroller_configPeakOutputReverse(talon):
-    talon.configPeakOutputReverse(1,2)
+def test_basemotorcontroller_configPeakOutputReverse(talon, cdata):
+    talon.configPeakOutputReverse(-0.9, 0)
+    assert cdata['peak_rev_output'] == -0.9
 
 
 @pytest.mark.xfail(raises=NotImplementedError)
@@ -215,9 +197,9 @@ def test_basemotorcontroller_configReverseSoftLimitThreshold(talon, cdata):
     assert cdata['soft_limit_rev'] == 1
 
 
-@pytest.mark.xfail(raises=NotImplementedError)
-def test_basemotorcontroller_configSensorTerm(talon):
-    talon.configSensorTerm(1,2,3)
+def test_basemotorcontroller_configSensorTerm(talon, cdata):
+    talon.configSensorTerm(5, 6, 0)
+    assert cdata['sensor_term'] == (5, 6)
 
 
 @pytest.mark.xfail(raises=NotImplementedError)
@@ -230,61 +212,64 @@ def test_basemotorcontroller_configSetParameter(talon):
     talon.configSetParameter(1,2,3,4,5)
 
 
-@pytest.mark.xfail(raises=NotImplementedError)
-def test_basemotorcontroller_configVelocityMeasurementPeriod(talon):
-    talon.configVelocityMeasurementPeriod(1,2)
+def test_basemotorcontroller_configVelocityMeasurementPeriod(talon, cdata):
+    talon.configVelocityMeasurementPeriod(23, 0)
+    assert cdata['vel_measurement_period'] == 23
 
 
-@pytest.mark.xfail(raises=NotImplementedError)
-def test_basemotorcontroller_configVelocityMeasurementWindow(talon):
-    talon.configVelocityMeasurementWindow(1,2)
+def test_basemotorcontroller_configVelocityMeasurementWindow(talon, cdata):
+    talon.configVelocityMeasurementWindow(33, 0)
+    assert cdata['vel_measurement_window'] == 33
 
 
-@pytest.mark.xfail(raises=NotImplementedError)
-def test_basemotorcontroller_configVoltageCompSaturation(talon):
-    talon.configVoltageCompSaturation(1,2)
+def test_basemotorcontroller_configVoltageCompSaturation(talon, cdata):
+    talon.configVoltageCompSaturation(3, 0)
+    assert cdata['voltage_comp_saturation'] == 3
 
 
-@pytest.mark.xfail(raises=NotImplementedError)
-def test_basemotorcontroller_configVoltageMeasurementFilter(talon):
-    talon.configVoltageMeasurementFilter(1,2)
+def test_basemotorcontroller_configVoltageMeasurementFilter(talon, cdata):
+    talon.configVoltageMeasurementFilter(5, 0)
+    assert cdata['voltage_measurement_filter'] == 5
 
 
 def test_basemotorcontroller_config_IntegralZone(talon, cdata):
     talon.config_IntegralZone(1,2,3)
     assert cdata['profile1_izone'] == 2
 
+
 def test_basemotorcontroller_config_kD(talon, cdata):
     talon.config_kD(1, 2, 3)
     assert cdata['profile1_d'] == 2
+
 
 def test_basemotorcontroller_config_kF(talon, cdata):
     talon.config_kF(1, 2, 3)
     assert cdata['profile1_f'] == 2
 
+
 def test_basemotorcontroller_config_kI(talon, cdata):
     talon.config_kI(1, 2, 3)
     assert cdata['profile1_i'] == 2
+
 
 def test_basemotorcontroller_config_kP(talon, cdata):
     talon.config_kP(1, 2, 3)
     assert cdata['profile1_p'] == 2
 
 
-@pytest.mark.xfail(raises=NotImplementedError)
 def test_basemotorcontroller_enableHeadingHold(talon):
     talon.enableHeadingHold(True)
 
 
-@pytest.mark.xfail(raises=NotImplementedError)
-def test_basemotorcontroller_enableVoltageCompensation(talon):
+def test_basemotorcontroller_enableVoltageCompensation(talon, cdata):
     talon.enableVoltageCompensation(True)
+    assert cdata['voltage_comp_enabled'] == True
 
 
-@pytest.mark.xfail(raises=NotImplementedError)
-def test_basemotorcontroller_follow(talon, ctre):
+def test_basemotorcontroller_follow(ctre, talon, cdata):
     master = ctre.WPI_TalonSRX(3)
     talon.follow(master)
+    assert cdata['follow_target'] == 3
 
 
 @pytest.mark.xfail(raises=NotImplementedError)
@@ -302,14 +287,13 @@ def test_basemotorcontroller_getActiveTrajectoryVelocity(talon):
     talon.getActiveTrajectoryVelocity()
 
 
-@pytest.mark.xfail(raises=NotImplementedError)
 def test_basemotorcontroller_getBaseID(talon):
     talon.getBaseID()
 
 
-@pytest.mark.xfail(raises=NotImplementedError)
-def test_basemotorcontroller_getBusVoltage(talon):
-    talon.getBusVoltage()
+def test_basemotorcontroller_getBusVoltage(talon, cdata):
+    cdata['bus_voltage'] = 12.7
+    assert talon.getBusVoltage() == 12.7
 
 
 def test_basemotorcontroller_getClosedLoopError(talon, cdata):
@@ -317,19 +301,18 @@ def test_basemotorcontroller_getClosedLoopError(talon, cdata):
     assert talon.getClosedLoopError(1) == 42
 
 
-@pytest.mark.xfail(raises=NotImplementedError)
 def test_basemotorcontroller_getControlMode(talon):
-    talon.getControlMode()
+    talon.set(talon.ControlMode.Position, 1)
+    assert talon.getControlMode() == talon.ControlMode.Position
 
 
-@pytest.mark.xfail(raises=NotImplementedError)
 def test_basemotorcontroller_getDeviceID(talon):
     talon.getDeviceID()
 
 
-@pytest.mark.xfail(raises=NotImplementedError)
-def test_basemotorcontroller_getErrorDerivative(talon):
-    talon.getErrorDerivative(1)
+def test_basemotorcontroller_getErrorDerivative(talon, cdata):
+    cdata['pid1_errorDerivative'] = 50.
+    assert talon.getErrorDerivative(1) == 50.
 
 
 @pytest.mark.xfail(raises=NotImplementedError)
@@ -346,9 +329,9 @@ def test_basemotorcontroller_getIntegralAccumulator(talon, cdata):
     assert talon.getIntegralAccumulator(1) == 22.0
 
 
-@pytest.mark.xfail(raises=NotImplementedError)
-def test_basemotorcontroller_getLastError(talon):
-    talon.getLastError()
+def test_basemotorcontroller_getLastError(talon, ctre, cdata):
+    cdata['last_error'] = ctre.ErrorCode.OK
+    talon.getLastError() == ctre.ErrorCode.OK
 
 
 def test_basemotorcontroller_getMotionProfileStatus(talon, ctre):
@@ -365,21 +348,21 @@ def test_basemotorcontroller_getMotionProfileTopLevelBufferCount(talon):
     talon.getMotionProfileTopLevelBufferCount()
 
 
-@pytest.mark.xfail(raises=NotImplementedError)
-def test_basemotorcontroller_getMotorOutputPercent(talon):
-    talon.getMotorOutputPercent()
+def test_basemotorcontroller_getMotorOutputPercent(talon, cdata):
+    cdata['value'] = 2.2
+    assert talon.getMotorOutputPercent() == 2.2
 
 
-@pytest.mark.xfail(raises=NotImplementedError)
-def test_basemotorcontroller_getMotorOutputVoltage(talon):
-    talon.getMotorOutputVoltage()
+def test_basemotorcontroller_getMotorOutputVoltage(talon, cdata):
+    cdata['bus_voltage'] = 12.7
+    cdata['value'] = 0.5
+    assert talon.getMotorOutputVoltage() == 6.35
 
 
 def test_basemotorcontroller_getOutputCurrent(talon, cdata):
     cdata['output_current'] = 42.0
     assert 41.99 < talon.getOutputCurrent() < 42.01
 
-@pytest.mark.xfail(raises=NotImplementedError)
 def test_basemotorcontroller_getSensorCollection(talon):
     talon.getSensorCollection()
 
@@ -399,9 +382,8 @@ def test_basemotorcontroller_getTemperature(talon, cdata):
     assert talon.getTemperature() == 42.0
 
 
-@pytest.mark.xfail(raises=NotImplementedError)
 def test_basemotorcontroller_hasResetOccurred(talon):
-    talon.hasResetOccurred()
+    assert talon.hasResetOccurred() == False
 
 
 @pytest.mark.xfail(raises=NotImplementedError)
@@ -409,14 +391,13 @@ def test_basemotorcontroller_isMotionProfileTopLevelBufferFull(talon):
     talon.isMotionProfileTopLevelBufferFull()
 
 
-@pytest.mark.xfail(raises=NotImplementedError)
 def test_basemotorcontroller_neutralOutput(talon):
     talon.neutralOutput()
 
 
-@pytest.mark.xfail(raises=NotImplementedError)
-def test_basemotorcontroller_overrideLimitSwitchesEnable(talon):
+def test_basemotorcontroller_overrideLimitSwitchesEnable(talon, cdata):
     talon.overrideLimitSwitchesEnable(True)
+    assert cdata['limit_switch_usable'] == True
 
 
 def test_basemotorcontroller_overrideSoftLimitsEnable(talon, cdata):
@@ -439,36 +420,34 @@ def test_basemotorcontroller_pushMotionProfileTrajectory(talon, ctre):
     talon.pushMotionProfileTrajectory(point)
 
 
-@pytest.mark.xfail(raises=NotImplementedError)
 def test_basemotorcontroller_selectDemandType(talon):
     talon.selectDemandType(True)
 
 
-@pytest.mark.xfail(raises=NotImplementedError)
-def test_basemotorcontroller_selectProfileSlot(talon):
-    talon.selectProfileSlot(1, 2)
+def test_basemotorcontroller_selectProfileSlot(talon, cdata):
+    talon.selectProfileSlot(1, 1)
+    assert cdata['profile_slot_select'] == 1
+    assert cdata['pid_slot_select'] == 1
 
 
-@pytest.mark.xfail(raises=NotImplementedError)
 def test_basemotorcontroller_setControlFramePeriod(talon):
     talon.setControlFramePeriod(1, 2)
 
 
-@pytest.mark.xfail(raises=NotImplementedError)
-def test_basemotorcontroller_setIntegralAccumulator(talon):
-    talon.setIntegralAccumulator(1, 2, 3)
+def test_basemotorcontroller_setIntegralAccumulator(talon, cdata):
+    talon.setIntegralAccumulator(2, 1, 0)
+    assert cdata['pid1_iaccum'] == 2
 
 
-@pytest.mark.xfail(raises=NotImplementedError)
 def test_basemotorcontroller_setInverted(talon):
     talon.setInverted(True)
 
     assert talon.getInverted() == True
 
 
-@pytest.mark.xfail(raises=NotImplementedError)
-def test_basemotorcontroller_setNeutralMode(talon):
+def test_basemotorcontroller_setNeutralMode(talon, cdata):
     talon.setNeutralMode(1)
+    assert cdata['neutral_mode'] == 1
 
 
 def test_basemotorcontroller_selectedSensorPosition(talon, cdata):
@@ -490,15 +469,181 @@ def test_basemotorcontroller_selectedSensorPosition(talon, cdata):
     assert talon.getSelectedSensorPosition(1) == 0
 
 
-@pytest.mark.xfail(raises=NotImplementedError)
-def test_basemotorcontroller_setSensorPhase(talon):
+def test_basemotorcontroller_setSensorPhase(talon, cdata):
     talon.setSensorPhase(True)
+    assert cdata['sensor_phase'] == True
 
 
-@pytest.mark.xfail(raises=NotImplementedError)
 def test_basemotorcontroller_setStatusFramePeriod(talon):
     talon.setStatusFramePeriod(1, 2, 3)
 
 
+def test_basemotorcontroller_getClosedLoopTarget(talon, cdata):
+    cdata['pid0_target'] = 44
+    cdata['pid1_target'] = 55
+    assert talon.getClosedLoopTarget(0) == 44
+    assert talon.getClosedLoopTarget(1) == 55
+
+
 def test_basemotorcontroller_valueUpdated(talon):
     talon.valueUpdated()
+
+
+def assert_is_almost_equal(expected, actual, rel_tol=0, abs_tol=0.00001):
+    assert math.isclose(expected, actual, rel_tol=rel_tol, abs_tol=abs_tol), "expected: %f, got: %f" % (expected, actual)
+
+# simulation logic
+
+@pytest.mark.parametrize('initial_pos, initial_vel, expected_vel, expected_pos', [
+    (0, 0, 2.457, 0.02457),
+    (1, 0, 2.457, 1.02457),
+    (40960, 0, 0, 4096 * 10),
+    (40960, 2, 0, 4096 * 10),
+    (40960, -2, 0, 4096 * 10),
+    (40960, 3, 0.543, 40960 + 0.00543),
+    (40960, -3, -0.543, 40960 - 0.00543),
+    (38912, 0, 2.457, 38912 + 0.02457),
+    (43008, 0, -2.457, 43008 - 0.02457),
+    (43008, 1228, 1228-2.457, 43008 + 12.25543),
+    (41041, -600, -600+2.457, 41041 - 5.97543),
+    (40878, -600, -600+2.457, 40878 - 5.97543),
+    (40878, 600, 600-2.457, 40878 + 5.97543),
+    (40878, -60, -60+2.457, 40878 - .57543),
+    (41041, 60, 60-2.457, 41041 + .57543),
+    (-40878, 1300, 1300-2.457, -40878 + 12.97543),
+    (90878, -1300, -1300+2.457, 90878 - 12.97543),
+    ])
+def test_motion_magic_next_target(talon, cdata, initial_pos, initial_vel, expected_vel, expected_pos):
+    # an encoder that measures 4096 ticks per revolution, or so we shall assume
+    talon.configSelectedFeedbackSensor(talon.FeedbackDevice.QuadEncoder, 0, 0)
+    talon.configMotionCruiseVelocity(int(3 * 4096 * 0.1), 0) # 1 rps
+    talon.configMotionAcceleration(int(6 * 4096 * 0.1), 0) # 2 rps^2
+    talon.configAllowableClosedloopError(0, 2, 0)
+    talon.selectProfileSlot(0, 0)
+
+    cdata['quad_position'] = int(initial_pos)
+    cdata['quad_velocity'] = int(initial_vel)
+
+    talon.setDemand(talon.ControlMode.MotionMagic, 10 * 4096, 0) # 10 rotations
+
+    assert cdata['pid0_target'] == int(initial_pos)
+    assert cdata['motionmagic_acceleration'] == 2457
+    assert cdata['motionmagic_cruise_velocity'] == 1228
+    assert cdata['motionmagic_target'] == 10 * 4096
+    assert cdata['motionmagic_velocity'] == int(initial_vel)
+
+    target = talon._motion_magic_next_target()
+
+    assert_is_almost_equal(expected_vel, cdata['motionmagic_velocity'])
+    assert_is_almost_equal(expected_pos, target)
+
+
+def test_calculate_pid1(talon, cdata):
+    # an encoder that measures 4096 ticks per revolution, or so we shall assume
+    talon.configSelectedFeedbackSensor(talon.FeedbackDevice.QuadEncoder, 0, 0)
+    talon.config_kP(0, 4, 0)
+    talon.config_kI(0, 0, 0)
+    talon.config_kD(0, 0, 0)
+    talon.config_kF(0, 0, 0)
+    talon.selectProfileSlot(0, 0)
+    cdata['quad_position'] = 0
+    talon.set(talon.ControlMode.Position, 4096)
+
+    assert not talon._notFirst
+    talon._calculate_1ms()
+    assert talon._notFirst
+
+    talon._calculate_1ms()
+
+    assert talon._iAccum == 4096
+    assert talon._err == 4096
+    assert cdata['pid0_errorDerivative'] == 0
+    assert talon._prevErr == 4096
+    assert_is_almost_equal(1., cdata['value'])
+
+    cdata['quad_position'] = 3900
+    
+    talon._calculate_1ms()
+
+    assert talon._iAccum == 4292
+    assert talon._err == 196
+    assert cdata['pid0_errorDerivative'] == -3900
+    assert talon._prevErr == 196
+    assert_is_almost_equal(0.766373, cdata['value'])
+
+
+def test_calculate_pid2(talon, cdata):
+    # an encoder that measures 4096 ticks per revolution, or so we shall assume
+    talon.configSelectedFeedbackSensor(talon.FeedbackDevice.QuadEncoder, 0, 0)
+    talon.config_kP(0, 0, 0)
+    talon.config_kI(0, 0.04, 0)
+    talon.config_kD(0, 0, 0)
+    talon.config_kF(0, 0, 0)
+    talon.selectProfileSlot(0, 0)
+    cdata['quad_position'] = 0
+    talon.set(talon.ControlMode.Position, 4096)
+
+    assert not talon._notFirst
+    talon._calculate_1ms()
+    assert talon._notFirst
+
+    talon._calculate_1ms()
+
+    assert talon._iAccum == 4096
+    assert talon._err == 4096
+    assert cdata['pid0_errorDerivative'] == 0
+    assert talon._prevErr == 4096
+    assert_is_almost_equal(0.160156, cdata['value'])
+
+    cdata['quad_position'] = 3900
+    
+    talon._calculate_1ms()
+
+    assert talon._iAccum == 4292
+    assert talon._err == 196
+    assert cdata['pid0_errorDerivative'] == -3900
+    assert talon._prevErr == 196
+    assert_is_almost_equal(0.167820, cdata['value'])
+
+
+def test_calculate_pid3(talon, cdata):
+    # an encoder that measures 4096 ticks per revolution, or so we shall assume
+    talon.configSelectedFeedbackSensor(talon.FeedbackDevice.QuadEncoder, 0, 0)
+    talon.config_kP(0, 0, 0)
+    talon.config_kI(0, 0, 0)
+    talon.config_kD(0, 0.4, 0)
+    talon.config_kF(0, 0, 0)
+    talon.selectProfileSlot(0, 0)
+    cdata['quad_position'] = 0
+    talon.set(talon.ControlMode.Position, 4096)
+
+    assert not talon._notFirst
+    talon._calculate_1ms()
+    assert talon._notFirst
+
+    talon._calculate_1ms()
+
+    assert talon._iAccum == 4096
+    assert talon._err == 4096
+    assert cdata['pid0_errorDerivative'] == 0
+    assert talon._prevErr == 4096
+    assert_is_almost_equal(0, cdata['value'])
+
+    cdata['quad_position'] = 3900
+    
+    talon._calculate_1ms()
+
+    assert talon._iAccum == 4292
+    assert talon._err == 196
+    assert cdata['pid0_errorDerivative'] == -3900
+    assert talon._prevErr == 196
+    assert_is_almost_equal(-1, cdata['value'])
+
+    cdata['quad_position'] = 3980
+    talon._calculate_1ms()
+
+    assert talon._iAccum == 4408
+    assert talon._err == 116
+    assert cdata['pid0_errorDerivative'] == -80
+    assert talon._prevErr == 116
+    assert_is_almost_equal(-0.031281, cdata['value'])
