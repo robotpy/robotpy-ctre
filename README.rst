@@ -8,7 +8,9 @@ Documentation
 =============
 
 * `Installation <http://robotpy.readthedocs.io/en/stable/install/ctre.html>`_
-* `API Documentation <http://robotpy.readthedocs.io/projects/ctre/en/stable/api.html>`_
+* `Python API Documentation <http://robotpy.readthedocs.io/projects/ctre/en/stable/api.html>`_
+* `CTRE's software guide <https://github.com/CrossTheRoadElec/Phoenix-Documentation/blob/master/README.md>`_
+
 
 Developers Notes
 ================
