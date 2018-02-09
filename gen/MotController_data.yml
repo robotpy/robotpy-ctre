@@ -2,6 +2,7 @@
 sim_extra: |
   from .ctre_sim_enums import ControlMode, FeedbackDevice
   from wpilib import Notifier
+  import warnings
   
   _feedback2key = {
      FeedbackDevice.QuadEncoder: 'quad_',
@@ -194,6 +195,10 @@ c_MotController_SetDemand:
     elif mode == ControlMode.MotionMagic:
         self.hal_data['motionmagic_target'] = demand0
         if prev_mode != ControlMode.MotionMagic:
+            if self.hal_data['motionmagic_acceleration'] == 0:
+                warnings.warn("Attempting to run motion magic with 0 acceleration")
+            if self.hal_data['motionmagic_cruise_velocity'] == 0:
+                warnings.warn("Attempting to run motion magic with 0 cruise velocity")
             self._target = self.getSelectedSensorPosition(self._pidIdx)
             self.hal_data['motionmagic_velocity'] = self.getSelectedSensorVelocity(self._pidIdx)
     elif mode in calc_modes:
@@ -1510,7 +1515,11 @@ sim_class_extra: |
         okerr = self.hal_data['profile%d_allowableError' % self._slotIdx]
         dt = 0.001 # sec
 
-        adist = 0.5 * v ** 2 / a
+        if a == 0:
+            adist = v * 100
+        else:
+            adist = 0.5 * v ** 2 / a
+
         err = target - pos
 
         if abs(err) < okerr:
