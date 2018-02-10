@@ -647,3 +647,29 @@ def test_calculate_pid3(talon, cdata):
     assert cdata['pid0_errorDerivative'] == -80
     assert talon._prevErr == 116
     assert_is_almost_equal(-0.031281, cdata['value'])
+
+
+def test_calculate_pid4(talon, cdata):
+    # an encoder that measures 4096 ticks per revolution, or so we shall assume
+    talon.configSelectedFeedbackSensor(talon.FeedbackDevice.QuadEncoder, 0, 0)
+    talon.config_kP(0, 4, 0)
+    talon.config_kI(0, 0, 0)
+    talon.config_kD(0, 0.0, 0)
+    talon.config_kF(0, 0, 0)
+    talon.selectProfileSlot(0, 0)
+    cdata['quad_position'] = 0
+    talon.set(talon.ControlMode.Position, 40960)
+
+    talon._calculate_1ms()
+
+    talon._calculate_1ms()
+    assert_is_almost_equal(1, cdata['value'])
+
+    # reset
+    talon.set(talon.ControlMode.Position, 0)
+    talon._calculate_1ms()
+    talon.set(talon.ControlMode.Position, 40960)
+
+    talon.configClosedLoopRamp(3, 0)
+    talon._calculate_1ms()
+    assert_is_almost_equal(0.000333, cdata['value'])
