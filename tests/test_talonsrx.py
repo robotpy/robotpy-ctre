@@ -78,16 +78,6 @@ def test_talon_initSendable(talon, sendablebuilder):
     assert talon.get() == 3
 
 
-@pytest.mark.xfail(raises=NotImplementedError)
-def test_talon_configForwardLimitSwitchSource(talon):
-    talon.configForwardLimitSwitchSource(1, 2, 3)
-
-
-@pytest.mark.xfail(raises=NotImplementedError)
-def test_talon_configReverseLimitSwitchSource(talon):
-    talon.configReverseLimitSwitchSource(1, 2, 3)
-
-
 def test_talon_configPeakCurrentLimit(talon):
     talon.configPeakCurrentLimit(1, 2)
 
@@ -313,6 +303,41 @@ def test_basemotorcontroller_getDeviceID(talon):
 def test_basemotorcontroller_getErrorDerivative(talon, cdata):
     cdata['pid1_errorDerivative'] = 50.
     assert talon.getErrorDerivative(1) == 50.
+
+def test_basemotorcontroller_limitSwitches(ctre, hal_data, talon, cdata):
+    
+    # local
+    for v in (True, False):
+        cdata['limit_switch_closed_for'] = v
+        cdata['limit_switch_closed_rev'] = not v
+        assert talon.isFwdLimitSwitchClosed() == v
+        assert talon.isRevLimitSwitchClosed() == (not v)
+        
+        assert talon.getLimitSwitchState() == (v, (not v))
+    
+    # remote
+    talon.configForwardLimitSwitchSource(talon.LimitSwitchSource.RemoteTalonSRX,
+                                         talon.LimitSwitchNormal.NormallyOpen, 2, 0)
+    talon.configReverseLimitSwitchSource(talon.LimitSwitchSource.RemoteTalonSRX,
+                                         talon.LimitSwitchNormal.NormallyOpen, 2, 0)
+    
+    # The above should work without us creating the remote talon?
+    talon2 = ctre.WPI_TalonSRX(2)
+    cdata2 = hal_data['CAN'][2]
+    
+    for v in (True, False):
+        cdata['limit_switch_closed_for'] = not v
+        cdata2['limit_switch_closed_for'] = v
+        cdata['limit_switch_closed_rev'] = v
+        cdata2['limit_switch_closed_rev'] = not v
+        
+        assert talon.isFwdLimitSwitchClosed() == v
+        assert talon.isRevLimitSwitchClosed() == (not v)
+        assert talon2.isFwdLimitSwitchClosed() == v
+        assert talon2.isRevLimitSwitchClosed() == (not v)
+        
+        assert talon.getLimitSwitchState() == (v, (not v))
+        assert talon2.getLimitSwitchState() == (v, (not v))
 
 
 @pytest.mark.xfail(raises=NotImplementedError)
