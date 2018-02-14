@@ -2,7 +2,7 @@
 TalonSRX
 ========
 
-.. automodule:: ctre.wpi_talonsrx
+.. autoclass:: ctre.WPI_TalonSRX
     :members:
     :undoc-members:
     :show-inheritance:
