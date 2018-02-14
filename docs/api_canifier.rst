@@ -2,7 +2,7 @@
 CANifier
 ========
 
-.. automodule:: ctre.canifier
+.. autoclass:: ctre.CANifier
     :members:
     :undoc-members:
     :show-inheritance:

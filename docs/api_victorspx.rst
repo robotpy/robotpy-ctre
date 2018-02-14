@@ -1,7 +1,7 @@
 VictorSPX
 =========
 
-.. automodule:: ctre.wpi_victorspx
+.. autoclass:: ctre.WPI_VictorSPX
     :members:
     :undoc-members:
     :show-inheritance:
