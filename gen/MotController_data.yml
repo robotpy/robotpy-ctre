@@ -159,10 +159,7 @@ c_MotController_Create1:
   
     hal_data['CAN'][deviceId] = self.hal_data
 
-    if self.Notifier:
-        self._notifier = Notifier(self._calculate_1ms)
-    else:
-        self._notifier = None
+    self._notifier = None
     
 c_MotController_GetDeviceNumber:
   code: |
@@ -182,6 +179,8 @@ c_MotController_SetDemand:
         ControlMode.Velocity, ControlMode.Current]
     prev_mode = self.hal_data['control_mode']
     if mode in calc_modes and prev_mode not in calc_modes:
+        if self.Notifier and self._notifier is None:
+            self._notifier = Notifier(self._calculate_1ms)
         if self._notifier is not None:
             self._notifier.startPeriodic(0.001)
     elif mode not in calc_modes and prev_mode in calc_modes:
