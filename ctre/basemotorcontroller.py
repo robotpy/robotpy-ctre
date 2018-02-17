@@ -28,13 +28,8 @@ from ._impl import (
     MotController,
     ControlMode,
     NeutralMode,
-    FeedbackDevice,
-    StatusFrame,
-    StatusFrameEnhanced,
     VelocityMeasPeriod,
-    RemoteLimitSwitchSource,
     LimitSwitchNormal,
-    LimitSwitchSource,
     MotionProfileStatus,
     Faults,
     StickyFaults,
@@ -49,17 +44,12 @@ class BaseMotorController(MotController):
     """Base motor controller features for all CTRE CAN motor controllers."""
     
     ControlMode = ControlMode
-    FeedbackDevice = FeedbackDevice
     LimitSwitchNormal = LimitSwitchNormal
-    LimitSwitchSource = LimitSwitchSource
     NeutralMode = NeutralMode
     ParamEnum = ParamEnum
-    RemoteLimitSwitchSource = RemoteLimitSwitchSource
-    StatusFrame = StatusFrame
-    StatusFrameEnhanced = StatusFrameEnhanced
     VelocityMeasPeriod = VelocityMeasPeriod
 
-    def __init__(self, arbId: int):
+    def __init__(self, arbId: int) -> None:
         """
         Constructor for motor controllers.
         

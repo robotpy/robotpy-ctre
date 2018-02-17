@@ -22,18 +22,25 @@
 # (INCLUDING NEGLIGENCE), BREACH OF WARRANTY, OR OTHERWISE
 #----------------------------------------------------------------------------
 import hal
+
 from .basemotorcontroller import BaseMotorController
+from ._impl import RemoteFeedbackDevice, RemoteLimitSwitchSource, StatusFrame
 
 
 __all__ = ['VictorSPX']
 
 
-class VictorSPX (BaseMotorController):
+class VictorSPX(BaseMotorController):
     """VEX Victor SPX Motor Controller when used on CAN Bus.
     
-    Don't use this directly, use :class:`.WPI_VictorSPX`"""
+    We don't recommend using this directly. Use :class:`.WPI_VictorSPX` instead.
+    """
 
-    def __init__(self, deviceNumber: int):
+    RemoteFeedbackDevice = RemoteFeedbackDevice
+    RemoteLimitSwitchSource = RemoteLimitSwitchSource
+    StatusFrame = StatusFrame
+
+    def __init__(self, deviceNumber: int) -> None:
         """Constructor
 
         :param deviceNumber:
