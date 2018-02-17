@@ -22,7 +22,9 @@
 # (INCLUDING NEGLIGENCE), BREACH OF WARRANTY, OR OTHERWISE
 #----------------------------------------------------------------------------
 import hal
+
 from .basemotorcontroller import BaseMotorController
+from ._impl import FeedbackDevice, LimitSwitchSource, StatusFrameEnhanced
 
 
 __all__ = ['TalonSRX']
@@ -31,8 +33,13 @@ __all__ = ['TalonSRX']
 class TalonSRX(BaseMotorController):
     """CTRE Talon SRX Motor Controller when used on CAN Bus.
     
-    Don't use this directly, use :class:`.WPI_TalonSRX`"""
+    We don't recommend using this directly. Use :class:`.WPI_TalonSRX` instead.
+    """
 
-    def __init__(self, deviceNumber):
+    FeedbackDevice = FeedbackDevice
+    LimitSwitchSource = LimitSwitchSource
+    StatusFrameEnhanced = StatusFrameEnhanced
+
+    def __init__(self, deviceNumber: int) -> None:
         super().__init__(deviceNumber | 0x02040000)
         hal.report(hal.UsageReporting.kResourceType_CANTalonSRX, deviceNumber + 1)
