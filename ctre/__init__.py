@@ -1,4 +1,5 @@
-
+from .talonsrx import TalonSRX
+from .victorspx import VictorSPX
 from .wpi_talonsrx import WPI_TalonSRX
 from .wpi_victorspx import WPI_VictorSPX
 from .canifier import CANifier
@@ -9,6 +10,8 @@ from ._impl import (
     ErrorCode,
     FeedbackDevice,
     RemoteFeedbackDevice,
+    LimitSwitchSource,
+    LimitSwitchNormal,
     NeutralMode,
 )
 
