@@ -1,4 +1,4 @@
-# validated: 2018-01-05 EN 8f8595a20145 java/src/com/ctre/phoenix/CANifier.java
+# validated: 2018-03-01 DS a3eae14b229d java/src/com/ctre/phoenix/CANifier.java
 #----------------------------------------------------------------------------
 #  Software License Agreement
 #
@@ -91,6 +91,7 @@ class CANifier(CANifierImpl):
         """
         super().__init__()
         self._create1(deviceId)
+        self._deviceNumber = deviceId
         # python-specific: tempPins not needed
         hal.report(hal.UsageReporting.kResourceType_CANifier, deviceId + 1)
 
@@ -178,3 +179,7 @@ class CANifier(CANifierImpl):
         _, bits = super().getStickyFaults()
         toFill.update(bits)
         return self.getLastError()
+    
+    def getDeviceID(self):
+        """:returns: The Device Number"""
+        return self._deviceNumber

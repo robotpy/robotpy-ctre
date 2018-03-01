@@ -1,5 +1,5 @@
 [git-source-track]
 validation_root = ctre
 upstream_root = ../Phoenix-frc-lib/
-upstream_commit = 9704468db863a6e12d38feb60ba01f0cb050de49
+upstream_commit = 666d176a08151793044ab74e0005f13d3732ed96
 

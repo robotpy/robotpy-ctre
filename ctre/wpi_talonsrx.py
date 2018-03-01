@@ -104,7 +104,7 @@ class WPI_TalonSRX(TalonSRX, SendableBase, MotorSafety):
 
         self.speed = 0.0
         if index == 2:
-            super().set(results['mode'], results['demand0'], results['demand1'])
+            super().set(results['mode'], results['demand0'], demand1=results['demand1'])
         else:
             if index == 0:
                 self.speed = value = results['speed']
