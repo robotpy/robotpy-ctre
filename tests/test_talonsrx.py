@@ -133,9 +133,37 @@ def test_basemotorcontroller_configGetCustomParam(talon):
     talon.configGetCustomParam(1, 2)
 
 
-@pytest.mark.xfail(raises=NotImplementedError)
-def test_basemotorcontroller_configGetParameter(talon):
-    talon.configGetParameter(1,2,3)
+@pytest.mark.parametrize("param_name, slot, cdata_key, value", [
+    ("eOpenloopRamp", 0, "open_loop_ramp", 0.5),
+    ("eClosedloopRamp", 0, "closed_loop_ramp", 0.5),
+    ("eNeutralDeadband", 0, "neutral_deadband", 0.5),
+    ("ePeakPosOutput", 0, "peak_fwd_output", 0.5),
+    ("eNominalPosOutput", 0, "nom_fwd_output", 0.5),
+    ("ePeakNegOutput", 0, "peak_rev_output", 0.5),
+    ("eNominalNegOutput", 0, "nom_rev_output", 0.5),
+    ("eProfileParamSlot_P", 0, "profile0_p", 0.1),
+    ("eProfileParamSlot_P", 1, "profile1_p", 0.2),
+    ("eProfileParamSlot_I", 0, "profile0_i", 0.1),
+    ("eProfileParamSlot_I", 1, "profile1_i", 0.2),
+    ("eProfileParamSlot_D", 0, "profile0_d", 0.1),
+    ("eProfileParamSlot_D", 1, "profile1_d", 0.2),
+    ("eProfileParamSlot_F", 0, "profile0_f", 0.1),
+    ("eProfileParamSlot_F", 1, "profile1_f", 0.2),
+    ("eProfileParamSlot_IZone", 0, "profile0_izone", 200.0),
+    ("eProfileParamSlot_IZone", 1, "profile1_izone", 300.0),
+    ("eProfileParamSlot_AllowableErr", 0, "profile0_allowableError", 400.0),
+    ("eProfileParamSlot_AllowableErr", 1, "profile1_allowableError", 401.0),
+    ("eProfileParamSlot_MaxIAccum", 0, "profile0_max_iaccum", 101.0),
+    ("eProfileParamSlot_MaxIAccum", 1, "profile1_max_iaccum", 102.0),
+    ("eSampleVelocityPeriod", 0, "vel_measurement_period", 2.0),
+    ("eSampleVelocityWindow", 0, "vel_measurement_window", 1.0),
+    ("eMotMag_Accel", 0, "motionmagic_acceleration", 1.0),
+    ("eMotMag_VelCruise", 0, "motionmagic_velocity", 1.0),
+])
+def test_basemotorcontroller_configGetParameter(talon, ctre, cdata, param_name, cdata_key, value, slot):
+    param = ctre.ParamEnum[param_name]
+    cdata[cdata_key] = value
+    assert talon.configGetParameter(param, slot, 0) == value
 
 def test_basemotorcontroller_configMaxIntegralAccumulator(talon, cdata):
     talon.configMaxIntegralAccumulator(1, 2.0, 3)
