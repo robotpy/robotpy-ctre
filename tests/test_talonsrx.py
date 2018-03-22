@@ -133,7 +133,7 @@ def test_basemotorcontroller_configGetCustomParam(talon):
     talon.configGetCustomParam(1, 2)
 
 
-@pytest.mark.parametrize("param_name, slot, cdata_key, value", [
+config_data = [
     ("eOpenloopRamp", 0, "open_loop_ramp", 0.5),
     ("eClosedloopRamp", 0, "closed_loop_ramp", 0.5),
     ("eNeutralDeadband", 0, "neutral_deadband", 0.5),
@@ -159,11 +159,49 @@ def test_basemotorcontroller_configGetCustomParam(talon):
     ("eSampleVelocityWindow", 0, "vel_measurement_window", 1.0),
     ("eMotMag_Accel", 0, "motionmagic_acceleration", 1.0),
     ("eMotMag_VelCruise", 0, "motionmagic_velocity", 1.0),
-])
+    ("eClearPositionOnLimitF", 0, "clear_pos_on_limit_fwd", 1.0),
+    ("eClearPositionOnLimitR", 0, "clear_pos_on_limit_rev", 1.0),
+]
+
+@pytest.mark.parametrize("param_name, slot, cdata_key, value", config_data)
 def test_basemotorcontroller_configGetParameter(talon, ctre, cdata, param_name, cdata_key, value, slot):
     param = ctre.ParamEnum[param_name]
     cdata[cdata_key] = value
     assert talon.configGetParameter(param, slot, 0) == value
+
+
+@pytest.mark.parametrize("param_name, slot, cdata_key, value", config_data)
+def test_basemotorcontroller_configSetParameter(talon, ctre, cdata, param_name, cdata_key, value, slot):
+    param = ctre.ParamEnum[param_name]
+    talon.configSetParameter(param, value, 0, slot, 0)
+    assert cdata[cdata_key] == value
+
+
+def test_clear_position_on_limit_forward(talon, cdata, ctre):
+    talon.selectProfileSlot(0, 0)
+    talon.configSelectedFeedbackSensor(talon.FeedbackDevice.QuadEncoder, 0, 0)
+    talon.configSetParameter(ctre.ParamEnum.eClearPositionOnLimitF, 1, 0, 0, 0)
+    cdata['limit_switch_closed_for'] = 0
+    cdata['quad_position'] = 10
+    talon._calculate_1ms()
+    assert cdata['quad_position'] == 10
+    cdata['limit_switch_closed_for'] = 1
+    talon._calculate_1ms()
+    assert cdata['quad_position'] == 0
+
+
+def test_clear_position_on_limit_reverse(talon, cdata, ctre):
+    talon.selectProfileSlot(0, 0)
+    talon.configSelectedFeedbackSensor(talon.FeedbackDevice.QuadEncoder, 0, 0)
+    talon.configSetParameter(ctre.ParamEnum.eClearPositionOnLimitR, 1, 0, 0, 0)
+    cdata['limit_switch_closed_rev'] = 0
+    cdata['quad_position'] = 10
+    talon._calculate_1ms()
+    assert cdata['quad_position'] == 10
+    cdata['limit_switch_closed_rev'] = 1
+    talon._calculate_1ms()
+    assert cdata['quad_position'] == 0
+
 
 def test_basemotorcontroller_configMaxIntegralAccumulator(talon, cdata):
     talon.configMaxIntegralAccumulator(1, 2.0, 3)
@@ -223,11 +261,6 @@ def test_basemotorcontroller_configSensorTerm(talon, cdata):
 @pytest.mark.xfail(raises=NotImplementedError)
 def test_basemotorcontroller_configSetCustomParam(talon):
     talon.configSetCustomParam(1,2,3)
-
-
-@pytest.mark.xfail(raises=NotImplementedError)
-def test_basemotorcontroller_configSetParameter(talon):
-    talon.configSetParameter(1,2,3,4,5)
 
 
 def test_basemotorcontroller_configVelocityMeasurementPeriod(talon, cdata):
