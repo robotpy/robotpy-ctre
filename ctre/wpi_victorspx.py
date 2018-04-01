@@ -23,7 +23,6 @@
 #----------------------------------------------------------------------------
 import hal
 from wpilib import MotorSafety, LiveWindow, SendableBase
-from wpilib._impl.utils import match_arglist
 from .victorspx import VictorSPX
 from ._impl import ControlMode
 
@@ -59,52 +58,44 @@ class WPI_VictorSPX (VictorSPX, SendableBase, MotorSafety):
 
     def set(self, *args, **kwargs):
         """
-        See :meth:`.BaseMotorController.set`
-
-        Can be called three ways:
-
-        - speed
-        - mode, value
-        - mode, demand0, demand1
-
-        largely a wrapper around :meth:`.VictorSPX.set`
-
-        :param value:
-        :type value: float
-        :param mode: ControlMode.PercentOutput if not provided
-        :type mode: ControlMode
-        :param speed:
-        :type speed: float
+        Can be called either with a single arg representing speed, or with
+        up to 4 arguments:
+        
+        :param mode:
+            The output mode to apply.
         :param demand0:
-        :type demand0: float
+            The output value to apply. such as advanced feed forward and/or auxiliary close-looping in firmware.
+
+            In :attr:`.ControlMode.PercentOutput`, the output is between -1.0 and 1.0, with 0.0 as
+            stopped.
+            
+            In :attr:`.ControlMode.Voltage` mode, output value is in volts.
+            
+            In :attr:`.ControlMode.Current` mode, output value is in amperes.
+            
+            In :attr:`.ControlMode.Speed` mode, output value is in position change / 100ms.
+            
+            In :attr:`.ControlMode.Position` mode, output value is in encoder ticks or an analog value, depending on the sensor.
+            
+            In :attr:`.ControlMode.Follower` mode, the output value is the integer device ID of the talon to duplicate.
+        :param demand1Type:
+            The demand type for demand1.
+            
+            * Neutral: Ignore demand1 and apply no change to the demand0 output.
+            * AuxPID: Use demand1 to set the target for the auxiliary PID 1.
+            * ArbitraryFeedForward: Use demand1 as an arbitrary additive value to the
+              demand0 output.  In PercentOutput the demand0 output is the motor output,
+              and in closed-loop modes the demand0 output is the output of PID0.
         :param demand1:
-        :type demand1: float
+            Supplemental value.  This will also be control mode specific for future features.
         """
-        speed_arg = ("speed", [float, int])
-        value_arg = ("value", [float, int])
-        mode_arg = ("mode", [ControlMode])
-        demand0_arg = ("demand0", [float, int])
-        demand1_arg = ("demand1", [float, int])
-
-        templates = [
-            [speed_arg],
-            [mode_arg, value_arg],
-            [mode_arg, demand0_arg, demand1_arg]]
-
-        index, results = match_arglist('WPI_VictorSPX.set',
-                                   args, kwargs, templates)
-
-        if index == 2:
-            super().set(results['mode'], results['demand0'], results['demand1'])
+        if len(args) == 1:
+            self.speed = args[0]
+            args = (ControlMode.PercentOutput, self.speed)
         else:
-            if index == 0:
-                self.speed = value = results['speed']
-                mode = ControlMode.PercentOutput
-            elif index == 1:
-                value = results['value']
-                mode = results['mode']
-            super().set(mode, value)
-
+            self.speed = 0
+        
+        super().set(*args, **kwargs)
         self.feed()
 
     def pidWrite(self, output: float):
