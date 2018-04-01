@@ -1,4 +1,4 @@
-# validated: 2018-01-14 DV 2a1c9b5fb45b java/src/com/ctre/phoenix/sensors/PigeonIMU.java
+# validated: 2018-03-01 DS a3eae14b229d java/src/com/ctre/phoenix/sensors/PigeonIMU.java
 #----------------------------------------------------------------------------
 #  Software License Agreement
 #
@@ -209,7 +209,7 @@ class PigeonIMU(PigeonImuImpl):
         deviceNumber_arg = ("deviceNumber", [int])
         talonSrx_arg = ("talonSrx", [TalonSRX])
         templates = [[deviceNumber_arg], [talonSrx_arg]]
-        index, results = match_arglist('PIDController.__init__',
+        index, results = match_arglist('PigeonIMU.__init__',
                                    args, kwargs, templates)
         self.generalStatus = [0] * 10
         self.fusionStatus = [0] * 10
@@ -262,3 +262,7 @@ class PigeonIMU(PigeonImuImpl):
         """
         _, bits = super().getStickyFaults()
         return self.getLastError(), PigeonIMU_StickyFaults(bits)
+
+    def getDeviceID(self):
+        """:returns: The Device Number"""
+        return self._deviceNumber

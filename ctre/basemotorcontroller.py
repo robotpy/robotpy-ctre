@@ -1,4 +1,4 @@
-# validated: 2018-01-14 DV f0e94123427a java/src/com/ctre/phoenix/motorcontrol/can/BaseMotorController.java
+# validated: 2018-03-01 DS e8221da18ba9 java/src/com/ctre/phoenix/motorcontrol/can/BaseMotorController.java
 #----------------------------------------------------------------------------
 #  Software License Agreement
 #
@@ -27,6 +27,9 @@ from .trajectorypoint import TrajectoryPoint
 from ._impl import (
     MotController,
     ControlMode,
+    ErrorCode,
+    DemandType,
+    FollowerType,
     NeutralMode,
     VelocityMeasPeriod,
     LimitSwitchNormal,
@@ -44,6 +47,7 @@ class BaseMotorController(MotController):
     """Base motor controller features for all CTRE CAN motor controllers."""
     
     ControlMode = ControlMode
+    DemandType = DemandType
     LimitSwitchNormal = LimitSwitchNormal
     NeutralMode = NeutralMode
     ParamEnum = ParamEnum
@@ -71,15 +75,17 @@ class BaseMotorController(MotController):
         :returns: Device number.
         """
         return self.getDeviceNumber()
+        
+    __set4_modes = {ControlMode.Velocity, ControlMode.Position, ControlMode.MotionMagic, ControlMode.MotionProfile, ControlMode.MotionProfileArc}
 
-    def set(self, mode: ControlMode, demand0: float, demand1: float = 0.0):
+    def set(self, mode: ControlMode, demand0: float, demand1Type: DemandType = DemandType.Neutral, demand1: float = 0.0):
         """
         Sets the appropriate output on the talon, depending on the mode.
 
         :param mode:
             The output mode to apply.
         :param demand0:
-            The output value to apply. such as advanced feed forward and/or cascaded close-looping in firmware.
+            The output value to apply. such as advanced feed forward and/or auxiliary close-looping in firmware.
 
             In :attr:`.ControlMode.PercentOutput`, the output is between -1.0 and 1.0, with 0.0 as
             stopped.
@@ -93,18 +99,40 @@ class BaseMotorController(MotController):
             In :attr:`.ControlMode.Position` mode, output value is in encoder ticks or an analog value, depending on the sensor.
             
             In :attr:`.ControlMode.Follower` mode, the output value is the integer device ID of the talon to duplicate.
-        :type demand0: float
+        :param demand1Type:
+            The demand type for demand1.
+            
+            * Neutral: Ignore demand1 and apply no change to the demand0 output.
+            * AuxPID: Use demand1 to set the target for the auxiliary PID 1.
+            * ArbitraryFeedForward: Use demand1 as an arbitrary additive value to the
+              demand0 output.  In PercentOutput the demand0 output is the motor output,
+              and in closed-loop modes the demand0 output is the output of PID0.
         :param demand1:
             Supplemental value.  This will also be control mode specific for future features.
-        :type demand1: float
-
-        see :meth:`.selectProfileSlot` to choose between the two sets of gains.
+    
+        Arcade Drive Example::
+        
+            _talonLeft.set(ControlMode.PercentOutput, joyForward, DemandType.ArbitraryFeedForward, +joyTurn)
+            _talonRght.set(ControlMode.PercentOutput, joyForward, DemandType.ArbitraryFeedForward, -joyTurn)
+                    
+        Drive Straight Example::
+                            
+            # Note: Selected Sensor Configuration is necessary for both PID0 and PID1.
+            _talonLeft.follow(_talonRght, FollowerType.AuxOutput1)
+            _talonRght.set(ControlMode.PercentOutput, joyForward, DemandType.AuxPID, desiredRobotHeading)
+                            
+        Drive Straight to a Distance Example::
+        
+            # Note: Other configurations (sensor selection, PID gains, etc.) need to be set.
+            _talonLeft.follow(_talonRght, FollowerType.AuxOutput1);
+            _talonRght.set(ControlMode.MotionMagic, targetDistance, DemandType.AuxPID, desiredRobotHeading)
+        
         """
         self.controlMode = mode
         self.sendMode = mode
 
         if self.controlMode == ControlMode.PercentOutput:
-            self.setDemand(self.sendMode, int(1023 * demand0), 0)
+            self._set_4(self.sendMode, demand0, demand1, demand1Type)
         elif self.controlMode == ControlMode.Follower:
             # did caller specify device ID
             if 0 <= demand0 <= 62:
@@ -114,9 +142,9 @@ class BaseMotorController(MotController):
                 work |= int(demand0) & 0xFF
             else:
                 work = int(demand0)
-            self.setDemand(self.sendMode, work, 0)
-        elif self.controlMode in [ControlMode.Velocity, ControlMode.Position, ControlMode.MotionMagic, ControlMode.MotionMagicArc, ControlMode.MotionProfile]:
-            self.setDemand(self.sendMode, int(demand0), 0)
+            self._set_4(self.sendMode, work, demand1, demand1Type)
+        elif self.controlMode in self.__set4_modes:
+            self._set_4(self.sendMode, demand0, demand1, demand1Type)
         elif self.controlMode == ControlMode.Current:
             self.setDemand(self.sendMode, int(1000. * demand0), 0) # milliamps
         else:
@@ -173,9 +201,13 @@ class BaseMotorController(MotController):
 
             position:  servo position in sensor units.
             velocity:  velocity to feed-forward in sensor units per 100ms.
-            profileSlotSelect:  which slot to pull PIDF gains from.  Currently
-            supports 0,1,2,3.
-
+            profileSlotSelect0:  Which slot to get PIDF gains. PID is used for position servo. F is used
+                as the Kv constant for velocity feed-forward. Typically this is hardcoded
+                to the a particular slot, but you are free gain schedule if need be.
+                Choose from [0,3]
+            profileSlotSelect1: Which slot to get PIDF gains for auxiliary PId.
+                This only has impact during MotionProfileArc Control mode.
+                Choose from [0,1].
             isLastPoint:  set to nonzero to signal motor controller to keep processing this
                 trajectory point, instead of jumping to the next one
                 when timeDurMs expires.  Otherwise MP executer will
@@ -188,11 +220,15 @@ class BaseMotorController(MotController):
                 Typically the first point should have this set only thus
                 allowing the remainder of the MP positions to be relative to
                 zero.
+            timeDur: Duration to apply this trajectory pt.
+                This time unit is ADDED to the exising base time set by
+                configMotionProfileTrajectoryPeriod().
+        
         :returns: CTR_OKAY if trajectory point push ok. ErrorCode if buffer is
             full due to kMotionProfileTopBufferCapacity.
         """
         return super()._pushMotionProfileTrajectory_2(
-                trajPt.position, trajPt.velocity, trajPt.headingDeg,
+                trajPt.position, trajPt.velocity, trajPt.auxiliaryPos,
                 trajPt.profileSlotSelect0, trajPt.profileSlotSelect1,
                 trajPt.isLastPoint, trajPt.zeroPos, trajPt.timeDur
         )
@@ -219,7 +255,7 @@ class BaseMotorController(MotController):
     def getBaseID(self) -> int:
         return self.arbId
 
-    def follow(self, masterToFollow: 'BaseMotorController'):
+    def follow(self, masterToFollow: 'BaseMotorController', followerType: FollowerType = FollowerType.PercentOutput):
         """
         Set the control mode and output value so that this motor controller will
         follow another motor controller. Currently supports following Victor SPX
@@ -231,7 +267,15 @@ class BaseMotorController(MotController):
         id24 = id24 & 0xFFFF
         id24 <<= 8
         id24 |= (id32 & 0xFF)
-        self.set(ControlMode.Follower, id24)
+        
+        if followerType == FollowerType.PercentOutput:
+            self.set(ControlMode.Follower, id24)
+        elif followerType == FollowerType.AuxOutput1:
+            # follow the motor controller, but set the aux flag
+            # to ensure we follow the processed output
+            self.set(ControlMode.Follower, id24, DemandType.AuxPID, 0)
+        else:
+            self.neutralOutput()
 
     def valueUpdated(self):
         """
@@ -247,3 +291,26 @@ class BaseMotorController(MotController):
         """
         :returns: control mode motor controller is in"""
         return self.controlMode
+    
+    def configAuxPIDPolarity(self, invert: bool, timeoutMs: int) -> ErrorCode:
+        """Configures the Polarity of the Auxiliary PID (PID1).
+        
+        Standard Polarity:
+        
+        * Primary Output = PID0 + PID1
+        * Auxiliary Output = PID0 - PID1
+        
+        Inverted Polarity:
+        
+        * Primary Output = PID0 - PID1
+        * Auxiliary Output = PID0 + PID1
+        
+        :param invert:    If true, use inverted PID1 output polarity.
+        
+        :param timeoutMs: Timeout value in ms. If nonzero, function will wait for config
+                          success and report an error if it times out. If zero, no
+                          blocking or checking is performed.
+        
+        :returns: Error Code
+        """
+        return self.configSetParameter(ParamEnum.ePIDLoopPolarity, 1 if invert else 0, 0, 1, timeoutMs)

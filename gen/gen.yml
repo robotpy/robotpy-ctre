@@ -17,7 +17,9 @@
 
   - cpp/include/ctre/phoenix/MotorControl/ControlFrame.h
   - cpp/include/ctre/phoenix/MotorControl/ControlMode.h
+  - cpp/include/ctre/phoenix/MotorControl/DemandType.h
   - cpp/include/ctre/phoenix/MotorControl/FeedbackDevice.h
+  - cpp/include/ctre/phoenix/MotorControl/FollowerType.h
   - cpp/include/ctre/phoenix/MotorControl/LimitSwitchType.h
   - cpp/include/ctre/phoenix/MotorControl/NeutralMode.h
   - cpp/include/ctre/phoenix/MotorControl/RemoteSensorSource.h

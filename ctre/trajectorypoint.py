@@ -1,4 +1,4 @@
-# validated: 2018-01-14 DV 76dd48fe2e6a libraries/driver/include/ctre/phoenix/Motion/TrajectoryPoint.h
+# validated: 2018-03-01 DS b3d643236ddc libraries/driver/include/ctre/phoenix/Motion/TrajectoryPoint.h
 from collections import namedtuple
 
 from ._impl import TrajectoryDuration
@@ -8,12 +8,12 @@ __all__ = ['TrajectoryPoint']
 
 #: Motion Profile Trajectory Point.
 #: This is simply a data transfer object.
-TrajectoryPoint = namedtuple("TrajectoryPoint", ["position", "velocity", "headingDeg", "profileSlotSelect0",
+TrajectoryPoint = namedtuple("TrajectoryPoint", ["position", "velocity", "auxiliaryPos", "profileSlotSelect0",
                                                  "profileSlotSelect1", "isLastPoint", "zeroPos", "timeDur"])
 TrajectoryPoint.TrajectoryDuration = TrajectoryDuration
 TrajectoryPoint.position.__doc__ = "The position to servo to."
 TrajectoryPoint.velocity.__doc__ = "The velocity to feed-forward."
-#TrajectoryPoint.headingDeg.__doc__ = ""
+TrajectoryPoint.auxiliaryPos.__doc__ = "The position for auxiliary PID to target."
 TrajectoryPoint.profileSlotSelect0.__doc__ = """
      Which slot to get PIDF gains.
      PID is used for position servo.
@@ -23,7 +23,7 @@ TrajectoryPoint.profileSlotSelect0.__doc__ = """
      Choose from [0,3]
 """
 TrajectoryPoint.profileSlotSelect1.__doc__ = """
-    Which slot to get PIDF gains for cascaded PID.
+    Which slot to get PIDF gains for auxiliary PID.
     This only has impact during MotionProfileArc Control mode.
     Choose from [0,1]
 """

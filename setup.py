@@ -13,7 +13,7 @@ import subprocess
 import sys
 import setuptools
 
-ctre_lib_version = '5.2.2.0'
+ctre_lib_version = '5.3.1.0'
 
 setup_dir = dirname(__file__)
 git_dir = join(setup_dir, '.git')
@@ -200,8 +200,11 @@ class Downloader:
     @property
     def ctresrc(self):
         if not self._ctresrc or not exists(self._ctresrc):
-            url = 'http://www.ctr-electronics.com/downloads/lib/CTRE_Phoenix_FRCLibs_NON-WINDOWS_v%s.zip' % ctre_lib_version
+            release_fname = 'CTRE_Phoenix_FRCLibs_NON-WINDOWS_v%s' % ctre_lib_version
+            url = 'http://www.ctr-electronics.com/downloads/lib/%s.zip' % release_fname
             self._ctresrc = self._download_and_extract_zip(url, to=self._ctresrc)
+            if exists(join(self._ctresrc, release_fname)):
+                shutil.move(join(self._ctresrc, release_fname, 'cpp'), join(self._ctresrc, 'cpp'))
         return self._ctresrc
 
 get = Downloader()

@@ -48,6 +48,13 @@ def test_talon_set4(talon, cdata):
     assert cdata['control_mode'] == talon.ControlMode.Current
     assert cdata['pid0_target'] == 1100
 
+def test_talon_set5(ctre, talon, cdata):
+    print(talon, dir(talon))
+    ctre.TalonSRX.set(talon, talon.ControlMode.Current, 1.1, talon.DemandType.ArbitraryFeedForward, 0.4)
+    assert cdata['control_mode'] == talon.ControlMode.Current
+    assert cdata['pid0_target'] == 1100
+    # TODO: demand1 not stored anywhere..
+
 def test_talon_disable(talon, cdata):
     talon.disable()
     assert cdata['control_mode'] == talon.ControlMode.Disabled
