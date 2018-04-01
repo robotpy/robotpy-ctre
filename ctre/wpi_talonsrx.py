@@ -52,7 +52,6 @@ class WPI_TalonSRX(TalonSRX, SendableBase, MotorSafety):
         self.setSafetyEnabled(False)
 
         SendableBase.__init__(self)
-        LiveWindow.add(self)
         self.setName("Talon SRX ", deviceNumber)
         self.speed = 0.0
 
