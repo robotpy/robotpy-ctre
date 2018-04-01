@@ -52,7 +52,6 @@ class WPI_VictorSPX (VictorSPX, SendableBase, MotorSafety):
         self.setSafetyEnabled(False)
 
         SendableBase.__init__(self)
-        LiveWindow.add(self)
         self.setName("Victor SPX ", deviceNumber)
         self.speed = 0.0
 
