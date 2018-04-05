@@ -64,6 +64,7 @@ c_CANifier_GetDescription:
   ignore: true # TODO
   get: description
 c_CANifier_SetLEDOutput:
+  internal: true
   code: |
     self.hal_data[self._ledmap[ledChannel]] = dutyCycle / 1023
   doc: |
@@ -95,6 +96,7 @@ c_CANifier_SetGeneralOutput:
     :param outputValue: The desired output state.
     :param outputEnable: Whether this pin is an output. "True" enables output.
 c_CANifier_SetPWMOutput:
+  internal: true
   code: |
     self.hal_data['pwm_%d' % pwmChannel] = dutyCycle / 1023.0
   doc: |
@@ -104,6 +106,7 @@ c_CANifier_SetPWMOutput:
     :param pwmChannel: Index of the PWM channel to output.
     :param dutyCycle: Duty Cycle (0 to 1) to output.  Default period of the signal is 4.2 ms.
 c_CANifier_EnablePWMOutput:
+  internal: true
   code: |
     self.hal_data['pwm_%d_en' % pwmChannel] = bEnable
   doc: |
@@ -113,6 +116,7 @@ c_CANifier_EnablePWMOutput:
     :param pwmChannel: Index of the PWM channel to enable.
     :param bEnable: enables output on the pwm channel.
 c_CANifier_GetGeneralInputs:
+  internal: true
   ignore: true # TODO
   code: |
     raise NotImplementedError("Not implemented in simulation (file a bug on github if you need it")
@@ -293,9 +297,11 @@ c_CANifier_ConfigGetCustomParam:
         blocking or checking is performed.
     :returns: Value of the custom param.
 c_CANifier_GetFaults:
+  internal: true
   code: |
     raise NotImplementedError("Not implemented in simulation (file a bug on github if you need it")
 c_CANifier_GetStickyFaults:
+  internal: true
   code: |
     raise NotImplementedError("Not implemented in simulation (file a bug on github if you need it")
 c_CANifier_ClearStickyFaults:
