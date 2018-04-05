@@ -116,7 +116,6 @@ def test_basemotorcontroller_clearMotionProfileTrajectories(talon):
     talon.clearMotionProfileTrajectories()
 
 
-@pytest.mark.xfail(raises=NotImplementedError)
 def test_basemotorcontroller_clearStickyFaults(talon):
     talon.clearStickyFaults(1)
 
