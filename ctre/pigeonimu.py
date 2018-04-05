@@ -192,6 +192,10 @@ class PigeonIMU(PigeonImuImpl):
     ribbon-cable (CAN Talon SRX).
     """
 
+    ParamEnum = ParamEnum
+    StatusFrame = PigeonIMU_StatusFrame
+    ControlFrame = PigeonIMU_ControlFrame
+
     def __init__(self, *args, **kwargs):
         """
         Arguments can be structured as follows:
@@ -260,6 +264,6 @@ class PigeonIMU(PigeonImuImpl):
         """
         return PigeonIMU_StickyFaults(self._getStickyFaults())
 
-    def getDeviceID(self):
+    def getDeviceID(self) -> int:
         """:returns: The Device Number"""
         return self._deviceNumber

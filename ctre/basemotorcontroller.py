@@ -67,7 +67,7 @@ class BaseMotorController(MotController):
         self.controlMode = ControlMode.PercentOutput
         self.sendMode = ControlMode.PercentOutput
 
-    def getDeviceID(self):
+    def getDeviceID(self) -> int:
         """
         Returns the Device ID
         
@@ -150,8 +150,7 @@ class BaseMotorController(MotController):
             self.setDemand(self.sendMode, 0, 0)
 
     def neutralOutput(self):
-        """
-        Neutral the motor output by setting control mode to disabled."""
+        """Neutral the motor output by setting control mode to disabled."""
         self.set(ControlMode.Disabled, 0, 0)
 
     def setInverted(self, invert: bool):
@@ -173,11 +172,11 @@ class BaseMotorController(MotController):
         self.invert = invert
         super().setInverted(invert)
 
-    def getInverted(self):
+    def getInverted(self) -> bool:
         """:returns: invert setting of motor output"""
         return self.invert
 
-    def getMotorOutputVoltage(self):
+    def getMotorOutputVoltage(self) -> float:
         """:returns: applied voltage to motor in volts"""
         return self.getBusVoltage() * self.getMotorOutputPercent()
 

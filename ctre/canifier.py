@@ -83,7 +83,7 @@ class CANifier(CANifierImpl):
 
     GeneralPin = GeneralPin
 
-    def __init__(self, deviceId: int):
+    def __init__(self, deviceId: int) -> None:
         """
         Constructor.
 
@@ -168,6 +168,6 @@ class CANifier(CANifierImpl):
         """
         return CANifierStickyFaults(self._getStickyFaults())
     
-    def getDeviceID(self):
+    def getDeviceID(self) -> int:
         """:returns: The Device Number"""
         return self._deviceNumber
