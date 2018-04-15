@@ -202,12 +202,12 @@ def test_pigeon_setControlFramePeriod(pigeon):
 
 @pytest.mark.xfail(raises=NotImplementedError)
 def test_pigeon_getFaults(pigeon, ctre):
-    errorcode, faults = pigeon.getFaults()
+    faults = pigeon.getFaults()
 
 
 @pytest.mark.xfail(raises=NotImplementedError)
 def test_pigeon_getStickyFaults(pigeon, ctre):
-    errorcode, stickyfaults = pigeon.getStickyFaults()
+    stickyfaults = pigeon.getStickyFaults()
     
 
 @pytest.mark.xfail(raises=NotImplementedError)

@@ -104,14 +104,12 @@ def test_canifier_hasResetOccurred(canifier, cdata):
 
 @pytest.mark.xfail(raises=NotImplementedError)
 def test_canifier_getFaults(canifier, cdata):
-    toFill = MagicMock()
-    canifier.getFaults(toFill)
+    canifier.getFaults()
 
 
 @pytest.mark.xfail(raises=NotImplementedError)
 def test_canifier_getStickyFaults(canifier, cdata):
-    toFill = MagicMock()
-    canifier.getStickyFaults(toFill)
+    canifier.getStickyFaults()
 
 
 @pytest.mark.xfail(raises=NotImplementedError)

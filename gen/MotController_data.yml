@@ -1515,9 +1515,11 @@ c_MotController_IsRevLimitSwitchClosed:
         data = hal_data['CAN'][self.hal_data['limit_switch_follow_rev']]
     retval = 1 if data['limit_switch_closed_rev'] else 0
 c_MotController_GetFaults:
+  internal: true
   code: |
     raise NotImplementedError
 c_MotController_GetStickyFaults:
+  internal: true
   code: |
     raise NotImplementedError
 c_MotController_ClearStickyFaults:
