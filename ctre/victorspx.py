@@ -24,8 +24,6 @@
 import hal
 
 from .basemotorcontroller import BaseMotorController
-from ._impl import RemoteFeedbackDevice, RemoteLimitSwitchSource, StatusFrame
-
 
 __all__ = ['VictorSPX']
 
@@ -35,11 +33,7 @@ class VictorSPX(BaseMotorController):
     
     We don't recommend using this directly. Use :class:`.WPI_VictorSPX` instead.
     """
-
-    RemoteFeedbackDevice = RemoteFeedbackDevice
-    RemoteLimitSwitchSource = RemoteLimitSwitchSource
-    StatusFrame = StatusFrame
-
+    
     def __init__(self, deviceNumber: int) -> None:
         """Constructor
 

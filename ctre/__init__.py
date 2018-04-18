@@ -11,6 +11,7 @@ from ._impl import (
     ErrorCode,
     FeedbackDevice,
     RemoteFeedbackDevice,
+    RemoteSensorSource,
     LimitSwitchSource,
     LimitSwitchNormal,
     NeutralMode,

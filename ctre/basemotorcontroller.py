@@ -25,18 +25,25 @@
 from .sensorcollection import SensorCollection
 from .trajectorypoint import TrajectoryPoint
 from ._impl import (
-    MotController,
     ControlMode,
-    ErrorCode,
     DemandType,
-    FollowerType,
-    NeutralMode,
-    VelocityMeasPeriod,
-    LimitSwitchNormal,
-    MotionProfileStatus,
+    ErrorCode,
     Faults,
-    StickyFaults,
+    FeedbackDevice,
+    FollowerType,
+    LimitSwitchNormal,
+    LimitSwitchSource,
+    MotController,
+    MotionProfileStatus,
+    NeutralMode,
     ParamEnum,
+    RemoteFeedbackDevice,
+    RemoteLimitSwitchSource,
+    RemoteSensorSource,
+    StatusFrame,
+    StatusFrameEnhanced,
+    StickyFaults,
+    VelocityMeasPeriod,
 )
 
 
@@ -48,9 +55,16 @@ class BaseMotorController(MotController):
     
     ControlMode = ControlMode
     DemandType = DemandType
+    FeedbackDevice = FeedbackDevice
     LimitSwitchNormal = LimitSwitchNormal
+    LimitSwitchSource = LimitSwitchSource
     NeutralMode = NeutralMode
     ParamEnum = ParamEnum
+    RemoteFeedbackDevice = RemoteFeedbackDevice
+    RemoteLimitSwitchSource = RemoteLimitSwitchSource
+    RemoteSensorSource = RemoteSensorSource
+    StatusFrame = StatusFrame
+    StatusFrameEnhanced = StatusFrameEnhanced
     VelocityMeasPeriod = VelocityMeasPeriod
 
     def __init__(self, arbId: int) -> None:
