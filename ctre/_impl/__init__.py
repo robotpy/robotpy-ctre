@@ -27,6 +27,7 @@ DemandType = _enum_module.DemandType
 ErrorCode = _enum_module.ErrorCode
 NeutralMode = _enum_module.NeutralMode
 RemoteFeedbackDevice = _enum_module.RemoteFeedbackDevice
+RemoteSensorSource = _enum_module.RemoteSensorSource
 FeedbackDevice = _enum_module.FeedbackDevice
 FollowerType = _enum_module.FollowerType
 StatusFrame = _enum_module.StatusFrame
