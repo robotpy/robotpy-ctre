@@ -185,7 +185,7 @@ c_MotController_SetDemand:
 
     calc_modes = [
         ControlMode.MotionMagic, ControlMode.Position,
-        ControlMode.Velocity, ControlMode.Current]
+        ControlMode.Velocity, ControlMode.Current, ControlMode.PercentOutput]
     prev_mode = self.hal_data['control_mode']
     if mode in calc_modes and prev_mode not in calc_modes:
         if self.Notifier and self._notifier is None:
@@ -197,9 +197,7 @@ c_MotController_SetDemand:
             self._notifier.stop()
 
     self.hal_data['control_mode'] = mode
-    if mode == ControlMode.PercentOutput:
-        self._out = demand0
-    elif mode == ControlMode.Follower:
+    if mode == ControlMode.Follower:
         follow_target = demand0 & 0xFF
         assert follow_target != self._deviceId
         self.hal_data['follow_target'] = follow_target
@@ -1662,7 +1660,20 @@ sim_class_extra: |
         if self.hal_data['clear_pos_on_limit_rev'] and self.hal_data['limit_switch_closed_rev']:
             self.setSelectedSensorPosition(0, self.hal_data['pid_slot_select'], 0)
         calculating = True
-        if self.hal_data['control_mode'] == ControlMode.Position:
+        if self.hal_data['control_mode'] == ControlMode.PercentOutput:
+            open_loop_ramp = self.hal_data['open_loop_ramp']
+            if open_loop_ramp:
+                out = self._out
+                open_loop_ramp = 1 / open_loop_ramp
+                if self._target >= out:
+                    deltaUp = min(self._target - out, open_loop_ramp)
+                    out += deltaUp
+                else:
+                    deltaDn = min(out - self._target, open_loop_ramp)
+                    out -= deltaDn
+            else:
+                out = self._target
+        elif self.hal_data['control_mode'] == ControlMode.Position:
             pos = self.getSelectedSensorPosition(self._pidIdx)
             out, = self._calculate_pid(pos, False, False)
         elif self.hal_data['control_mode'] == ControlMode.Velocity:
