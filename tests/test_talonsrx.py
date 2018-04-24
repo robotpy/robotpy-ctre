@@ -26,6 +26,8 @@ def test_talon_get(talon):
 
 def test_talon_set1(talon, cdata):
     talon.set(1)
+    # calc_1ms so that output gets set
+    talon._calculate_1ms()
     assert talon.get() == 1
     assert cdata['control_mode'] == talon.ControlMode.PercentOutput
     assert cdata['value'] == 1
