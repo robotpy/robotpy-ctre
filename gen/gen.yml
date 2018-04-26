@@ -1,5 +1,21 @@
 ---
-# NOTE: Make sure to edit ctre_roborio.cpp if you add a header here
+#
+# Structs
+#
+
+- headers:
+  - cpp/include/ctre/phoenix/CANifierFaults.h
+  - cpp/include/ctre/phoenix/CANifierStickyFaults.h
+  - cpp/include/ctre/phoenix/MotorControl/Faults.h
+  - cpp/include/ctre/phoenix/MotorControl/StickyFaults.h
+  - cpp/include/ctre/phoenix/Sensors/PigeonIMU_Faults.h
+  - cpp/include/ctre/phoenix/Sensors/PigeonIMU_StickyFaults.h
+  templates:
+  - src: gen_faults.py.j2
+    dst: faults.py
+
+
+# NOTE: Make sure to edit ctre_roborio.cpp if you add a header below this line
 
 #
 # Enums
