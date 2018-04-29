@@ -1,0 +1,13 @@
+from ..faultsbase import FaultsBase
+
+{% for header in headers %}
+{% for c in header.classes %}
+
+class {{ c.name }}(FaultsBase):
+    __slots__ = (
+        {% for prop in c.properties.public %}
+        '{{ prop.name[0].lower() + prop.name[1:] }}',
+        {% endfor %}
+    )
+{% endfor %}
+{% endfor %}
