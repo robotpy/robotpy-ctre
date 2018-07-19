@@ -165,22 +165,22 @@ def test_pigeon_hasResetOccurred(pigeon):
     pigeon.hasResetOccurred()
 
 
-@pytest.mark.xfail(raises=AttributeError)
+@pytest.mark.xfail(raises=NotImplementedError)
 def test_pigeon_configSetCustomParam(pigeon):
     pigeon.configSetCustomParam(1,2,3)
 
 
-@pytest.mark.xfail(raises=AttributeError)
+@pytest.mark.xfail(raises=NotImplementedError)
 def test_pigeon_configGetCustomParam(pigeon):
     pigeon.configGetCustomParam(1,2)
 
 
-@pytest.mark.xfail(raises=AttributeError)
+@pytest.mark.xfail(raises=NotImplementedError)
 def test_pigeon_configSetParameter(pigeon):
     pigeon.configSetParameter(1,2,3,4,5)
 
 
-@pytest.mark.xfail(raises=AttributeError)
+@pytest.mark.xfail(raises=NotImplementedError)
 def test_pigeon_configGetParameter(pigeon):
     pigeon.configGetParameter(1,2,3)
 

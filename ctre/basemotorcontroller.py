@@ -1,4 +1,4 @@
-# validated: 2018-03-01 DS e8221da18ba9 java/src/com/ctre/phoenix/motorcontrol/can/BaseMotorController.java
+# validated: 2018-07-20 DV 3a78cd307217 java/src/com/ctre/phoenix/motorcontrol/can/BaseMotorController.java
 #----------------------------------------------------------------------------
 #  Software License Agreement
 #
