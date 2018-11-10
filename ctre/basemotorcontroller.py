@@ -79,7 +79,6 @@ class BaseMotorController(MotController):
         self.arbId = arbId
         self.sensorColl = SensorCollection(self)
         self.controlMode = ControlMode.PercentOutput
-        self.sendMode = ControlMode.PercentOutput
 
     def getDeviceID(self) -> int:
         """
@@ -88,8 +87,17 @@ class BaseMotorController(MotController):
         :returns: Device number.
         """
         return self.getDeviceNumber()
-        
-    __set4_modes = {ControlMode.Velocity, ControlMode.Position, ControlMode.MotionMagic, ControlMode.MotionProfile, ControlMode.MotionProfileArc}
+
+    __set4_modes = frozenset({
+        ControlMode.PercentOutput,
+        #ControlMode.TimedPercentOutput,
+        ControlMode.Velocity,
+        ControlMode.Position,
+        ControlMode.MotionMagic,
+        #ControlMode.MotionMagicArc,
+        ControlMode.MotionProfile,
+        ControlMode.MotionProfileArc,
+    })
 
     def set(self, mode: ControlMode, demand0: float, demand1Type: DemandType = DemandType.Neutral, demand1: float = 0.0):
         """
@@ -142,11 +150,10 @@ class BaseMotorController(MotController):
         
         """
         self.controlMode = mode
-        self.sendMode = mode
 
-        if self.controlMode == ControlMode.PercentOutput:
-            self._set_4(self.sendMode, demand0, demand1, demand1Type)
-        elif self.controlMode == ControlMode.Follower:
+        if mode in self.__set4_modes:
+            self._set_4(mode, demand0, demand1, demand1Type)
+        elif mode is ControlMode.Follower:
             # did caller specify device ID
             if 0 <= demand0 <= 62:
                 work = self.getBaseID()
@@ -155,13 +162,11 @@ class BaseMotorController(MotController):
                 work |= int(demand0) & 0xFF
             else:
                 work = int(demand0)
-            self._set_4(self.sendMode, work, demand1, demand1Type)
-        elif self.controlMode in self.__set4_modes:
-            self._set_4(self.sendMode, demand0, demand1, demand1Type)
-        elif self.controlMode == ControlMode.Current:
-            self.setDemand(self.sendMode, int(1000. * demand0), 0) # milliamps
+            self._set_4(mode, work, demand1, demand1Type)
+        elif mode is ControlMode.Current:
+            self.setDemand(mode, int(1000. * demand0), 0) # milliamps
         else:
-            self.setDemand(self.sendMode, 0, 0)
+            self.setDemand(mode, 0, 0)
 
     def neutralOutput(self):
         """Neutral the motor output by setting control mode to disabled."""
