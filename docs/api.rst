@@ -15,6 +15,5 @@ refer to the `CTRE software guide <https://github.com/CrossTheRoadElec/Phoenix-D
     
     api_canifier
     api_pigeonimu
-    api_talonsrx
-    api_victorspx
+    api_mot
     api_misc
