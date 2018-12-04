@@ -4,7 +4,7 @@ from unittest.mock import MagicMock, patch
 
 @pytest.fixture(scope='function')
 def talon(ctre):
-    ctre.WPI_TalonSRX.Notifier = None
+    ctre.WPI_TalonSRX._use_notifier = False
     return ctre.WPI_TalonSRX(1)
 
 @pytest.fixture(scope='function')

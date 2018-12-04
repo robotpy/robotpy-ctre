@@ -188,7 +188,7 @@ c_MotController_SetDemand:
         ControlMode.Velocity, ControlMode.Current]
     prev_mode = self.hal_data['control_mode']
     if mode in calc_modes and prev_mode not in calc_modes:
-        if self.Notifier and self._notifier is None:
+        if self._use_notifier and self._notifier is None:
             self._notifier = Notifier(self._calculate_1ms)
         if self._notifier is not None:
             self._notifier.startPeriodic(0.001)
@@ -1654,7 +1654,7 @@ sim_class_extra: |
 
     _iAccum = property(_get_iAccum, _set_iAccum)
 
-    Notifier = Notifier
+    _use_notifier = True
 
     def _calculate_1ms(self):
         if self.hal_data['clear_pos_on_limit_fwd'] and self.hal_data['limit_switch_closed_for']:
