@@ -81,13 +81,11 @@ def header_hook(header, data):
             name = v['name']
             if name.startswith(ename):
                 name = name[len(ename):]
+            name = name.rstrip('_')
             if name == 'None':
                 name = 'None_'
-            try:
-                int(name[0])
+            elif name[0].isdigit():
                 name = v['name'][0] + name
-            except ValueError:
-                pass
             v['x_name'] = name
 
 def function_hook(fn, data):
