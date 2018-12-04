@@ -24,6 +24,11 @@
 import hal
 
 from .basemotorcontroller import BaseMotorController
+from ._impl import (
+    FeedbackDevice,
+    LimitSwitchSource,
+    StatusFrameEnhanced,
+)
 
 
 __all__ = ['TalonSRX']
@@ -34,6 +39,10 @@ class TalonSRX(BaseMotorController):
     
     We don't recommend using this directly. Use :class:`.WPI_TalonSRX` instead.
     """
+
+    FeedbackDevice = FeedbackDevice
+    LimitSwitchSource = LimitSwitchSource
+    StatusFrameEnhanced = StatusFrameEnhanced
 
     def __init__(self, deviceNumber: int) -> None:
         super().__init__(deviceNumber | 0x02040000)

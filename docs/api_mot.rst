@@ -10,6 +10,7 @@ TalonSRX
 
 .. automodule:: ctre.talonsrx
     :members:
+    :undoc-members:
     :show-inheritance:
 
 VictorSPX
