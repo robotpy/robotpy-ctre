@@ -413,7 +413,7 @@ c_MotController_ConfigSelectedFeedbackSensor:
 
     :param feedbackDevice:
         Feedback Device to select.
-    :type: feedbackDevice: :class:`.FeedbackDevice` or :class:`.RemoteFeedbackDevice`
+    :type feedbackDevice: :class:`.FeedbackDevice` or :class:`.RemoteFeedbackDevice`
     :param pidIdx:
         0 for Primary closed-loop. 1 for auxiliary closed-loop.
         See Phoenix-Documentation for how to interpret.
