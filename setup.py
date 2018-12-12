@@ -12,7 +12,7 @@ import subprocess
 import sys
 import setuptools
 
-ctre_lib_version = "5.5.1.0"
+ctre_lib_version = "5.7.1.0"
 
 setup_dir = dirname(__file__)
 git_dir = join(setup_dir, ".git")
@@ -274,6 +274,9 @@ else:
 class SDist(sdist):
     def run(self):
         from header2whatever import batch_convert
+        import CppHeaderParser
+
+        CppHeaderParser.ignoreSymbols.append("CCIEXPORT")
 
         # Do this before deleting the autogen directory, as it may fail
         ctresrc = get.ctresrc
