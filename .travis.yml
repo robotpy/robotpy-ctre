@@ -23,6 +23,15 @@ jobs:
     script:
     - TRAVIS_BUILD=1 python setup.py sdist build
   
+  - stage: format-check
+    python:
+    - "3.6"
+    install:
+    - pip install black
+    script:
+    - black --check --diff .
+
+  
   - stage: deploy-pypi
     python: "3.6"
     if: tag IS present

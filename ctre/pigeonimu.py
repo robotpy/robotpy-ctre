@@ -1,26 +1,26 @@
 # validated: 2018-03-01 DS a3eae14b229d java/src/com/ctre/phoenix/sensors/PigeonIMU.java
-#----------------------------------------------------------------------------
+# ----------------------------------------------------------------------------
 #  Software License Agreement
 #
-# Copyright (C) Cross The Road Electronics.  All rights
-# reserved.
-# 
-# Cross The Road Electronics (CTRE) licenses to you the right to 
-# use, publish, and distribute copies of CRF (Cross The Road) firmware files (*.crf) and Software
+#  Copyright (C) Cross The Road Electronics.  All rights
+#  reserved.
+#
+#  Cross The Road Electronics (CTRE) licenses to you the right to
+#  use, publish, and distribute copies of CRF (Cross The Road) firmware files (*.crf) and Software
 # API Libraries ONLY when in use with Cross The Road Electronics hardware products.
-# 
-# THE SOFTWARE AND DOCUMENTATION ARE PROVIDED "AS IS" WITHOUT
-# WARRANTY OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT
-# LIMITATION, ANY WARRANTY OF MERCHANTABILITY, FITNESS FOR A
-# PARTICULAR PURPOSE, TITLE AND NON-INFRINGEMENT. IN NO EVENT SHALL
-# CROSS THE ROAD ELECTRONICS BE LIABLE FOR ANY INCIDENTAL, SPECIAL, 
-# INDIRECT OR CONSEQUENTIAL DAMAGES, LOST PROFITS OR LOST DATA, COST OF
-# PROCUREMENT OF SUBSTITUTE GOODS, TECHNOLOGY OR SERVICES, ANY CLAIMS
-# BY THIRD PARTIES (INCLUDING BUT NOT LIMITED TO ANY DEFENSE
-# THEREOF), ANY CLAIMS FOR INDEMNITY OR CONTRIBUTION, OR OTHER
-# SIMILAR COSTS, WHETHER ASSERTED ON THE BASIS OF CONTRACT, TORT
-# (INCLUDING NEGLIGENCE), BREACH OF WARRANTY, OR OTHERWISE
-#----------------------------------------------------------------------------
+#
+#  THE SOFTWARE AND DOCUMENTATION ARE PROVIDED "AS IS" WITHOUT
+#  WARRANTY OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT
+#  LIMITATION, ANY WARRANTY OF MERCHANTABILITY, FITNESS FOR A
+#  PARTICULAR PURPOSE, TITLE AND NON-INFRINGEMENT. IN NO EVENT SHALL
+#  CROSS THE ROAD ELECTRONICS BE LIABLE FOR ANY INCIDENTAL, SPECIAL,
+#  INDIRECT OR CONSEQUENTIAL DAMAGES, LOST PROFITS OR LOST DATA, COST OF
+#  PROCUREMENT OF SUBSTITUTE GOODS, TECHNOLOGY OR SERVICES, ANY CLAIMS
+#  BY THIRD PARTIES (INCLUDING BUT NOT LIMITED TO ANY DEFENSE
+#  THEREOF), ANY CLAIMS FOR INDEMNITY OR CONTRIBUTION, OR OTHER
+#  SIMILAR COSTS, WHETHER ASSERTED ON THE BASIS OF CONTRACT, TORT
+#  (INCLUDING NEGLIGENCE), BREACH OF WARRANTY, OR OTHERWISE
+# ----------------------------------------------------------------------------
 import enum
 from collections import namedtuple
 
@@ -39,16 +39,28 @@ from ._impl import (
 )
 
 
-__all__ = ['PigeonIMU', 'FusionStatus', 'GeneralStatus', 'PigeonState', 'CalibrationMode']
+__all__ = [
+    "PigeonIMU",
+    "FusionStatus",
+    "GeneralStatus",
+    "PigeonState",
+    "CalibrationMode",
+]
 
 
-_FusionStatus = namedtuple("_FusionStatus", ["bIsFusing", "bIsValid", "heading", "lastError"])
+_FusionStatus = namedtuple(
+    "_FusionStatus", ["bIsFusing", "bIsValid", "heading", "lastError"]
+)
+
 
 class FusionStatus(_FusionStatus):
     """Data object for holding fusion information."""
+
     def __str__(self):
         if self.lastError != ErrorCode.OK:
-            description = "Could not receive status frame.  Check wiring and web-config."
+            description = (
+                "Could not receive status frame.  Check wiring and web-config."
+            )
         elif not self.bIsValid:
             description = "Fused Heading is not valid."
         elif not self.bIsFusing:
@@ -60,6 +72,7 @@ class FusionStatus(_FusionStatus):
 
 class CalibrationMode(enum.IntEnum):
     """Various calibration modes supported by Pigeon."""
+
     BootTareGyroAccel = 0
     Temperature = 1
     Magnetometer12Pt = 2
@@ -70,6 +83,7 @@ class CalibrationMode(enum.IntEnum):
 
 class PigeonState(enum.IntEnum):
     """Overall state of the Pigeon."""
+
     NoComm = 0
     Initializing = 1
     Ready = 2
@@ -77,9 +91,20 @@ class PigeonState(enum.IntEnum):
     Unknown = -1
 
 
-_GeneralStatus = namedtuple('_GeneralStatus', [
-    'state', 'currentMode', 'calibrationError', 'bCalIsBooting', 'tempC', 'upTimeSec',
-    'noMotionBiasCount', 'tempCompensationCount', 'lastError'])
+_GeneralStatus = namedtuple(
+    "_GeneralStatus",
+    [
+        "state",
+        "currentMode",
+        "calibrationError",
+        "bCalIsBooting",
+        "tempC",
+        "upTimeSec",
+        "noMotionBiasCount",
+        "tempCompensationCount",
+        "lastError",
+    ],
+)
 
 
 class GeneralStatus(_GeneralStatus):
@@ -151,17 +176,20 @@ class GeneralStatus(_GeneralStatus):
     :param lastError:
         Same as getLastError()
     """
+
     def __str__(self):
         """
         general string description of current status"""
-        if self.lastError != ErrorCode.OK: # same as NoComm
+        if self.lastError != ErrorCode.OK:  # same as NoComm
             description = "Status frame was not received, check wired connections and web-based config."
         elif self.bCalIsBooting:
             description = "Pigeon is boot-caling to properly bias accel and gyro.  Do not move Pigeon.  When finished biasing, calibration mode will start."
         elif self.state == PigeonState.UserCalibration:
             # mode specific descriptions
             if self.currentMode == CalibrationMode.BootTareGyroAccel:
-                description = "Boot-Calibration: Gyro and Accelerometer are being biased."
+                description = (
+                    "Boot-Calibration: Gyro and Accelerometer are being biased."
+                )
             elif self.currentMode == CalibrationMode.Temperature:
                 description = "Temperature-Calibration: Pigeon is collecting temp data and will finish when temp range is reached. \n"
                 description += "Do not move Pigeon."
@@ -176,7 +204,9 @@ class GeneralStatus(_GeneralStatus):
         elif self.state == PigeonState.Ready:
             # definitely not doing anything cal-related. So just instrument
             # the motion driver state
-            description = "Pigeon is running normally.  Last CAL error code was %s." % (self.calibrationError,)
+            description = "Pigeon is running normally.  Last CAL error code was %s." % (
+                self.calibrationError,
+            )
         elif self.state == PigeonState.Initializing:
             # definitely not doing anything cal-related. So just instrument
             # the motion driver state
@@ -213,19 +243,20 @@ class PigeonIMU(PigeonImuImpl):
         deviceNumber_arg = ("deviceNumber", [int])
         talonSrx_arg = ("talonSrx", [TalonSRX])
         templates = [[deviceNumber_arg], [talonSrx_arg]]
-        index, results = match_arglist('PigeonIMU.__init__',
-                                   args, kwargs, templates)
+        index, results = match_arglist("PigeonIMU.__init__", args, kwargs, templates)
         self.generalStatus = [0] * 10
         self.fusionStatus = [0] * 10
 
         if index == 0:
-            self.deviceNumber = results['deviceNumber']
+            self.deviceNumber = results["deviceNumber"]
             self._create1(self.deviceNumber)
         elif index == 1:
-            self.deviceNumber = results['talonSrx'].getDeviceID()
+            self.deviceNumber = results["talonSrx"].getDeviceID()
             self._create2(self.deviceNumber)
             # record as Pigeon-via-Uart
-            hal.report(hal.UsageReporting.kResourceType_CTRE_future0, self.deviceNumber + 1)
+            hal.report(
+                hal.UsageReporting.kResourceType_CTRE_future0, self.deviceNumber + 1
+            )
         hal.report(hal.UsageReporting.kResourceType_PigeonIMU, self.deviceNumber + 1)
 
     def getGeneralStatus(self) -> GeneralStatus:
@@ -246,7 +277,7 @@ class PigeonIMU(PigeonImuImpl):
         """
         results = self._getFusedHeading2()
         return FusionStatus(*results)
-        
+
     def getFaults(self) -> PigeonIMU_Faults:
         """
         Gets the fault status

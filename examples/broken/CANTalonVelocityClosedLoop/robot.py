@@ -23,19 +23,21 @@
 import wpilib
 import ctre
 
+
 class MyRobot(wpilib.IterativeRobot):
-      
     def robotInit(self):
-        
+
         self.talon = ctre.CANTalon(7)
         self.joy = wpilib.Joystick(0)
         self.loops = 0
-                             
+
         # first choose the sensor
-        self.talon.setFeedbackDevice(ctre.CANTalon.FeedbackDevice.CtreMagEncoder_Relative)
+        self.talon.setFeedbackDevice(
+            ctre.CANTalon.FeedbackDevice.CtreMagEncoder_Relative
+        )
         self.talon.reverseSensor(False)
-        #self.talon.configEncoderCodesPerRev(XXX), // if using FeedbackDevice.QuadEncoder
-        #self.talon.configPotentiometerTurns(XXX), // if using FeedbackDevice.AnalogEncoder or AnalogPot
+        # self.talon.configEncoderCodesPerRev(XXX), // if using FeedbackDevice.QuadEncoder
+        # self.talon.configPotentiometerTurns(XXX), // if using FeedbackDevice.AnalogEncoder or AnalogPot
 
         # set the peak and nominal outputs, 12V means full
         self.talon.configNominalOutputVoltage(+0.0, -0.0)
@@ -44,25 +46,28 @@ class MyRobot(wpilib.IterativeRobot):
         self.talon.setProfile(0)
         self.talon.setF(0.1097)
         self.talon.setP(0.22)
-        self.talon.setI(0) 
+        self.talon.setI(0)
         self.talon.setD(0)
-    
+
     def teleopPeriodic(self):
         # get gamepad axis
         leftYstick = self.joy.getY()
         motorOutput = self.talon.getOutputVoltage() / self.talon.getBusVoltage()
-        
+
         # prepare line to print
-        msg = 'out: %8.2f spd: %8.2f' % (motorOutput, self.talon.getSpeed())
-        
+        msg = "out: %8.2f spd: %8.2f" % (motorOutput, self.talon.getSpeed())
+
         if self.joy.getRawButton(1):
             # Speed mode
-            targetSpeed = leftYstick * 1500.0 # 1500 RPM in either direction
+            targetSpeed = leftYstick * 1500.0  # 1500 RPM in either direction
             self.talon.changeControlMode(ctre.CANTalon.ControlMode.Speed)
-            self.talon.set(targetSpeed) # 1500 RPM in either direction
+            self.talon.set(targetSpeed)  # 1500 RPM in either direction
 
             # append more signals to print when in speed mode.
-            msg += 'err: %4d trg: %8.2f' % (self.talon.getClosedLoopError(), targetSpeed)
+            msg += "err: %4d trg: %8.2f" % (
+                self.talon.getClosedLoopError(),
+                targetSpeed,
+            )
         else:
             # Percent voltage mode
             self.talon.changeControlMode(ctre.CANTalon.ControlMode.PercentVbus)
@@ -73,5 +78,6 @@ class MyRobot(wpilib.IterativeRobot):
             self.loops = 0
             print(msg)
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     wpilib.run(MyRobot)

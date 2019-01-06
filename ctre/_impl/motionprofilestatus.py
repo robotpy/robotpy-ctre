@@ -2,15 +2,27 @@
 from collections import namedtuple
 
 
-__all__ = ['MotionProfileStatus']
+__all__ = ["MotionProfileStatus"]
 
 
 #: Motion Profile Status.
 #: This is simply a data transfer object.
-MotionProfileStatus = namedtuple("MotionProfileStatus", [
-    "topBufferRem", "topBufferCnt", "btmBufferCnt", "hasUnderrun", "isUnderrun", "activePointValid",
-    "isLast", "profileSlotSelect0", "outputEnable", "timeDurMs", "profileSlotSelect1",
-])
+MotionProfileStatus = namedtuple(
+    "MotionProfileStatus",
+    [
+        "topBufferRem",
+        "topBufferCnt",
+        "btmBufferCnt",
+        "hasUnderrun",
+        "isUnderrun",
+        "activePointValid",
+        "isLast",
+        "profileSlotSelect0",
+        "outputEnable",
+        "timeDurMs",
+        "profileSlotSelect1",
+    ],
+)
 MotionProfileStatus.topBufferRem.__doc__ = """
      The available empty slots in the trajectory buffer.
 
@@ -18,8 +30,12 @@ MotionProfileStatus.topBufferRem.__doc__ = """
      can dump several points at once.  The API will then stream them into the Talon's
      low-level buffer, allowing the Talon to act on them.
 """
-MotionProfileStatus.topBufferCnt.__doc__ = "The number of points in the top trajectory buffer."
-MotionProfileStatus.btmBufferCnt.__doc__ = "The number of points in the low level Talon buffer."
+MotionProfileStatus.topBufferCnt.__doc__ = (
+    "The number of points in the top trajectory buffer."
+)
+MotionProfileStatus.btmBufferCnt.__doc__ = (
+    "The number of points in the low level Talon buffer."
+)
 MotionProfileStatus.hasUnderrun.__doc__ = """
      Set if isUnderrun ever gets set.
      Only is cleared by clearMotionProfileHasUnderrun() to ensure
@@ -52,4 +68,6 @@ MotionProfileStatus.outputEnable.__doc__ = """
      When changing the set() value in MP mode, it's important to check this signal to
      confirm the change takes effect before interacting with the top buffer.
 """
-MotionProfileStatus.timeDurMs.__doc__ = "The applied duration of the active trajectory point"
+MotionProfileStatus.timeDurMs.__doc__ = (
+    "The applied duration of the active trajectory point"
+)

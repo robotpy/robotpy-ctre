@@ -1,26 +1,26 @@
 # validated: 2018-03-01 DS a3eae14b229d java/src/com/ctre/phoenix/CANifier.java
-#----------------------------------------------------------------------------
+# ----------------------------------------------------------------------------
 #  Software License Agreement
 #
-# Copyright (C) Cross The Road Electronics.  All rights
-# reserved.
-# 
-# Cross The Road Electronics (CTRE) licenses to you the right to 
-# use, publish, and distribute copies of CRF (Cross The Road) firmware files (*.crf) and Software
+#  Copyright (C) Cross The Road Electronics.  All rights
+#  reserved.
+#
+#  Cross The Road Electronics (CTRE) licenses to you the right to
+#  use, publish, and distribute copies of CRF (Cross The Road) firmware files (*.crf) and Software
 # API Libraries ONLY when in use with Cross The Road Electronics hardware products.
-# 
-# THE SOFTWARE AND DOCUMENTATION ARE PROVIDED "AS IS" WITHOUT
-# WARRANTY OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT
-# LIMITATION, ANY WARRANTY OF MERCHANTABILITY, FITNESS FOR A
-# PARTICULAR PURPOSE, TITLE AND NON-INFRINGEMENT. IN NO EVENT SHALL
-# CROSS THE ROAD ELECTRONICS BE LIABLE FOR ANY INCIDENTAL, SPECIAL, 
-# INDIRECT OR CONSEQUENTIAL DAMAGES, LOST PROFITS OR LOST DATA, COST OF
-# PROCUREMENT OF SUBSTITUTE GOODS, TECHNOLOGY OR SERVICES, ANY CLAIMS
-# BY THIRD PARTIES (INCLUDING BUT NOT LIMITED TO ANY DEFENSE
-# THEREOF), ANY CLAIMS FOR INDEMNITY OR CONTRIBUTION, OR OTHER
-# SIMILAR COSTS, WHETHER ASSERTED ON THE BASIS OF CONTRACT, TORT
-# (INCLUDING NEGLIGENCE), BREACH OF WARRANTY, OR OTHERWISE
-#----------------------------------------------------------------------------
+#
+#  THE SOFTWARE AND DOCUMENTATION ARE PROVIDED "AS IS" WITHOUT
+#  WARRANTY OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT
+#  LIMITATION, ANY WARRANTY OF MERCHANTABILITY, FITNESS FOR A
+#  PARTICULAR PURPOSE, TITLE AND NON-INFRINGEMENT. IN NO EVENT SHALL
+#  CROSS THE ROAD ELECTRONICS BE LIABLE FOR ANY INCIDENTAL, SPECIAL,
+#  INDIRECT OR CONSEQUENTIAL DAMAGES, LOST PROFITS OR LOST DATA, COST OF
+#  PROCUREMENT OF SUBSTITUTE GOODS, TECHNOLOGY OR SERVICES, ANY CLAIMS
+#  BY THIRD PARTIES (INCLUDING BUT NOT LIMITED TO ANY DEFENSE
+#  THEREOF), ANY CLAIMS FOR INDEMNITY OR CONTRIBUTION, OR OTHER
+#  SIMILAR COSTS, WHETHER ASSERTED ON THE BASIS OF CONTRACT, TORT
+#  (INCLUDING NEGLIGENCE), BREACH OF WARRANTY, OR OTHERWISE
+# ----------------------------------------------------------------------------
 import enum
 import hal
 
@@ -35,11 +35,12 @@ from ._impl import (
 )
 
 
-__all__ = ['CANifier']
+__all__ = ["CANifier"]
 
 
 class PinValues:
     """Class to hold the pin values."""
+
     def __init__(self):
         self.QUAD_IDX = False
         self.QUAD_B = False
@@ -59,21 +60,23 @@ class CANifier(CANifierImpl):
         
     Device for interfacing common devices to the CAN bus.
     """
-    
+
     ControlFrame = CANifierControlFrame
     StatusFrame = CANifierStatusFrame
-    
+
     Faults = CANifierFaults
     StickyFaults = CANifierStickyFaults
 
     class LEDChannel(enum.IntEnum):
         """Enum for the LED Output Channels"""
+
         A = 0
         B = 1
         C = 2
 
     class PWMChannel(enum.IntEnum):
         """Enum for the PWM Input Channels"""
+
         C0 = 0
         C1 = 1
         C2 = 2
@@ -167,7 +170,7 @@ class CANifier(CANifierImpl):
         Gets the CANifier sticky fault status
         """
         return CANifierStickyFaults(self._getStickyFaults())
-    
+
     def getDeviceID(self) -> int:
         """:returns: The Device Number"""
         return self._deviceNumber
