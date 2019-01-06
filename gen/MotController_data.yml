@@ -137,7 +137,7 @@ c_MotController_Create1:
       'pid0_error': 0,
       'pid0_prevErr': 0,
       'pid0_errorDerivative': 0.0,
-      'pid0_feedback': FeedbackDevice.None_,
+      'pid0_feedback': FeedbackDevice.QuadEncoder,
       'pid0_notFirst': False,
       'pid0_outBeforRmp': 0,
       'pid0_target': 0,
@@ -147,7 +147,7 @@ c_MotController_Create1:
       'pid1_error': 0,
       'pid1_prevErr': 0,
       'pid1_errorDerivative': 0.0,
-      'pid1_feedback': FeedbackDevice.None_,
+      'pid1_feedback': FeedbackDevice.QuadEncoder,
       'pid1_notFirst': False,
       'pid1_outBeforRmp': 0,
       'pid1_target': 0,
@@ -490,8 +490,7 @@ c_MotController_GetSelectedSensorPosition:
     fd = self.hal_data['pid%d_feedback' % pidIdx]
     prefix = _feedback2key.get(fd)
     if prefix is None:
-        if fd != FeedbackDevice.None_:
-           raise NotImplementedError("getSelectedSensorPosition not implemented for %s" % fd)
+        raise NotImplementedError("getSelectedSensorPosition not implemented for %s" % fd)
     else:
         retval = self.hal_data['%sposition' % prefix]
   doc: |
@@ -507,8 +506,7 @@ c_MotController_GetSelectedSensorVelocity:
     fd = self.hal_data['pid%d_feedback' % pidIdx]
     prefix = _feedback2key.get(fd)
     if prefix is None:
-        if fd != FeedbackDevice.None_:
-           raise NotImplementedError("getSelectedSensorVelocity not implemented for %s" % fd)
+        raise NotImplementedError("getSelectedSensorVelocity not implemented for %s" % fd)
     else:
         retval = self.hal_data['%svelocity' % prefix]
   doc: |
@@ -523,8 +521,7 @@ c_MotController_SetSelectedSensorPosition:
     fd = self.hal_data['pid%d_feedback' % pidIdx]
     prefix = _feedback2key.get(fd)
     if prefix is None:
-        if fd != FeedbackDevice.None_:
-           raise NotImplementedError("setSelectedSensorPosition not implemented for %s" % fd)
+        raise NotImplementedError("setSelectedSensorPosition not implemented for %s" % fd)
     else:
         self.hal_data['%sposition' % prefix] = sensorPos
   doc: |
