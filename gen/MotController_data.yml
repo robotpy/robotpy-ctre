@@ -169,7 +169,8 @@ c_MotController_Create1:
     hal_data['CAN'][deviceId] = self.hal_data
 
     self._notifier = None
-    
+c_MotController_DestroyAll:
+  ignore: true # TODO
 c_MotController_GetDeviceNumber:
   code: |
     retval = self._deviceId
@@ -1029,6 +1030,8 @@ c_MotController_PushMotionProfileTrajectory_2:
   internal: true
   code: |
     raise NotImplementedError("Not implemented in simulation (file a bug on github if you need it)")
+c_MotController_StartMotionProfile:
+  ignore: true # TODO
 c_MotController_IsMotionProfileTopLevelBufferFull:
   code: |
     raise NotImplementedError("Not implemented in simulation (file a bug on github if you need it)")

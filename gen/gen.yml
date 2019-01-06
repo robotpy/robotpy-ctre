@@ -4,12 +4,12 @@
 #
 
 - headers:
-  - cpp/include/ctre/phoenix/CANifierFaults.h
-  - cpp/include/ctre/phoenix/CANifierStickyFaults.h
-  - cpp/include/ctre/phoenix/MotorControl/Faults.h
-  - cpp/include/ctre/phoenix/MotorControl/StickyFaults.h
-  - cpp/include/ctre/phoenix/Sensors/PigeonIMU_Faults.h
-  - cpp/include/ctre/phoenix/Sensors/PigeonIMU_StickyFaults.h
+  - ctre/phoenix/CANifierFaults.h
+  - ctre/phoenix/CANifierStickyFaults.h
+  - ctre/phoenix/motorcontrol/Faults.h
+  - ctre/phoenix/motorcontrol/StickyFaults.h
+  - ctre/phoenix/sensors/PigeonIMU_Faults.h
+  - ctre/phoenix/sensors/PigeonIMU_StickyFaults.h
   templates:
   - src: gen_faults.py.j2
     dst: faults.py
@@ -22,29 +22,29 @@
 #
 
 - headers:
-  - cpp/include/ctre/phoenix/ErrorCode.h
-  - cpp/include/ctre/phoenix/paramEnum.h
-  - cpp/include/ctre/phoenix/CANifierControlFrame.h
-  - cpp/include/ctre/phoenix/CANifierStatusFrame.h
-  - cpp/include/ctre/phoenix/CCI/CANifier_CCI.h
+  - ctre/phoenix/ErrorCode.h
+  - ctre/phoenix/paramEnum.h
+  - ctre/phoenix/CANifierControlFrame.h
+  - ctre/phoenix/CANifierStatusFrame.h
+  - ctre/phoenix/cci/CANifier_CCI.h
 
-  - cpp/include/ctre/phoenix/Motion/SetValueMotionProfile.h
-  - cpp/include/ctre/phoenix/Motion/TrajectoryPoint.h
+  - ctre/phoenix/motion/SetValueMotionProfile.h
+  - ctre/phoenix/motion/TrajectoryPoint.h
 
-  - cpp/include/ctre/phoenix/MotorControl/ControlFrame.h
-  - cpp/include/ctre/phoenix/MotorControl/ControlMode.h
-  - cpp/include/ctre/phoenix/MotorControl/DemandType.h
-  - cpp/include/ctre/phoenix/MotorControl/FeedbackDevice.h
-  - cpp/include/ctre/phoenix/MotorControl/FollowerType.h
-  - cpp/include/ctre/phoenix/MotorControl/LimitSwitchType.h
-  - cpp/include/ctre/phoenix/MotorControl/NeutralMode.h
-  - cpp/include/ctre/phoenix/MotorControl/RemoteSensorSource.h
-  - cpp/include/ctre/phoenix/MotorControl/SensorTerm.h
-  - cpp/include/ctre/phoenix/MotorControl/StatusFrame.h
-  - cpp/include/ctre/phoenix/MotorControl/VelocityMeasPeriod.h
+  - ctre/phoenix/motorcontrol/ControlFrame.h
+  - ctre/phoenix/motorcontrol/ControlMode.h
+  - ctre/phoenix/motorcontrol/DemandType.h
+  - ctre/phoenix/motorcontrol/FeedbackDevice.h
+  - ctre/phoenix/motorcontrol/FollowerType.h
+  - ctre/phoenix/motorcontrol/LimitSwitchType.h
+  - ctre/phoenix/motorcontrol/NeutralMode.h
+  - ctre/phoenix/motorcontrol/RemoteSensorSource.h
+  - ctre/phoenix/motorcontrol/SensorTerm.h
+  - ctre/phoenix/motorcontrol/StatusFrame.h
+  - ctre/phoenix/motorcontrol/VelocityMeasPeriod.h
 
-  - cpp/include/ctre/phoenix/Sensors/PigeonIMU_ControlFrame.h
-  - cpp/include/ctre/phoenix/Sensors/PigeonIMU_StatusFrame.h
+  - ctre/phoenix/sensors/PigeonIMU_ControlFrame.h
+  - ctre/phoenix/sensors/PigeonIMU_StatusFrame.h
   hooks: hooks.py
   templates:
   - src: gen_enum_pybind11.cpp.j2
@@ -54,7 +54,7 @@
 
 
 #- headers:
-#  - cpp/include/ctre/phoenix/ErrorCode.h
+#  - ctre/phoenix/ErrorCode.h
 #  templates:
 #  - src: gen_checkctrcode.hpp.j2
 #    dst: CheckCTRCode.hpp
@@ -66,7 +66,7 @@
 # -> pybind generation
 
 - headers:
-  - cpp/include/ctre/phoenix/CCI/CANifier_CCI.h
+  - ctre/phoenix/cci/CANifier_CCI.h
   templates:
   - src: gen_sim.py.j2
     dst: canifier_sim.py
@@ -80,7 +80,7 @@
     module_name: CANifier
 
 - headers:
-  - cpp/include/ctre/phoenix/CCI/MotController_CCI.h
+  - ctre/phoenix/cci/MotController_CCI.h
   templates:
   - src: gen_sim.py.j2
     dst: motcontroller_sim.py
@@ -94,7 +94,7 @@
     module_name: MotController
 
 - headers:
-  - cpp/include/ctre/phoenix/CCI/PigeonIMU_CCI.h
+  - ctre/phoenix/cci/PigeonIMU_CCI.h
   templates:
   - src: gen_sim.py.j2
     dst: pigeonimu_sim.py

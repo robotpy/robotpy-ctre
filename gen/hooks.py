@@ -3,11 +3,17 @@ import re
 _annotations = {
     "short": "int",
     "int": "int",
+    "uint8_t": "int",
+    "uint16_t": "int",
+    "int32_t": "int",
     "uint32_t": "int",
+    "size_t": "int",
     "double": "float",
     "char": "str",
     "bool": "bool",
+    "ctre::phoenix::motorcontrol::ControlMode": "ControlMode",
     "ctre::phoenix::ErrorCode": "ErrorCode",
+    "void": "None",
 }
 
 # fmt: off
@@ -105,7 +111,7 @@ def function_hook(fn, data):
     if not m:
         raise Exception("Unexpected fn %s" % fn["name"])
 
-    # Python exposed function name conveerted to camelcase
+    # Python exposed function name converted to camelcase
     x_name = m.group(1)
     x_name = x_name[0].lower() + x_name[1:]
 

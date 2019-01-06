@@ -7,6 +7,8 @@ c_PigeonIMU_Create1:
   internal: true
   code: |
     self.create_called = True
+c_PigeonIMU_DestroyAll:
+  ignore: true # TODO
 c_PigeonIMU_GetDescription:
   ignore: true # TODO
   code: |
