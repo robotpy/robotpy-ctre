@@ -22,12 +22,13 @@ from examples.CANTalon_MotionMagic.instrum import Instrum
 
 
 class MyRobot(wpilib.IterativeRobot):
-
     def robotInit(self):
         self.talon = ctre.CANTalon(3)
         self.joystick = wpilib.Joystick(0)
 
-        self.talon.setFeedbackDevice(ctre.CANTalon.FeedbackDevice.CtreMagEncoder_Relative)
+        self.talon.setFeedbackDevice(
+            ctre.CANTalon.FeedbackDevice.CtreMagEncoder_Relative
+        )
         # self.talon.configEncoderCodesPerRev(XXX), if using FeedbackDevice.QuadEncoder
         # self.talon.configPotentiometerTurns(XXX), if using FeedbackDevice.AnalogEncoder or AnalogPot
 
@@ -50,7 +51,7 @@ class MyRobot(wpilib.IterativeRobot):
         motor_output = self.talon.getOutputVoltage() / self.talon.getBusVoltage()
 
         # Prepare line to print
-        sb = '\tout:{}\tspd:{}'.format(motor_output, self.talon.getSpeed())
+        sb = "\tout:{}\tspd:{}".format(motor_output, self.talon.getSpeed())
 
         if self.joystick.getRawButton(1):
             targetPos = leftYstick * 10  # 10 rotations in either direction
@@ -58,7 +59,7 @@ class MyRobot(wpilib.IterativeRobot):
             self.talon.set(targetPos)
 
             # Append more lines to print
-            sb += '\terr:{}\ttrg{}'.format(self.talon.getClosedLoopError(), targetPos)
+            sb += "\terr:{}\ttrg{}".format(self.talon.getClosedLoopError(), targetPos)
         else:
             # Percent voltage mode
             self.talon.changeControlMode(ctre.CANTalon.ControlMode.PercentVbus)
@@ -67,7 +68,8 @@ class MyRobot(wpilib.IterativeRobot):
         # Instrumentation
         Instrum.process(self.talon, sb)
 
-        sb = ''
+        sb = ""
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     wpilib.run(MyRobot)

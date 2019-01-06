@@ -1,7 +1,7 @@
 import pytest
 
 
-@pytest.fixture(scope='function')
+@pytest.fixture(scope="function")
 def sensorcollection(ctre):
     talon = ctre.WPI_TalonSRX(1)
     sensorcollection = talon.getSensorCollection()

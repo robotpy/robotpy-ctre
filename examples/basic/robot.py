@@ -5,13 +5,13 @@ import ctre
 
 
 class MyRobot(wpilib.IterativeRobot):
-    '''
+    """
         This is a short sample program demonstrating how to use the basic throttle
         mode of the TalonSRX
-    '''
+    """
 
     def robotInit(self):
-        self.motor = ctre.WPI_TalonSRX(1) # Initialize the TalonSRX on device 1.
+        self.motor = ctre.WPI_TalonSRX(1)  # Initialize the TalonSRX on device 1.
 
     def disabledPeriodic(self):
         self.motor.disable()
@@ -23,5 +23,5 @@ class MyRobot(wpilib.IterativeRobot):
         self.motor.set(0.5)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     wpilib.run(MyRobot)

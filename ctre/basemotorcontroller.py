@@ -1,26 +1,26 @@
 # validated: 2018-07-20 DV 3a78cd307217 java/src/com/ctre/phoenix/motorcontrol/can/BaseMotorController.java
-#----------------------------------------------------------------------------
+# ----------------------------------------------------------------------------
 #  Software License Agreement
 #
-# Copyright (C) Cross The Road Electronics.  All rights
-# reserved.
-# 
-# Cross The Road Electronics (CTRE) licenses to you the right to 
-# use, publish, and distribute copies of CRF (Cross The Road) firmware files (*.crf) and Software
+#  Copyright (C) Cross The Road Electronics.  All rights
+#  reserved.
+#
+#  Cross The Road Electronics (CTRE) licenses to you the right to
+#  use, publish, and distribute copies of CRF (Cross The Road) firmware files (*.crf) and Software
 # API Libraries ONLY when in use with Cross The Road Electronics hardware products.
-# 
-# THE SOFTWARE AND DOCUMENTATION ARE PROVIDED "AS IS" WITHOUT
-# WARRANTY OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT
-# LIMITATION, ANY WARRANTY OF MERCHANTABILITY, FITNESS FOR A
-# PARTICULAR PURPOSE, TITLE AND NON-INFRINGEMENT. IN NO EVENT SHALL
-# CROSS THE ROAD ELECTRONICS BE LIABLE FOR ANY INCIDENTAL, SPECIAL, 
-# INDIRECT OR CONSEQUENTIAL DAMAGES, LOST PROFITS OR LOST DATA, COST OF
-# PROCUREMENT OF SUBSTITUTE GOODS, TECHNOLOGY OR SERVICES, ANY CLAIMS
-# BY THIRD PARTIES (INCLUDING BUT NOT LIMITED TO ANY DEFENSE
-# THEREOF), ANY CLAIMS FOR INDEMNITY OR CONTRIBUTION, OR OTHER
-# SIMILAR COSTS, WHETHER ASSERTED ON THE BASIS OF CONTRACT, TORT
-# (INCLUDING NEGLIGENCE), BREACH OF WARRANTY, OR OTHERWISE
-#----------------------------------------------------------------------------
+#
+#  THE SOFTWARE AND DOCUMENTATION ARE PROVIDED "AS IS" WITHOUT
+#  WARRANTY OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT
+#  LIMITATION, ANY WARRANTY OF MERCHANTABILITY, FITNESS FOR A
+#  PARTICULAR PURPOSE, TITLE AND NON-INFRINGEMENT. IN NO EVENT SHALL
+#  CROSS THE ROAD ELECTRONICS BE LIABLE FOR ANY INCIDENTAL, SPECIAL,
+#  INDIRECT OR CONSEQUENTIAL DAMAGES, LOST PROFITS OR LOST DATA, COST OF
+#  PROCUREMENT OF SUBSTITUTE GOODS, TECHNOLOGY OR SERVICES, ANY CLAIMS
+#  BY THIRD PARTIES (INCLUDING BUT NOT LIMITED TO ANY DEFENSE
+#  THEREOF), ANY CLAIMS FOR INDEMNITY OR CONTRIBUTION, OR OTHER
+#  SIMILAR COSTS, WHETHER ASSERTED ON THE BASIS OF CONTRACT, TORT
+#  (INCLUDING NEGLIGENCE), BREACH OF WARRANTY, OR OTHERWISE
+# ----------------------------------------------------------------------------
 
 from .sensorcollection import SensorCollection
 from .trajectorypoint import TrajectoryPoint
@@ -49,7 +49,7 @@ __all__ = ["BaseMotorController"]
 
 class BaseMotorController(MotController):
     """Base motor controller features for all CTRE CAN motor controllers."""
-    
+
     ControlMode = ControlMode
     DemandType = DemandType
     LimitSwitchNormal = LimitSwitchNormal
@@ -82,18 +82,26 @@ class BaseMotorController(MotController):
         """
         return self.getDeviceNumber()
 
-    __set4_modes = frozenset({
-        ControlMode.PercentOutput,
-        #ControlMode.TimedPercentOutput,
-        ControlMode.Velocity,
-        ControlMode.Position,
-        ControlMode.MotionMagic,
-        #ControlMode.MotionMagicArc,
-        ControlMode.MotionProfile,
-        ControlMode.MotionProfileArc,
-    })
+    __set4_modes = frozenset(
+        {
+            ControlMode.PercentOutput,
+            # ControlMode.TimedPercentOutput,
+            ControlMode.Velocity,
+            ControlMode.Position,
+            ControlMode.MotionMagic,
+            # ControlMode.MotionMagicArc,
+            ControlMode.MotionProfile,
+            ControlMode.MotionProfileArc,
+        }
+    )
 
-    def set(self, mode: ControlMode, demand0: float, demand1Type: DemandType = DemandType.Neutral, demand1: float = 0.0):
+    def set(
+        self,
+        mode: ControlMode,
+        demand0: float,
+        demand1Type: DemandType = DemandType.Neutral,
+        demand1: float = 0.0,
+    ):
         """
         Sets the appropriate output on the talon, depending on the mode.
 
@@ -158,7 +166,7 @@ class BaseMotorController(MotController):
                 work = int(demand0)
             self._set_4(mode, work, demand1, demand1Type)
         elif mode is ControlMode.Current:
-            self.setDemand(mode, int(1000. * demand0), 0) # milliamps
+            self.setDemand(mode, int(1000.0 * demand0), 0)  # milliamps
         else:
             self.setDemand(mode, 0, 0)
 
@@ -255,7 +263,11 @@ class BaseMotorController(MotController):
     def getBaseID(self) -> int:
         return self.arbId
 
-    def follow(self, masterToFollow: 'BaseMotorController', followerType: FollowerType = FollowerType.PercentOutput):
+    def follow(
+        self,
+        masterToFollow: "BaseMotorController",
+        followerType: FollowerType = FollowerType.PercentOutput,
+    ):
         """
         Set the control mode and output value so that this motor controller will
         follow another motor controller. Currently supports following Victor SPX
@@ -266,8 +278,8 @@ class BaseMotorController(MotController):
         id24 >>= 16
         id24 = id24 & 0xFFFF
         id24 <<= 8
-        id24 |= (id32 & 0xFF)
-        
+        id24 |= id32 & 0xFF
+
         if followerType == FollowerType.PercentOutput:
             self.set(ControlMode.Follower, id24)
         elif followerType == FollowerType.AuxOutput1:
@@ -281,17 +293,17 @@ class BaseMotorController(MotController):
         """
         When master makes a device, this routine is called to signal the update."""
         pass
-        
+
     def getSensorCollection(self) -> SensorCollection:
         """
         :returns: object that can get/set individual raw sensor values."""
         return self.sensorColl
-        
+
     def getControlMode(self) -> ControlMode:
         """
         :returns: control mode motor controller is in"""
         return self.controlMode
-    
+
     def configAuxPIDPolarity(self, invert: bool, timeoutMs: int) -> ErrorCode:
         """Configures the Polarity of the Auxiliary PID (PID1).
         
@@ -313,4 +325,6 @@ class BaseMotorController(MotController):
         
         :returns: Error Code
         """
-        return self.configSetParameter(ParamEnum.ePIDLoopPolarity, 1 if invert else 0, 0, 1, timeoutMs)
+        return self.configSetParameter(
+            ParamEnum.ePIDLoopPolarity, 1 if invert else 0, 0, 1, timeoutMs
+        )

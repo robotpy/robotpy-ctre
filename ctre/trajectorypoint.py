@@ -4,12 +4,23 @@ from collections import namedtuple
 from ._impl import TrajectoryDuration
 
 
-__all__ = ['TrajectoryPoint']
+__all__ = ["TrajectoryPoint"]
 
 #: Motion Profile Trajectory Point.
 #: This is simply a data transfer object.
-TrajectoryPoint = namedtuple("TrajectoryPoint", ["position", "velocity", "auxiliaryPos", "profileSlotSelect0",
-                                                 "profileSlotSelect1", "isLastPoint", "zeroPos", "timeDur"])
+TrajectoryPoint = namedtuple(
+    "TrajectoryPoint",
+    [
+        "position",
+        "velocity",
+        "auxiliaryPos",
+        "profileSlotSelect0",
+        "profileSlotSelect1",
+        "isLastPoint",
+        "zeroPos",
+        "timeDur",
+    ],
+)
 TrajectoryPoint.TrajectoryDuration = TrajectoryDuration
 TrajectoryPoint.position.__doc__ = "The position to servo to."
 TrajectoryPoint.velocity.__doc__ = "The velocity to feed-forward."

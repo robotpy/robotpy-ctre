@@ -1,6 +1,7 @@
 # validated: 2018-01-14 DV a68a0c3ebf0b libraries/driver/include/ctre/phoenix/MotorControl/Faults.h
 # -> ensure all the methods exist!
 
+
 class FaultsBase:
     # List all the flags from LSB to MSB in __slots__.
     __slots__ = ()
@@ -24,4 +25,6 @@ class FaultsBase:
         return any(getattr(self, field) for field in self.__slots__)
 
     def __str__(self):
-        return " ".join(["%s:%d" % (field, getattr(self, field)) for field in self.__slots__])
+        return " ".join(
+            ["%s:%d" % (field, getattr(self, field)) for field in self.__slots__]
+        )

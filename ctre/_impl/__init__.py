@@ -16,13 +16,9 @@ if hal.isSimulation():
     from .autogen.pigeonimu_sim import PigeonIMU
     from .autogen import ctre_sim_enums as _enum_module
 else:
-    from .ctre_roborio import (
-        CANifier,
-        MotController,
-        PigeonIMU
-    )
+    from .ctre_roborio import CANifier, MotController, PigeonIMU
     from . import ctre_roborio as _enum_module
-    
+
 # enums
 ControlMode = _enum_module.ControlMode
 DemandType = _enum_module.DemandType

@@ -1,7 +1,7 @@
 import pytest
 
 
-@pytest.fixture(scope='function')
+@pytest.fixture(scope="function")
 def pigeon(ctre):
     return ctre.PigeonIMU(1)
 
@@ -167,37 +167,37 @@ def test_pigeon_hasResetOccurred(pigeon):
 
 @pytest.mark.xfail(raises=NotImplementedError)
 def test_pigeon_configSetCustomParam(pigeon):
-    pigeon.configSetCustomParam(1,2,3)
+    pigeon.configSetCustomParam(1, 2, 3)
 
 
 @pytest.mark.xfail(raises=NotImplementedError)
 def test_pigeon_configGetCustomParam(pigeon):
-    pigeon.configGetCustomParam(1,2)
+    pigeon.configGetCustomParam(1, 2)
 
 
 @pytest.mark.xfail(raises=NotImplementedError)
 def test_pigeon_configSetParameter(pigeon):
-    pigeon.configSetParameter(1,2,3,4,5)
+    pigeon.configSetParameter(1, 2, 3, 4, 5)
 
 
 @pytest.mark.xfail(raises=NotImplementedError)
 def test_pigeon_configGetParameter(pigeon):
-    pigeon.configGetParameter(1,2,3)
+    pigeon.configGetParameter(1, 2, 3)
 
 
 @pytest.mark.xfail(raises=NotImplementedError)
 def test_pigeon_setStatusFramePeriod(pigeon):
-    pigeon.setStatusFramePeriod(1,2,3)
+    pigeon.setStatusFramePeriod(1, 2, 3)
 
 
 @pytest.mark.xfail(raises=NotImplementedError)
 def test_pigeon_getStatusFramePeriod(pigeon):
-    pigeon.getStatusFramePeriod(1,2)
+    pigeon.getStatusFramePeriod(1, 2)
 
 
 @pytest.mark.xfail(raises=NotImplementedError)
 def test_pigeon_setControlFramePeriod(pigeon):
-    pigeon.setControlFramePeriod(1,2)
+    pigeon.setControlFramePeriod(1, 2)
 
 
 @pytest.mark.xfail(raises=NotImplementedError)
@@ -208,41 +208,101 @@ def test_pigeon_getFaults(pigeon, ctre):
 @pytest.mark.xfail(raises=NotImplementedError)
 def test_pigeon_getStickyFaults(pigeon, ctre):
     stickyfaults = pigeon.getStickyFaults()
-    
+
 
 @pytest.mark.xfail(raises=NotImplementedError)
 def test_pigeon_clearStickyFaults(pigeon):
     pigeon.clearStickyFaults(1)
 
 
-@pytest.mark.parametrize("heading, isvalid, isfusing, errnom, result", [
-    (1.0, False, True, 'OK', 'Fused Heading is not valid.'),
-    (1.0, True, False, 'OK', 'Fused Heading is valid.'),
-    (1.0, True, True, 'OK', 'Fused Heading is valid and is fusing compass.'),
-    (1.0, False, True, 'CAN_INVALID_PARAM', 'Could not receive status frame.  Check wiring and web-config.'),
-    ])
+@pytest.mark.parametrize(
+    "heading, isvalid, isfusing, errnom, result",
+    [
+        (1.0, False, True, "OK", "Fused Heading is not valid."),
+        (1.0, True, False, "OK", "Fused Heading is valid."),
+        (1.0, True, True, "OK", "Fused Heading is valid and is fusing compass."),
+        (
+            1.0,
+            False,
+            True,
+            "CAN_INVALID_PARAM",
+            "Could not receive status frame.  Check wiring and web-config.",
+        ),
+    ],
+)
 def test_fusionstatus_str(ctre, heading, isvalid, isfusing, errnom, result):
     fusionstatus = ctre.pigeonimu.FusionStatus(
-        bIsFusing = isfusing,
-        bIsValid = isvalid,
-        heading = heading,
-        lastError = getattr(ctre.pigeonimu.ErrorCode, errnom),
+        bIsFusing=isfusing,
+        bIsValid=isvalid,
+        heading=heading,
+        lastError=getattr(ctre.pigeonimu.ErrorCode, errnom),
     )
     assert str(fusionstatus) == result
 
 
-@pytest.mark.parametrize("isbooting, statenom, currentmodenom, errnom, result", [
-    (False, 'Ready', 'Temperature', 'CAN_INVALID_PARAM', 'Status frame was not received, check wired connections and web-based config.'),
-    (True, 'Ready', 'Temperature', 'OK', 'Pigeon is boot-caling to properly bias accel and gyro.  Do not move Pigeon.  When finished biasing, calibration mode will start.'),
-    (False, 'UserCalibration', 'BootTareGyroAccel', 'OK', 'Boot-Calibration: Gyro and Accelerometer are being biased.'),
-    (False, 'UserCalibration', 'Temperature', 'OK', 'Temperature-Calibration: Pigeon is collecting temp data and will finish when temp range is reached. \nDo not move Pigeon.'),
-    (False, 'UserCalibration', 'Magnetometer12Pt', 'OK', "Magnetometer Level 1 calibration: Orient the Pigeon PCB in the 12 positions documented in the User's Manual."),
-    (False, 'UserCalibration', 'Magnetometer360', 'OK', "Magnetometer Level 2 calibration: Spin robot slowly in 360' fashion."),
-    (False, 'UserCalibration', 'Accelerometer', 'OK', "Accelerometer Calibration: Pigeon PCB must be placed on a level source.  Follow User's Guide for how to level surface."),
-    (False, 'UserCalibration', 'Unknown', 'OK', "Unknown status"),
-    (False, 'Ready', 'Unknown', 'OK', "Pigeon is running normally.  Last CAL error code was 0."),
-    (False, 'Unknown', 'Unknown', 'OK', "Not enough data to determine status."),
-    ])
+@pytest.mark.parametrize(
+    "isbooting, statenom, currentmodenom, errnom, result",
+    [
+        (
+            False,
+            "Ready",
+            "Temperature",
+            "CAN_INVALID_PARAM",
+            "Status frame was not received, check wired connections and web-based config.",
+        ),
+        (
+            True,
+            "Ready",
+            "Temperature",
+            "OK",
+            "Pigeon is boot-caling to properly bias accel and gyro.  Do not move Pigeon.  When finished biasing, calibration mode will start.",
+        ),
+        (
+            False,
+            "UserCalibration",
+            "BootTareGyroAccel",
+            "OK",
+            "Boot-Calibration: Gyro and Accelerometer are being biased.",
+        ),
+        (
+            False,
+            "UserCalibration",
+            "Temperature",
+            "OK",
+            "Temperature-Calibration: Pigeon is collecting temp data and will finish when temp range is reached. \nDo not move Pigeon.",
+        ),
+        (
+            False,
+            "UserCalibration",
+            "Magnetometer12Pt",
+            "OK",
+            "Magnetometer Level 1 calibration: Orient the Pigeon PCB in the 12 positions documented in the User's Manual.",
+        ),
+        (
+            False,
+            "UserCalibration",
+            "Magnetometer360",
+            "OK",
+            "Magnetometer Level 2 calibration: Spin robot slowly in 360' fashion.",
+        ),
+        (
+            False,
+            "UserCalibration",
+            "Accelerometer",
+            "OK",
+            "Accelerometer Calibration: Pigeon PCB must be placed on a level source.  Follow User's Guide for how to level surface.",
+        ),
+        (False, "UserCalibration", "Unknown", "OK", "Unknown status"),
+        (
+            False,
+            "Ready",
+            "Unknown",
+            "OK",
+            "Pigeon is running normally.  Last CAL error code was 0.",
+        ),
+        (False, "Unknown", "Unknown", "OK", "Not enough data to determine status."),
+    ],
+)
 def test_generalstatus_str(ctre, isbooting, statenom, currentmodenom, errnom, result):
     generalstatus = ctre.pigeonimu.GeneralStatus(
         state=getattr(ctre.pigeonimu.PigeonState, statenom),
