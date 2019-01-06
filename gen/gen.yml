@@ -29,7 +29,6 @@
   - ctre/phoenix/cci/CANifier_CCI.h
 
   - ctre/phoenix/motion/SetValueMotionProfile.h
-  - ctre/phoenix/motion/TrajectoryPoint.h
 
   - ctre/phoenix/motorcontrol/ControlFrame.h
   - ctre/phoenix/motorcontrol/ControlMode.h

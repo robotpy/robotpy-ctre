@@ -536,9 +536,7 @@ def test_basemotorcontroller_processMotionProfileBuffer(talon):
 
 @pytest.mark.xfail(raises=NotImplementedError)
 def test_basemotorcontroller_pushMotionProfileTrajectory(talon, ctre):
-    point = ctre.TrajectoryPoint(
-        1, 2, 3, 0, 0, True, True, ctre.TrajectoryPoint.TrajectoryDuration.T0ms
-    )
+    point = ctre.TrajectoryPoint(1, 2, 3, 0, 0, True, True, 0)
     talon.pushMotionProfileTrajectory(point)
 
 
