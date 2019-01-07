@@ -46,8 +46,8 @@ def test_pigeon_setAccumZAngle(pigeon):
 
 
 @pytest.mark.xfail(raises=NotImplementedError)
-def test_pigeon_configTemperatureCompensationEnable(pigeon):
-    pigeon.configTemperatureCompensationEnable(True, 2)
+def test_pigeon_setTemperatureCompensationDisable(pigeon):
+    pigeon.setTemperatureCompensationDisable(True, 2)
 
 
 @pytest.mark.xfail(raises=NotImplementedError)

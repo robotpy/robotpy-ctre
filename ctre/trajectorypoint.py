@@ -1,8 +1,6 @@
 # validated: 2018-03-01 DS b3d643236ddc libraries/driver/include/ctre/phoenix/Motion/TrajectoryPoint.h
 from collections import namedtuple
 
-from ._impl import TrajectoryDuration
-
 
 __all__ = ["TrajectoryPoint"]
 
@@ -21,7 +19,6 @@ TrajectoryPoint = namedtuple(
         "timeDur",
     ],
 )
-TrajectoryPoint.TrajectoryDuration = TrajectoryDuration
 TrajectoryPoint.position.__doc__ = "The position to servo to."
 TrajectoryPoint.velocity.__doc__ = "The velocity to feed-forward."
 TrajectoryPoint.auxiliaryPos.__doc__ = "The position for auxiliary PID to target."
@@ -59,6 +56,3 @@ TrajectoryPoint.timeDur.__doc__ = """
     This time unit is ADDED to the existing base time set by
     configMotionProfileTrajectoryPeriod().
 """
-
-# monkey patch the docstring in - TODO make this part of autogen
-TrajectoryDuration.__doc__ = TrajectoryPoint.timeDur.__doc__

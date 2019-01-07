@@ -3,11 +3,17 @@ import re
 _annotations = {
     "short": "int",
     "int": "int",
+    "uint8_t": "int",
+    "uint16_t": "int",
+    "int32_t": "int",
     "uint32_t": "int",
+    "size_t": "int",
     "double": "float",
     "char": "str",
     "bool": "bool",
+    "ctre::phoenix::motorcontrol::ControlMode": "ControlMode",
     "ctre::phoenix::ErrorCode": "ErrorCode",
+    "void": "None",
 }
 
 # fmt: off
@@ -105,7 +111,7 @@ def function_hook(fn, data):
     if not m:
         raise Exception("Unexpected fn %s" % fn["name"])
 
-    # Python exposed function name conveerted to camelcase
+    # Python exposed function name converted to camelcase
     x_name = m.group(1)
     x_name = x_name[0].lower() + x_name[1:]
 
@@ -163,22 +169,22 @@ def function_hook(fn, data):
     # is an error code, suppress the error code. This matches the Java
     # APIs, and the user can retrieve the error code from getLastError if
     # they really care
-    if (not len(x_rets) or fn["returns"] != "ctre::phoenix::ErrorCode") and fn[
-        "returns"
-    ] != "void":
+    if (not len(x_rets) or fn["rtnType"] != "ctre::phoenix::ErrorCode") and fn[
+        "rtnType"
+    ] not in ("void", "void *"):
         x_callstart = "auto __ret ="
         x_rets.insert(
             0,
             dict(
                 name="__ret",
-                x_type=fn["returns"],
-                x_pyann_type=_to_annotation(fn["returns"]),
+                x_type=fn["rtnType"],
+                x_pyann_type=_to_annotation(fn["rtnType"]),
             ),
         )
 
         # Save some time in the common case -- set the error code to 0
         # if there's a single retval and the type is ErrorCode
-        if fn["returns"] == "ctre::phoenix::ErrorCode":
+        if fn["rtnType"] == "ctre::phoenix::ErrorCode":
             x_param_checks.append("retval = ErrorCode.OK")
 
     if len(x_rets) == 1 and x_rets[0]["x_type"] != "void":

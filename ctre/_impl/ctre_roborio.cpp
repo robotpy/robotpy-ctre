@@ -8,9 +8,9 @@ namespace py = pybind11;
 typedef py::call_guard<py::gil_scoped_release> release_gil;
 
 // CTRE includes
-#include "ctre/phoenix/CCI/CANifier_CCI.h"
-#include "ctre/phoenix/CCI/MotController_CCI.h"
-#include "ctre/phoenix/CCI/PigeonIMU_CCI.h"
+#include "ctre/phoenix/cci/CANifier_CCI.h"
+#include "ctre/phoenix/cci/MotController_CCI.h"
+#include "ctre/phoenix/cci/PigeonIMU_CCI.h"
 
 #include "ctre/phoenix/ErrorCode.h"
 #include "ctre/phoenix/paramEnum.h"
@@ -18,23 +18,23 @@ typedef py::call_guard<py::gil_scoped_release> release_gil;
 #include "ctre/phoenix/CANifierControlFrame.h"
 #include "ctre/phoenix/CANifierStatusFrame.h"
 
-#include "ctre/phoenix/Motion/SetValueMotionProfile.h"
-#include "ctre/phoenix/Motion/TrajectoryPoint.h"
+#include "ctre/phoenix/motion/SetValueMotionProfile.h"
+#include "ctre/phoenix/motion/TrajectoryPoint.h"
 
-#include "ctre/phoenix/MotorControl/ControlFrame.h"
-#include "ctre/phoenix/MotorControl/ControlMode.h"
-#include "ctre/phoenix/MotorControl/DemandType.h"
-#include "ctre/phoenix/MotorControl/FeedbackDevice.h"
-#include "ctre/phoenix/MotorControl/FollowerType.h"
-#include "ctre/phoenix/MotorControl/LimitSwitchType.h"
-#include "ctre/phoenix/MotorControl/NeutralMode.h"
-#include "ctre/phoenix/MotorControl/RemoteSensorSource.h"
-#include "ctre/phoenix/MotorControl/SensorTerm.h"
-#include "ctre/phoenix/MotorControl/StatusFrame.h"
-#include "ctre/phoenix/MotorControl/VelocityMeasPeriod.h"
+#include "ctre/phoenix/motorcontrol/ControlFrame.h"
+#include "ctre/phoenix/motorcontrol/ControlMode.h"
+#include "ctre/phoenix/motorcontrol/DemandType.h"
+#include "ctre/phoenix/motorcontrol/FeedbackDevice.h"
+#include "ctre/phoenix/motorcontrol/FollowerType.h"
+#include "ctre/phoenix/motorcontrol/LimitSwitchType.h"
+#include "ctre/phoenix/motorcontrol/NeutralMode.h"
+#include "ctre/phoenix/motorcontrol/RemoteSensorSource.h"
+#include "ctre/phoenix/motorcontrol/SensorTerm.h"
+#include "ctre/phoenix/motorcontrol/StatusFrame.h"
+#include "ctre/phoenix/motorcontrol/VelocityMeasPeriod.h"
 
-#include "ctre/phoenix/Sensors/PigeonIMU_ControlFrame.h"
-#include "ctre/phoenix/Sensors/PigeonIMU_StatusFrame.h"
+#include "ctre/phoenix/sensors/PigeonIMU_ControlFrame.h"
+#include "ctre/phoenix/sensors/PigeonIMU_StatusFrame.h"
 
 
 //#include "autogen/CheckCTRCode.hpp"

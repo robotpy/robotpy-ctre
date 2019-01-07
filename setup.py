@@ -12,7 +12,7 @@ import subprocess
 import sys
 import setuptools
 
-ctre_lib_version = "5.5.1.0"
+ctre_lib_version = "5.12.0"
 
 setup_dir = dirname(__file__)
 git_dir = join(setup_dir, ".git")
@@ -131,7 +131,7 @@ class BuildExt(build_ext):
         build_ext.build_extensions(self)
 
 
-install_requires = ["wpilib>=2018.0.0,<2019.0.0"]
+install_requires = ["wpilib>=2019.0.0,<2020.0.0"]
 
 
 class Downloader:
@@ -206,14 +206,16 @@ class Downloader:
     @property
     def ctresrc(self):
         if not self._ctresrc or not exists(self._ctresrc):
-            release_fname = "CTRE_Phoenix_FRCLibs_NON-WINDOWS_v%s" % ctre_lib_version
-            url = "http://www.ctr-electronics.com/downloads/lib/%s.zip" % release_fname
-            self._ctresrc = self._download_and_extract_zip(url, to=self._ctresrc)
-            if exists(join(self._ctresrc, release_fname)):
-                shutil.move(
-                    join(self._ctresrc, release_fname, "cpp"),
-                    join(self._ctresrc, "cpp"),
-                )
+            # Download and extract three libs
+            base = "http://devsite.ctr-electronics.com/maven/release/com/ctre/phoenix/"
+            for l in [
+                "cci/%(version)s/cci-%(version)s-headers.zip",
+                "cci/%(version)s/cci-%(version)s-linuxathena.zip",
+                "core/%(version)s/core-%(version)s-headers.zip",
+            ]:
+                url = base + (l % dict(version=ctre_lib_version))
+                self._ctresrc = self._download_and_extract_zip(url, to=self._ctresrc)
+
         return self._ctresrc
 
 
@@ -239,12 +241,12 @@ if exists("/etc/natinst/share/scs_imagemetadata.ini") or _travis_build:
                 # Path to pybind11 headers
                 get_pybind_include(),
                 get_pybind_include(user=True),
-                join(get.ctresrc, "cpp", "include"),
+                get.ctresrc,
             ],
             libraries=libraries,
             library_dirs=[
                 join(get.halsrc, "linux", "athena", "shared"),
-                join(get.ctresrc, "cpp", "lib"),
+                join(get.ctresrc, "linux", "athena", "shared"),
             ],
             language="c++",
         )
@@ -253,10 +255,10 @@ if exists("/etc/natinst/share/scs_imagemetadata.ini") or _travis_build:
     # This doesn't actually work, as it needs to be installed before setup.py is ran
     # ... but we specify it
     # install_requires = ['pybind11>=1.7']
-    install_requires.append("robotpy-hal-roborio>=2018.0.0,<2019.0.0")
+    install_requires.append("robotpy-hal-roborio>=2019.0.0,<2020.0.0")
     cmdclass = {"build_ext": BuildExt}
 else:
-    install_requires.append("robotpy-hal-sim>=2018.0.0,<2019.0.0")
+    install_requires.append("robotpy-hal-sim>=2019.0.0,<2020.0.0")
     ext_modules = None
     cmdclass = {}
 
@@ -274,6 +276,9 @@ else:
 class SDist(sdist):
     def run(self):
         from header2whatever import batch_convert
+        import CppHeaderParser
+
+        CppHeaderParser.ignoreSymbols.append("CCIEXPORT")
 
         # Do this before deleting the autogen directory, as it may fail
         ctresrc = get.ctresrc

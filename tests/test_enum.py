@@ -9,4 +9,4 @@ def test_enum(ctre):
     assert e.PigeonIMU_StatusFrame.CondStatus_1_General == 0x042000
 
     # Number stuff
-    assert e.TrajectoryDuration.T0ms == 0
+    # assert e.TrajectoryDuration.T0ms == 0

@@ -59,7 +59,8 @@ c_CANifier_Create1:
       self.hal_data[v] = 0.001 # What's the default?
     
     hal_data['CAN'][deviceNumber] = self.hal_data
-    
+c_CANifier_DestroyAll:
+  ignore: true # TODO
 c_CANifier_GetDescription:
   ignore: true # TODO
   get: description

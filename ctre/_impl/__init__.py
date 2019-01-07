@@ -40,6 +40,5 @@ CANifierControlFrame = _enum_module.CANifierControlFrame
 GeneralPin = _enum_module.GeneralPin
 PigeonIMU_StatusFrame = _enum_module.PigeonIMU_StatusFrame
 PigeonIMU_ControlFrame = _enum_module.PigeonIMU_ControlFrame
-TrajectoryDuration = _enum_module.TrajectoryDuration
 
 del _enum_module
