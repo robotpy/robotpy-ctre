@@ -571,22 +571,24 @@ def test_basemotorcontroller_setNeutralMode(talon, cdata):
 
 
 def test_basemotorcontroller_selectedSensorPosition(talon, cdata):
-    # no selected device, should not fail
-    talon.setSelectedSensorPosition(32, 0, 0)
-
-    assert talon.getSelectedSensorPosition(0) == 0
-    assert talon.getSelectedSensorPosition(1) == 0
-
-    # select a device
-    talon.configSelectedFeedbackSensor(talon.FeedbackDevice.QuadEncoder, 0, 0)
-
-    assert cdata["pid0_feedback"] == talon.FeedbackDevice.QuadEncoder
-
+    # default selected sensor is now a quad encoder
     talon.setSelectedSensorPosition(32, 0, 0)
 
     assert cdata["quad_position"] == 32
     assert talon.getSelectedSensorPosition(0) == 32
-    assert talon.getSelectedSensorPosition(1) == 0
+    assert talon.getSelectedSensorPosition(1) == 32
+
+    # select a different device
+    talon.configSelectedFeedbackSensor(talon.FeedbackDevice.Analog, 0, 0)
+
+    assert cdata["pid0_feedback"] == talon.FeedbackDevice.Analog
+
+    talon.setSelectedSensorPosition(42, 0, 0)
+
+    assert cdata["quad_position"] == 32
+    assert cdata["analog_position"] == 42
+    assert talon.getSelectedSensorPosition(0) == 42
+    assert talon.getSelectedSensorPosition(1) == 32
 
 
 def test_basemotorcontroller_setSensorPhase(talon, cdata):
