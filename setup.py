@@ -131,7 +131,7 @@ class BuildExt(build_ext):
         build_ext.build_extensions(self)
 
 
-install_requires = ["wpilib>=2018.0.0,<2019.0.0"]
+install_requires = ["wpilib>=2019.0.0,<2020.0.0"]
 
 
 class Downloader:
