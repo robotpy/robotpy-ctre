@@ -210,7 +210,7 @@ class Downloader:
             base = "http://devsite.ctr-electronics.com/maven/release/com/ctre/phoenix/"
             for l in [
                 "cci/%(version)s/cci-%(version)s-headers.zip",
-                "cci/%(version)s/cci-%(version)s-linuxathena.zip",
+                "cci/%(version)s/cci-%(version)s-linuxathenastatic.zip",
                 "core/%(version)s/core-%(version)s-headers.zip",
             ]:
                 url = base + (l % dict(version=ctre_lib_version))
@@ -246,7 +246,7 @@ if exists("/etc/natinst/share/scs_imagemetadata.ini") or _travis_build:
             libraries=libraries,
             library_dirs=[
                 join(get.halsrc, "linux", "athena", "shared"),
-                join(get.ctresrc, "linux", "athena", "shared"),
+                join(get.ctresrc, "linux", "athena", "static"),
             ],
             language="c++",
         )
