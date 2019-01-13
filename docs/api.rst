@@ -1,8 +1,6 @@
 CTRE Libraries
 ==============
 
-.. warning:: These bindings are lightly tested, please report any bugs!
-
 These are not installed on the Robot by default. For installation instructions,
 see :ref:`robotpy-ctre install docs <install_ctre>`.
 
