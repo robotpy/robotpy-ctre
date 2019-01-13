@@ -144,15 +144,15 @@ class Downloader:
         self._halsrc = None
         self._ctresrc = None
 
-        ctre_devdir = os.environ.get("RPY_CTRE_DEVDIR")
-        if ctre_devdir:
+        self._ctre_devdir = os.environ.get("RPY_CTRE_DEVDIR")
+        if self._ctre_devdir:
             # development use only -- preextracted files so it doesn't have
             # to download it over and over again
             # -> if the directory doesn't exist, it will download the current
             #    files to that directory
 
-            self._halsrc = join(ctre_devdir, "hal")
-            self._ctresrc = join(ctre_devdir, "ctre")
+            self._halsrc = join(self._ctre_devdir, "hal")
+            self._ctresrc = join(self._ctre_devdir, "ctre")
 
     # copy/paste from hal_impl.distutils
     def _download(self, url):
@@ -208,11 +208,16 @@ class Downloader:
         if not self._ctresrc or not exists(self._ctresrc):
             # Download and extract three libs
             base = "http://devsite.ctr-electronics.com/maven/release/com/ctre/phoenix/"
-            for l in [
+            dirs = [
                 "cci/%(version)s/cci-%(version)s-headers.zip",
                 "cci/%(version)s/cci-%(version)s-linuxathenastatic.zip",
                 "core/%(version)s/core-%(version)s-headers.zip",
-            ]:
+            ]
+
+            if self._ctre_devdir:
+                dirs.append("api-java/%(version)s/api-java-%(version)s-sources.jar")
+
+            for l in dirs:
                 url = base + (l % dict(version=ctre_lib_version))
                 self._ctresrc = self._download_and_extract_zip(url, to=self._ctresrc)
 
