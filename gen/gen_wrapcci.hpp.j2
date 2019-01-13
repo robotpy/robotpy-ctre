@@ -10,7 +10,11 @@ class {{ module_name }}{% if inherits is defined %} : public {{ inherits }}{% en
 public:
   {% for header in headers %}
   {% for fn in header.functions %}
-  {% if 'ignore' not in fn.data %}
+  {% if fn.x_name == 'destroy' %}
+  ~{{ module_name}}() {
+    {{ fn.name }}(m_handle);
+  }
+  {% elif 'ignore' not in fn.data %}
   {% if fn.x_name.startswith('_create') %}
   void {{ fn.x_name }}({{ fn.x_in_params | join(', ', attribute='x_decl') }}) {
     m_handle = {{ fn.name }}({{ fn.parameters[0:] | join(', ', attribute='x_callname') }});

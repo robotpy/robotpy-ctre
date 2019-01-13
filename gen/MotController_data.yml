@@ -169,8 +169,10 @@ c_MotController_Create1:
     hal_data['CAN'][deviceId] = self.hal_data
 
     self._notifier = None
+c_MotController_Destroy:
+  ignore: true
 c_MotController_DestroyAll:
-  ignore: true # TODO
+  ignore: true
 c_MotController_GetDeviceNumber:
   code: |
     retval = self._deviceId
