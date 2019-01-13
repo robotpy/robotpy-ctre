@@ -26,6 +26,7 @@ typedef py::call_guard<py::gil_scoped_release> release_gil;
 #include "ctre/phoenix/motorcontrol/DemandType.h"
 #include "ctre/phoenix/motorcontrol/FeedbackDevice.h"
 #include "ctre/phoenix/motorcontrol/FollowerType.h"
+#include "ctre/phoenix/motorcontrol/InvertType.h"
 #include "ctre/phoenix/motorcontrol/LimitSwitchType.h"
 #include "ctre/phoenix/motorcontrol/NeutralMode.h"
 #include "ctre/phoenix/motorcontrol/RemoteSensorSource.h"
