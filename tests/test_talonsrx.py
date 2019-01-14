@@ -80,9 +80,22 @@ def test_talon_stopMotor(talon, cdata):
 
 
 def test_talon_setinverted(talon, cdata):
-    assert cdata["inverted"] == False
+    assert cdata["inverted"] is False
     talon.setInverted(True)
-    assert cdata["inverted"] == True
+    assert cdata["inverted"] is True
+
+
+def test_talon_setinverted_follow(ctre, talon, cdata):
+    master = ctre.WPI_TalonSRX(3)
+    talon.follow(master)
+    assert cdata["inverted"] is False
+    talon.setInverted(ctre.WPI_TalonSRX.InvertType.FollowMaster)
+    assert cdata["inverted"] is 2
+
+    master.setInverted(True)
+    assert talon.getInverted() is True
+    master.setInverted(False)
+    assert talon.getInverted() is False
 
 
 def test_talon_initSendable(talon, sendablebuilder):

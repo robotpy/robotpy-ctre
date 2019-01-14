@@ -246,7 +246,14 @@ c_MotController_SetSensorPhase:
     :param PhaseSensor:
         Indicates whether to invert the phase of the sensor.
 c_MotController_SetInverted:
-  set: inverted
+  ignore: true
+c_MotController_SetInverted_2:
+  internal: true
+  code: |
+    if invertType in (0, 1):
+        invertType = bool(invertType)
+    
+    self.hal_data['inverted'] = invertType
 c_MotController_ConfigOpenLoopRamp:
   set: open_loop_ramp
   doc: |
@@ -381,6 +388,24 @@ c_MotController_EnableVoltageCompensation:
     
     :param enable:
         Enable state of voltage compensation.
+c_MotController_GetInverted:
+  code: |
+    invert_state = self.hal_data['inverted']
+    if isinstance(invert_state, bool):
+        retval = invert_state
+    else:
+        follow_target = self.hal_data['follow_target']
+        target_state = hal_data['CAN'][follow_target]['inverted']
+        if not isinstance(target_state, bool):
+            raise ValueError("Cannot follow a target that is following")
+        if invert_state == 2:
+            retval = target_state
+        elif invert_state == 3:
+            retval = not target_state
+        else:
+            raise ValueError("Invalid invert_state %s" % invert_state)
+  doc: |
+    :returns: invert setting of motor output.
 c_MotController_GetBusVoltage:
   get: bus_voltage
   doc: |

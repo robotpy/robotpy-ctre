@@ -35,6 +35,7 @@
   - ctre/phoenix/motorcontrol/DemandType.h
   - ctre/phoenix/motorcontrol/FeedbackDevice.h
   - ctre/phoenix/motorcontrol/FollowerType.h
+  - ctre/phoenix/motorcontrol/InvertType.h
   - ctre/phoenix/motorcontrol/LimitSwitchType.h
   - ctre/phoenix/motorcontrol/NeutralMode.h
   - ctre/phoenix/motorcontrol/RemoteSensorSource.h

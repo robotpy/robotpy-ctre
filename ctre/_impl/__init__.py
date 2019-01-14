@@ -28,6 +28,7 @@ RemoteFeedbackDevice = _enum_module.RemoteFeedbackDevice
 RemoteSensorSource = _enum_module.RemoteSensorSource
 FeedbackDevice = _enum_module.FeedbackDevice
 FollowerType = _enum_module.FollowerType
+InvertType = _enum_module.InvertType
 StatusFrame = _enum_module.StatusFrame
 StatusFrameEnhanced = _enum_module.StatusFrameEnhanced
 VelocityMeasPeriod = _enum_module.VelocityMeasPeriod

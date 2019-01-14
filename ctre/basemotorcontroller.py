@@ -22,6 +22,8 @@
 #  (INCLUDING NEGLIGENCE), BREACH OF WARRANTY, OR OTHERWISE
 # ----------------------------------------------------------------------------
 
+import typing
+
 from .sensorcollection import SensorCollection
 from .trajectorypoint import TrajectoryPoint
 from ._impl import (
@@ -30,6 +32,7 @@ from ._impl import (
     ErrorCode,
     Faults,
     FollowerType,
+    InvertType,
     LimitSwitchNormal,
     MotController,
     MotionProfileStatus,
@@ -52,6 +55,7 @@ class BaseMotorController(MotController):
 
     ControlMode = ControlMode
     DemandType = DemandType
+    InvertType = InvertType
     LimitSwitchNormal = LimitSwitchNormal
     NeutralMode = NeutralMode
     ParamEnum = ParamEnum
@@ -174,7 +178,7 @@ class BaseMotorController(MotController):
         """Neutral the motor output by setting control mode to disabled."""
         self.set(ControlMode.Disabled, 0, 0)
 
-    def setInverted(self, invert: bool):
+    def setInverted(self, invert: typing.Union[bool, InvertType]):
         """
         Inverts the hbridge output of the motor controller.
 
@@ -190,12 +194,14 @@ class BaseMotorController(MotController):
         :param invert:
             Invert state to set.
         """
-        self.invert = invert
-        super().setInverted(invert)
+        self.invert = int(invert)
+        super()._setInverted_2(self.invert)
 
     def getInverted(self) -> bool:
         """:returns: invert setting of motor output"""
-        return self.invert
+        if self.invert in (0, 1):
+            return bool(self.invert)
+        return super().getInverted()
 
     def getMotorOutputVoltage(self) -> float:
         """:returns: applied voltage to motor in volts"""
