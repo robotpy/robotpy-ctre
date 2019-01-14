@@ -437,6 +437,8 @@ c_MotController_GetTemperature:
 c_MotController_ConfigSelectedFeedbackSensor:
   code: |
     self.hal_data['pid%d_feedback' % pidIdx] = feedbackDevice
+  defaults:
+    pidIdx: 0
   doc: |
     Select the feedback device for the motor controller.
     Most CTRE CAN motor controllers will support remote sensors over CAN.
@@ -455,6 +457,8 @@ c_MotController_ConfigSelectedFeedbackSensor:
 c_MotController_ConfigSelectedFeedbackCoefficient:
   code: |
     self.hal_data['pid%d_coefficient' % pidIdx] = coefficient
+  defaults:
+    pidIdx: 0
   doc: |
     The Feedback Coefficient is a scalar applied to the value of the
     feedback sensor.  Useful when you need to scale your sensor values
@@ -520,6 +524,8 @@ c_MotController_GetSelectedSensorPosition:
         raise NotImplementedError("getSelectedSensorPosition not implemented for %s" % fd)
     else:
         retval = self.hal_data['%sposition' % prefix]
+  defaults:
+    pidIdx: 0
   doc: |
     Get the selected sensor position.
     
@@ -536,6 +542,8 @@ c_MotController_GetSelectedSensorVelocity:
         raise NotImplementedError("getSelectedSensorVelocity not implemented for %s" % fd)
     else:
         retval = self.hal_data['%svelocity' % prefix]
+  defaults:
+    pidIdx: 0
   doc: |
     Get the selected sensor velocity.
     
@@ -551,6 +559,8 @@ c_MotController_SetSelectedSensorPosition:
         raise NotImplementedError("setSelectedSensorPosition not implemented for %s" % fd)
     else:
         self.hal_data['%sposition' % prefix] = sensorPos
+  defaults:
+    pidIdx: 0
   doc: |
     Sets the sensor position to the given value.
 
@@ -891,6 +901,8 @@ c_MotController_ConfigClosedLoopPeriod:
 c_MotController_SetIntegralAccumulator:
   code: |
     self.hal_data['pid%d_iaccum' % pidIdx] = iaccum
+  defaults:
+    pidIdx: 0
   doc: |
     Sets the integral accumulator. Typically this is used to clear/zero the
     integral accumulator, however some use cases may require seeding the
@@ -909,6 +921,8 @@ c_MotController_SetIntegralAccumulator:
 c_MotController_GetClosedLoopError:
   code: |
     retval = int(self.hal_data['pid%d_error' % pidIdx])
+  defaults:
+    pidIdx: 0
   doc: |
     Gets the closed-loop error.  The units depend on which control mode is in
     use. See Phoenix-Documentation information on units.
@@ -919,6 +933,8 @@ c_MotController_GetClosedLoopError:
 c_MotController_GetIntegralAccumulator:
   code: |
     retval = self.hal_data['pid%d_iaccum' % pidIdx]
+  defaults:
+    pidIdx: 0
   doc: |
     Gets the iaccum value.
 
@@ -928,6 +944,8 @@ c_MotController_GetIntegralAccumulator:
 c_MotController_GetErrorDerivative:
   code: |
     retval = self.hal_data['pid%d_errorDerivative' % pidIdx]
+  defaults:
+    pidIdx: 0
   doc: |
     Gets the derivative of the closed-loop error.
     
@@ -1708,6 +1726,8 @@ c_MotController_GetLimitSwitchState:
 c_MotController_GetClosedLoopTarget:
   code: |
       retval = self.hal_data['pid%d_target' % pidIdx]
+  defaults:
+    pidIdx: 0
   doc: |
     Gets the current target of a given closed loop.
 
