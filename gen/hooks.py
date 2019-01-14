@@ -240,5 +240,7 @@ def function_hook(fn, data):
 
     name = fn["name"]
 
+    hascode = "code" in data or "get" in data or "set" in data
+
     # lazy :)
     fn.update(locals())

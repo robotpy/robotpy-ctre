@@ -23,23 +23,28 @@ class {{ module_name }}{% if inherits is defined %}({{ inherits }}){% endif %}:
     def {{ fn.x_name }}(self{{ fn.args_comma }}{{ fn.x_in_params | join(', ', attribute='x_pyann') }}) -> {{ fn.x_pyann_ret }}:
     {% if 'doc' in fn.data %}
         '''{{ fn.data['doc'] | indent(width=8) }}
+        {% if not fn.hascode %}
+
+        .. note:: This function works on a real robot, but has not yet
+                  been implemented in simulation mode. See :ref:`api_support`
+                  for more details.
+
+        {% endif %}
         '''
     {% endif %}
     {% if fn.x_param_checks %}
         {{ fn.x_param_checks | join('\n') | indent(width=8) }}
     {% endif %}
-    {% set hascode = True %}
     {% if 'code' in fn.data %}
         {{ fn.data['code'] | trim | indent(width=8) }}
     {% elif 'get' in fn.data %}
         retval = self.hal_data['{{ fn.data['get'] }}']
     {% elif 'set' in fn.data %}
         self.hal_data['{{ fn.data['set'] }}'] = {{ fn.parameters[1]['name'] }}
-    {% else %}
-        {% set hascode = False %}
-        raise NotImplementedError("{{ fn.x_name }} not implemented in simulation (file a bug on github if you need it)")
     {% endif %}
-    {% if hascode %}
+    {% if not fn.hascode %}
+        raise NotImplementedError("{{ fn.x_name }} not implemented in simulation (file a bug on github if you need it)")
+    {% else %}
     {% if fn.x_return_checks %}
         {{ fn.x_return_checks | join('\n') | indent(width=8) }}
     {% endif %}
