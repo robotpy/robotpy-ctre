@@ -133,6 +133,7 @@ def function_hook(fn, data):
         # assert False, fn['name']
 
     param_defaults = data.get("defaults", {})
+    param_override = data.get("param_override", {})
 
     for i, p in enumerate(fn["parameters"][param_offset:]):
         if p["name"] == "":
@@ -153,7 +154,10 @@ def function_hook(fn, data):
             p["x_pyann"] += " = 0"
             p["x_pyarg"] += "=0"
 
-        if p["pointer"]:
+        if p["name"] in param_override:
+            p.update(param_override[p["name"]])
+            x_in_params.append(p)
+        elif p["pointer"]:
             p["x_callname"] = "&%(x_callname)s" % p
             x_out_params.append(p)
         elif p["array"]:

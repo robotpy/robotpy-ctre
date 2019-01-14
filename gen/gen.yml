@@ -66,6 +66,20 @@
 # -> pybind generation
 
 - headers:
+  - ctre/phoenix/cci/BuffTrajPointStream_CCI.h
+  templates:
+  - src: gen_sim.py.j2
+    dst: bufftrajpointstream_sim.py
+  - src: gen_wrapcci.hpp.j2
+    dst: BuffTrajPointStream.hpp
+  - src: gen_pybind11.cpp.j2
+    dst: BuffTrajPointStream.cpp.inc
+  hooks: hooks.py
+  data: BuffTrajPointStream_data.yml
+  vars:
+    module_name: BuffTrajPointStream
+
+- headers:
   - ctre/phoenix/cci/CANifier_CCI.h
   templates:
   - src: gen_sim.py.j2

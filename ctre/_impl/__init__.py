@@ -11,12 +11,13 @@ from .autogen.faults import (
 from .motionprofilestatus import MotionProfileStatus
 
 if hal.isSimulation():
+    from .autogen.bufftrajpointstream_sim import BuffTrajPointStream
     from .autogen.canifier_sim import CANifier
     from .autogen.motcontroller_sim import MotController
     from .autogen.pigeonimu_sim import PigeonIMU
     from .autogen import ctre_sim_enums as _enum_module
 else:
-    from .ctre_roborio import CANifier, MotController, PigeonIMU
+    from .ctre_roborio import BuffTrajPointStream, CANifier, MotController, PigeonIMU
     from . import ctre_roborio as _enum_module
 
 # enums
@@ -29,6 +30,7 @@ RemoteSensorSource = _enum_module.RemoteSensorSource
 FeedbackDevice = _enum_module.FeedbackDevice
 FollowerType = _enum_module.FollowerType
 InvertType = _enum_module.InvertType
+SetValueMotionProfile = _enum_module.SetValueMotionProfile
 StatusFrame = _enum_module.StatusFrame
 StatusFrameEnhanced = _enum_module.StatusFrameEnhanced
 VelocityMeasPeriod = _enum_module.VelocityMeasPeriod

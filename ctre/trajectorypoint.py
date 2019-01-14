@@ -4,8 +4,7 @@ from collections import namedtuple
 
 __all__ = ["TrajectoryPoint"]
 
-#: Motion Profile Trajectory Point.
-#: This is simply a data transfer object.
+#: Motion Profile Trajectory Point for use with pushMotionProfileTrajectory
 TrajectoryPoint = namedtuple(
     "TrajectoryPoint",
     [

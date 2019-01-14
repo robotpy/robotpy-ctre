@@ -8,6 +8,7 @@ namespace py = pybind11;
 typedef py::call_guard<py::gil_scoped_release> release_gil;
 
 // CTRE includes
+#include "ctre/phoenix/cci/BuffTrajPointStream_CCI.h"
 #include "ctre/phoenix/cci/CANifier_CCI.h"
 #include "ctre/phoenix/cci/MotController_CCI.h"
 #include "ctre/phoenix/cci/PigeonIMU_CCI.h"
@@ -41,6 +42,7 @@ typedef py::call_guard<py::gil_scoped_release> release_gil;
 //#include "autogen/CheckCTRCode.hpp"
 
 
+#include "autogen/BuffTrajPointStream.hpp"
 #include "autogen/CANifier.hpp"
 #include "autogen/MotController.hpp"
 #include "autogen/PigeonIMU.hpp"
@@ -48,6 +50,7 @@ typedef py::call_guard<py::gil_scoped_release> release_gil;
 
 PYBIND11_MODULE(ctre_roborio, m) {
 
+  #include "autogen/BuffTrajPointStream.cpp.inc"
   #include "autogen/CANifier.cpp.inc"
   #include "autogen/MotController.cpp.inc"
   #include "autogen/PigeonIMU.cpp.inc"
