@@ -28,18 +28,24 @@ class {{ module_name }}{% if inherits is defined %}({{ inherits }}){% endif %}:
     {% if fn.x_param_checks %}
         {{ fn.x_param_checks | join('\n') | indent(width=8) }}
     {% endif %}
+    {% set hascode = True %}
     {% if 'code' in fn.data %}
         {{ fn.data['code'] | trim | indent(width=8) }}
     {% elif 'get' in fn.data %}
         retval = self.hal_data['{{ fn.data['get'] }}']
     {% elif 'set' in fn.data %}
         self.hal_data['{{ fn.data['set'] }}'] = {{ fn.parameters[1]['name'] }}
+    {% else %}
+        {% set hascode = False %}
+        raise NotImplementedError("{{ fn.x_name }} not implemented in simulation (file a bug on github if you need it)")
     {% endif %}
+    {% if hascode %}
     {% if fn.x_return_checks %}
         {{ fn.x_return_checks | join('\n') | indent(width=8) }}
     {% endif %}
     {% if fn.x_rets and not fn.x_name.startswith('_create') %}
         return retval
+    {% endif %}
     {% endif %}
 
   {% endif %}
