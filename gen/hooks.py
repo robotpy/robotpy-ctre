@@ -249,6 +249,8 @@ def function_hook(fn, data):
     # Rename internal functions
     if data.get("internal", False):
         x_name = "_" + x_name
+    if data.get("rename", False):
+        x_name = data["rename"]
 
     name = fn["name"]
 
