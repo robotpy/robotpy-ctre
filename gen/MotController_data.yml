@@ -1023,36 +1023,9 @@ c_MotController_GetMotionProfileTopLevelBufferCount:
     :returns: number of trajectory points in the top buffer.
 c_MotController_PushMotionProfileTrajectory:
   internal: true
-  doc: |
-    Push another trajectory point into the top level buffer (which is emptied
-    into the motor controller's bottom buffer as room allows).
-
-    :param trajPt:
-        to push into buffer.
-
-        The members should be filled in with these values...
-        
-        targPos:  servo position in sensor units.
-        targVel:  velocity to feed-forward in sensor units
-        per 100ms.
-        profileSlotSelect  which slot to pull PIDF gains from.  Currently
-        supports 0,1,2,3.
-        isLastPoint  set to nonzero to signal motor controller to keep processing this
-        trajectory point, instead of jumping to the next one
-        when timeDurMs expires.  Otherwise MP executer will
-        eventually see an empty buffer after the last point
-        expires, causing it to assert the IsUnderRun flag.
-        However this may be desired if calling application
-        never wants to terminate the MP.
-        zeroPos  set to nonzero to signal motor controller to "zero" the selected
-        position sensor before executing this trajectory point.
-        Typically the first point should have this set only thus
-        allowing the remainder of the MP positions to be relative to
-        zero.
-    :returns:
-        CTR_OKAY if trajectory point push ok. ErrorCode if buffer is
-        full due to kMotionProfileTopBufferCapacity.
 c_MotController_PushMotionProfileTrajectory_2:
+  internal: true
+c_MotController_PushMotionProfileTrajectory_3:
   internal: true
 c_MotController_StartMotionProfile:
   ignore: true # TODO

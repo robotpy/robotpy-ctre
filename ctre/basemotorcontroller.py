@@ -219,36 +219,41 @@ class BaseMotorController(MotController):
         """Push another trajectory point into the top level buffer (which is emptied
         into the motor controller's bottom buffer as room allows).
 
-        :param trajPt: to push into buffer.
-            The members should be filled in with these values...
+        :param trajPt: tuple to push into buffer.
+            The tuple should be filled in with these values...
 
-            position:  servo position in sensor units.
-            velocity:  velocity to feed-forward in sensor units per 100ms.
-            profileSlotSelect0:  Which slot to get PIDF gains. PID is used for position servo. F is used
-                as the Kv constant for velocity feed-forward. Typically this is hardcoded
-                to the a particular slot, but you are free gain schedule if need be.
-                Choose from [0,3]
-            profileSlotSelect1: Which slot to get PIDF gains for auxiliary PId.
-                This only has impact during MotionProfileArc Control mode.
-                Choose from [0,1].
-            isLastPoint:  set to nonzero to signal motor controller to keep processing this
-                trajectory point, instead of jumping to the next one
-                when timeDurMs expires.  Otherwise MP executer will
-                eventually see an empty buffer after the last point
-                expires, causing it to assert the IsUnderRun flag.
-                However this may be desired if calling application
-                never wants to terminate the MP.
-            zeroPos:  set to nonzero to signal motor controller to "zero" the selected
-                position sensor before executing this trajectory point.
-                Typically the first point should have this set only thus
-                allowing the remainder of the MP positions to be relative to
-                zero.
-            timeDur: Duration to apply this trajectory pt.
-                This time unit is ADDED to the exising base time set by
-                configMotionProfileTrajectoryPeriod().
+            * position:  servo position in sensor units.
+            * velocity:  velocity to feed-forward in sensor units per 100ms.
+            * auxiliaryPos: The position for auxiliary PID[1] to target (in sensor units).
+            * profileSlotSelect0:  Which slot to get PIDF gains. PID is used for position servo. F is used
+              as the Kv constant for velocity feed-forward. Typically this is hardcoded
+              to the a particular slot, but you are free gain schedule if need be.
+              Choose from [0,3]
+            * profileSlotSelect1: Which slot to get PIDF gains for auxiliary PId.
+              This only has impact during MotionProfileArc Control mode.
+              Choose from [0,1].
+            * isLastPoint:  set to nonzero to signal motor controller to keep processing this
+              trajectory point, instead of jumping to the next one
+              when timeDurMs expires.  Otherwise MP executer will
+              eventually see an empty buffer after the last point
+              expires, causing it to assert the IsUnderRun flag.
+              However this may be desired if calling application
+              never wants to terminate the MP.
+            * zeroPos:  set to nonzero to signal motor controller to "zero" the selected
+              position sensor before executing this trajectory point.
+              Typically the first point should have this set only thus
+              allowing the remainder of the MP positions to be relative to
+              zero.
+            * timeDur: Duration to apply this trajectory pt.
+              This time unit is ADDED to the exising base time set by
+              configMotionProfileTrajectoryPeriod().
         
         :returns: CTR_OKAY if trajectory point push ok. ErrorCode if buffer is
             full due to kMotionProfileTopBufferCapacity.
+        
+        .. note:: This function works on a real robot, but has not yet
+                  been implemented in simulation mode. See :ref:`api_support`
+                  for more details.
         """
         return self._pushMotionProfileTrajectory_2(*trajPt)
 
