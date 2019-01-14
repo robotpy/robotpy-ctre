@@ -1,0 +1,18 @@
+---
+c_BuffTrajPointStream_Create1:
+  internal: true
+  code: |
+    self.create_called = True
+c_BuffTrajPointStream_DestroyAll:
+  ignore: true
+c_BuffTrajPointStream_Destroy:
+  ignore: true
+c_BuffTrajPointStream_Clear:
+  doc: |
+    Clear all trajectory points.
+    
+    :returns: nonzero error code if operation fails.
+c_BuffTrajPointStream_Write:
+  internal: true
+c_BuffTrajPointStream_Lookup:
+  ignore: true

@@ -1028,7 +1028,49 @@ c_MotController_PushMotionProfileTrajectory_2:
 c_MotController_PushMotionProfileTrajectory_3:
   internal: true
 c_MotController_StartMotionProfile:
-  ignore: true # TODO
+  param_override:
+    streamHandle:
+      x_type: "BuffTrajPointStream&"
+      x_callname: "stream.m_handle"
+      x_pyann: 'stream: "BufferedTrajectoryPointStream"'
+      x_pyarg: 'py::arg("stream")'
+      name: "stream"
+  doc: |
+    Simple one-shot firing of a complete MP.
+
+    Starting in 2019, MPs can be fired by building a Buffered Trajectory Point Stream, and calling this routine.
+    
+    Once called, the motor controller software will automatically ...
+    
+    1. Clear the firmware buffer of trajectory points.
+    2. Clear the underrun flags
+    3. Reset an index within the Buffered Trajectory Point Stream (so that the same profile can be run again and again).
+    4. Start a background thread to manage MP streaming (if not already running).
+    5. If..
+    
+        a. current control mode already matches motionProfControlMode, set MPE Output to "Hold".
+        b. current control mode does not matches motionProfControlMode, apply motionProfControlMode and set MPE Output to "Disable".
+    
+    6. Stream the trajectory points into the device's firmware buffer.
+    7. Once motor controller has at least minBufferedPts worth in the firmware buffer, MP will automatically start (MPE Output set to "Enable").
+    8. Wait until MP finishes, then transitions the Motion Profile Executor's output to "Hold".
+    9. IsMotionProfileFinished() will now return true.
+    
+    Calling application can use IsMotionProfileFinished() to determine when internal state machine reaches [7].
+    Calling application can cancel MP by calling set().  Otherwise do not call set() until MP has completed.
+    
+    The legacy API from previous years requires the calling application to pass points via the ProcessMotionProfileBuffer and PushMotionProfileTrajectory.
+    This is no longer required if using this StartMotionProfile/IsMotionProfileFinished API.
+    
+    :param stream:                A buffer that will be used to stream the trajectory points.  Caller can fill this container with the entire trajectory point, regardless of size.
+    
+    :param minBufferedPts:        Minimum number of firmware buffered points before starting MP.
+                                Do not exceed device's firmware buffer capacity or MP will never fire (120 for Motion Profile, or 60 for Motion Profile Arc).
+                                Recommendation value for this would be five to ten samples depending on timeDur of the trajectory point.
+    
+    :param motionProfControlMode: Pass MotionProfile or MotionProfileArc.
+    
+    :returns: nonzero error code if operation fails.
 c_MotController_IsMotionProfileFinished:
   doc: |
     Determine if running MP is complete.

@@ -15,8 +15,10 @@ from ._impl import (
     LimitSwitchSource,
     LimitSwitchNormal,
     NeutralMode,
+    SetValueMotionProfile,
 )
 
+from .btrajectorypoint import BTrajectoryPoint
 from .trajectorypoint import TrajectoryPoint
 
 try:
