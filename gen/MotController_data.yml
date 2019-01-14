@@ -964,15 +964,29 @@ c_MotController_SelectProfileSlot:
     :param pidIdx:
         0 for Primary closed-loop. 1 for auxiliary closed-loop.
 c_MotController_GetActiveTrajectoryPosition:
+  ignore: true
+c_MotController_GetActiveTrajectoryPosition_3:
+  rename: getActiveTrajectoryPosition
+  defaults:
+    pidIdx: 0
   doc: |
     Gets the active trajectory target position using
     MotionMagic/MotionProfile control modes.
+
+    :param pidIdx: 0 for Primary closed-loop. 1 for auxiliary closed-loop.
     
     :returns: The Active Trajectory Position in sensor units.
 c_MotController_GetActiveTrajectoryVelocity:
+  ignore: true
+c_MotController_GetActiveTrajectoryVelocity_3:
+  rename: getActiveTrajectoryVelocity
+  defaults:
+    pidIdx: 0
   doc: |
     Gets the active trajectory target velocity using
     MotionMagic/MotionProfile control modes.
+
+    :param pidIdx: 0 for Primary closed-loop. 1 for auxiliary closed-loop.
     
     :returns: The Active Trajectory Velocity in sensor units per 100ms.
 c_MotController_GetActiveTrajectoryHeading:
@@ -981,7 +995,31 @@ c_MotController_GetActiveTrajectoryHeading:
     MotionMagicArc/MotionProfileArc control modes.
     
     :returns: The Active Trajectory Heading in degreees.
+c_MotController_GetActiveTrajectoryArbFeedFwd:
+  ignore: true
+c_MotController_GetActiveTrajectoryArbFeedFwd_3:
+  rename: getActiveTrajectoryArbFeedFwd
+  defaults:
+    pidIdx: 0
+  doc: |
+    Gets the active trajectory arbitrary feedforward for pid0 using
+    MotionMagic/MotionProfile control modes.
+
+    :param pidIdx: 0 for Primary closed-loop. 1 for auxiliary closed-loop.
+    
+    :returns: The Active Trajectory ArbFeedFwd in units of percent output (where 0.01 is 1%).
 c_MotController_GetActiveTrajectoryAll:
+  ignore: true
+c_MotController_GetActiveTrajectoryAll_5:
+  rename: getActiveTrajectoryAll
+  defaults:
+    pidIdx: 0
+  doc: |
+    Retrieve all active trajectory parameters
+
+    :param pidIdx: 0 for Primary closed-loop. 1 for auxiliary closed-loop.
+
+    :returns: (velocity, position, arbFeedFwd)
 c_MotController_ConfigMotionCruiseVelocity:
   set: motionmagic_cruise_velocity
   doc: |
