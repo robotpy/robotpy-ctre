@@ -125,6 +125,15 @@ def function_hook(fn, data):
 
     param_offset = 0 if x_name.startswith("create") else 1
 
+    data = data.get("data", {}).get(fn["name"])
+    if data is None:
+        # ensure every function is in our yaml
+        print("WARNING", fn["name"])
+        data = {}
+        # assert False, fn['name']
+
+    param_defaults = data.get("defaults", {})
+
     for i, p in enumerate(fn["parameters"][param_offset:]):
         if p["name"] == "":
             p["name"] = "param%s" % i
@@ -135,6 +144,14 @@ def function_hook(fn, data):
         p["x_pyann_type"] = _to_annotation(p["raw_type"])
         p["x_pyann"] = "%(name)s: %(x_pyann_type)s" % p
         p["x_pyarg"] = 'py::arg("%(name)s")' % p
+
+        if p["name"] in param_defaults:
+            _pname = param_defaults.pop(p["name"])
+            p["x_pyann"] += " = " + str(_pname)
+            p["x_pyarg"] += "=" + str(_pname)
+        elif p["name"].lower() == "timeoutms":
+            p["x_pyann"] += " = 0"
+            p["x_pyarg"] += "=0"
 
         if p["pointer"]:
             p["x_callname"] = "&%(x_callname)s" % p
@@ -157,6 +174,8 @@ def function_hook(fn, data):
             x_in_params.append(p)
 
         p["x_decl"] = "%s %s" % (p["x_type"], p["name"])
+
+    assert not param_defaults
 
     x_callstart = ""
     x_callend = ""
@@ -223,13 +242,6 @@ def function_hook(fn, data):
         x_temprefs = ";".join(["%(x_type)s %(name)s" % p for p in x_out_params]) + ";"
 
     args_comma = ", " if x_in_params else ""
-
-    data = data.get("data", {}).get(fn["name"])
-    if data is None:
-        # ensure every function is in our yaml
-        print("WARNING", fn["name"])
-        data = {}
-        # assert False, fn['name']
 
     if "return" in data.get("code", ""):
         raise ValueError("%s: Do not use return, assign to retval instead" % fn["name"])
