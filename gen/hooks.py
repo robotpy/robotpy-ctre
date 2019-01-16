@@ -148,6 +148,11 @@ def function_hook(fn, data):
 
         # Python annotations for sim
         p["x_pyann_type"] = _to_annotation(p["raw_type"])
+
+        if p["name"] in param_override:
+            p["pointer"] = 0
+            p.update(param_override.pop(p["name"]))
+
         p["x_pyann"] = "%(name)s: %(x_pyann_type)s" % p
         p["x_pyarg"] = 'py::arg("%(name)s")' % p
 
@@ -159,10 +164,7 @@ def function_hook(fn, data):
             p["x_pyann"] += " = 0"
             p["x_pyarg"] += "=0"
 
-        if p["name"] in param_override:
-            p.update(param_override[p["name"]])
-            x_in_params.append(p)
-        elif p["pointer"]:
+        if p["pointer"]:
             p["x_callname"] = "&%(x_callname)s" % p
             x_out_params.append(p)
         elif p["array"]:
@@ -177,7 +179,7 @@ def function_hook(fn, data):
 
             x_out_params.append(p)
         else:
-            chk = _gen_check(p["name"], p["raw_type"])
+            chk = _gen_check(p["name"], p["x_type"])
             if chk:
                 x_param_checks.append("assert %s" % chk)
             x_in_params.append(p)
@@ -185,6 +187,7 @@ def function_hook(fn, data):
         p["x_decl"] = "%s %s" % (p["x_type"], p["name"])
 
     assert not param_defaults
+    assert not param_override
 
     x_callstart = ""
     x_callend = ""
