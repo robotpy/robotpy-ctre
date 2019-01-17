@@ -19,6 +19,23 @@ _annotations = {
 # fmt: off
 
 def _gen_check(pname, ptype, strict=False):
+    SIGNED_CHECK = "isinstance({0}, int) and -1<<{1} <= {0} < 1<<{1}".format
+    UNSIGNED_CHECK = "isinstance({0}, int) and 0 <= {0} < 1<<{1}".format
+
+    SIGNED_SIZES = {
+        # "byte": 8,
+        # "int8_t": 8,
+        "short": 16,
+        "int16_t": 16,
+        "int32_t": 32,
+        "int64_t": 64,
+    }
+    UNSIGNED_SIZES = {
+        "uint8_t": 8,
+        "uint16_t": 16,
+        "uint32_t": 32,
+        "uint64_t": 64,
+    }
 
     # TODO: This does checks on normal types, but if you pass a ctypes value
     #       in then this does not check those properly.
@@ -26,7 +43,7 @@ def _gen_check(pname, ptype, strict=False):
     if ptype == 'bool':
         return 'isinstance(%s, bool)' % pname
 
-    elif ptype in ['float', 'double']:
+    elif ptype in ('float', 'double'):
         if strict:
             return 'isinstance(%s, (float))' % pname
         else:
@@ -41,27 +58,15 @@ def _gen_check(pname, ptype, strict=False):
     #elif ptype is C.c_wchar_p:
     #    return '%s is None or isinstance(%s, bytes)' % (pname, pname)
 
-    elif ptype in ['int', 'long']:
+    elif ptype in ('int', 'long'):
         return 'isinstance(%s, int)' % pname
-    #elif ptype in [C.c_byte, C.c_int8]:
-    #    return 'isinstance(%s, int) and %s < %d and %s > -%d' % (pname, pname, 1<<7, pname, 1<<7)
-    elif ptype in ['short', 'int16_t']:
-        return 'isinstance(%s, int) and %s < %d and %s > -%d' % (pname, pname, 1<<15, pname, 1<<15)
-    elif ptype == 'int32_t':
-        return 'isinstance(%s, int) and %s < %d and %s > -%d' % (pname, pname, 1<<31, pname, 1<<31)
-    elif ptype == 'int64_t':
-        return 'isinstance(%s, int) and %s < %d and %s > -%d' % (pname, pname, 1<<63, pname, 1<<63)
+    elif ptype in SIGNED_SIZES:
+        return SIGNED_CHECK(pname, SIGNED_SIZES[ptype] - 1)
 
     elif ptype == 'size_t':
         return 'isinstance(%s, int)' % (pname)
-    elif ptype == 'uint8_t':
-        return 'isinstance(%s, int) and %s < %d and %s >= 0' % (pname, pname, 1<<8, pname)
-    elif ptype == 'uint16_t':
-        return 'isinstance(%s, int) and %s < %d and %s >= 0' % (pname, pname, 1<<16, pname)
-    elif ptype == 'uint32_t':
-        return 'isinstance(%s, int) and %s < %d and %s >= 0' % (pname, pname, 1<<32, pname)
-    elif ptype == 'uint64_t':
-        return 'isinstance(%s, int) and %s < %d and %s >= 0' % (pname, pname, 1<<64, pname)
+    elif ptype in UNSIGNED_SIZES:
+        return UNSIGNED_CHECK(pname, UNSIGNED_SIZES[ptype])
 
     elif ptype is None:
         return '%s is None' % pname
@@ -143,6 +148,11 @@ def function_hook(fn, data):
 
         # Python annotations for sim
         p["x_pyann_type"] = _to_annotation(p["raw_type"])
+
+        if p["name"] in param_override:
+            p["pointer"] = 0
+            p.update(param_override.pop(p["name"]))
+
         p["x_pyann"] = "%(name)s: %(x_pyann_type)s" % p
         p["x_pyarg"] = 'py::arg("%(name)s")' % p
 
@@ -154,10 +164,7 @@ def function_hook(fn, data):
             p["x_pyann"] += " = 0"
             p["x_pyarg"] += "=0"
 
-        if p["name"] in param_override:
-            p.update(param_override[p["name"]])
-            x_in_params.append(p)
-        elif p["pointer"]:
+        if p["pointer"]:
             p["x_callname"] = "&%(x_callname)s" % p
             x_out_params.append(p)
         elif p["array"]:
@@ -172,7 +179,7 @@ def function_hook(fn, data):
 
             x_out_params.append(p)
         else:
-            chk = _gen_check(p["name"], p["raw_type"])
+            chk = _gen_check(p["name"], p["x_type"])
             if chk:
                 x_param_checks.append("assert %s" % chk)
             x_in_params.append(p)
@@ -180,6 +187,7 @@ def function_hook(fn, data):
         p["x_decl"] = "%s %s" % (p["x_type"], p["name"])
 
     assert not param_defaults
+    assert not param_override
 
     x_callstart = ""
     x_callend = ""
