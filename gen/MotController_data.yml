@@ -646,6 +646,8 @@ c_MotController_ConfigForwardLimitSwitchSource:
   code: |
     self.hal_data['limit_switch_source_for'] = type
     self.hal_data['limit_switch_follow_for'] = deviceID
+  defaults:
+    deviceID: 0
   doc: |
     Configures the forward limit switch for a local/remote source. For example,
     a CAN motor controller may need to monitor the Limit-F pin of another Talon,
@@ -654,7 +656,7 @@ c_MotController_ConfigForwardLimitSwitchSource:
     :param type:
         Limit switch source. User can choose between the feedback connector,
         a remote Talon SRX, CANifier, or deactivate the feature.
-    :type type: :class:`LimitSwitchSource`
+    :type type: LimitSwitchSource or RemoteLimitSwitchSource
     :param normalOpenOrClose:
         Setting for normally open, normally closed, or disabled. This
         setting matches the web-based configuration drop down.
@@ -670,6 +672,8 @@ c_MotController_ConfigReverseLimitSwitchSource:
   code: |
     self.hal_data['limit_switch_source_rev'] = type
     self.hal_data['limit_switch_follow_rev'] = deviceID
+  defaults:
+    deviceID: 0
   doc: |
     Configures the reverse limit switch for a local/remote source. For example,
     a CAN motor controller may need to monitor the Limit-R pin of another Talon,
@@ -678,7 +682,7 @@ c_MotController_ConfigReverseLimitSwitchSource:
     :param type:
         Limit switch source. User can choose between the feedback connector,
         a remote Talon SRX, CANifier, or deactivate the feature.
-    :type type: :class:`LimitSwitchSource`
+    :type type: LimitSwitchSource or RemoteLimitSwitchSource
     :param normalOpenOrClose:
         Setting for normally open, normally closed, or disabled. This
         setting matches the web-based configuration drop down.
