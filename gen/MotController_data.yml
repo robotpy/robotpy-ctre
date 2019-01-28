@@ -220,7 +220,7 @@ c_MotController_SetDemand:
     elif mode in calc_modes:
         self._target = demand0
     else:
-        self.hal_data['value'] = demand0
+        self.hal_data['value'] = float(demand0)
 
     for follower_id in self.hal_data['followers']:
         hal_data['CAN'][follower_id]['value'] = self.hal_data['value']

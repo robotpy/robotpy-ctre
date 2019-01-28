@@ -482,6 +482,8 @@ def test_basemotorcontroller_getMotionProfileTopLevelBufferCount(talon):
 
 
 def test_basemotorcontroller_getMotorOutputPercent(talon, cdata):
+    talon.neutralOutput()
+    assert talon.getMotorOutputPercent() == 0.0
     cdata["value"] = 2.2
     assert talon.getMotorOutputPercent() == 2.2
 
