@@ -32,8 +32,8 @@ __all__ = ["TalonSRX"]
 
 class TalonSRX(BaseMotorController):
     """CTRE Talon SRX Motor Controller when used on CAN Bus.
-    
-    We don't recommend using this directly. Use :class:`.WPI_TalonSRX` instead.
+
+    Consider using :class:`.WPI_TalonSRX`, which implements various WPILib interfaces.
     """
 
     FeedbackDevice = FeedbackDevice

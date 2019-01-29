@@ -30,8 +30,8 @@ __all__ = ["VictorSPX"]
 
 class VictorSPX(BaseMotorController):
     """VEX Victor SPX Motor Controller when used on CAN Bus.
-    
-    We don't recommend using this directly. Use :class:`.WPI_VictorSPX` instead.
+
+    Consider using :class:`.WPI_VictorSPX`, which implements various WPILib interfaces.
     """
 
     def __init__(self, deviceNumber: int) -> None:
