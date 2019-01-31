@@ -31,7 +31,7 @@ c_MotController_Create1:
       'sim_display': False, # used in sim
       
       'sensor_phase': False,
-      'temp': 0.0,
+      'temp': 25.0,  # ~room temperature
       'bus_voltage': 12.0,
       'output_current': 0.1,
       
