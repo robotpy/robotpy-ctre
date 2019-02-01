@@ -161,7 +161,6 @@ def test_basemotorcontroller_configForwardSoftLimitThreshold(talon, cdata):
     assert cdata["soft_limit_for"] == 1
 
 
-@pytest.mark.xfail(raises=NotImplementedError)
 def test_basemotorcontroller_configGetCustomParam(talon):
     talon.configGetCustomParam(1, 2)
 
@@ -296,7 +295,6 @@ def test_basemotorcontroller_configSensorTerm(talon, cdata):
     assert cdata["sensor_term"] == (5, 6)
 
 
-@pytest.mark.xfail(raises=NotImplementedError)
 def test_basemotorcontroller_configSetCustomParam(talon):
     talon.configSetCustomParam(1, 2, 3)
 
