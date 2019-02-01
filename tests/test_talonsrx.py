@@ -161,8 +161,10 @@ def test_basemotorcontroller_configForwardSoftLimitThreshold(talon, cdata):
     assert cdata["soft_limit_for"] == 1
 
 
-def test_basemotorcontroller_configGetCustomParam(talon):
-    talon.configGetCustomParam(1, 2)
+def test_basemotorcontroller_configGetCustomParam(talon, cdata):
+    cdata["custom_param_1"] = 10
+    param = talon.configGetCustomParam(1, 2)
+    assert param == 10 == cdata["custom_param_1"]
 
 
 config_data = [
@@ -295,8 +297,9 @@ def test_basemotorcontroller_configSensorTerm(talon, cdata):
     assert cdata["sensor_term"] == (5, 6)
 
 
-def test_basemotorcontroller_configSetCustomParam(talon):
+def test_basemotorcontroller_configSetCustomParam(talon, cdata):
     talon.configSetCustomParam(1, 2, 3)
+    assert cdata["custom_param_2"] == 1
 
 
 def test_basemotorcontroller_configVelocityMeasurementPeriod(talon, cdata):
