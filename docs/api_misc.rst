@@ -38,3 +38,14 @@ Error Codes
     :members:
     :undoc-members:
     :show-inheritance:
+
+Faults
+------
+.. automodule:: ctre._impl.faultsbase
+    :members:
+    :undoc-members:
+
+.. automodule:: ctre._impl.autogen.faults
+    :members:
+    :undoc-members:
+    :show-inheritance:
