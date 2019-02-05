@@ -68,30 +68,32 @@ class CtreUI:
 
         # TODO: this is not flexible
 
-        row = len(self.can) * 2
+        lcan = len(self.can)
+        row = (lcan % 6) * 2
+        col = (lcan // 6) * 5
 
         lbl = tk.Label(sim.can_slot, text=str(canId))
-        lbl.grid(column=0, row=row)
+        lbl.grid(column=col + 0, row=row)
 
         motor = ValueWidget(sim.can_slot, default=0.0)
-        motor.grid(column=1, row=row)
+        motor.grid(column=col + 1, row=row)
         sim.set_tooltip(motor, "CAN", canId)
 
         fl = CheckButtonWrapper(sim.can_slot, text="F")
-        fl.grid(column=2, row=row)
+        fl.grid(column=col + 2, row=row)
 
         rl = CheckButtonWrapper(sim.can_slot, text="R")
-        rl.grid(column=3, row=row)
+        rl.grid(column=col + 3, row=row)
 
         Tooltip.create(fl, "Forward limit switch")
         Tooltip.create(rl, "Reverse limit switch")
 
         mode_lbl_txt = tk.StringVar(value="")
         mode_label = tk.Label(sim.can_slot, textvariable=mode_lbl_txt)
-        mode_label.grid(column=4, row=row)
+        mode_label.grid(column=col + 4, row=row)
 
         labels = tk.Frame(sim.can_slot)
-        labels.grid(column=0, row=row + 1, columnspan=6)
+        labels.grid(column=col + 0, row=row + 1, columnspan=6)
 
         enc_value = tk.StringVar(value="E: 0")
         enc_label = tk.Label(labels, textvariable=enc_value)
