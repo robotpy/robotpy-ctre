@@ -3,28 +3,23 @@
 
 
 class FaultsBase:
-    # List all the flags from LSB to MSB in __slots__.
-    __slots__ = ()
+    __slots__ = ("bits",)
 
     def __init__(self, bits: int = 0) -> None:
-        for field in self.__slots__:
-            setattr(self, field, bool(bits & 1))
-            bits >>= 1
+        self.bits = bits
 
     def toBitfield(self) -> int:
-        retval = 0
-        mask = 1
-        for field in self.__slots__:
-            if getattr(self, field):
-                retval |= mask
-                mask <<= 1
-        return retval
+        return self.bits
 
     def hasAnyFault(self) -> bool:
         """True iff any of the flags are true."""
-        return any(getattr(self, field) for field in self.__slots__)
+        return self.bits != 0
 
     def __str__(self):
         return " ".join(
-            ["%s:%d" % (field, getattr(self, field)) for field in self.__slots__]
+            [
+                "%s:%d" % (field, getattr(self, field))
+                for field, method in self.__class__.__dict__.items()
+                if isinstance(method, property)
+            ]
         )
