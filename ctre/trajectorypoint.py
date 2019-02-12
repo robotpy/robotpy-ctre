@@ -4,7 +4,7 @@ from collections import namedtuple
 
 __all__ = ["TrajectoryPoint"]
 
-#: Motion Profile Trajectory Point for use with pushMotionProfileTrajectory
+#: Legacy Motion Profile Trajectory Point for use with pushMotionProfileTrajectory
 TrajectoryPoint = namedtuple(
     "TrajectoryPoint",
     [

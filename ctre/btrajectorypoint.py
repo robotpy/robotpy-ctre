@@ -23,14 +23,14 @@ _defaults = (0, 0, 0, 0, 0, 0, 0, 0, False, False, 0, False)
 
 if sys.version_info[:2] >= (3, 7):
     #: Motion Profile Trajectory Point for use with
-    #: :class:`BufferedTrajectoryPointStream`.
+    #: :class:`.BufferedTrajectoryPointStream` or pushMotionProfileTrajectory
     #:
     #: All attributes have a default value of 0 or False, so you can use
     #: keyword arguments for less typing
     BTrajectoryPoint = namedtuple(_name, _fields, defaults=_defaults)
 else:
     #: Motion Profile Trajectory Point for use with
-    #: :class:`BufferedTrajectoryPointStream`
+    #: :class:`.BufferedTrajectoryPointStream` or pushMotionProfileTrajectory
     #:
     #: All attributes have a default value of 0 or False, so you can use
     #: keyword arguments for less typing
