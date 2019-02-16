@@ -10,9 +10,6 @@ class CtreUI:
 
     can_mode_map = {v: k for k, v in ControlMode.__members__.items()}
 
-    def __init__(self):
-        self.can = {}
-
     def update_tk_widgets(self, sim):
 
         for k, data in hal_data["CAN"].items():
@@ -24,7 +21,7 @@ class CtreUI:
                 self._add_CAN(sim, k, data)
                 data["sim_display"] = True
 
-            (motor, fl, rl, mode_lbl_txt, enc_txt, analog_txt, pwm_txt) = self.can[k]
+            (motor, fl, rl, mode_lbl_txt, enc_txt, analog_txt, pwm_txt) = sim.can[k]
             data = hal_data["CAN"][k]
             mode = data["control_mode"]
             mode_lbl_txt.set(self.can_mode_map.get(mode, "Unknown"))
@@ -68,7 +65,7 @@ class CtreUI:
 
         # TODO: this is not flexible
 
-        lcan = len(self.can)
+        lcan = len(sim.can)
         row = (lcan % 6) * 2
         col = (lcan // 6) * 5
 
@@ -111,7 +108,7 @@ class CtreUI:
         Tooltip.create(analog_label, "Analog Input")
         Tooltip.create(pwm_label, "PWM Input")
 
-        self.can[canId] = (
+        sim.can[canId] = (
             motor,
             fl,
             rl,
