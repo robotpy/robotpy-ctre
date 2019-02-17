@@ -12,7 +12,7 @@ import subprocess
 import sys
 import setuptools
 
-ctre_lib_version = "5.13.0"
+ctre_lib_version = "5.14.0"
 
 setup_dir = dirname(__file__)
 git_dir = join(setup_dir, ".git")
