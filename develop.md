@@ -67,3 +67,25 @@ This will force the C++ extension to build, but it won't try to link it to the
 CTRE or HAL libraries. Note that you can also specify the `RPY_CTRE_DEVDIR`
 environment variable to ensure that you aren't downloading the library files
 over and over again.
+
+RaspberryPi
+-----------
+
+To build for the RaspberryPi, first check for and install any needed dependencies.
+
+You will need gcc and python3-dev. Both of these are installed by
+default on Raspbian 9 (Stretch).  To check:
+
+$ sudo dpkg -l gcc
+$ sudo dpkg -l python3-dev
+
+You will also need the following pip packages installed:
+
+$ pip3 install header2whatever pybind11 wheel
+
+Export an environment variable named CTRE_RPI to tell setup.py that
+you're on a RaspberryPi.
+
+$ export CTRE_RPI=1
+
+Then proceed as normal.

@@ -15,7 +15,7 @@
     dst: faults.py
 
 
-# NOTE: Make sure to edit ctre_roborio.cpp if you add a header below this line
+# NOTE: Make sure to edit ctre_cpp.cpp if you add a header below this line
 
 #
 # Enums
