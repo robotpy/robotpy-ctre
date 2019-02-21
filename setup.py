@@ -241,7 +241,7 @@ if exists("/etc/natinst/share/scs_imagemetadata.ini") or _travis_build or ctre_r
 
     # Don't try to link when testing on travis, as it will fail
     # -> We can still catch compile errors, which is good enough I suspect
-    if not _travis_build: 
+    if not _travis_build:
         if ctre_rpi:
             libraries = ["CTRE_PhoenixCCI"]
         else:
