@@ -222,9 +222,12 @@ class PigeonIMU(PigeonImuImpl):
     ribbon-cable (CAN Talon SRX).
     """
 
-    ParamEnum = ParamEnum
-    StatusFrame = PigeonIMU_StatusFrame
+    CalibrationMode = CalibrationMode
     ControlFrame = PigeonIMU_ControlFrame
+    FusionStatus = FusionStatus
+    ParamEnum = ParamEnum
+    PigeonState = PigeonState
+    StatusFrame = PigeonIMU_StatusFrame
 
     def __init__(self, *args, **kwargs):
         """
@@ -237,6 +240,13 @@ class PigeonIMU(PigeonImuImpl):
             CAN Device Id of Pigeon [0,62]
         :param talonSrx:
             Object for the TalonSRX connected via ribbon cable.
+
+        .. note:: To use this in simulation, you can initialize the device
+                  gyro support via one of the following in your physics.py::
+
+            physics_controller.add_device_gyro_channel('pigeon_device_X')
+            physics_controller.add_device_gyro_channel('pigeon_srx_X')
+
         """
         super().__init__()
 
