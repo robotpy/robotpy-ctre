@@ -10,12 +10,10 @@ def test_pigeon_init(ctre):
     ctre.PigeonIMU(1)
 
 
-@pytest.mark.xfail(raises=NotImplementedError)
 def test_pigeon_setYaw(pigeon):
     pigeon.setYaw(1, 2)
 
 
-@pytest.mark.xfail(raises=NotImplementedError)
 def test_pigeon_addYaw(pigeon):
     pigeon.addYaw(1, 2)
 
@@ -25,12 +23,10 @@ def test_pigeon_setYawToCompass(pigeon):
     pigeon.setYawToCompass(1)
 
 
-@pytest.mark.xfail(raises=NotImplementedError)
 def test_pigeon_setFusedHeading(pigeon):
     pigeon.setFusedHeading(1, 2)
 
 
-@pytest.mark.xfail(raises=NotImplementedError)
 def test_pigeon_addFusedHeading(pigeon):
     pigeon.addFusedHeading(1, 2)
 
@@ -65,9 +61,9 @@ def test_pigeon_enterCalibrationMode(pigeon, ctre):
     pigeon.enterCalibrationMode(ctre.pigeonimu.CalibrationMode.Temperature, 1)
 
 
-@pytest.mark.xfail(raises=NotImplementedError)
 def test_pigeon_getGeneralStatus(pigeon, ctre):
     generalStatus = pigeon.getGeneralStatus()
+    assert generalStatus.state == pigeon.PigeonState.Ready
 
 
 @pytest.mark.xfail(raises=NotImplementedError)
@@ -80,14 +76,20 @@ def test_pigeon_get6dQuaternion(pigeon):
     retcode, qt = pigeon.get6dQuaternion()
 
 
-@pytest.mark.xfail(raises=NotImplementedError)
-def test_pigeon_getYawPitchRoll(pigeon):
-    retcode, angles = pigeon.getYawPitchRoll()
+def test_pigeon_getYawPitchRoll(pigeon, hal_data):
+    yaw, _, _ = pigeon.getYawPitchRoll()
+    assert yaw == 0
+    hal_data["robot"]["pigeon_device_1"] = 5
+    yaw, _, _ = pigeon.getYawPitchRoll()
+    assert yaw == 5
 
 
-@pytest.mark.xfail(raises=NotImplementedError)
-def test_pigeon_getAccumGyro(pigeon):
-    retcode, angles = pigeon.getAccumGyro()
+def test_pigeon_getAccumGyro(pigeon, hal_data):
+    _, _, z = pigeon.getAccumGyro()
+    assert z == 0
+    hal_data["robot"]["pigeon_device_1"] = 5
+    _, _, z = pigeon.getAccumGyro()
+    assert z == 5
 
 
 @pytest.mark.xfail(raises=NotImplementedError)
@@ -145,14 +147,17 @@ def test_pigeon_getAccelerometerAngles(pigeon):
     retcode, angles = pigeon.getAccelerometerAngles()
 
 
-@pytest.mark.xfail(raises=NotImplementedError)
-def test_pigeon_getFusedHeading1(pigeon):
-    pigeon.getFusedHeading()
+# @pytest.mark.xfail(raises=NotImplementedError)
+# def test_pigeon_getFusedHeading1(pigeon):
+#     pigeon.getFusedHeading()
 
 
-@pytest.mark.xfail(raises=NotImplementedError)
-def test_pigeon_getFusedHeading2(pigeon, ctre):
+def test_pigeon_getFusedHeading(pigeon, ctre, hal_data):
     fusionStatus = pigeon.getFusedHeading()
+    assert fusionStatus.heading == 0
+    hal_data["robot"]["pigeon_device_1"] = 5
+    fusionStatus = pigeon.getFusedHeading()
+    assert fusionStatus.heading == 5
 
 
 @pytest.mark.xfail(raises=NotImplementedError)
