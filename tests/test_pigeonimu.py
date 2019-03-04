@@ -84,9 +84,12 @@ def test_pigeon_getYawPitchRoll(pigeon, hal_data):
     assert yaw == 5
 
 
-@pytest.mark.xfail(raises=NotImplementedError)
-def test_pigeon_getAccumGyro(pigeon):
-    retcode, angles = pigeon.getAccumGyro()
+def test_pigeon_getAccumGyro(pigeon, hal_data):
+    _, _, z = pigeon.getAccumGyro()
+    assert z == 0
+    hal_data["robot"]["pigeon_device_1"] = 5
+    _, _, z = pigeon.getAccumGyro()
+    assert z == 5
 
 
 @pytest.mark.xfail(raises=NotImplementedError)

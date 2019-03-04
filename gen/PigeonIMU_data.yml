@@ -237,8 +237,7 @@ c_PigeonIMU_GetYawPitchRoll:
   doc: |
     Get Yaw, Pitch, and Roll data.
 
-    :param ypr_deg: [yaw, pitch, and roll]
-    :returns: The last ErrorCode generated.
+    :returns: [yaw, pitch, and roll]
   code: |
     yaw = self._yaw_offset + hal_data["robot"].get(self._yaw_key, 0)
     retval = (yaw, 0, 0)
@@ -247,8 +246,10 @@ c_PigeonIMU_GetAccumGyro:
     Get AccumGyro data.
     AccumGyro is the integrated gyro value on each axis.
 
-    :param xyz_deg: [x, y, z]
-    :returns: The last ErrorCode generated.
+    :returns: [x, y, z]
+  code: |
+    z = hal_data["robot"].get(self._yaw_key, 0)
+    retval = (0, 0, z)
 c_PigeonIMU_GetAbsoluteCompassHeading:
   doc: |
     Get the absolute compass heading.
