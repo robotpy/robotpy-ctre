@@ -50,9 +50,9 @@ class CtreUI:
                 motor.set_value(data["value"])
 
             enc_txt.set("E: %s" % round(data["quad_position"]))
-            # analog_txt.set('A: %s' % round(data['analog_in_position']))
-            # pwm_txt.set('P: %s' % data['pulse_width_position'])
-            #
+            analog_txt.set("A: %s" % round(data["analog_position"]))
+            pwm_txt.set("P: %s" % data["pulse_width_position"])
+
             ret = fl.sync_value(data["limit_switch_closed_for"])
             if ret is not None:
                 data["limit_switch_closed_for"] = ret
