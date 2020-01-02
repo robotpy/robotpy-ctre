@@ -24,7 +24,6 @@
 import enum
 from collections import namedtuple
 
-import hal
 from wpilib._impl.utils import match_arglist
 
 from .talonsrx import TalonSRX
@@ -263,11 +262,6 @@ class PigeonIMU(PigeonImuImpl):
         elif index == 1:
             self.deviceNumber = results["talonSrx"].getDeviceID()
             self._create2(self.deviceNumber)
-            # record as Pigeon-via-Uart
-            hal.report(
-                hal.UsageReporting.kResourceType_CTRE_future0, self.deviceNumber + 1
-            )
-        hal.report(hal.UsageReporting.kResourceType_PigeonIMU, self.deviceNumber + 1)
 
     def getGeneralStatus(self) -> GeneralStatus:
         """

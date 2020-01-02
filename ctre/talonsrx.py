@@ -21,7 +21,6 @@
 #  SIMILAR COSTS, WHETHER ASSERTED ON THE BASIS OF CONTRACT, TORT
 #  (INCLUDING NEGLIGENCE), BREACH OF WARRANTY, OR OTHERWISE
 # ----------------------------------------------------------------------------
-import hal
 
 from .basemotorcontroller import BaseMotorController
 from ._impl import FeedbackDevice, LimitSwitchSource, StatusFrameEnhanced
@@ -42,4 +41,3 @@ class TalonSRX(BaseMotorController):
 
     def __init__(self, deviceNumber: int) -> None:
         super().__init__(deviceNumber | 0x02040000)
-        hal.report(hal.UsageReporting.kResourceType_CANTalonSRX, deviceNumber + 1)

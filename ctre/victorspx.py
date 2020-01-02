@@ -21,7 +21,6 @@
 #  SIMILAR COSTS, WHETHER ASSERTED ON THE BASIS OF CONTRACT, TORT
 #  (INCLUDING NEGLIGENCE), BREACH OF WARRANTY, OR OTHERWISE
 # ----------------------------------------------------------------------------
-import hal
 
 from .basemotorcontroller import BaseMotorController
 
@@ -41,4 +40,3 @@ class VictorSPX(BaseMotorController):
             [0,62]
         """
         super().__init__(deviceNumber | 0x01040000)
-        hal.report(hal.UsageReporting.kResourceType_CTRE_future1, deviceNumber + 1)

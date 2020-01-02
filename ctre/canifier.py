@@ -22,7 +22,6 @@
 #  (INCLUDING NEGLIGENCE), BREACH OF WARRANTY, OR OTHERWISE
 # ----------------------------------------------------------------------------
 import enum
-import hal
 
 from ._impl import (
     GeneralPin,
@@ -96,7 +95,6 @@ class CANifier(CANifierImpl):
         self._create1(deviceId)
         self._deviceNumber = deviceId
         # python-specific: tempPins not needed
-        hal.report(hal.UsageReporting.kResourceType_CANifier, deviceId + 1)
 
     def setLEDOutput(self, percentOutput: float, ledChannel: LEDChannel):
         """
