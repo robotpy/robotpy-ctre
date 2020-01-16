@@ -1,0 +1,43 @@
+---
+
+enums:
+  GeneralPin:
+functions:
+  c_CANifier_Create1:
+  c_CANifier_DestroyAll:
+  c_CANifier_Destroy:
+  c_CANifier_GetDescription:
+  c_CANifier_SetLEDOutput:
+  c_CANifier_SetGeneralOutputs:
+  c_CANifier_SetGeneralOutput:
+  c_CANifier_SetPWMOutput:
+  c_CANifier_EnablePWMOutput:
+  c_CANifier_GetGeneralInputs:
+  c_CANifier_GetGeneralInput:
+  c_CANifier_GetPWMInput:
+  c_CANifier_GetLastError:
+  c_CANifier_GetBusVoltage:
+  c_CANifier_GetQuadraturePosition:
+  c_CANifier_SetQuadraturePosition:
+  c_CANifier_GetQuadratureVelocity:
+  c_CANifier_GetQuadratureSensor:
+  c_CANifier_ConfigVelocityMeasurementPeriod:
+  c_CANifier_ConfigVelocityMeasurementWindow:
+  c_CANifier_ConfigClearPositionOnLimitF:
+  c_CANifier_ConfigClearPositionOnLimitR:
+  c_CANifier_ConfigClearPositionOnQuadIdx:
+  c_CANifier_SetLastError:
+  c_CANifier_ConfigSetParameter:
+  c_CANifier_ConfigGetParameter:
+  c_CANifier_ConfigGetParameter_6:
+  c_CANifier_ConfigSetCustomParam:
+  c_CANifier_ConfigGetCustomParam:
+  c_CANifier_ConfigFactoryDefault:
+  c_CANifier_GetFaults:
+  c_CANifier_GetStickyFaults:
+  c_CANifier_ClearStickyFaults:
+  c_CANifier_GetFirmwareVersion:
+  c_CANifier_HasResetOccurred:
+  c_CANifier_SetStatusFramePeriod:
+  c_CANifier_GetStatusFramePeriod:
+  c_CANifier_SetControlFramePeriod:

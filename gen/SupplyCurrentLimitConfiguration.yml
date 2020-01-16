@@ -1,0 +1,20 @@
+---
+
+classes:
+  SupplyCurrentLimitConfiguration:
+    shared_ptr: true
+    attributes:
+      enable:
+      currentLimit:
+      triggerThresholdCurrent:
+      triggerThresholdTime:
+    methods:
+      SupplyCurrentLimitConfiguration:
+        overloads:
+          "":
+          bool, double, double, double:
+          double*, int:
+      ToString:
+      ToArray:
+      Deserialize:
+      Equals:

@@ -1,0 +1,9 @@
+---
+
+classes:
+  GroupMotorControllers:
+    shared_ptr: true
+    methods:
+      Register:
+      MotorControllerCount:
+      Get:

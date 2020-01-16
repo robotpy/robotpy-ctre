@@ -1,0 +1,16 @@
+---
+
+functions:
+  string_split:
+  toLower:
+  strcmp_nocase:
+  safe_memcpy_:
+    overloads:
+      uint8_t*, uint8_t*, uint32_t, uint32_t:
+      uint8_t*, uint8_t*, int32_t, int32_t:
+  safe_copyDoubles:
+    overloads:
+      double*, double*, int32_t, int32_t:
+      double*, std::vector<double>&, int32_t:
+  safe_strlen:
+  safe_strcopy:

@@ -1,0 +1,36 @@
+---
+
+enums:
+  DeviceType:
+functions:
+  CANbus_GetStatus:
+  CANbus_SendFrame:
+  CANbus_ReceiveFrame:
+  SetCANInterface:
+  CANComm_SendMessage:
+  CANComm_ReceiveMessage:
+  CANComm_OpenStreamSession:
+  CANComm_CloseStreamSession:
+  CANComm_ReadStreamSession:
+  CANComm_GetTxSchedulerStatus:
+  SleepUs:
+  GetStackTrace:
+  ReportError:
+  SimCreate:
+  SimConfigGet:
+  SimConfigSet:
+  SimDestroy:
+  SimDestroyAll:
+  DisposePlatform:
+  StartPlatform:
+  DisposeMgr:
+  StartMgr:
+classes:
+  canframe_t:
+    shared_ptr: true
+    attributes:
+      arbID:
+      timeStampUs:
+      data:
+      flags:
+      dlc:

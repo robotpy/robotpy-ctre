@@ -1,0 +1,11 @@
+---
+
+classes:
+  TxJob:
+    shared_ptr: true
+    attributes:
+      frame:
+      timer:
+      period:
+    methods:
+      TxJob:

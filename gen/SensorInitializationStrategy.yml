@@ -1,0 +1,9 @@
+---
+
+enums:
+  SensorInitializationStrategy:
+classes:
+  SensorInitializationStrategyRoutines:
+    shared_ptr: true
+    methods:
+      toString:

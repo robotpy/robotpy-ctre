@@ -1,0 +1,9 @@
+---
+
+enums:
+  RemoteSensorSource:
+classes:
+  RemoteSensorSourceRoutines:
+    shared_ptr: true
+    methods:
+      toString:

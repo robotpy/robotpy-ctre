@@ -1,0 +1,9 @@
+---
+
+enums:
+  SensorTimeBase:
+classes:
+  SensorTimeBaseRoutines:
+    shared_ptr: true
+    methods:
+      toString:

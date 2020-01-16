@@ -1,0 +1,14 @@
+---
+
+classes:
+  Utilities:
+    shared_ptr: true
+    methods:
+      abs:
+      bound:
+      cap:
+      Deadband:
+      IsWithin:
+      SmallerOf:
+      Split_1:
+      Split_2:

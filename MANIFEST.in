@@ -1,4 +1,0 @@
-include LICENSE
-include gen/*.j2 gen/*.yml gen/hooks.py
-include ctre/_impl/ctre_roborio.cpp
-include ctre/_impl/autogen/*.cpp ctre/_impl/autogen/*.hpp ctre/_impl/autogen/*.inc

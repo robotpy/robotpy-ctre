@@ -1,0 +1,20 @@
+---
+
+classes:
+  StatorCurrentLimitConfiguration:
+    shared_ptr: true
+    attributes:
+      enable:
+      currentLimit:
+      triggerThresholdCurrent:
+      triggerThresholdTime:
+    methods:
+      StatorCurrentLimitConfiguration:
+        overloads:
+          "":
+          double*, int:
+          bool, double, double, double:
+      ToString:
+      ToArray:
+      Deserialize:
+      Equals:

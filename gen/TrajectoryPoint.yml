@@ -1,0 +1,24 @@
+---
+
+classes:
+  TrajectoryPoint:
+    shared_ptr: true
+    attributes:
+      position:
+      velocity:
+      arbFeedFwd:
+      headingDeg:
+      auxiliaryPos:
+      auxiliaryVel:
+      auxiliaryArbFeedFwd:
+      profileSlotSelect0:
+      profileSlotSelect1:
+      isLastPoint:
+      zeroPos:
+      timeDur:
+      useAuxPID:
+    methods:
+      TrajectoryPoint:
+        overloads:
+          "":
+          double, double, double, double, double, double, uint32_t, uint32_t, bool, bool, uint32_t, bool:

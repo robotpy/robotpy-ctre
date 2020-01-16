@@ -1,0 +1,14 @@
+---
+
+classes:
+  TalonFXSensorCollection:
+    shared_ptr: true
+    methods:
+      TalonFXSensorCollection:
+      GetIntegratedSensorPosition:
+      GetIntegratedSensorAbsolutePosition:
+      GetIntegratedSensorVelocity:
+      SetIntegratedSensorPosition:
+      SetIntegratedSensorPositionToAbsolute:
+      IsFwdLimitSwitchClosed:
+      IsRevLimitSwitchClosed:

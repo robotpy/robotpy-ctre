@@ -1,0 +1,5 @@
+---
+
+enums:
+  ControlMode:
+  TalonFXControlMode:

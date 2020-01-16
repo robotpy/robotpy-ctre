@@ -1,0 +1,10 @@
+---
+
+classes:
+  ManualEvent:
+    shared_ptr: true
+    methods:
+      ManualEvent:
+      WaitForSignal:
+      Signal:
+      Clear:

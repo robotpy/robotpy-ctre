@@ -1,0 +1,12 @@
+---
+
+classes:
+  RxStream:
+    shared_ptr: true
+    methods:
+      RxStream:
+      ProcessFrame:
+      Count:
+      Front:
+      Pop:
+      HasOverflowed:

@@ -1,0 +1,22 @@
+---
+
+classes:
+  ConcurrentScheduler:
+    shared_ptr: true
+    attributes:
+      _loops:
+      _enabs:
+    methods:
+      ConcurrentScheduler:
+      Add:
+      RemoveAll:
+      Start:
+      Stop:
+      StartAll:
+      StopAll:
+      Process:
+      Iterated:
+      OnStart:
+      OnLoop:
+      OnStop:
+      IsDone:

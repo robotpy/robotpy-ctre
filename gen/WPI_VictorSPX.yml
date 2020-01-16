@@ -1,0 +1,21 @@
+---
+
+classes:
+  WPI_VictorSPX:
+    shared_ptr: true
+    methods:
+      WPI_VictorSPX:
+        overloads:
+          int:
+          "":
+      Set:
+        overloads:
+          double:
+          ControlMode, double:
+          ControlMode, double, DemandType, double:
+      SetVoltage:
+      SetInverted:
+        overloads:
+          InvertType:
+          bool:
+      ConfigSelectedFeedbackSensor:

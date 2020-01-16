@@ -1,0 +1,17 @@
+---
+
+enums:
+  LimitSwitchSource:
+  RemoteLimitSwitchSource:
+  LimitSwitchNormal:
+classes:
+  LimitSwitchRoutines:
+    shared_ptr: true
+    methods:
+      Promote:
+      IsRemote:
+      toString:
+        overloads:
+          ctre::phoenix::motorcontrol::LimitSwitchSource:
+          ctre::phoenix::motorcontrol::RemoteLimitSwitchSource:
+          ctre::phoenix::motorcontrol::LimitSwitchNormal:

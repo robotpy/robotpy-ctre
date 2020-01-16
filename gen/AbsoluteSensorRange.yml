@@ -1,0 +1,9 @@
+---
+
+enums:
+  AbsoluteSensorRange:
+classes:
+  AbsoluteSensorRangeRoutines:
+    shared_ptr: true
+    methods:
+      toString:

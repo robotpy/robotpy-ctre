@@ -1,0 +1,9 @@
+---
+
+enums:
+  SensorVelocityMeasPeriod:
+classes:
+  SensorVelocityMeasPeriodRoutines:
+    shared_ptr: true
+    methods:
+      toString:

@@ -1,0 +1,7 @@
+---
+
+classes:
+  LinearInterpolation:
+    shared_ptr: true
+    methods:
+      Calculate:

@@ -1,0 +1,8 @@
+---
+
+classes:
+  IFollower:
+    shared_ptr: true
+    methods:
+      Follow:
+      ValueUpdated:

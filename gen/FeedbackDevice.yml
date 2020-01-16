@@ -1,0 +1,17 @@
+---
+
+enums:
+  FeedbackDevice:
+  TalonSRXFeedbackDevice:
+  TalonFXFeedbackDevice:
+  RemoteFeedbackDevice:
+classes:
+  FeedbackDeviceRoutines:
+    shared_ptr: true
+    methods:
+      toString:
+        overloads:
+          ctre::phoenix::motorcontrol::FeedbackDevice:
+          ctre::phoenix::motorcontrol::TalonSRXFeedbackDevice:
+          ctre::phoenix::motorcontrol::TalonFXFeedbackDevice:
+          ctre::phoenix::motorcontrol::RemoteFeedbackDevice:

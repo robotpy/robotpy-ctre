@@ -1,0 +1,16 @@
+---
+
+classes:
+  ButtonMonitor:
+    shared_ptr: true
+    methods:
+      ButtonMonitor:
+      Process:
+      OnStart:
+      OnLoop:
+      IsDone:
+      OnStop:
+  ButtonMonitor::IButtonPressEventHandler:
+    shared_ptr: true
+    methods:
+      OnButtonPress:

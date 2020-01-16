@@ -1,0 +1,9 @@
+---
+
+enums:
+  VelocityMeasPeriod:
+classes:
+  VelocityMeasPeriodRoutines:
+    shared_ptr: true
+    methods:
+      toString:

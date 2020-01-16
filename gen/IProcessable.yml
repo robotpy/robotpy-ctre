@@ -1,0 +1,7 @@
+---
+
+classes:
+  IProcessable:
+    shared_ptr: true
+    methods:
+      Process:

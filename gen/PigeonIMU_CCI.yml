@@ -1,0 +1,56 @@
+---
+
+attributes:
+  pigeonPresent:
+functions:
+  c_PigeonIMU_Create2:
+  c_PigeonIMU_Create1:
+  c_PigeonIMU_Destroy:
+  c_PigeonIMU_DestroyAll:
+  c_PigeonIMU_GetDescription:
+  c_PigeonIMU_ConfigSetParameter:
+  c_PigeonIMU_ConfigGetParameter:
+  c_PigeonIMU_ConfigGetParameter_6:
+  c_PigeonIMU_ConfigSetCustomParam:
+  c_PigeonIMU_ConfigGetCustomParam:
+  c_PigeonIMU_ConfigFactoryDefault:
+  c_PigeonIMU_SetYaw:
+  c_PigeonIMU_AddYaw:
+  c_PigeonIMU_SetYawToCompass:
+  c_PigeonIMU_SetFusedHeading:
+  c_PigeonIMU_AddFusedHeading:
+  c_PigeonIMU_SetFusedHeadingToCompass:
+  c_PigeonIMU_SetAccumZAngle:
+  c_PigeonIMU_SetTemperatureCompensationDisable:
+  c_PigeonIMU_SetCompassDeclination:
+  c_PigeonIMU_SetCompassAngle:
+  c_PigeonIMU_EnterCalibrationMode:
+  c_PigeonIMU_GetGeneralStatus:
+  c_PigeonIMU_GetLastError:
+  c_PigeonIMU_Get6dQuaternion:
+  c_PigeonIMU_GetYawPitchRoll:
+  c_PigeonIMU_GetAccumGyro:
+  c_PigeonIMU_GetAbsoluteCompassHeading:
+  c_PigeonIMU_GetCompassHeading:
+  c_PigeonIMU_GetCompassFieldStrength:
+  c_PigeonIMU_GetTemp:
+  c_PigeonIMU_GetState:
+  c_PigeonIMU_GetUpTime:
+  c_PigeonIMU_GetRawMagnetometer:
+  c_PigeonIMU_GetBiasedMagnetometer:
+  c_PigeonIMU_GetBiasedAccelerometer:
+  c_PigeonIMU_GetRawGyro:
+  c_PigeonIMU_GetAccelerometerAngles:
+  c_PigeonIMU_GetFusedHeading2:
+  c_PigeonIMU_GetFusedHeading1:
+  c_PigeonIMU_GetResetCount:
+  c_PigeonIMU_GetResetFlags:
+  c_PigeonIMU_GetFirmwareVersion:
+  c_PigeonIMU_HasResetOccurred:
+  c_PigeonIMU_SetLastError:
+  c_PigeonIMU_GetFaults:
+  c_PigeonIMU_GetStickyFaults:
+  c_PigeonIMU_ClearStickyFaults:
+  c_PigeonIMU_SetStatusFramePeriod:
+  c_PigeonIMU_GetStatusFramePeriod:
+  c_PigeonIMU_SetControlFramePeriod:

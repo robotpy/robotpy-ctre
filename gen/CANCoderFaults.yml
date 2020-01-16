@@ -1,0 +1,18 @@
+---
+
+classes:
+  CANCoderFaults:
+    shared_ptr: true
+    attributes:
+      HardwareFault:
+      APIError:
+      UnderVoltage:
+      ResetDuringEn:
+    methods:
+      HasAnyFault:
+      ToBitfield:
+      Update:
+      CANCoderFaults:
+        overloads:
+          int:
+          "":

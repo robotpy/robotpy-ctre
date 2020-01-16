@@ -1,0 +1,12 @@
+---
+
+classes:
+  PigeonIMU_StickyFaults:
+    shared_ptr: true
+    methods:
+      HasAnyFault:
+      ToBitfield:
+      PigeonIMU_StickyFaults:
+        overloads:
+          int:
+          "":

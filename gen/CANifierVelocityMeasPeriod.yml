@@ -1,0 +1,9 @@
+---
+
+enums:
+  CANifierVelocityMeasPeriod:
+classes:
+  CANifierVelocityMeasPeriodRoutines:
+    shared_ptr: true
+    methods:
+      toString:

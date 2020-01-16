@@ -1,0 +1,12 @@
+---
+
+classes:
+  CANifierStickyFaults:
+    shared_ptr: true
+    methods:
+      HasAnyFault:
+      ToBitfield:
+      CANifierStickyFaults:
+        overloads:
+          int:
+          "":

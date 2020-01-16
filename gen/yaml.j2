@@ -1,8 +1,0 @@
----
-{% for header in headers %}
-{% for fn in header.functions %}
-{{ fn.name }}:
-  code: |
-    raise NotImplementedError
-{% endfor %}
-{% endfor %}

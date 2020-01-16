@@ -1,0 +1,7 @@
+---
+
+functions:
+  c_Logger_Close:
+  c_Logger_Open:
+  c_Logger_Log:
+  c_Logger_Description:

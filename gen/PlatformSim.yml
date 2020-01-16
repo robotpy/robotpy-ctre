@@ -1,0 +1,11 @@
+---
+
+classes:
+  PlatformSim:
+    shared_ptr: true
+    methods:
+      SimCreate:
+      SimDestroy:
+      SimDestroyAll:
+      SimConfigGet:
+      SimConfigSet:

@@ -1,0 +1,22 @@
+---
+
+classes:
+  LibLoaderException:
+    shared_ptr: true
+    methods:
+      LibLoaderException:
+        overloads:
+          phoenix::ErrorCode, std::string&, std::string&:
+          phoenix::ErrorCode, std::string&, std::string&, std::string&:
+      GetPhoenixErrorCode:
+  LibLoader:
+    shared_ptr: true
+    methods:
+      LibLoader:
+      Open:
+      IsOpen:
+      Close:
+        overloads:
+          bool:
+          "":
+      LookupFunc:

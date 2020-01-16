@@ -1,0 +1,11 @@
+---
+
+classes:
+  Unmanaged:
+    shared_ptr: true
+    methods:
+      FeedEnable:
+      GetEnableState:
+      GetPhoenixVersion:
+      LoadPhoenix:
+      SetPhoenixDiagnosticsStartTime:

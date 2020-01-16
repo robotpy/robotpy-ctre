@@ -1,0 +1,27 @@
+---
+
+classes:
+  WPI_TalonFX:
+    shared_ptr: true
+    methods:
+      WPI_TalonFX:
+        overloads:
+          int:
+          "":
+      Set:
+        overloads:
+          double:
+          ControlMode, double:
+          ControlMode, double, DemandType, double:
+          TalonFXControlMode, double:
+          TalonFXControlMode, double, DemandType, double:
+      SetVoltage:
+      SetInverted:
+        overloads:
+          TalonFXInvertType:
+          InvertType:
+          bool:
+      ConfigSelectedFeedbackSensor:
+        overloads:
+          FeedbackDevice, int, int:
+          RemoteFeedbackDevice, int, int:

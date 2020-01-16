@@ -1,0 +1,17 @@
+---
+
+classes:
+  RCRadio3Ch:
+    shared_ptr: true
+    attributes:
+      CurrentStatus:
+    enums:
+      Channel:
+      Status:
+    methods:
+      RCRadio3Ch:
+      GetDutyCycleUs:
+      GetDutyCyclePerc:
+      GetSwitchValue:
+      GetPeriodUs:
+      Process:

@@ -1,0 +1,10 @@
+---
+
+classes:
+  PlatformCAN:
+    shared_ptr: true
+    methods:
+      SetCANInterface:
+      StartAll:
+      DestroyAll:
+      SetAutocacheLevel:

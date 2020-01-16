@@ -1,0 +1,13 @@
+---
+
+classes:
+  MovingAverage:
+    shared_ptr: true
+    methods:
+      MovingAverage:
+      Process:
+      Clear:
+      Push:
+      Pop:
+      GetSum:
+      GetCount:
