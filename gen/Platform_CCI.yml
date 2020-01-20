@@ -1,8 +1,0 @@
----
-
-functions:
-  c_SimCreate:
-  c_SimDestroy:
-  c_SimDestroyAll:
-  c_SimConfigGet:
-  c_SimConfigSet:

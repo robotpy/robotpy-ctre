@@ -1,8 +1,0 @@
----
-
-enums:
-  ControlFrame:
-  ControlFrameEnhanced:
-classes:
-  ControlFrameRoutines:
-    shared_ptr: true

@@ -1,9 +1,0 @@
----
-
-enums:
-  SensorTerm:
-classes:
-  SensorTermRoutines:
-    shared_ptr: true
-    methods:
-      toString:

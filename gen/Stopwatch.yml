@@ -1,9 +1,0 @@
----
-
-classes:
-  Stopwatch:
-    shared_ptr: true
-    methods:
-      Start:
-      DurationMs:
-      Duration:

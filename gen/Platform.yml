@@ -13,6 +13,9 @@ functions:
   CANComm_CloseStreamSession:
   CANComm_ReadStreamSession:
   CANComm_GetTxSchedulerStatus:
+    param_override:
+      unusedControlWorld:
+        x_type: int
   SleepUs:
   GetStackTrace:
   ReportError:

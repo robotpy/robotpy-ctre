@@ -1,7 +1,0 @@
----
-
-functions:
-  c_SetCANInterface:
-  c_DestroyAll:
-  c_StartAll:
-  c_Autocache_SetAutocacheLevel:

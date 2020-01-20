@@ -1,9 +1,0 @@
----
-
-classes:
-  WPI_MotorSafetyImplem:
-    shared_ptr: true
-    methods:
-      WPI_MotorSafetyImplem:
-      StopMotor:
-      GetDescription:

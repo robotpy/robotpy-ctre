@@ -1,7 +1,0 @@
----
-
-classes:
-  HsvToRgb:
-    shared_ptr: true
-    methods:
-      Convert:

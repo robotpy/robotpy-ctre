@@ -1,9 +1,0 @@
----
-
-functions:
-  c_BuffTrajPointStream_Create1:
-  c_BuffTrajPointStream_DestroyAll:
-  c_BuffTrajPointStream_Destroy:
-  c_BuffTrajPointStream_Clear:
-  c_BuffTrajPointStream_Write:
-  c_BuffTrajPointStream_Lookup:
