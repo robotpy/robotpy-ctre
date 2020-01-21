@@ -9,142 +9,130 @@ requires = [
 [tool.robotpy-build]
     base_package = "ctre"
 
-[tool.robotpy-build.wrappers."ctre.wpiapi_cpp".maven_lib_download]
-    artifact_id = "wpiapi-cpp"
-    group_id = "com.ctre.phoenix"
-    repo_url = "http://devsite.ctr-electronics.com/maven/release"
-    version = "5.17.4"
+# [tool.robotpy-build.wrappers."ctre.wpiapi_cpp".maven_lib_download]
+#     artifact_id = "wpiapi-cpp"
+#     group_id = "com.ctre.phoenix"
+#     repo_url = "http://devsite.ctr-electronics.com/maven/release"
+#     version = "5.17.6"
+#     # static_lib = "True"
+#     libs = ["CTRE_Phoenix_WPI"]
 
-    libs = ["CTRE_Phoenix_WPI"]
-
-[tool.robotpy-build.wrappers."ctre.wpiapi_cpp"]
-    name = "wpiapi-cpp"
-    extra_includes = ["ctre/core/include", "ctre/api_cpp/include", "ctre/cci/include", "ctre/canutils/include"]
-
-[tool.robotpy-build.wrappers."ctre.api_cpp".maven_lib_download]
-    artifact_id = "api-cpp"
-    group_id = "com.ctre.phoenix"
-    repo_url = "http://devsite.ctr-electronics.com/maven/release"
-    version = "5.17.4"
-
-    libs = ["CTRE_Phoenix"]
-
-[tool.robotpy-build.wrappers."ctre.api_cpp"]
-    name = "api-cpp"
-    extra_includes = ["ctre/core/include", "ctre/wpiapi_cpp/include", "ctre/cci/include", "ctre/canutils/include"]
-
-[tool.robotpy-build.wrappers."ctre.cci".maven_lib_download]
-    artifact_id = "cci"
-    group_id = "com.ctre.phoenix"
-    repo_url = "http://devsite.ctr-electronics.com/maven/release"
-    version = "5.17.4"
-
-    libs = ["CTRE_PhoenixCCI"]
-
-[tool.robotpy-build.wrappers."ctre.cci"]
-    name = "cci"
-    extra_includes = ["ctre/core/include", "ctre/api_cpp/include", "ctre/wpiapi_cpp/include", "ctre/canutils/include"]
-
-[tool.robotpy-build.wrappers."ctre.canutils".maven_lib_download]
-    artifact_id = "canutils"
-    group_id = "com.ctre.phoenix"
-    repo_url = "http://devsite.ctr-electronics.com/maven/release"
-    version = "5.17.4"
-
-    libs = ["CTRE_PhoenixCanutils"]
-
-[tool.robotpy-build.wrappers."ctre.canutils"]
-    name = "canutils"
-    extra_includes = ["ctre/core/include", "ctre/api_cpp/include", "ctre/cci/include", "ctre/wpiapi_cpp/include"]
-
-[tool.robotpy-build.wrappers."ctre.core".maven_lib_download]
-    artifact_id = "core"
-    group_id = "com.ctre.phoenix"
-    repo_url = "http://devsite.ctr-electronics.com/maven/release"
-    version = "5.17.4"
-
-    libs = ["CTRE_PhoenixCore"]
-
-[tool.robotpy-build.wrappers."ctre.core"]
-    name = "core"
-    extra_includes = ["ctre/wpiapi_cpp/include", "ctre/api_cpp/include", "ctre/cci/include", "ctre/canutils/include"]
+[tool.robotpy-build.wrappers."ctre"]
+    name = "ctre"
+    extra_includes = ["ctre/wpiapi_cpp/include", "ctre/core/include", "ctre/api_cpp/include", "ctre/cci/include", "ctre/canutils/include"]
     depends = ["wpilib_core", "wpiutil"]
+
+# [tool.robotpy-build.wrappers."ctre.api_cpp".maven_lib_download]
+#     artifact_id = "api-cpp"
+#     group_id = "com.ctre.phoenix"
+#     repo_url = "http://devsite.ctr-electronics.com/maven/release"
+#     version = "5.17.6"
+#     # static_lib = "True"
+
+#     libs = ["CTRE_Phoenix"]
+
+# [tool.robotpy-build.wrappers."ctre.api_cpp"]
+#     name = "api-cpp"
+#     extra_includes = ["ctre/core/include", "ctre/wpiapi_cpp/include", "ctre/cci/include", "ctre/canutils/include"]
+
+# [tool.robotpy-build.wrappers."ctre.cci".maven_lib_download]
+#     artifact_id = "cci"
+#     group_id = "com.ctre.phoenix"
+#     repo_url = "http://devsite.ctr-electronics.com/maven/release"
+#     version = "5.17.6"
+
+#     libs = ["CTRE_PhoenixCCI"]
+
+# [tool.robotpy-build.wrappers."ctre.cci"]
+#     name = "cci"
+#     extra_includes = ["ctre/core/include", "ctre/api_cpp/include", "ctre/wpiapi_cpp/include", "ctre/canutils/include"]
+
+# [tool.robotpy-build.wrappers."ctre.canutils".maven_lib_download]
+#     artifact_id = "canutils"
+#     group_id = "com.ctre.phoenix"
+#     repo_url = "http://devsite.ctr-electronics.com/maven/release"
+#     version = "5.17.6"
+
+#     libs = ["CTRE_PhoenixCanutils"]
+
+# [tool.robotpy-build.wrappers."ctre.canutils"]
+#     name = "canutils"
+#     extra_includes = ["ctre/core/include", "ctre/api_cpp/include", "ctre/cci/include", "ctre/wpiapi_cpp/include"]
+
+# [tool.robotpy-build.wrappers."ctre.core".maven_lib_download]
+#     artifact_id = "core"
+#     group_id = "com.ctre.phoenix"
+#     repo_url = "http://devsite.ctr-electronics.com/maven/release"
+#     version = "5.17.6"
+
+#     libs = ["CTRE_PhoenixCore"]
+
+# [tool.robotpy-build.wrappers."ctre.core"]
+#     name = "core"
+#     extra_includes = ["ctre/wpiapi_cpp/include", "ctre/api_cpp/include", "ctre/cci/include", "ctre/canutils/include"]
+#     depends = ["wpilib_core", "wpiutil"]
 
 generation_data = "gen"
 
+
 generate = [
-    # ctre/phoenix/motorcontrol
-    { WPI_MotorSafetyImplem = "ctre/phoenix/motorcontrol/WPI_MotorSafetyImplem.h" },
-
-    # ctre/phoenix/motorcontrol/can
-    { WPI_BaseMotorController = "ctre/phoenix/motorcontrol/can/WPI_BaseMotorController.h" },
-    { WPI_TalonFX = "ctre/phoenix/motorcontrol/can/WPI_TalonFX.h" },
-    { WPI_TalonSRX = "ctre/phoenix/motorcontrol/can/WPI_TalonSRX.h" },
-    { WPI_VictorSPX = "ctre/phoenix/motorcontrol/can/WPI_VictorSPX.h" },
-
-    # ctre/phoenix/tasking
-    { ButtonMonitor = "ctre/phoenix/tasking/ButtonMonitor.h" },
-
-    # ctre
+    # # ctre
     { Phoenix = "ctre/Phoenix.h" },
 
-    # ctre/phoenix
-    { CANBusAddressable = "ctre/phoenix/CANBusAddressable.h" },
-    { CANifier = "ctre/phoenix/CANifier.h" },
-    { CTRLogger = "ctre/phoenix/CTRLogger.h" },
-    { CustomParamConfiguration = "ctre/phoenix/CustomParamConfiguration.h" },
-    { HsvToRgb = "ctre/phoenix/HsvToRgb.h" },
-    { LinearInterpolation = "ctre/phoenix/LinearInterpolation.h" },
-    { RCRadio3Ch = "ctre/phoenix/RCRadio3Ch.h" },
-    { Stopwatch = "ctre/phoenix/Stopwatch.h" },
-    { Utilities = "ctre/phoenix/Utilities.h" },
+    # # ctre/phoenix
+    { ErrorCode = "ctre/phoenix/ErrorCode.h" },
 
-    # ctre/phoenix/motion
-    { BufferedTrajectoryPointStream = "ctre/phoenix/motion/BufferedTrajectoryPointStream.h" },
+    # # ctre/phoenix
+    { paramEnum = "ctre/phoenix/paramEnum.h" },
 
-    # ctre/phoenix/platform
+    # # ctre/phoenix/cci
+    { CCI = "ctre/phoenix/cci/CCI.h" },
+
+    # # ctre/phoenix/core
+    { GadgeteerUartClient = "ctre/phoenix/core/GadgeteerUartClient.h" },
+
+    { BusMgr = "BusMgr.h" },
+    { ManualEvent = "ManualEvent.h" },
+    { RxStream = "RxStream.h" },
+    { TxJob = "TxJob.h" },
+
+    # # ctre/phoenix/unmanaged
+    { Unmanaged = "ctre/phoenix/unmanaged/Unmanaged.h" },
+
+    # # ctre/phoenix/runtime
+    # { LibLoader = "ctre/phoenix/runtime/LibLoader.h" },
+
+    # # ctre/phoenix/string_util
+    { string_util = "ctre/phoenix/string_util/string_util.h" },
+
+    # # ctre/phoenix/platform
+    # { Platform-pack = "ctre/phoenix/platform/Platform-pack.h" },
+    { Platform = "ctre/phoenix/platform/Platform.h" },
+
+    # # ctre/phoenix/platform
     { PlatformSim = "ctre/phoenix/platform/PlatformSim.h" },
 
-    # ctre/phoenix/platform/can
+    # # ctre/phoenix/platform/can
     { PlatformCAN = "ctre/phoenix/platform/can/PlatformCAN.h" },
 
-    # ctre/phoenix/sensors
-    { CANCoder = "ctre/phoenix/sensors/CANCoder.h" },
-    { PigeonIMU = "ctre/phoenix/sensors/PigeonIMU.h" },
+    # # ctre/phoenix/motion
+    { BufferedTrajectoryPointStream = "ctre/phoenix/motion/BufferedTrajectoryPointStream.h" },
+
+    # ctre/phoenix/motion
+    { MotionProfileStatus = "ctre/phoenix/motion/MotionProfileStatus.h" },
+    { SetValueMotionProfile = "ctre/phoenix/motion/SetValueMotionProfile.h" },
+    { TrajectoryPoint = "ctre/phoenix/motion/TrajectoryPoint.h" },
 
     # ctre/phoenix/signals
     { IInvertable = "ctre/phoenix/signals/IInvertable.h" },
     { IOutputSignal = "ctre/phoenix/signals/IOutputSignal.h" },
     { MovingAverage = "ctre/phoenix/signals/MovingAverage.h" },
 
-    # ctre/phoenix/tasking
+    # # ctre/phoenix/tasking
     { ILoopable = "ctre/phoenix/tasking/ILoopable.h" },
     { IProcessable = "ctre/phoenix/tasking/IProcessable.h" },
 
-    # ctre/phoenix/tasking/Schedulers
-    { ConcurrentScheduler = "ctre/phoenix/tasking/Schedulers/ConcurrentScheduler.h" },
-    { SequentialScheduler = "ctre/phoenix/tasking/Schedulers/SequentialScheduler.h" },
-
-    # ctre/phoenix/unmanaged
-    { Unmanaged = "ctre/phoenix/unmanaged/Unmanaged.h" },
-
-    # ctre/phoenix
-    { ErrorCode = "ctre/phoenix/ErrorCode.h" },
-
-    # ctre/phoenix/cci
-    { CCI = "ctre/phoenix/cci/CCI.h" },
-
-    # ctre/phoenix/platform
-    { Platform-pack = "ctre/phoenix/platform/Platform-pack.h" },
-    { Platform = "ctre/phoenix/platform/Platform.h" },
-
-    # ctre/phoenix/runtime
-    { LibLoader = "ctre/phoenix/runtime/LibLoader.h" },
-
-    # ctre/phoenix/string_util
-    { string_util = "ctre/phoenix/string_util/string_util.h" },
-
-    # ctre/phoenix
+    # # ctre/phoenix
     { CANifierControlFrame = "ctre/phoenix/CANifierControlFrame.h" },
     { CANifierFaults = "ctre/phoenix/CANifierFaults.h" },
     { CANifierStatusFrame = "ctre/phoenix/CANifierStatusFrame.h" },
@@ -152,24 +140,16 @@ generate = [
     { CANifierVelocityMeasPeriod = "ctre/phoenix/CANifierVelocityMeasPeriod.h" },
     { autocache = "ctre/phoenix/autocache.h" },
 
-    # ctre/phoenix/cci
-    { BuffTrajPointStream_CCI = "ctre/phoenix/cci/BuffTrajPointStream_CCI.h" },
-    { CANCoder_CCI = "ctre/phoenix/cci/CANCoder_CCI.h" },
-    { CANifier_CCI = "ctre/phoenix/cci/CANifier_CCI.h" },
-    { Logger_CCI = "ctre/phoenix/cci/Logger_CCI.h" },
-    { MotController_CCI = "ctre/phoenix/cci/MotController_CCI.h" },
-    { PigeonIMU_CCI = "ctre/phoenix/cci/PigeonIMU_CCI.h" },
-    { PlatformCAN_CCI = "ctre/phoenix/cci/PlatformCAN_CCI.h" },
-    { Platform_CCI = "ctre/phoenix/cci/Platform_CCI.h" },
-    { Unmanaged_CCI = "ctre/phoenix/cci/Unmanaged_CCI.h" },
-
-    # ctre/phoenix/core
-    { GadgeteerUartClient = "ctre/phoenix/core/GadgeteerUartClient.h" },
-
-    # ctre/phoenix/motion
-    { MotionProfileStatus = "ctre/phoenix/motion/MotionProfileStatus.h" },
-    { SetValueMotionProfile = "ctre/phoenix/motion/SetValueMotionProfile.h" },
-    { TrajectoryPoint = "ctre/phoenix/motion/TrajectoryPoint.h" },
+    # # ctre/phoenix
+    { CANBusAddressable = "ctre/phoenix/CANBusAddressable.h" },
+    # { CANifier = "ctre/phoenix/CANifier.h" },
+    { CTRLogger = "ctre/phoenix/CTRLogger.h" },
+    { CustomParamConfiguration = "ctre/phoenix/CustomParamConfiguration.h" },
+    # { HsvToRgb = "ctre/phoenix/HsvToRgb.h" },
+    { LinearInterpolation = "ctre/phoenix/LinearInterpolation.h" },
+    { RCRadio3Ch = "ctre/phoenix/RCRadio3Ch.h" },
+    { Stopwatch = "ctre/phoenix/Stopwatch.h" },
+    # { Utilities = "ctre/phoenix/Utilities.h" },
 
     # ctre/phoenix/motorcontrol
     { ControlFrame = "ctre/phoenix/motorcontrol/ControlFrame.h" },
@@ -190,10 +170,7 @@ generate = [
     { SupplyCurrentLimitConfiguration = "ctre/phoenix/motorcontrol/SupplyCurrentLimitConfiguration.h" },
     { VelocityMeasPeriod = "ctre/phoenix/motorcontrol/VelocityMeasPeriod.h" },
 
-    # ctre/phoenix
-    { paramEnum = "ctre/phoenix/paramEnum.h" },
-
-    # ctre/phoenix/sensors
+    # # ctre/phoenix/sensors
     { AbsoluteSensorRange = "ctre/phoenix/sensors/AbsoluteSensorRange.h" },
     { CANCoderFaults = "ctre/phoenix/sensors/CANCoderFaults.h" },
     { CANCoderStatusFrame = "ctre/phoenix/sensors/CANCoderStatusFrame.h" },
@@ -207,20 +184,45 @@ generate = [
     { SensorTimeBase = "ctre/phoenix/sensors/SensorTimeBase.h" },
     { SensorVelocityMeasPeriod = "ctre/phoenix/sensors/SensorVelocityMeasPeriod.h" },
 
-    { BusMgr = "BusMgr.h" },
-    { ManualEvent = "ManualEvent.h" },
-    { RxStream = "RxStream.h" },
-    { TxJob = "TxJob.h" },
 
-    # ctre/phoenix/motorcontrol
+    # # ctre/phoenix/motorcontrol
+    { WPI_MotorSafetyImplem = "ctre/phoenix/motorcontrol/WPI_MotorSafetyImplem.h" },
+
+
+    # # ctre/phoenix/motorcontrol
     { DeviceCatalog = "ctre/phoenix/motorcontrol/DeviceCatalog.h" },
     { GroupMotorControllers = "ctre/phoenix/motorcontrol/GroupMotorControllers.h" },
     { IFollower = "ctre/phoenix/motorcontrol/IFollower.h" },
     { IMotorController = "ctre/phoenix/motorcontrol/IMotorController.h" },
-    { IMotorControllerEnhanced = "ctre/phoenix/motorcontrol/IMotorControllerEnhanced.h" },
-    { SensorCollection = "ctre/phoenix/motorcontrol/SensorCollection.h" },
-    { TalonFXSensorCollection = "ctre/phoenix/motorcontrol/TalonFXSensorCollection.h" },
+    # { IMotorControllerEnhanced = "ctre/phoenix/motorcontrol/IMotorControllerEnhanced.h" },
+    # { SensorCollection = "ctre/phoenix/motorcontrol/SensorCollection.h" },
+    # { TalonFXSensorCollection = "ctre/phoenix/motorcontrol/TalonFXSensorCollection.h" },
 
+
+    # # # ctre/phoenix/motorcontrol/can
+    { BaseMotorController = "ctre/phoenix/motorcontrol/can/BaseMotorController.h" },
+    # { BaseTalon = "ctre/phoenix/motorcontrol/can/BaseTalon.h" },
+    # { TalonFX = "ctre/phoenix/motorcontrol/can/TalonFX.h" },
+    # { TalonSRX = "ctre/phoenix/motorcontrol/can/TalonSRX.h" },
+    # { VictorSPX = "ctre/phoenix/motorcontrol/can/VictorSPX.h" },
+
+    # # # ctre/phoenix/motorcontrol/can
+    # { WPI_BaseMotorController = "ctre/phoenix/motorcontrol/can/WPI_BaseMotorController.h" },
+    # { WPI_TalonFX = "ctre/phoenix/motorcontrol/can/WPI_TalonFX.h" },
+    # { WPI_TalonSRX = "ctre/phoenix/motorcontrol/can/WPI_TalonSRX.h" },
+    # { WPI_VictorSPX = "ctre/phoenix/motorcontrol/can/WPI_VictorSPX.h" },
+
+
+    # # ctre/phoenix/sensors
+    # { CANCoder = "ctre/phoenix/sensors/CANCoder.h" },
+    # { PigeonIMU = "ctre/phoenix/sensors/PigeonIMU.h" },
+
+    # # ctre/phoenix/tasking
+    # { ButtonMonitor = "ctre/phoenix/tasking/ButtonMonitor.h" },
+
+    # # ctre/phoenix/tasking/Schedulers
+    # { ConcurrentScheduler = "ctre/phoenix/tasking/Schedulers/ConcurrentScheduler.h" },
+    # { SequentialScheduler = "ctre/phoenix/tasking/Schedulers/SequentialScheduler.h" },
 ]
 
 [tool.robotpy-build.metadata]
