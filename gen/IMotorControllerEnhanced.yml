@@ -1,14 +1,12 @@
 ---
-extra_includes:
-  - ctre/phoenix/ErrorCode.h
-  - ctre/phoenix/motorcontrol/IFollower.h
-  - ctre/phoenix/motorcontrol/IMotorController.h
-  - ctre/phoenix/motorcontrol/VelocityMeasPeriod.h
+# extra_includes dont work.
+# Manually add the two below to the IMotorControllerEnhanced.h
+#include "IMotorController.h"
+#include "ctre/phoenix/motorcontrol/VelocityMeasPeriod.h"
 classes:
   IMotorControllerEnhanced:
     typealias:
       - ctre::phoenix::ErrorCode
-      - ctre::phoenix::ParamEnum
     shared_ptr: true
     methods:
       ConfigSelectedFeedbackSensor:
@@ -25,7 +23,6 @@ classes:
           StatusFrameEnhanced, int:
       GetOutputCurrent:
       ConfigVelocityMeasurementPeriod:
-        ignore: true
       ConfigVelocityMeasurementWindow:
       ConfigForwardLimitSwitchSource:
         overloads:

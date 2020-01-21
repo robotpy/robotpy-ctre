@@ -1,0 +1,26 @@
+---
+extra_includes:
+  - ctre/phoenix/motorcontrol/can/BaseTalon.h
+classes:
+  SensorCollection:
+    shared_ptr: true
+    methods:
+      SensorCollection:
+      GetAnalogIn:
+      SetAnalogPosition:
+      GetAnalogInRaw:
+      GetAnalogInVel:
+      GetQuadraturePosition:
+      SetQuadraturePosition:
+      SyncQuadratureWithPulseWidth:
+      GetQuadratureVelocity:
+      GetPulseWidthPosition:
+      SetPulseWidthPosition:
+      GetPulseWidthVelocity:
+      GetPulseWidthRiseToFallUs:
+      GetPulseWidthRiseToRiseUs:
+      GetPinStateQuadA:
+      GetPinStateQuadB:
+      GetPinStateQuadIdx:
+      IsFwdLimitSwitchClosed:
+      IsRevLimitSwitchClosed:

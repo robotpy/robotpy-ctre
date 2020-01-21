@@ -194,13 +194,13 @@ generate = [
     { GroupMotorControllers = "ctre/phoenix/motorcontrol/GroupMotorControllers.h" },
     { IFollower = "ctre/phoenix/motorcontrol/IFollower.h" },
     { IMotorController = "ctre/phoenix/motorcontrol/IMotorController.h" },
-    # { IMotorControllerEnhanced = "ctre/phoenix/motorcontrol/IMotorControllerEnhanced.h" },
-    # { SensorCollection = "ctre/phoenix/motorcontrol/SensorCollection.h" },
-    # { TalonFXSensorCollection = "ctre/phoenix/motorcontrol/TalonFXSensorCollection.h" },
+    { IMotorControllerEnhanced = "ctre/phoenix/motorcontrol/IMotorControllerEnhanced.h" },
+    { SensorCollection = "ctre/phoenix/motorcontrol/SensorCollection.h" },
+    { TalonFXSensorCollection = "ctre/phoenix/motorcontrol/TalonFXSensorCollection.h" },
 
 
     # # # ctre/phoenix/motorcontrol/can
-    { BaseMotorController = "ctre/phoenix/motorcontrol/can/BaseMotorController.h" },
+    # { BaseMotorController = "ctre/phoenix/motorcontrol/can/BaseMotorController.h" },
     # { BaseTalon = "ctre/phoenix/motorcontrol/can/BaseTalon.h" },
     # { TalonFX = "ctre/phoenix/motorcontrol/can/TalonFX.h" },
     # { TalonSRX = "ctre/phoenix/motorcontrol/can/TalonSRX.h" },
@@ -218,7 +218,7 @@ generate = [
     # { PigeonIMU = "ctre/phoenix/sensors/PigeonIMU.h" },
 
     # # ctre/phoenix/tasking
-    # { ButtonMonitor = "ctre/phoenix/tasking/ButtonMonitor.h" },
+    { ButtonMonitor = "ctre/phoenix/tasking/ButtonMonitor.h" },
 
     # # ctre/phoenix/tasking/Schedulers
     # { ConcurrentScheduler = "ctre/phoenix/tasking/Schedulers/ConcurrentScheduler.h" },
