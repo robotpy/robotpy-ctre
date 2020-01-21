@@ -1,0 +1,9 @@
+---
+extra_includes:
+  - ctre/phoenix/motorcontrol/IMotorController.h
+classes:
+  IFollower:
+    shared_ptr: true
+    methods:
+      Follow:
+      ValueUpdated:

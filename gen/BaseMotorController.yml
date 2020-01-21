@@ -1,6 +1,7 @@
 ---
-extra_includes:
-  - ctre/phoenix/CustomParamConfiguration.h
+# extra_includes:
+  # - ctre/phoenix/CustomParamConfiguration.h
+  # - ctre/phoenix/IMotorController.h
 classes:
   BasePIDSetConfiguration:
     shared_ptr: true

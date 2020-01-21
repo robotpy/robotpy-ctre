@@ -1,0 +1,116 @@
+---
+extra_includes:
+  - ctre/phoenix/ErrorCode.h
+  - ctre/phoenix/motorcontrol/IFollower.h
+
+classes:
+  IMotorController:
+    typealias:
+      - ctre::phoenix::ErrorCode
+      - ctre::phoenix::ParamEnum
+    shared_ptr: true
+    methods:
+      Set:
+        overloads:
+          ControlMode, double:
+          ControlMode, double, double:
+          ControlMode, double, DemandType, double:
+      NeutralOutput:
+      SetNeutralMode:
+      SetSensorPhase:
+      SetInverted:
+        overloads:
+          bool:
+          InvertType:
+      GetInverted:
+      ConfigFactoryDefault:
+      ConfigOpenloopRamp:
+      ConfigClosedloopRamp:
+      ConfigPeakOutputForward:
+      ConfigPeakOutputReverse:
+      ConfigNominalOutputForward:
+      ConfigNominalOutputReverse:
+      ConfigNeutralDeadband:
+      ConfigVoltageCompSaturation:
+      ConfigVoltageMeasurementFilter:
+      EnableVoltageCompensation:
+      IsVoltageCompensationEnabled:
+      GetBusVoltage:
+      GetMotorOutputPercent:
+      GetMotorOutputVoltage:
+      GetTemperature:
+      ConfigSelectedFeedbackSensor:
+      ConfigSelectedFeedbackCoefficient:
+      ConfigRemoteFeedbackFilter:
+        overloads:
+          int, RemoteSensorSource, int, int:
+          ctre::phoenix::sensors::CANCoder&, int, int:
+      ConfigSensorTerm:
+      GetSelectedSensorPosition:
+      GetSelectedSensorVelocity:
+      SetSelectedSensorPosition:
+      SetControlFramePeriod:
+      SetStatusFramePeriod:
+      GetStatusFramePeriod:
+      ConfigForwardLimitSwitchSource:
+      ConfigReverseLimitSwitchSource:
+      OverrideLimitSwitchesEnable:
+      ConfigForwardSoftLimitThreshold:
+      ConfigReverseSoftLimitThreshold:
+      ConfigForwardSoftLimitEnable:
+      ConfigReverseSoftLimitEnable:
+      OverrideSoftLimitsEnable:
+      Config_kP:
+      Config_kI:
+      Config_kD:
+      Config_kF:
+      Config_IntegralZone:
+      ConfigAllowableClosedloopError:
+      ConfigMaxIntegralAccumulator:
+      ConfigClosedLoopPeakOutput:
+      ConfigClosedLoopPeriod:
+      ConfigAuxPIDPolarity:
+      SetIntegralAccumulator:
+      GetClosedLoopError:
+      GetIntegralAccumulator:
+      GetErrorDerivative:
+      SelectProfileSlot:
+      GetClosedLoopTarget:
+      GetActiveTrajectoryPosition:
+      GetActiveTrajectoryVelocity:
+      GetActiveTrajectoryArbFeedFwd:
+      GetActiveTrajectoryHeading:
+      ConfigMotionCruiseVelocity:
+      ConfigMotionAcceleration:
+      ConfigMotionSCurveStrength:
+      ClearMotionProfileTrajectories:
+      GetMotionProfileTopLevelBufferCount:
+      PushMotionProfileTrajectory:
+      IsMotionProfileTopLevelBufferFull:
+      ProcessMotionProfileBuffer:
+      GetMotionProfileStatus:
+      ClearMotionProfileHasUnderrun:
+      ChangeMotionControlFramePeriod:
+      ConfigMotionProfileTrajectoryPeriod:
+      ConfigFeedbackNotContinuous:
+      ConfigRemoteSensorClosedLoopDisableNeutralOnLOS:
+      ConfigClearPositionOnLimitF:
+      ConfigClearPositionOnLimitR:
+      ConfigClearPositionOnQuadIdx:
+      ConfigLimitSwitchDisableNeutralOnLOS:
+      ConfigSoftLimitDisableNeutralOnLOS:
+      ConfigPulseWidthPeriod_EdgesPerRot:
+      ConfigPulseWidthPeriod_FilterWindowSz:
+      GetLastError:
+      GetFaults:
+      GetStickyFaults:
+      ClearStickyFaults:
+      GetFirmwareVersion:
+      HasResetOccurred:
+      ConfigSetCustomParam:
+      ConfigGetCustomParam:
+      ConfigSetParameter:
+      ConfigGetParameter:
+      GetBaseID:
+      GetDeviceID:
+      GetControlMode:

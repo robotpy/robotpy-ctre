@@ -1,0 +1,37 @@
+---
+extra_includes:
+  - ctre/phoenix/ErrorCode.h
+  - ctre/phoenix/motorcontrol/IFollower.h
+  - ctre/phoenix/motorcontrol/IMotorController.h
+  - ctre/phoenix/motorcontrol/VelocityMeasPeriod.h
+classes:
+  IMotorControllerEnhanced:
+    typealias:
+      - ctre::phoenix::ErrorCode
+      - ctre::phoenix::ParamEnum
+    shared_ptr: true
+    methods:
+      ConfigSelectedFeedbackSensor:
+        overloads:
+          FeedbackDevice, int, int:
+          RemoteFeedbackDevice, int, int:
+      SetStatusFramePeriod:
+        overloads:
+          StatusFrame, uint8_t, int:
+          StatusFrameEnhanced, uint8_t, int:
+      GetStatusFramePeriod:
+        overloads:
+          StatusFrame, int:
+          StatusFrameEnhanced, int:
+      GetOutputCurrent:
+      ConfigVelocityMeasurementPeriod:
+        ignore: true
+      ConfigVelocityMeasurementWindow:
+      ConfigForwardLimitSwitchSource:
+        overloads:
+          RemoteLimitSwitchSource, LimitSwitchNormal, int, int:
+          LimitSwitchSource, LimitSwitchNormal, int:
+      ConfigReverseLimitSwitchSource:
+        overloads:
+          RemoteLimitSwitchSource, LimitSwitchNormal, int, int:
+          LimitSwitchSource, LimitSwitchNormal, int:
