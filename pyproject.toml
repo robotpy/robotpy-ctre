@@ -9,75 +9,108 @@ requires = [
 [tool.robotpy-build]
     base_package = "ctre"
 
-# [tool.robotpy-build.wrappers."ctre.wpiapi_cpp".maven_lib_download]
-#     artifact_id = "wpiapi-cpp"
-#     group_id = "com.ctre.phoenix"
-#     repo_url = "http://devsite.ctr-electronics.com/maven/release"
-#     version = "5.17.6"
-#     # static_lib = "True"
-#     libs = ["CTRE_Phoenix_WPI"]
+[tool.robotpy-build.wrappers."ctre._api".maven_lib_download]
+    artifact_id = "api-cpp"
+    group_id = "com.ctre.phoenix"
+    repo_url = "http://devsite.ctr-electronics.com/maven/release"
+    version = "5.17.6"
+
+    libs = ["CTRE_Phoenix"]
+    static_lib = true
+
+[tool.robotpy-build.wrappers."ctre._api"]
+    name = "ctre_api"
+
+[tool.robotpy-build.wrappers."ctre._canutils".maven_lib_download]
+    artifact_id = "canutils"
+    group_id = "com.ctre.phoenix"
+    repo_url = "http://devsite.ctr-electronics.com/maven/release"
+    version = "5.17.6"
+
+    libs = ["CTRE_PhoenixCanutils"]
+
+[tool.robotpy-build.wrappers."ctre._canutils"]
+    name = "ctre_canutils"
+
+[tool.robotpy-build.wrappers."ctre._cci".maven_lib_download]
+    artifact_id = "cci"
+    group_id = "com.ctre.phoenix"
+    repo_url = "http://devsite.ctr-electronics.com/maven/release"
+    version = "5.17.6"
+
+    libs = ["CTRE_PhoenixCCI"]
+
+[tool.robotpy-build.wrappers."ctre._cci"]
+    name = "ctre_cci"
+
+[tool.robotpy-build.wrappers."ctre._core".maven_lib_download]
+    artifact_id = "core"
+    group_id = "com.ctre.phoenix"
+    repo_url = "http://devsite.ctr-electronics.com/maven/release"
+    version = "5.17.6"
+
+    libs = ["CTRE_PhoenixCore"]
+
+[tool.robotpy-build.wrappers."ctre._core"]
+    name = "ctre_core"
+
+[tool.robotpy-build.wrappers."ctre._diagnostics".maven_lib_download]
+    artifact_id = "diagnostics"
+    group_id = "com.ctre.phoenix"
+    repo_url = "http://devsite.ctr-electronics.com/maven/release"
+    version = "5.17.6"
+
+    libs = ["CTRE_PhoenixDiagnostics"]
+
+[tool.robotpy-build.wrappers."ctre._diagnostics"]
+    name = "ctre_diagnostics"
+
+[tool.robotpy-build.wrappers."ctre._platform".maven_lib_download]
+    artifact_id = "platform-stub"
+    group_id = "com.ctre.phoenix"
+    repo_url = "http://devsite.ctr-electronics.com/maven/release"
+    version = "5.17.6"
+    static_lib = true
+    libs = ["CTRE_PhoenixPlatform"]
+
+[tool.robotpy-build.wrappers."ctre._platform"]
+    name = "ctre_platform"
+
+[tool.robotpy-build.wrappers."ctre._wpiapi".maven_lib_download]
+    artifact_id = "wpiapi-cpp"
+    group_id = "com.ctre.phoenix"
+    repo_url = "http://devsite.ctr-electronics.com/maven/release"
+    version = "5.17.6"
+    static_lib = true
+    libs = ["CTRE_Phoenix_WPI"]
+
+[tool.robotpy-build.wrappers."ctre._wpiapi"]
+    name = "ctre_wpiapi"
 
 [tool.robotpy-build.wrappers."ctre"]
     name = "ctre"
-    extra_includes = ["ctre/wpiapi_cpp/include", "ctre/core/include", "ctre/api_cpp/include", "ctre/cci/include", "ctre/canutils/include"]
-    depends = ["wpilib_core", "wpiutil"]
-
-# [tool.robotpy-build.wrappers."ctre.api_cpp".maven_lib_download]
-#     artifact_id = "api-cpp"
-#     group_id = "com.ctre.phoenix"
-#     repo_url = "http://devsite.ctr-electronics.com/maven/release"
-#     version = "5.17.6"
-#     # static_lib = "True"
-
-#     libs = ["CTRE_Phoenix"]
-
-# [tool.robotpy-build.wrappers."ctre.api_cpp"]
-#     name = "api-cpp"
-#     extra_includes = ["ctre/core/include", "ctre/wpiapi_cpp/include", "ctre/cci/include", "ctre/canutils/include"]
-
-# [tool.robotpy-build.wrappers."ctre.cci".maven_lib_download]
-#     artifact_id = "cci"
-#     group_id = "com.ctre.phoenix"
-#     repo_url = "http://devsite.ctr-electronics.com/maven/release"
-#     version = "5.17.6"
-
-#     libs = ["CTRE_PhoenixCCI"]
-
-# [tool.robotpy-build.wrappers."ctre.cci"]
-#     name = "cci"
-#     extra_includes = ["ctre/core/include", "ctre/api_cpp/include", "ctre/wpiapi_cpp/include", "ctre/canutils/include"]
-
-# [tool.robotpy-build.wrappers."ctre.canutils".maven_lib_download]
-#     artifact_id = "canutils"
-#     group_id = "com.ctre.phoenix"
-#     repo_url = "http://devsite.ctr-electronics.com/maven/release"
-#     version = "5.17.6"
-
-#     libs = ["CTRE_PhoenixCanutils"]
-
-# [tool.robotpy-build.wrappers."ctre.canutils"]
-#     name = "canutils"
-#     extra_includes = ["ctre/core/include", "ctre/api_cpp/include", "ctre/cci/include", "ctre/wpiapi_cpp/include"]
-
-# [tool.robotpy-build.wrappers."ctre.core".maven_lib_download]
-#     artifact_id = "core"
-#     group_id = "com.ctre.phoenix"
-#     repo_url = "http://devsite.ctr-electronics.com/maven/release"
-#     version = "5.17.6"
-
-#     libs = ["CTRE_PhoenixCore"]
-
-# [tool.robotpy-build.wrappers."ctre.core"]
-#     name = "core"
-#     extra_includes = ["ctre/wpiapi_cpp/include", "ctre/api_cpp/include", "ctre/cci/include", "ctre/canutils/include"]
-#     depends = ["wpilib_core", "wpiutil"]
+    depends = [
+        "ctre_core",
+        "ctre_platform",
+        "ctre_canutils",
+        "ctre_diagnostics",
+        "ctre_cci",
+        "ctre_wpiapi",
+        "ctre_api",
+        "wpilib_core",
+        "wpiutil",
+    ]
+    
+    sources = [
+        "ctre/ctre.cpp"
+    ]
 
 generation_data = "gen"
 
 
 generate = [
     # # ctre
-    { Phoenix = "ctre/Phoenix.h" },
+    # { Phoenix = "ctre/Phoenix.h" },
 
     # # ctre/phoenix
     { ErrorCode = "ctre/phoenix/ErrorCode.h" },
@@ -91,10 +124,11 @@ generate = [
     # # ctre/phoenix/core
     { GadgeteerUartClient = "ctre/phoenix/core/GadgeteerUartClient.h" },
 
-    { BusMgr = "BusMgr.h" },
-    { ManualEvent = "ManualEvent.h" },
-    { RxStream = "RxStream.h" },
-    { TxJob = "TxJob.h" },
+    # # CanUtils
+    # { BusMgr = "BusMgr.h" },
+    # { ManualEvent = "ManualEvent.h" },
+    # { RxStream = "RxStream.h" },
+    # { TxJob = "TxJob.h" },
 
     # # ctre/phoenix/unmanaged
     { Unmanaged = "ctre/phoenix/unmanaged/Unmanaged.h" },
