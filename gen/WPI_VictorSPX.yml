@@ -1,0 +1,26 @@
+---
+
+classes:
+  WPI_VictorSPX:
+    shared_ptr: true
+    force_no_trampoline: true
+    typealias:
+      - ctre::phoenix::motorcontrol::ControlMode
+      - ctre::phoenix::motorcontrol::DemandType
+      - ctre::phoenix::motorcontrol::InvertType
+    methods:
+      WPI_VictorSPX:
+        overloads:
+          int:
+          "":
+      Set:
+        overloads:
+          double:
+          ControlMode, double:
+          ControlMode, double, DemandType, double:
+      SetVoltage:
+      SetInverted:
+        overloads:
+          InvertType:
+          bool:
+      ConfigSelectedFeedbackSensor:

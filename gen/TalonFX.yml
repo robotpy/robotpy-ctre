@@ -1,0 +1,79 @@
+---
+
+classes:
+  TalonFXPIDSetConfiguration:
+    shared_ptr: true
+    force_no_trampoline: true
+  TalonFXConfiguration:
+    shared_ptr: true
+    force_no_trampoline: true
+    attributes:
+      supplyCurrLimit:
+      statorCurrLimit:
+      motorCommutation:
+      absoluteSensorRange:
+      integratedSensorOffsetDegrees:
+      initializationStrategy:
+    methods:
+      TalonFXConfiguration:
+      toString:
+        overloads:
+          "":
+          std::string:
+  TalonFXConfigUtil:
+    shared_ptr: true
+    force_no_trampoline: true
+    methods:
+      SupplyCurrentLimitDifferent:
+      StatorCurrentDurationDifferent:
+      MotorCommutationDifferent:
+      AbsoluteSensorRangeDifferent:
+      IntegratedSensorOffsetDegreesDifferent:
+      InitializationStrategyDifferent:
+  TalonFX:
+    shared_ptr: true
+    force_no_trampoline: true
+    typealias:
+      - ctre::phoenix::motorcontrol::TalonFXControlMode
+      - ctre::phoenix::motorcontrol::TalonFXInvertType
+      - ctre::phoenix::motorcontrol::TalonFXFeedbackDevice
+      - ctre::phoenix::motorcontrol::DemandType
+      - ctre::phoenix::motorcontrol::ControlMode
+      - ctre::phoenix::motorcontrol::FeedbackDevice
+      - ctre::phoenix::motorcontrol::RemoteFeedbackDevice
+      - ctre::phoenix::motorcontrol::InvertType
+    methods:
+      TalonFX:
+        overloads:
+          int:
+          "":
+      Set:
+        overloads:
+          TalonFXControlMode, double:
+          TalonFXControlMode, double, DemandType, double:
+          ControlMode, double:
+          ControlMode, double, DemandType, double:
+      SetInverted:
+        overloads:
+          TalonFXInvertType:
+          InvertType:
+          bool:
+      ConfigSelectedFeedbackSensor:
+        overloads:
+          TalonFXFeedbackDevice, int, int:
+          FeedbackDevice, int, int:
+          RemoteFeedbackDevice, int, int:
+      ConfigSupplyCurrentLimit:
+      ConfigStatorCurrentLimit:
+      ConfigGetSupplyCurrentLimit:
+      ConfigGetStatorCurrentLimit:
+      GetSensorCollection:
+      ConfigurePID:
+      GetPIDConfigs:
+      ConfigAllSettings:
+      GetAllConfigs:
+      ConfigMotorCommutation:
+      ConfigGetMotorCommutation:
+      ConfigIntegratedSensorAbsoluteRange:
+      ConfigIntegratedSensorOffset:
+      ConfigIntegratedSensorInitializationStrategy:

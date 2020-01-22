@@ -1,0 +1,36 @@
+---
+
+classes:
+  WPI_TalonFX:
+    shared_ptr: true
+    force_no_trampoline: true
+    typealias:
+      - ctre::phoenix::motorcontrol::ControlMode
+      - ctre::phoenix::motorcontrol::DemandType
+      - ctre::phoenix::motorcontrol::TalonFXControlMode
+      - ctre::phoenix::motorcontrol::FeedbackDevice
+      - ctre::phoenix::motorcontrol::RemoteFeedbackDevice
+      - ctre::phoenix::motorcontrol::TalonFXInvertType
+      - ctre::phoenix::motorcontrol::InvertType
+    methods:
+      WPI_TalonFX:
+        overloads:
+          int:
+          "":
+      Set:
+        overloads:
+          double:
+          ControlMode, double:
+          ControlMode, double, DemandType, double:
+          TalonFXControlMode, double:
+          TalonFXControlMode, double, DemandType, double:
+      SetVoltage:
+      SetInverted:
+        overloads:
+          TalonFXInvertType:
+          InvertType:
+          bool:
+      ConfigSelectedFeedbackSensor:
+        overloads:
+          FeedbackDevice, int, int:
+          RemoteFeedbackDevice, int, int:

@@ -1,7 +1,6 @@
----
+# ---
 # extra_includes:
-  # - ctre/phoenix/CustomParamConfiguration.h
-  # - ctre/phoenix/IMotorController.h
+#   - ctre/phoenix/motorcontrol/IMotorController.h
 classes:
   BasePIDSetConfiguration:
     shared_ptr: true
@@ -62,6 +61,7 @@ classes:
       ClosedLoopPeriodDifferent:
   BaseMotorControllerConfiguration:
     shared_ptr: true
+    force_no_trampoline: true
     attributes:
       openloopRamp:
       closedloopRamp:
@@ -107,6 +107,7 @@ classes:
           std::string:
   BaseMotorControllerUtil:
     shared_ptr: true
+    force_no_trampoline: true
     methods:
       OpenloopRampDifferent:
       ClosedloopRampDifferent:
@@ -140,11 +141,31 @@ classes:
       TrajectoryInterpolationEnableDifferent:
   BaseMotorController:
     shared_ptr: true
+    force_no_trampoline: true
+    base_qualnames:
+      IMotorController: ctre::phoenix::motorcontrol::IMotorController
+    typealias:
+      - ctre::phoenix::ErrorCode
+      - ctre::phoenix::ParamEnum
+      - ctre::phoenix::motorcontrol::IMotorController
+      - ctre::phoenix::motorcontrol::ControlMode
+      - ctre::phoenix::motorcontrol::DemandType
+      - ctre::phoenix::motorcontrol::InvertType
+      - ctre::phoenix::motorcontrol::RemoteFeedbackDevice
+      - ctre::phoenix::motorcontrol::FeedbackDevice
+      - ctre::phoenix::motorcontrol::RemoteSensorSource
+      - ctre::phoenix::motorcontrol::SensorTerm
+      - ctre::phoenix::motorcontrol::StatusFrame
+      - ctre::phoenix::motorcontrol::StatusFrameEnhanced
+      - ctre::phoenix::motorcontrol::RemoteLimitSwitchSource
+      - ctre::phoenix::motorcontrol::LimitSwitchNormal
+      - ctre::phoenix::motorcontrol::LimitSwitchSource
     methods:
       BaseMotorController:
         overloads:
           int, char*:
           "":
+            ignore: true
       DestroyAllMotControllers:
       GetDeviceID:
       Set:

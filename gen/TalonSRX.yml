@@ -1,0 +1,56 @@
+---
+
+classes:
+  TalonSRXPIDSetConfiguration:
+    ignore: true
+    shared_ptr: true
+    force_no_trampoline: true
+  TalonSRXConfiguration:
+    shared_ptr: true
+    force_no_trampoline: true
+    attributes:
+      peakCurrentLimit:
+      peakCurrentDuration:
+      continuousCurrentLimit:
+    methods:
+      TalonSRXConfiguration:
+      toString:
+        overloads:
+          "":
+          std::string:
+  TalonSRXConfigUtil:
+    ignore: true
+    shared_ptr: true
+    force_no_trampoline: true
+    methods:
+      PeakCurrentLimitDifferent:
+      PeakCurrentDurationDifferent:
+      ContinuousCurrentLimitDifferent:
+  TalonSRX:
+    shared_ptr: true
+    force_no_trampoline: true
+    typealias:
+      - ctre::phoenix::motorcontrol::TalonSRXFeedbackDevice
+      - ctre::phoenix::motorcontrol::FeedbackDevice
+      - ctre::phoenix::motorcontrol::RemoteFeedbackDevice
+    methods:
+      TalonSRX:
+        overloads:
+          int:
+          "":
+            ignore: true
+      ConfigSelectedFeedbackSensor:
+        overloads:
+          TalonSRXFeedbackDevice, int, int:
+          FeedbackDevice, int, int:
+          RemoteFeedbackDevice, int, int:
+      ConfigSupplyCurrentLimit:
+      ConfigPeakCurrentLimit:
+      ConfigPeakCurrentDuration:
+      ConfigContinuousCurrentLimit:
+      EnableCurrentLimit:
+      GetSensorCollection:
+      ConfigurePID:
+      GetPIDConfigs:
+      ConfigAllSettings:
+      GetAllConfigs:

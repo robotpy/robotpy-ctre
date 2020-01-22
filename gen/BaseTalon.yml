@@ -1,0 +1,109 @@
+---
+
+classes:
+  BaseTalonPIDSetConfiguration:
+    shared_ptr: true
+    force_no_trampoline: true
+    attributes:
+      selectedFeedbackSensor:
+    methods:
+      BaseTalonPIDSetConfiguration:
+      toString:
+        overloads:
+          "":
+          std::string:
+  BaseTalonPIDSetConfigUtil:
+    shared_ptr: true
+    methods:
+      SelectedFeedbackSensorDifferent:
+      SelectedFeedbackCoefficientDifferent:
+  BaseTalonConfiguration:
+    shared_ptr: true
+    force_no_trampoline: true
+    attributes:
+      primaryPID:
+      auxiliaryPID:
+      forwardLimitSwitchSource:
+      reverseLimitSwitchSource:
+      forwardLimitSwitchDeviceID:
+      reverseLimitSwitchDeviceID:
+      forwardLimitSwitchNormal:
+      reverseLimitSwitchNormal:
+      sum0Term:
+      sum1Term:
+      diff0Term:
+      diff1Term:
+    methods:
+      BaseTalonConfiguration:
+      toString:
+        overloads:
+          "":
+          std::string:
+  BaseTalonConfigUtil:
+    shared_ptr: true
+    methods:
+      ForwardLimitSwitchSourceDifferent:
+      ReverseLimitSwitchSourceDifferent:
+      ForwardLimitSwitchDeviceIDDifferent:
+      ReverseLimitSwitchDeviceIDDifferent:
+      ForwardLimitSwitchNormalDifferent:
+      ReverseLimitSwitchNormalDifferent:
+      Sum0TermDifferent:
+      Sum1TermDifferent:
+      Diff0TermDifferent:
+      Diff1TermDifferent:
+      ForwardLimitSwitchDifferent:
+      ReverseLimitSwitchDifferent:
+  BaseTalon:
+    shared_ptr: true
+    force_no_trampoline: true
+    typealias:
+      - ctre::phoenix::motorcontrol::IMotorControllerEnhanced
+      - ctre::phoenix::motorcontrol::FeedbackDevice
+      - ctre::phoenix::motorcontrol::RemoteFeedbackDevice
+      - ctre::phoenix::motorcontrol::StatusFrameEnhanced
+      - ctre::phoenix::motorcontrol::StatusFrame
+      - ctre::phoenix::motorcontrol::LimitSwitchSource
+      - ctre::phoenix::motorcontrol::LimitSwitchNormal
+      - ctre::phoenix::motorcontrol::RemoteLimitSwitchSource
+    methods:
+      BaseTalon:
+        overloads:
+          int, char*:
+            ignore: true
+          "":
+            ignore: true
+      ConfigSelectedFeedbackSensor:
+        overloads:
+          FeedbackDevice, int, int:
+          RemoteFeedbackDevice, int, int:
+      SetStatusFramePeriod:
+        overloads:
+          StatusFrameEnhanced, uint8_t, int:
+          StatusFrame, uint8_t, int:
+      GetStatusFramePeriod:
+        overloads:
+          StatusFrameEnhanced, int:
+          StatusFrame, int:
+      GetOutputCurrent:
+      GetStatorCurrent:
+      GetSupplyCurrent:
+      ConfigVelocityMeasurementPeriod:
+      ConfigVelocityMeasurementWindow:
+      ConfigForwardLimitSwitchSource:
+        overloads:
+          LimitSwitchSource, LimitSwitchNormal, int:
+          RemoteLimitSwitchSource, LimitSwitchNormal, int, int:
+      ConfigReverseLimitSwitchSource:
+        overloads:
+          LimitSwitchSource, LimitSwitchNormal, int:
+          RemoteLimitSwitchSource, LimitSwitchNormal, int, int:
+      ConfigSupplyCurrentLimit:
+      IsFwdLimitSwitchClosed:
+      IsRevLimitSwitchClosed:
+      GetTalonSRXSensorCollection:
+      GetTalonFXSensorCollection:
+      ConfigurePID:
+      GetPIDConfigs:
+      BaseTalonConfigAllSettings:
+      BaseTalonGetAllConfigs:

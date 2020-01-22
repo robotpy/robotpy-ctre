@@ -200,25 +200,25 @@ generate = [
 
 
     # # # ctre/phoenix/motorcontrol/can
-    # { BaseMotorController = "ctre/phoenix/motorcontrol/can/BaseMotorController.h" },
-    # { BaseTalon = "ctre/phoenix/motorcontrol/can/BaseTalon.h" },
+    { BaseMotorController = "ctre/phoenix/motorcontrol/can/BaseMotorController.h" },
+    { BaseTalon = "ctre/phoenix/motorcontrol/can/BaseTalon.h" },
     # { TalonFX = "ctre/phoenix/motorcontrol/can/TalonFX.h" },
-    # { TalonSRX = "ctre/phoenix/motorcontrol/can/TalonSRX.h" },
+    { TalonSRX = "ctre/phoenix/motorcontrol/can/TalonSRX.h" },
     # { VictorSPX = "ctre/phoenix/motorcontrol/can/VictorSPX.h" },
 
-    # # # ctre/phoenix/motorcontrol/can
-    # { WPI_BaseMotorController = "ctre/phoenix/motorcontrol/can/WPI_BaseMotorController.h" },
+    # ctre/phoenix/motorcontrol/can
+    { WPI_BaseMotorController = "ctre/phoenix/motorcontrol/can/WPI_BaseMotorController.h" },
     # { WPI_TalonFX = "ctre/phoenix/motorcontrol/can/WPI_TalonFX.h" },
-    # { WPI_TalonSRX = "ctre/phoenix/motorcontrol/can/WPI_TalonSRX.h" },
+    { WPI_TalonSRX = "ctre/phoenix/motorcontrol/can/WPI_TalonSRX.h" },
     # { WPI_VictorSPX = "ctre/phoenix/motorcontrol/can/WPI_VictorSPX.h" },
 
 
-    # # ctre/phoenix/sensors
+    # ctre/phoenix/sensors
     # { CANCoder = "ctre/phoenix/sensors/CANCoder.h" },
     # { PigeonIMU = "ctre/phoenix/sensors/PigeonIMU.h" },
 
     # # ctre/phoenix/tasking
-    { ButtonMonitor = "ctre/phoenix/tasking/ButtonMonitor.h" },
+    # { ButtonMonitor = "ctre/phoenix/tasking/ButtonMonitor.h" },
 
     # # ctre/phoenix/tasking/Schedulers
     # { ConcurrentScheduler = "ctre/phoenix/tasking/Schedulers/ConcurrentScheduler.h" },
