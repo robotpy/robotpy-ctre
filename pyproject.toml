@@ -1,9 +1,7 @@
 [build-system]
 requires = [
-    "robotpy-build>=2020.0.8,<2021.0.0",
-    "robotpy-wpiutil>=2020.1.2.1,<2021.0.0",
-    "robotpy-hal>=2020.1.2.0,<2021.0.0",
-    "pyntcore>=2020.1.2.0,<2021.0.0",
+    "robotpy-build>=2020.0.20,<2021.0.0",
+    "wpilib>=2020.1.2.2,<2021.0.0",
 ]
 
 [tool.robotpy-build]
@@ -239,6 +237,5 @@ author_email = "robotpy@googlegroups.com"
 url = "https://github.com/robotpy/robotpy-ctre"
 license = "MIT"
 install_requires = [
-    "robotpy-wpiutil>=2020.1.2.1,<2021.0.0",
-    "pynetworktables>=2020.0.0,<2021.0.0",
+    "wpilib>=2020.1.2.2,<2021.0.0",
 ]
