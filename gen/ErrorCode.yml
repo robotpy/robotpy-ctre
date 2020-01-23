@@ -1,0 +1,14 @@
+---
+
+enums:
+  ErrorCode:
+classes:
+  ErrorCollection:
+    shared_ptr: true
+    methods:
+      ErrorCollection:
+      NewError:
+        overloads:
+          ctre::phoenix::ErrorCode:
+          int:
+      GetFirstNonZeroError:

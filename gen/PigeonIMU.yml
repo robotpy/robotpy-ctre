@@ -1,5 +1,8 @@
 ---
 
+extra_includes:
+- ctre/phoenix/motorcontrol/can/TalonSRX.h
+
 classes:
   PigeonIMUConfiguration:
     shared_ptr: true

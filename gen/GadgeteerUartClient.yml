@@ -1,0 +1,22 @@
+---
+
+classes:
+  IGadgeteerUartClient:
+    shared_ptr: true
+    enums:
+      GadgeteerProxyType:
+      GadgeteerConnection:
+    methods:
+      IGadgeteerUartClient:
+      GetGadgeteerStatus:
+      ToString:
+        overloads:
+          IGadgeteerUartClient::GadgeteerProxyType:
+          IGadgeteerUartClient::GadgeteerConnection:
+  IGadgeteerUartClient::GadgeteerUartStatus:
+    shared_ptr: true
+    attributes:
+      type:
+      conn:
+      bitrate:
+      resetCount:

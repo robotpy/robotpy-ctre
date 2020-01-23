@@ -1,0 +1,91 @@
+---
+
+classes:
+  CANifierConfiguration:
+    shared_ptr: true
+    force_no_trampoline: true
+    attributes:
+      velocityMeasurementPeriod:
+      velocityMeasurementWindow:
+      clearPositionOnLimitF:
+      clearPositionOnLimitR:
+      clearPositionOnQuadIdx:
+    methods:
+      CANifierConfiguration:
+      toString:
+        overloads:
+          "":
+          std::string:
+  CANifierConfigUtils:
+    shared_ptr: true
+    methods:
+      VelocityMeasurementPeriodDifferent:
+      VelocityMeasurementWindowDifferent:
+      ClearPositionOnLimitFDifferent:
+      ClearPositionOnLimitRDifferent:
+      ClearPositionOnQuadIdxDifferent:
+      CustomParam0Different:
+      CustomParam1Different:
+  CANifier:
+    shared_ptr: true
+    force_no_trampoline: true
+    attributes:
+      PWMChannelCount:
+    enums:
+      LEDChannel:
+      PWMChannel:
+      GeneralPin:
+    methods:
+      CANifier:
+      DestroyAllCANifiers:
+      SetLEDOutput:
+      SetGeneralOutput:
+      SetGeneralOutputs:
+      GetGeneralInputs:
+      GetGeneralInput:
+      GetQuadraturePosition:
+      GetQuadratureVelocity:
+      SetQuadraturePosition:
+      ConfigVelocityMeasurementPeriod:
+      ConfigVelocityMeasurementWindow:
+      ConfigClearPositionOnLimitF:
+      ConfigClearPositionOnLimitR:
+      ConfigClearPositionOnQuadIdx:
+      GetBusVoltage:
+      GetLastError:
+      SetPWMOutput:
+      EnablePWMOutput:
+      GetPWMInput:
+        ignore: true # TODO
+      ConfigSetCustomParam:
+      ConfigGetCustomParam:
+      ConfigSetParameter:
+      ConfigGetParameter:
+        overloads:
+          ParamEnum, int, int:
+          ParamEnum, int32_t, int32_t&, uint8_t&, int32_t, int32_t:
+      SetStatusFramePeriod:
+      GetStatusFramePeriod:
+      SetControlFramePeriod:
+      GetFirmwareVersion:
+      HasResetOccurred:
+      GetFaults:
+      GetStickyFaults:
+      ClearStickyFaults:
+      ConfigAllSettings:
+      GetAllConfigs:
+      ConfigFactoryDefault:
+  CANifier::PinValues:
+    shared_ptr: true
+    attributes:
+      QUAD_IDX:
+      QUAD_B:
+      QUAD_A:
+      LIMR:
+      LIMF:
+      SDA:
+      SCL:
+      SPI_CS_PWM3:
+      SPI_MISO_PWM2:
+      SPI_MOSI_PWM1:
+      SPI_CLK_PWM0:

@@ -1,0 +1,10 @@
+---
+
+classes:
+  ILoopable:
+    shared_ptr: true
+    methods:
+      OnStart:
+      OnLoop:
+      IsDone:
+      OnStop:

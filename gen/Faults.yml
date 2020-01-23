@@ -1,0 +1,26 @@
+---
+
+classes:
+  Faults:
+    shared_ptr: true
+    attributes:
+      UnderVoltage:
+      ForwardLimitSwitch:
+      ReverseLimitSwitch:
+      ForwardSoftLimit:
+      ReverseSoftLimit:
+      HardwareFailure:
+      ResetDuringEn:
+      SensorOverflow:
+      SensorOutOfPhase:
+      HardwareESDReset:
+      RemoteLossOfSignal:
+      APIError:
+    methods:
+      HasAnyFault:
+      ToBitfield:
+      Faults:
+        overloads:
+          int:
+          "":
+      ToString:

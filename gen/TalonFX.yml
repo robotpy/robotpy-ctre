@@ -4,6 +4,7 @@ classes:
   TalonFXPIDSetConfiguration:
     shared_ptr: true
     force_no_trampoline: true
+    force_no_default_constructor: true
   TalonFXConfiguration:
     shared_ptr: true
     force_no_trampoline: true
@@ -47,6 +48,7 @@ classes:
         overloads:
           int:
           "":
+            ignore: true
       Set:
         overloads:
           TalonFXControlMode, double:
@@ -77,3 +79,7 @@ classes:
       ConfigIntegratedSensorAbsoluteRange:
       ConfigIntegratedSensorOffset:
       ConfigIntegratedSensorInitializationStrategy:
+
+inline_code: |
+  cls_TalonFXPIDSetConfiguration
+    .def(py::init<FeedbackDevice>(), py::arg("defaultFeedbackDevice"), release_gil());

@@ -1,0 +1,8 @@
+---
+
+classes:
+  CANBusAddressable:
+    shared_ptr: true
+    methods:
+      CANBusAddressable:
+      GetDeviceNumber:

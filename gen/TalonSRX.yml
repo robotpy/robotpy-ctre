@@ -2,9 +2,9 @@
 
 classes:
   TalonSRXPIDSetConfiguration:
-    ignore: true
     shared_ptr: true
     force_no_trampoline: true
+    force_no_default_constructor: true
   TalonSRXConfiguration:
     shared_ptr: true
     force_no_trampoline: true
@@ -19,7 +19,6 @@ classes:
           "":
           std::string:
   TalonSRXConfigUtil:
-    ignore: true
     shared_ptr: true
     force_no_trampoline: true
     methods:
@@ -54,3 +53,7 @@ classes:
       GetPIDConfigs:
       ConfigAllSettings:
       GetAllConfigs:
+
+inline_code: |
+  cls_TalonSRXPIDSetConfiguration
+    .def(py::init<FeedbackDevice>(), py::arg("defaultFeedbackDevice"), release_gil());

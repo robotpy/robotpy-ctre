@@ -91,7 +91,7 @@ generate = [
     { paramEnum = "ctre/phoenix/paramEnum.h" },
 
     # # ctre/phoenix/cci
-    { CCI = "ctre/phoenix/cci/CCI.h" },
+    # { CCI = "ctre/phoenix/cci/CCI.h" },
 
     # # ctre/phoenix/core
     { GadgeteerUartClient = "ctre/phoenix/core/GadgeteerUartClient.h" },
@@ -103,23 +103,23 @@ generate = [
     # { TxJob = "TxJob.h" },
 
     # # ctre/phoenix/unmanaged
-    { Unmanaged = "ctre/phoenix/unmanaged/Unmanaged.h" },
+    # { Unmanaged = "ctre/phoenix/unmanaged/Unmanaged.h" },
 
     # # ctre/phoenix/runtime
     # { LibLoader = "ctre/phoenix/runtime/LibLoader.h" },
 
     # # ctre/phoenix/string_util
-    { string_util = "ctre/phoenix/string_util/string_util.h" },
+    # { string_util = "ctre/phoenix/string_util/string_util.h" },
 
     # # ctre/phoenix/platform
     # { Platform-pack = "ctre/phoenix/platform/Platform-pack.h" },
-    { Platform = "ctre/phoenix/platform/Platform.h" },
+    # { Platform = "ctre/phoenix/platform/Platform.h" },
 
     # # ctre/phoenix/platform
-    { PlatformSim = "ctre/phoenix/platform/PlatformSim.h" },
+    # { PlatformSim = "ctre/phoenix/platform/PlatformSim.h" },
 
     # # ctre/phoenix/platform/can
-    { PlatformCAN = "ctre/phoenix/platform/can/PlatformCAN.h" },
+    # { PlatformCAN = "ctre/phoenix/platform/can/PlatformCAN.h" },
 
     # # ctre/phoenix/motion
     { BufferedTrajectoryPointStream = "ctre/phoenix/motion/BufferedTrajectoryPointStream.h" },
@@ -144,17 +144,17 @@ generate = [
     { CANifierStatusFrame = "ctre/phoenix/CANifierStatusFrame.h" },
     { CANifierStickyFaults = "ctre/phoenix/CANifierStickyFaults.h" },
     { CANifierVelocityMeasPeriod = "ctre/phoenix/CANifierVelocityMeasPeriod.h" },
-    { autocache = "ctre/phoenix/autocache.h" },
+    # { autocache = "ctre/phoenix/autocache.h" },
 
     # # ctre/phoenix
     { CANBusAddressable = "ctre/phoenix/CANBusAddressable.h" },
-    # { CANifier = "ctre/phoenix/CANifier.h" },
+    { CANifier = "ctre/phoenix/CANifier.h" },
     { CTRLogger = "ctre/phoenix/CTRLogger.h" },
     { CustomParamConfiguration = "ctre/phoenix/CustomParamConfiguration.h" },
     # { HsvToRgb = "ctre/phoenix/HsvToRgb.h" },
     { LinearInterpolation = "ctre/phoenix/LinearInterpolation.h" },
     # { RCRadio3Ch = "ctre/phoenix/RCRadio3Ch.h" },
-    { Stopwatch = "ctre/phoenix/Stopwatch.h" },
+    # { Stopwatch = "ctre/phoenix/Stopwatch.h" },
     # { Utilities = "ctre/phoenix/Utilities.h" },
 
     # ctre/phoenix/motorcontrol
@@ -208,20 +208,20 @@ generate = [
     # # # ctre/phoenix/motorcontrol/can
     { BaseMotorController = "ctre/phoenix/motorcontrol/can/BaseMotorController.h" },
     { BaseTalon = "ctre/phoenix/motorcontrol/can/BaseTalon.h" },
-    # { TalonFX = "ctre/phoenix/motorcontrol/can/TalonFX.h" },
+    { TalonFX = "ctre/phoenix/motorcontrol/can/TalonFX.h" },
     { TalonSRX = "ctre/phoenix/motorcontrol/can/TalonSRX.h" },
-    # { VictorSPX = "ctre/phoenix/motorcontrol/can/VictorSPX.h" },
+    { VictorSPX = "ctre/phoenix/motorcontrol/can/VictorSPX.h" },
 
     # ctre/phoenix/motorcontrol/can
     { WPI_BaseMotorController = "ctre/phoenix/motorcontrol/can/WPI_BaseMotorController.h" },
-    # { WPI_TalonFX = "ctre/phoenix/motorcontrol/can/WPI_TalonFX.h" },
+    { WPI_TalonFX = "ctre/phoenix/motorcontrol/can/WPI_TalonFX.h" },
     { WPI_TalonSRX = "ctre/phoenix/motorcontrol/can/WPI_TalonSRX.h" },
-    # { WPI_VictorSPX = "ctre/phoenix/motorcontrol/can/WPI_VictorSPX.h" },
+    { WPI_VictorSPX = "ctre/phoenix/motorcontrol/can/WPI_VictorSPX.h" },
 
 
     # ctre/phoenix/sensors
-    # { CANCoder = "ctre/phoenix/sensors/CANCoder.h" },
-    # { PigeonIMU = "ctre/phoenix/sensors/PigeonIMU.h" },
+    { CANCoder = "ctre/phoenix/sensors/CANCoder.h" },
+    { PigeonIMU = "ctre/phoenix/sensors/PigeonIMU.h" },
 
     # # ctre/phoenix/tasking
     # { ButtonMonitor = "ctre/phoenix/tasking/ButtonMonitor.h" },

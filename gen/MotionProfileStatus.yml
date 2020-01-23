@@ -1,0 +1,17 @@
+---
+
+classes:
+  MotionProfileStatus:
+    shared_ptr: true
+    attributes:
+      topBufferRem:
+      topBufferCnt:
+      btmBufferCnt:
+      hasUnderrun:
+      isUnderrun:
+      activePointValid:
+      isLast:
+      profileSlotSelect0:
+      profileSlotSelect1:
+      outputEnable:
+      timeDurMs:

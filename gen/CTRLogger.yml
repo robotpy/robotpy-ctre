@@ -1,0 +1,9 @@
+---
+
+classes:
+  CTRLogger:
+    shared_ptr: true
+    methods:
+      Close:
+      Log:
+      Open:

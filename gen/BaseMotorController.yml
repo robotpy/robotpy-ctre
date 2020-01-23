@@ -164,6 +164,7 @@ classes:
       BaseMotorController:
         overloads:
           int, char*:
+            ignore: true
           "":
             ignore: true
       DestroyAllMotControllers:

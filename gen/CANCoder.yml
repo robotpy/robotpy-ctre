@@ -4,6 +4,8 @@ classes:
   CANCoderConfiguration:
     shared_ptr: true
     force_no_trampoline: true
+    force_depends:
+    - ctre::phoenix::CustomParamConfiguration
     attributes:
       velocityMeasurementPeriod:
       velocityMeasurementWindow:

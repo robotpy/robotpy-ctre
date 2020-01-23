@@ -1,0 +1,10 @@
+---
+
+enums:
+  StatusFrameEnhanced:
+  StatusFrame:
+classes:
+  StatusFrameRoutines:
+    shared_ptr: true
+    methods:
+      Promote:

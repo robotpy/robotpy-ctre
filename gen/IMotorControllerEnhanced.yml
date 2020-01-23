@@ -1,8 +1,4 @@
 ---
-# extra_includes dont work.
-# Manually add the two below to the IMotorControllerEnhanced.h
-#include "IMotorController.h"
-#include "ctre/phoenix/motorcontrol/VelocityMeasPeriod.h"
 
 extra_includes_first:
 - ctre/phoenix/motorcontrol/IMotorController.h

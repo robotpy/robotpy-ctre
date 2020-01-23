@@ -12,6 +12,7 @@ classes:
       WPI_BaseMotorController:
         overloads:
           int, char*:
+            ignore: true
           "":
             ignore: true
       Set:

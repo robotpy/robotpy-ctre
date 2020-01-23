@@ -1,0 +1,10 @@
+---
+
+classes:
+  DeviceCatalog:
+    shared_ptr: true
+    methods:
+      Register:
+      MotorControllerCount:
+      Get:
+      GetInstance:

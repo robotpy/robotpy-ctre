@@ -1,0 +1,21 @@
+---
+
+classes:
+  CustomParamConfiguration:
+    shared_ptr: true
+    force_no_trampoline: true
+    attributes:
+      customParam0:
+      customParam1:
+      enableOptimizations:
+    methods:
+      CustomParamConfiguration:
+      toString:
+        overloads:
+          "":
+          std::string:
+  CustomParamConfigUtil:
+    shared_ptr: true
+    methods:
+      CustomParam0Different:
+      CustomParam1Different:

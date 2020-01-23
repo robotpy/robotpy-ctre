@@ -1,0 +1,13 @@
+---
+
+classes:
+  BufferedTrajectoryPointStream:
+    shared_ptr: true
+    methods:
+      BufferedTrajectoryPointStream:
+      Clear:
+      Write:
+        overloads:
+          TrajectoryPoint&:
+          TrajectoryPoint*, uint32_t:
+      GetHandle:
