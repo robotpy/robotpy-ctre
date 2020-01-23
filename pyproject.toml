@@ -68,6 +68,7 @@ requires = [
         "ctre_wpiapi",
         "wpilib_core",
         "wpilibc",
+        "wpiHal",
         "wpiutil",
     ]
     
