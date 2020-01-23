@@ -17,6 +17,7 @@ classes:
         overloads:
           int:
           "":
+            ignore: true
       Set:
         overloads:
           double:
