@@ -6,7 +6,6 @@ venv/
 ### C++ ###
 # Prerequisites
 *.d
-ctre/*
 # Compiled Object files
 *.slo
 *.lo
@@ -44,6 +43,10 @@ __pycache__/
 *$py.class
 
 # C extensions
+/ctre/_init_ctre.py
+/ctre/pkgcfg.py
+/ctre/rpy-include
+/ctre/version.py
 
 # Distribution / packaging
 .Python
