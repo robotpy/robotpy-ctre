@@ -9,83 +9,54 @@ requires = [
 [tool.robotpy-build]
     base_package = "ctre"
 
-[tool.robotpy-build.wrappers."ctre._api".maven_lib_download]
+[tool.robotpy-build.static_libs.ctre_api.maven_lib_download]
     artifact_id = "api-cpp"
     group_id = "com.ctre.phoenix"
     repo_url = "http://devsite.ctr-electronics.com/maven/release"
     version = "5.17.6"
-
     libs = ["CTRE_Phoenix"]
-    static_lib = true
 
-[tool.robotpy-build.wrappers."ctre._api"]
-    name = "ctre_api"
-
-[tool.robotpy-build.wrappers."ctre._canutils".maven_lib_download]
+[tool.robotpy-build.static_libs.ctre_canutils.maven_lib_download]
     artifact_id = "canutils"
     group_id = "com.ctre.phoenix"
     repo_url = "http://devsite.ctr-electronics.com/maven/release"
     version = "5.17.6"
-
     libs = ["CTRE_PhoenixCanutils"]
 
-[tool.robotpy-build.wrappers."ctre._canutils"]
-    name = "ctre_canutils"
-
-[tool.robotpy-build.wrappers."ctre._cci".maven_lib_download]
+[tool.robotpy-build.static_libs.ctre_cci.maven_lib_download]
     artifact_id = "cci"
     group_id = "com.ctre.phoenix"
     repo_url = "http://devsite.ctr-electronics.com/maven/release"
     version = "5.17.6"
-
     libs = ["CTRE_PhoenixCCI"]
 
-[tool.robotpy-build.wrappers."ctre._cci"]
-    name = "ctre_cci"
-
-[tool.robotpy-build.wrappers."ctre._core".maven_lib_download]
+[tool.robotpy-build.static_libs.ctre_core.maven_lib_download]
     artifact_id = "core"
     group_id = "com.ctre.phoenix"
     repo_url = "http://devsite.ctr-electronics.com/maven/release"
     version = "5.17.6"
-
     libs = ["CTRE_PhoenixCore"]
 
-[tool.robotpy-build.wrappers."ctre._core"]
-    name = "ctre_core"
-
-[tool.robotpy-build.wrappers."ctre._diagnostics".maven_lib_download]
+[tool.robotpy-build.static_libs.ctre_diagnostics.maven_lib_download]
     artifact_id = "diagnostics"
     group_id = "com.ctre.phoenix"
     repo_url = "http://devsite.ctr-electronics.com/maven/release"
     version = "5.17.6"
-
     libs = ["CTRE_PhoenixDiagnostics"]
 
-[tool.robotpy-build.wrappers."ctre._diagnostics"]
-    name = "ctre_diagnostics"
-
-[tool.robotpy-build.wrappers."ctre._platform".maven_lib_download]
+[tool.robotpy-build.static_libs.ctre_platform.maven_lib_download]
     artifact_id = "platform-stub"
     group_id = "com.ctre.phoenix"
     repo_url = "http://devsite.ctr-electronics.com/maven/release"
     version = "5.17.6"
-    static_lib = true
     libs = ["CTRE_PhoenixPlatform"]
 
-[tool.robotpy-build.wrappers."ctre._platform"]
-    name = "ctre_platform"
-
-[tool.robotpy-build.wrappers."ctre._wpiapi".maven_lib_download]
+[tool.robotpy-build.static_libs.ctre_wpiapi.maven_lib_download]
     artifact_id = "wpiapi-cpp"
     group_id = "com.ctre.phoenix"
     repo_url = "http://devsite.ctr-electronics.com/maven/release"
     version = "5.17.6"
-    static_lib = true
     libs = ["CTRE_Phoenix_WPI"]
-
-[tool.robotpy-build.wrappers."ctre._wpiapi"]
-    name = "ctre_wpiapi"
 
 [tool.robotpy-build.wrappers."ctre"]
     name = "ctre"
@@ -95,9 +66,10 @@ requires = [
         "ctre_canutils",
         "ctre_diagnostics",
         "ctre_cci",
-        "ctre_wpiapi",
         "ctre_api",
+        "ctre_wpiapi",
         "wpilib_core",
+        "wpilibc",
         "wpiutil",
     ]
     
@@ -181,7 +153,7 @@ generate = [
     { CustomParamConfiguration = "ctre/phoenix/CustomParamConfiguration.h" },
     # { HsvToRgb = "ctre/phoenix/HsvToRgb.h" },
     { LinearInterpolation = "ctre/phoenix/LinearInterpolation.h" },
-    { RCRadio3Ch = "ctre/phoenix/RCRadio3Ch.h" },
+    # { RCRadio3Ch = "ctre/phoenix/RCRadio3Ch.h" },
     { Stopwatch = "ctre/phoenix/Stopwatch.h" },
     # { Utilities = "ctre/phoenix/Utilities.h" },
 
