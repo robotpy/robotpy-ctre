@@ -21,6 +21,9 @@ requires = [
     version = "5.17.6"
     libs = ["CTRE_PhoenixCanutils"]
 
+[tool.robotpy-build.static_libs.ctre_canutils.override.arch_athena]
+    ignore = true
+
 [tool.robotpy-build.static_libs.ctre_cci.maven_lib_download]
     artifact_id = "cci"
     group_id = "com.ctre.phoenix"
@@ -48,6 +51,9 @@ requires = [
     repo_url = "http://devsite.ctr-electronics.com/maven/release"
     version = "5.17.6"
     libs = ["CTRE_PhoenixPlatform"]
+
+[tool.robotpy-build.static_libs.ctre_platform.override.arch_athena]
+    ignore = true
 
 [tool.robotpy-build.static_libs.ctre_wpiapi.maven_lib_download]
     artifact_id = "wpiapi-cpp"
@@ -229,6 +235,20 @@ generate = [
     # { ConcurrentScheduler = "ctre/phoenix/tasking/Schedulers/ConcurrentScheduler.h" },
     # { SequentialScheduler = "ctre/phoenix/tasking/Schedulers/SequentialScheduler.h" },
 ]
+
+[tool.robotpy-build.wrappers."ctre".override.arch_athena]
+    depends = [
+        "ctre_core",
+        "ctre_diagnostics",
+        "ctre_cci",
+        "ctre_api",
+        "ctre_wpiapi",
+        "wpilib_core",
+        "wpilibc",
+        "wpiHal",
+        "wpiutil",
+    ]
+
 
 [tool.robotpy-build.metadata]
 name = "robotpy-ctre"
