@@ -4,6 +4,13 @@ robotpy-ctre
 This is a python wrapper around the CTRE Phoenix library. The RobotPy project
 is not associated with or endorsed by Cross The Road Electronics.
 
+**NOTE**: CTRE only supports simulation for the following platforms:
+
+* Linux (64-bit only)
+* Windows (64-bit only)
+
+Other platforms will fail to install with an 404 error.
+
 Documentation
 =============
 
