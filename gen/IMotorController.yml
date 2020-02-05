@@ -9,6 +9,8 @@ classes:
       - ctre::phoenix::ErrorCode
       - ctre::phoenix::ParamEnum
     shared_ptr: true
+    # we don't expect users to implement this interface
+    force_no_trampoline: true
     methods:
       Set:
         overloads:
