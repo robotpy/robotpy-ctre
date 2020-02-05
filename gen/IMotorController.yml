@@ -14,6 +14,7 @@ classes:
         overloads:
           ControlMode, double:
           ControlMode, double, double:
+            ignore: true
           ControlMode, double, DemandType, double:
       NeutralOutput:
       SetNeutralMode:

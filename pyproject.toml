@@ -99,7 +99,7 @@ generate = [
     # { CCI = "ctre/phoenix/cci/CCI.h" },
 
     # # ctre/phoenix/core
-    { GadgeteerUartClient = "ctre/phoenix/core/GadgeteerUartClient.h" },
+    # { GadgeteerUartClient = "ctre/phoenix/core/GadgeteerUartClient.h" },
 
     # # CanUtils
     # { BusMgr = "BusMgr.h" },
@@ -135,13 +135,13 @@ generate = [
     { TrajectoryPoint = "ctre/phoenix/motion/TrajectoryPoint.h" },
 
     # ctre/phoenix/signals
-    { IInvertable = "ctre/phoenix/signals/IInvertable.h" },
-    { IOutputSignal = "ctre/phoenix/signals/IOutputSignal.h" },
-    { MovingAverage = "ctre/phoenix/signals/MovingAverage.h" },
+    # { IInvertable = "ctre/phoenix/signals/IInvertable.h" },
+    # { IOutputSignal = "ctre/phoenix/signals/IOutputSignal.h" },
+    # { MovingAverage = "ctre/phoenix/signals/MovingAverage.h" },
 
     # # ctre/phoenix/tasking
-    { ILoopable = "ctre/phoenix/tasking/ILoopable.h" },
-    { IProcessable = "ctre/phoenix/tasking/IProcessable.h" },
+    # { ILoopable = "ctre/phoenix/tasking/ILoopable.h" },
+    # { IProcessable = "ctre/phoenix/tasking/IProcessable.h" },
 
     # # ctre/phoenix
     { CANifierControlFrame = "ctre/phoenix/CANifierControlFrame.h" },
@@ -154,10 +154,10 @@ generate = [
     # # ctre/phoenix
     { CANBusAddressable = "ctre/phoenix/CANBusAddressable.h" },
     { CANifier = "ctre/phoenix/CANifier.h" },
-    { CTRLogger = "ctre/phoenix/CTRLogger.h" },
+    # { CTRLogger = "ctre/phoenix/CTRLogger.h" },
     { CustomParamConfiguration = "ctre/phoenix/CustomParamConfiguration.h" },
     # { HsvToRgb = "ctre/phoenix/HsvToRgb.h" },
-    { LinearInterpolation = "ctre/phoenix/LinearInterpolation.h" },
+    # { LinearInterpolation = "ctre/phoenix/LinearInterpolation.h" },
     # { RCRadio3Ch = "ctre/phoenix/RCRadio3Ch.h" },
     # { Stopwatch = "ctre/phoenix/Stopwatch.h" },
     # { Utilities = "ctre/phoenix/Utilities.h" },
@@ -197,12 +197,12 @@ generate = [
 
 
     # # ctre/phoenix/motorcontrol
-    { WPI_MotorSafetyImplem = "ctre/phoenix/motorcontrol/WPI_MotorSafetyImplem.h" },
+    # { WPI_MotorSafetyImplem = "ctre/phoenix/motorcontrol/WPI_MotorSafetyImplem.h" },
 
 
     # # ctre/phoenix/motorcontrol
-    { DeviceCatalog = "ctre/phoenix/motorcontrol/DeviceCatalog.h" },
-    { GroupMotorControllers = "ctre/phoenix/motorcontrol/GroupMotorControllers.h" },
+    # { DeviceCatalog = "ctre/phoenix/motorcontrol/DeviceCatalog.h" },
+    # { GroupMotorControllers = "ctre/phoenix/motorcontrol/GroupMotorControllers.h" },
     { IFollower = "ctre/phoenix/motorcontrol/IFollower.h" },
     { IMotorController = "ctre/phoenix/motorcontrol/IMotorController.h" },
     { IMotorControllerEnhanced = "ctre/phoenix/motorcontrol/IMotorControllerEnhanced.h" },
