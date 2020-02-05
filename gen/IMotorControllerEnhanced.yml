@@ -11,6 +11,7 @@ classes:
     shared_ptr: true
     # we don't expect users to implement this interface
     force_no_trampoline: true
+    force_no_default_constructor: true
     methods:
       ConfigSelectedFeedbackSensor:
         overloads:
