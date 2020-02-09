@@ -9,11 +9,15 @@ classes:
       - ctre::phoenix::ErrorCode
       - ctre::phoenix::ParamEnum
     shared_ptr: true
+    # we don't expect users to implement this interface
+    force_no_trampoline: true
+    force_no_default_constructor: true
     methods:
       Set:
         overloads:
           ControlMode, double:
           ControlMode, double, double:
+            ignore: true
           ControlMode, double, DemandType, double:
       NeutralOutput:
       SetNeutralMode:
