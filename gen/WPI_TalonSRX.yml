@@ -10,6 +10,7 @@ classes:
       - ctre::phoenix::motorcontrol::FeedbackDevice
       - ctre::phoenix::motorcontrol::RemoteFeedbackDevice
       - ctre::phoenix::motorcontrol::InvertType
+      - ctre::phoenix::motorcontrol::TalonSRXControlMode
     methods:
       WPI_TalonSRX:
         overloads:
@@ -21,6 +22,8 @@ classes:
           double:
           ControlMode, double:
           ControlMode, double, DemandType, double:
+          TalonSRXControlMode, double:
+          TalonSRXControlMode, double, DemandType, double:
       SetVoltage:
       SetInverted:
         overloads:

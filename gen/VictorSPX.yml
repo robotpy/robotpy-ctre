@@ -62,3 +62,9 @@ classes:
       GetPIDConfigs:
       ConfigAllSettings:
       GetAllConfigs:
+      Set:
+        overloads:
+          ctre::phoenix::motorcontrol::VictorSPXControlMode, double:
+          ctre::phoenix::motorcontrol::VictorSPXControlMode, double, ctre::phoenix::motorcontrol::DemandType, double:
+          ctre::phoenix::motorcontrol::ControlMode, double:
+          ctre::phoenix::motorcontrol::ControlMode, double, ctre::phoenix::motorcontrol::DemandType, double:

@@ -1,0 +1,13 @@
+---
+classes:
+  Orchestra:
+    shared_ptr: true
+    methods:
+      Orchestra:
+      LoadMusic:
+      Play:
+      Pause:
+      Stop:
+      IsPlaying:
+      AddInstrument:
+      ClearInstruments:

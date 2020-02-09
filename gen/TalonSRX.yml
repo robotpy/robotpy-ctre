@@ -29,9 +29,12 @@ classes:
     shared_ptr: true
     force_no_trampoline: true
     typealias:
-      - ctre::phoenix::motorcontrol::TalonSRXFeedbackDevice
+      - ctre::phoenix::motorcontrol::ControlMode
+      - ctre::phoenix::motorcontrol::DemandType
       - ctre::phoenix::motorcontrol::FeedbackDevice
       - ctre::phoenix::motorcontrol::RemoteFeedbackDevice
+      - ctre::phoenix::motorcontrol::TalonSRXControlMode
+      - ctre::phoenix::motorcontrol::TalonSRXFeedbackDevice
     methods:
       TalonSRX:
         overloads:
@@ -53,6 +56,12 @@ classes:
       GetPIDConfigs:
       ConfigAllSettings:
       GetAllConfigs:
+      Set:
+        overloads:
+          TalonSRXControlMode, double:
+          TalonSRXControlMode, double, DemandType, double:
+          ControlMode, double:
+          ControlMode, double, DemandType, double:
 
 inline_code: |
   cls_TalonSRXPIDSetConfiguration

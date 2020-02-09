@@ -8,6 +8,7 @@ classes:
       - ctre::phoenix::motorcontrol::ControlMode
       - ctre::phoenix::motorcontrol::DemandType
       - ctre::phoenix::motorcontrol::InvertType
+      - ctre::phoenix::motorcontrol::VictorSPXControlMode
     methods:
       WPI_VictorSPX:
         overloads:
@@ -19,6 +20,8 @@ classes:
           double:
           ControlMode, double:
           ControlMode, double, DemandType, double:
+          VictorSPXControlMode, double:
+          VictorSPXControlMode, double, DemandType, double:
       SetVoltage:
       SetInverted:
         overloads:

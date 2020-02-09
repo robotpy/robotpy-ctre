@@ -6,6 +6,8 @@ classes:
     shared_ptr: true
     methods:
       SensorCollection:
+        overloads:
+          ctre::phoenix::motorcontrol::can::BaseTalon&:
       GetAnalogIn:
       SetAnalogPosition:
       GetAnalogInRaw:

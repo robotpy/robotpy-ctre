@@ -11,14 +11,14 @@ requires = [
     artifact_id = "api-cpp"
     group_id = "com.ctre.phoenix"
     repo_url = "http://devsite.ctr-electronics.com/maven/release"
-    version = "5.17.6"
+    version = "5.18.1"
     libs = ["CTRE_Phoenix"]
 
 [tool.robotpy-build.static_libs.ctre_canutils.maven_lib_download]
     artifact_id = "canutils"
     group_id = "com.ctre.phoenix"
     repo_url = "http://devsite.ctr-electronics.com/maven/release"
-    version = "5.17.6"
+    version = "5.18.1"
     libs = ["CTRE_PhoenixCanutils"]
 
 [tool.robotpy-build.static_libs.ctre_canutils.override.arch_athena]
@@ -28,28 +28,28 @@ requires = [
     artifact_id = "cci"
     group_id = "com.ctre.phoenix"
     repo_url = "http://devsite.ctr-electronics.com/maven/release"
-    version = "5.17.6"
+    version = "5.18.1"
     libs = ["CTRE_PhoenixCCI"]
 
 [tool.robotpy-build.static_libs.ctre_core.maven_lib_download]
     artifact_id = "core"
     group_id = "com.ctre.phoenix"
     repo_url = "http://devsite.ctr-electronics.com/maven/release"
-    version = "5.17.6"
+    version = "5.18.1"
     libs = ["CTRE_PhoenixCore"]
 
 [tool.robotpy-build.static_libs.ctre_diagnostics.maven_lib_download]
     artifact_id = "diagnostics"
     group_id = "com.ctre.phoenix"
     repo_url = "http://devsite.ctr-electronics.com/maven/release"
-    version = "5.17.6"
+    version = "5.18.1"
     libs = ["CTRE_PhoenixDiagnostics"]
 
 [tool.robotpy-build.static_libs.ctre_platform.maven_lib_download]
     artifact_id = "platform-stub"
     group_id = "com.ctre.phoenix"
     repo_url = "http://devsite.ctr-electronics.com/maven/release"
-    version = "5.17.6"
+    version = "5.18.1"
     libs = ["CTRE_PhoenixPlatform"]
 
 [tool.robotpy-build.static_libs.ctre_platform.override.arch_athena]
@@ -59,7 +59,7 @@ requires = [
     artifact_id = "wpiapi-cpp"
     group_id = "com.ctre.phoenix"
     repo_url = "http://devsite.ctr-electronics.com/maven/release"
-    version = "5.17.6"
+    version = "5.18.1"
     libs = ["CTRE_Phoenix_WPI"]
 
 [tool.robotpy-build.wrappers."ctre"]
@@ -180,6 +180,9 @@ generate = [
     { StickyFaults = "ctre/phoenix/motorcontrol/StickyFaults.h" },
     { SupplyCurrentLimitConfiguration = "ctre/phoenix/motorcontrol/SupplyCurrentLimitConfiguration.h" },
     { VelocityMeasPeriod = "ctre/phoenix/motorcontrol/VelocityMeasPeriod.h" },
+
+    # ctre/phoenix/music
+    { Orchestra = "ctre/phoenix/music/Orchestra.h" },
 
     # # ctre/phoenix/sensors
     { AbsoluteSensorRange = "ctre/phoenix/sensors/AbsoluteSensorRange.h" },
