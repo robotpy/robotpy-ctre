@@ -224,3 +224,5 @@ __all__ = [
     "WPI_TalonSRX",
     "WPI_VictorSPX",
 ]
+
+from .version import version as __version__
