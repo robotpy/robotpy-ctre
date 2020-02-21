@@ -16,6 +16,8 @@ classes:
       HardwareESDReset:
       RemoteLossOfSignal:
       APIError:
+      SupplyOverV:
+      SupplyUnstable:
     methods:
       HasAnyFault:
       ToBitfield:
