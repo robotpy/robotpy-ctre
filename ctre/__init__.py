@@ -111,6 +111,7 @@ from ._ctre import (
     WPI_TalonFX,
     WPI_TalonSRX,
     WPI_VictorSPX,
+    platform,
 )
 
 __all__ = [
@@ -223,6 +224,7 @@ __all__ = [
     "WPI_TalonFX",
     "WPI_TalonSRX",
     "WPI_VictorSPX",
+    "platform",
 ]
 
 from .version import version as __version__

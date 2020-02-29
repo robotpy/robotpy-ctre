@@ -46,11 +46,11 @@ requires = [
     libs = ["CTRE_PhoenixDiagnostics"]
 
 [tool.robotpy-build.static_libs.ctre_platform.maven_lib_download]
-    artifact_id = "platform-stub"
+    artifact_id = "platform-sim"
     group_id = "com.ctre.phoenix"
     repo_url = "http://devsite.ctr-electronics.com/maven/release"
     version = "5.18.2"
-    libs = ["CTRE_PhoenixPlatform"]
+    libs = ["CTRE_PhoenixPlatform_sim"]
 
 [tool.robotpy-build.static_libs.ctre_platform.override.arch_athena]
     ignore = true
@@ -116,12 +116,12 @@ generate = [
     # # ctre/phoenix/string_util
     # { string_util = "ctre/phoenix/string_util/string_util.h" },
 
-    # # ctre/phoenix/platform
+    # ctre/phoenix/platform
     # { Platform-pack = "ctre/phoenix/platform/Platform-pack.h" },
-    # { Platform = "ctre/phoenix/platform/Platform.h" },
+    { Platform = "ctre/phoenix/platform/Platform.h" },
 
-    # # ctre/phoenix/platform
-    # { PlatformSim = "ctre/phoenix/platform/PlatformSim.h" },
+    # ctre/phoenix/platform
+    { PlatformSim = "ctre/phoenix/platform/PlatformSim.h" },
 
     # # ctre/phoenix/platform/can
     # { PlatformCAN = "ctre/phoenix/platform/can/PlatformCAN.h" },

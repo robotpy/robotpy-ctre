@@ -1,0 +1,52 @@
+---
+enums:
+  DeviceType:
+    subpackage: platform
+functions:
+  CANbus_GetStatus:
+    ignore: true
+  CANbus_SendFrame:
+    ignore: true
+  CANbus_ReceiveFrame:
+    ignore: true
+  SetCANInterface:
+    ignore: true
+  CANComm_SendMessage:
+    ignore: true
+  CANComm_ReceiveMessage:
+    ignore: true
+  CANComm_OpenStreamSession:
+    ignore: true
+  CANComm_CloseStreamSession:
+    ignore: true
+  CANComm_ReadStreamSession:
+    ignore: true
+  CANComm_GetTxSchedulerStatus:
+    ignore: true
+  SleepUs:
+    ignore: true
+  GetStackTrace:
+    ignore: true
+  ReportError:
+    ignore: true
+  SimCreate:
+    ignore: true
+  SimConfigGet:
+    ignore: true
+  SimConfigSet:
+    ignore: true
+  SimDestroy:
+    ignore: true
+  SimDestroyAll:
+    ignore: true
+  DisposePlatform:
+    ignore: true
+  StartPlatform:
+    ignore: true
+  DisposeMgr:
+    ignore: true
+  StartMgr:
+    ignore: true
+classes:
+  canframe_t:
+    ignore: true
