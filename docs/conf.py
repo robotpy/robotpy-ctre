@@ -137,3 +137,4 @@ generate_sidebar(
 root = abspath(dirname(__file__))
 
 gen_package(root, "ctre")
+gen_package(root, "ctre.platform")
