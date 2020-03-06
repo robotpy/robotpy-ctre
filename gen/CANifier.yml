@@ -56,7 +56,10 @@ classes:
       SetPWMOutput:
       EnablePWMOutput:
       GetPWMInput:
-        ignore: true # TODO
+        param_override:
+          pulseWidthAndPeriod:
+            array_size: 2
+            default: '{}'
       ConfigSetCustomParam:
       ConfigGetCustomParam:
       ConfigSetParameter:
