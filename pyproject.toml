@@ -1,7 +1,7 @@
 [build-system]
 requires = [
     "robotpy-build>=2020.1.12,<2021.0.0",
-    "wpilib>=2020.2.2.0,<2021.0.0",
+    # "wpilib>=2020.2.2.0,<2021.0.0",
 ]
 
 [tool.robotpy-build]
@@ -46,7 +46,7 @@ requires = [
     libs = ["CTRE_PhoenixDiagnostics"]
 
 [tool.robotpy-build.static_libs.ctre_platform.maven_lib_download]
-    artifact_id = "platform-stub"
+    artifact_id = "platform-socketcan"
     group_id = "com.ctre.phoenix"
     repo_url = "http://devsite.ctr-electronics.com/maven/release"
     version = "5.18.2"
@@ -72,10 +72,10 @@ requires = [
         "ctre_cci",
         "ctre_api",
         "ctre_wpiapi",
-        "wpilib_core",
-        "wpilibc",
-        "wpiHal",
-        "wpiutil",
+        # "wpilib_core",
+        # "wpilibc",
+        # "wpiHal",
+        # "wpiutil",
     ]
     
     sources = [
@@ -221,10 +221,10 @@ generate = [
     { VictorSPX = "ctre/phoenix/motorcontrol/can/VictorSPX.h" },
 
     # ctre/phoenix/motorcontrol/can
-    { WPI_BaseMotorController = "ctre/phoenix/motorcontrol/can/WPI_BaseMotorController.h" },
-    { WPI_TalonFX = "ctre/phoenix/motorcontrol/can/WPI_TalonFX.h" },
-    { WPI_TalonSRX = "ctre/phoenix/motorcontrol/can/WPI_TalonSRX.h" },
-    { WPI_VictorSPX = "ctre/phoenix/motorcontrol/can/WPI_VictorSPX.h" },
+    # { WPI_BaseMotorController = "ctre/phoenix/motorcontrol/can/WPI_BaseMotorController.h" },
+    # { WPI_TalonFX = "ctre/phoenix/motorcontrol/can/WPI_TalonFX.h" },
+    # { WPI_TalonSRX = "ctre/phoenix/motorcontrol/can/WPI_TalonSRX.h" },
+    # { WPI_VictorSPX = "ctre/phoenix/motorcontrol/can/WPI_VictorSPX.h" },
 
 
     # ctre/phoenix/sensors
@@ -246,10 +246,10 @@ generate = [
         "ctre_cci",
         "ctre_api",
         "ctre_wpiapi",
-        "wpilib_core",
-        "wpilibc",
-        "wpiHal",
-        "wpiutil",
+        # "wpilib_core",
+        # "wpilibc",
+        # "wpiHal",
+        # "wpiutil",
     ]
 
 
@@ -261,5 +261,5 @@ author_email = "robotpy@googlegroups.com"
 url = "https://github.com/robotpy/robotpy-ctre"
 license = "MIT"
 install_requires = [
-    "wpilib>=2020.2.2.0,<2021.0.0",
+    # "wpilib>=2020.2.2.0,<2021.0.0",
 ]

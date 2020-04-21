@@ -107,10 +107,10 @@ from ._ctre import (
     VictorSPXConfiguration,
     VictorSPXPIDSetConfigUtil,
     VictorSPXPIDSetConfiguration,
-    WPI_BaseMotorController,
-    WPI_TalonFX,
-    WPI_TalonSRX,
-    WPI_VictorSPX,
+    # WPI_BaseMotorController,
+    # WPI_TalonFX,
+    # WPI_TalonSRX,
+    # WPI_VictorSPX,
 )
 
 __all__ = [
@@ -219,10 +219,10 @@ __all__ = [
     "VictorSPXConfiguration",
     "VictorSPXPIDSetConfigUtil",
     "VictorSPXPIDSetConfiguration",
-    "WPI_BaseMotorController",
-    "WPI_TalonFX",
-    "WPI_TalonSRX",
-    "WPI_VictorSPX",
+    # "WPI_BaseMotorController",
+    # "WPI_TalonFX",
+    # "WPI_TalonSRX",
+    # "WPI_VictorSPX",
 ]
 
 from .version import version as __version__
