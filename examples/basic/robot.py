@@ -6,8 +6,8 @@ import ctre
 
 class MyRobot(wpilib.IterativeRobot):
     """
-        This is a short sample program demonstrating how to use the basic throttle
-        mode of the TalonSRX
+    This is a short sample program demonstrating how to use the basic throttle
+    mode of the TalonSRX
     """
 
     def robotInit(self):

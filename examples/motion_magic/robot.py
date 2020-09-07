@@ -82,7 +82,7 @@ class Robot(wpilib.IterativeRobot):
 
     def teleopPeriodic(self):
         """
-            This function is called periodically during operator control
+        This function is called periodically during operator control
         """
         # get gamepad axis - forward stick is positive
         leftYstick = -1.0 * self.joy.getY()
