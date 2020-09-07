@@ -1,5 +1,8 @@
 ---
 
+extra_includes:
+- wpi/SmallString.h
+
 classes:
   WPI_MotorSafetyImplem:
     shared_ptr: true
@@ -7,3 +10,17 @@ classes:
       WPI_MotorSafetyImplem:
       StopMotor:
       GetDescription:
+        param_override:
+          desc:
+            ignore: true
+        cpp_code: |
+          [](WPI_MotorSafetyImplem * self) -> py::str {
+            wpi::SmallString<128> buf;
+            wpi::raw_svector_ostream s(buf);
+            self->GetDescription(s);
+            return py::cast(s.str());
+          }
+        virtual_xform: |
+          [&](py::function &overload) {
+            desc << py::cast<std::string>(overload());
+          }
