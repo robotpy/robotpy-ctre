@@ -39,7 +39,7 @@ venv/
 ### Python ###
 # Byte-compiled / optimized / DLL files
 __pycache__/
-*.py[cod]
+*.py[ciod]
 *$py.class
 
 # C extensions
