@@ -1,0 +1,24 @@
+---
+
+classes:
+  TalonSRXSimCollection:
+    shared_ptr: true
+    methods:
+      TalonSRXSimCollection:
+        ignore: true
+      SetBusVoltage:
+      SetSupplyCurrent:
+      SetStatorCurrent:
+      SetLimitFwd:
+      SetLimitRev:
+      SetAnalogPosition:
+      AddAnalogPosition:
+      SetAnalogVelocity:
+      SetPulseWidthConnected:
+      SetPulseWidthRiseToRiseUs:
+      SetPulseWidthPosition:
+      AddPulseWidthPosition:
+      SetPulseWidthVelocity:
+      SetQuadratureRawPosition:
+      AddQuadraturePosition:
+      SetQuadratureVelocity:

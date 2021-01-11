@@ -9,5 +9,6 @@ classes:
       Pause:
       Stop:
       IsPlaying:
+      GetCurrentTime:
       AddInstrument:
       ClearInstruments:

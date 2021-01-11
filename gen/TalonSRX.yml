@@ -53,6 +53,7 @@ classes:
       EnableCurrentLimit:
       GetSensorCollection:
       ConfigurePID:
+      GetSimCollection:
       GetPIDConfigs:
       ConfigAllSettings:
       GetAllConfigs:

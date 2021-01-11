@@ -103,6 +103,7 @@ classes:
       IsRevLimitSwitchClosed:
       GetTalonSRXSensorCollection:
       GetTalonFXSensorCollection:
+      GetTalonSRXSimCollection:
       ConfigurePID:
       GetPIDConfigs:
       BaseTalonConfigAllSettings:

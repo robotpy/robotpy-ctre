@@ -17,6 +17,7 @@ classes:
         overloads:
           FeedbackDevice, int, int:
           RemoteFeedbackDevice, int, int:
+      ConfigSupplyCurrentLimit:
       SetStatusFramePeriod:
         overloads:
           StatusFrame, uint8_t, int:
