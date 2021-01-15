@@ -8,6 +8,7 @@ is not associated with or endorsed by Cross The Road Electronics.
 
 * Linux (64-bit only)
 * Windows (64-bit only)
+* OSX
 
 Other platforms will fail to install with an 404 error.
 
