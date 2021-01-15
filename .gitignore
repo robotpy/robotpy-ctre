@@ -48,6 +48,9 @@ __pycache__/
 /ctre/rpy-include
 /ctre/version.py
 
+/ctre/_simtalonsrx
+/ctre/_simvictorspx
+
 # Distribution / packaging
 .Python
 build/

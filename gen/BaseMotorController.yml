@@ -310,6 +310,7 @@ classes:
       GetSlotConfigs:
       GetFilterConfigs:
       GetHandle:
+      GetVictorSPXSimCollection:
       BaseConfigAllSettings:
       BaseGetAllConfigs:
       BaseGetPIDConfigs:

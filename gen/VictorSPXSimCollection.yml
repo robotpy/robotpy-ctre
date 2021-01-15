@@ -1,0 +1,9 @@
+---
+
+classes:
+  VictorSPXSimCollection:
+    shared_ptr: true
+    methods:
+      VictorSPXSimCollection:
+        ignore: true
+      SetBusVoltage:

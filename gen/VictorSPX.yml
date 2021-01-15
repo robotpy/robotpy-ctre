@@ -62,6 +62,7 @@ classes:
       GetPIDConfigs:
       ConfigAllSettings:
       GetAllConfigs:
+      GetSimCollection:
       Set:
         overloads:
           ctre::phoenix::motorcontrol::VictorSPXControlMode, double:

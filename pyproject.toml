@@ -1,7 +1,7 @@
 [build-system]
 requires = [
-    "robotpy-build>=2020.2.3,<2021.0.0",
-    "wpilib>=2020.2.2.0,<2021.0.0",
+    "robotpy-build>=2020.4.1,<2021.0.0",
+    "wpilib>=2021.1.2.0,<2022.0.0",
 ]
 
 [tool.robotpy-build]
@@ -10,47 +10,52 @@ requires = [
 [tool.robotpy-build.static_libs.ctre_api.maven_lib_download]
     artifact_id = "api-cpp"
     group_id = "com.ctre.phoenix"
-    repo_url = "http://devsite.ctr-electronics.com/maven/release"
-    version = "5.18.2"
+    repo_url = "https://devsite.ctr-electronics.com/maven/release"
+    version = "5.19.4"
     libs = ["CTRE_Phoenix"]
 
 [tool.robotpy-build.static_libs.ctre_canutils.maven_lib_download]
     artifact_id = "canutils"
     group_id = "com.ctre.phoenix"
-    repo_url = "http://devsite.ctr-electronics.com/maven/release"
-    version = "5.18.2"
+    repo_url = "https://devsite.ctr-electronics.com/maven/release"
+    version = "5.19.4"
     libs = ["CTRE_PhoenixCanutils"]
 
 [tool.robotpy-build.static_libs.ctre_canutils.override.arch_athena]
     ignore = true
 
 [tool.robotpy-build.static_libs.ctre_cci.maven_lib_download]
+    artifact_id = "cci-sim"
+    group_id = "com.ctre.phoenix.sim"
+    repo_url = "https://devsite.ctr-electronics.com/maven/release"
+    version = "5.19.4"
+    libs = ["CTRE_PhoenixCCISim"]
+
+[tool.robotpy-build.static_libs.ctre_cci.maven_lib_download.override.arch_athena]
     artifact_id = "cci"
     group_id = "com.ctre.phoenix"
-    repo_url = "http://devsite.ctr-electronics.com/maven/release"
-    version = "5.18.2"
     libs = ["CTRE_PhoenixCCI"]
 
 [tool.robotpy-build.static_libs.ctre_core.maven_lib_download]
     artifact_id = "core"
     group_id = "com.ctre.phoenix"
-    repo_url = "http://devsite.ctr-electronics.com/maven/release"
-    version = "5.18.2"
+    repo_url = "https://devsite.ctr-electronics.com/maven/release"
+    version = "5.19.4"
     libs = ["CTRE_PhoenixCore"]
 
 [tool.robotpy-build.static_libs.ctre_diagnostics.maven_lib_download]
     artifact_id = "diagnostics"
     group_id = "com.ctre.phoenix"
-    repo_url = "http://devsite.ctr-electronics.com/maven/release"
-    version = "5.18.2"
+    repo_url = "https://devsite.ctr-electronics.com/maven/release"
+    version = "5.19.4"
     libs = ["CTRE_PhoenixDiagnostics"]
 
 [tool.robotpy-build.static_libs.ctre_platform.maven_lib_download]
-    artifact_id = "platform-stub"
+    artifact_id = "platform-sim"
     group_id = "com.ctre.phoenix"
-    repo_url = "http://devsite.ctr-electronics.com/maven/release"
-    version = "5.18.2"
-    libs = ["CTRE_PhoenixPlatform"]
+    repo_url = "https://devsite.ctr-electronics.com/maven/release"
+    version = "5.19.4"
+    libs = ["CTRE_PhoenixPlatform_sim"]
 
 [tool.robotpy-build.static_libs.ctre_platform.override.arch_athena]
     ignore = true
@@ -58,13 +63,41 @@ requires = [
 [tool.robotpy-build.static_libs.ctre_wpiapi.maven_lib_download]
     artifact_id = "wpiapi-cpp"
     group_id = "com.ctre.phoenix"
-    repo_url = "http://devsite.ctr-electronics.com/maven/release"
-    version = "5.18.2"
+    repo_url = "https://devsite.ctr-electronics.com/maven/release"
+    version = "5.19.4"
     libs = ["CTRE_Phoenix_WPI"]
+
+[tool.robotpy-build.wrappers."ctre._simtalonsrx"]
+name = "ctre_simtalonsrx"
+
+[tool.robotpy-build.wrappers."ctre._simtalonsrx".maven_lib_download]
+    artifact_id = "simTalonSRX"
+    group_id = "com.ctre.phoenix.sim"
+    repo_url = "https://devsite.ctr-electronics.com/maven/release"
+    version = "5.19.4"
+    libs = ["CTRE_SimTalonSRX"]
+
+[tool.robotpy-build.wrappers."ctre._simtalonsrx".override.arch_athena]
+    ignore = true
+
+[tool.robotpy-build.wrappers."ctre._simvictorspx"]
+name = "ctre_simvictorspx"
+
+[tool.robotpy-build.wrappers."ctre._simvictorspx".maven_lib_download]
+    artifact_id = "simVictorSPX"
+    group_id = "com.ctre.phoenix.sim"
+    repo_url = "https://devsite.ctr-electronics.com/maven/release"
+    version = "5.19.4"
+    libs = ["CTRE_SimVictorSPX"]
+
+[tool.robotpy-build.wrappers."ctre._simvictorspx".override.arch_athena]
+    ignore = true
 
 [tool.robotpy-build.wrappers."ctre"]
     name = "ctre"
     depends = [
+        "ctre_simtalonsrx",
+        "ctre_simvictorspx",
         "ctre_core",
         "ctre_platform",
         "ctre_canutils",
@@ -211,6 +244,8 @@ generate = [
     { IMotorControllerEnhanced = "ctre/phoenix/motorcontrol/IMotorControllerEnhanced.h" },
     { SensorCollection = "ctre/phoenix/motorcontrol/SensorCollection.h" },
     { TalonFXSensorCollection = "ctre/phoenix/motorcontrol/TalonFXSensorCollection.h" },
+    { TalonSRXSimCollection = "ctre/phoenix/motorcontrol/TalonSRXSimCollection.h" },
+    { VictorSPXSimCollection = "ctre/phoenix/motorcontrol/VictorSPXSimCollection.h" },
 
 
     # # # ctre/phoenix/motorcontrol/can
@@ -261,5 +296,5 @@ author_email = "robotpy@googlegroups.com"
 url = "https://github.com/robotpy/robotpy-ctre"
 license = "MIT"
 install_requires = [
-    "wpilib>=2020.2.2.0,<2021.0.0",
+    "wpilib>=2021.1.2.0,<2022.0.0",
 ]
