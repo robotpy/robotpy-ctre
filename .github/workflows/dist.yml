@@ -46,8 +46,8 @@ jobs:
     - uses: robotpy/build-actions/build-wheel@v2021
     - uses: robotpy/build-actions/test-native-wheel@v2021
 
-    - uses: robotpy/build-actions/validate-sphinx@v2021
-      if: ${{ matrix.python_version == '3.7' && matrix.os == 'ubuntu-18.04' }}
+    # - uses: robotpy/build-actions/validate-sphinx@v2021
+    #   if: ${{ matrix.python_version == '3.7' && matrix.os == 'ubuntu-18.04' }}
 
     - uses: actions/upload-artifact@v2
       with:
@@ -65,8 +65,8 @@ jobs:
         os:
         - container: robotpy/roborio-cross-ubuntu:2021.3
           name:  roborio
-        - container: robotpy/raspbian-cross-ubuntu:2021.3
-          name:  raspbian
+        # - container: robotpy/raspbian-cross-ubuntu:2021.3
+        #   name:  raspbian
 
     container:
       image: "${{ matrix.os.container }}"
@@ -145,20 +145,20 @@ jobs:
     # Raspbian wheel
     #
 
-    - uses: actions/download-artifact@v2
-      with:
-        name: dist-raspbian
-        path: dist-raspbian/
+    # - uses: actions/download-artifact@v2
+    #   with:
+    #     name: dist-raspbian
+    #     path: dist-raspbian/
 
-    - uses: robotpy/github-action-scp@atomic
-      with:
-        local: dist-raspbian
-        remote: public_html/2021/raspbian
-        host: narya.tortall.net
-        username: ${{ secrets.SSH_USER }}
-        privateKey: ${{ secrets.SSH_KEY }}
-        passphrase: ${{ secrets.SSH_PASSPHRASE }}
-        atomicPut: true
+    # - uses: robotpy/github-action-scp@atomic
+    #   with:
+    #     local: dist-raspbian
+    #     remote: public_html/2021/raspbian
+    #     host: narya.tortall.net
+    #     username: ${{ secrets.SSH_USER }}
+    #     privateKey: ${{ secrets.SSH_KEY }}
+    #     passphrase: ${{ secrets.SSH_PASSPHRASE }}
+    #     atomicPut: true
 
 
   publish-pypi:
