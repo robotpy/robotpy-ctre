@@ -1,0 +1,15 @@
+name: Scan Maven
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron:  '20 21 * * *'
+
+jobs:
+  scan-maven:
+    if: github.repository_owner	== 'robotpy'
+    runs-on: ubuntu-latest
+    steps:
+    - uses: robotpy/build-actions/check-for-maven-update@v2021
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
