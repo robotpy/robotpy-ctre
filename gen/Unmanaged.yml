@@ -1,0 +1,12 @@
+---
+
+classes:
+  Unmanaged:
+    force_no_default_constructor: true
+    shared_ptr: false
+    methods:
+      FeedEnable:
+      GetEnableState:
+      GetPhoenixVersion:
+      LoadPhoenix:
+      SetPhoenixDiagnosticsStartTime:

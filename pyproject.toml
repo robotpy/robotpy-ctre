@@ -144,8 +144,8 @@ generate = [
     # { RxStream = "RxStream.h" },
     # { TxJob = "TxJob.h" },
 
-    # # ctre/phoenix/unmanaged
-    # { Unmanaged = "ctre/phoenix/unmanaged/Unmanaged.h" },
+    # ctre/phoenix/unmanaged
+    { Unmanaged = "ctre/phoenix/unmanaged/Unmanaged.h" },
 
     # # ctre/phoenix/runtime
     # { LibLoader = "ctre/phoenix/runtime/LibLoader.h" },
