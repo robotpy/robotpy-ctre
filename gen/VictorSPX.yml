@@ -55,6 +55,10 @@ classes:
       ForwardLimitSwitchDifferent:
       ReverseLimitSwitchDifferent:
   VictorSPX:
+    doc_append: |
+
+      .. seealso::
+         :class:`WPI_VictorSPX`
     shared_ptr: true
     force_no_trampoline: true
     methods:
