@@ -32,6 +32,10 @@ classes:
       IntegratedSensorOffsetDegreesDifferent:
       InitializationStrategyDifferent:
   TalonFX:
+    doc_append: |
+
+      .. seealso::
+         :class:`WPI_TalonFX`
     shared_ptr: true
     force_no_trampoline: true
     typealias:

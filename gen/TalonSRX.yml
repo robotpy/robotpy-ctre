@@ -26,6 +26,10 @@ classes:
       PeakCurrentDurationDifferent:
       ContinuousCurrentLimitDifferent:
   TalonSRX:
+    doc_append: |
+
+      .. seealso::
+         :class:`WPI_TalonSRX`
     shared_ptr: true
     force_no_trampoline: true
     typealias:
