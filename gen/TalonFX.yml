@@ -74,6 +74,7 @@ classes:
       ConfigGetSupplyCurrentLimit:
       ConfigGetStatorCurrentLimit:
       GetSensorCollection:
+      GetSimCollection:
       ConfigurePID:
       GetPIDConfigs:
       ConfigAllSettings:

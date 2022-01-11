@@ -1,0 +1,12 @@
+---
+
+classes:
+  CANdleConfiguration:
+    typealias:
+    - ctre::phoenix::CustomParamConfiguration
+    force_depends:
+    - ctre::phoenix::CustomParamConfiguration
+    force_no_trampoline: true
+    methods:
+      CANdleConfiguration:
+      toString:

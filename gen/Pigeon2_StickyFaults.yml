@@ -1,0 +1,26 @@
+---
+
+classes:
+  Pigeon2_StickyFaults:
+    attributes:
+      HardwareFault:
+      APIError:
+      UnderVoltage:
+      ResetDuringEn:
+      SaturatedRotVelocity:
+      SaturatedAccel:
+      SaturatedMag:
+      MotionDriverTookTooLong:
+      DataAcquiredLate:
+      BootIntoMotion:
+      MagnetometerFault:
+      GyroFault:
+      AccelFault:
+    methods:
+      HasAnyFault:
+      ToBitfield:
+      Update:
+      Pigeon2_StickyFaults:
+        overloads:
+          uint64_t:
+          "":

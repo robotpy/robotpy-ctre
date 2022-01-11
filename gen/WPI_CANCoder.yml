@@ -1,0 +1,13 @@
+---
+
+extra_includes:
+- wpi/sendable/SendableBuilder.h
+
+classes:
+  WPI_CANCoder:
+    force_no_trampoline: true
+    ignored_bases:
+    - wpi::SendableHelper<WPI_CANCoder>
+    methods:
+      WPI_CANCoder:
+      InitSendable:

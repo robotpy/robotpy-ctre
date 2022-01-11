@@ -1,0 +1,12 @@
+---
+
+classes:
+  LarsonAnimation:
+    typealias:
+    - ctre::phoenix::led::LarsonAnimation::BounceMode
+    enums:
+      BounceMode:
+    methods:
+      LarsonAnimation:
+      SetBounceMode:
+      SetSize:

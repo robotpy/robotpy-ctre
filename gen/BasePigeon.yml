@@ -1,0 +1,78 @@
+---
+
+extra_includes:
+- ctre/phoenix/motorcontrol/can/TalonSRX.h
+
+classes:
+  BasePigeonConfiguration:
+    typealias:
+    - ctre::phoenix::CustomParamConfiguration
+    force_depends:
+    - ctre::phoenix::CustomParamConfiguration
+    force_no_trampoline: true
+    methods:
+      BasePigeonConfiguration:
+      toString:
+        overloads:
+          "":
+          std::string:
+  BasePigeonConfigUtils:
+    methods:
+      CustomParam0Different:
+      CustomParam1Different:
+  BasePigeon:
+    typealias:
+    - ctre::phoenix::ParamEnum
+    - ctre::phoenix::CANBusAddressable
+    force_depends:
+    - ctre::phoenix::CANBusAddressable
+    force_no_trampoline: true
+    methods:
+      BasePigeon:
+        overloads:
+          int, std::string&, std::string&:
+          ctre::phoenix::motorcontrol::can::TalonSRX&:
+      DestroyAllBasePigeons:
+      SetYaw:
+      AddYaw:
+      SetYawToCompass:
+      SetAccumZAngle:
+      GetLastError:
+      Get6dQuaternion:
+      GetYawPitchRoll:
+      GetYaw:
+      GetPitch:
+      GetRoll:
+      GetAccumGyro:
+      GetAbsoluteCompassHeading:
+      GetCompassHeading:
+      GetCompassFieldStrength:
+      GetTemp:
+        overloads:
+          '[const]':
+      GetUpTime:
+      GetRawMagnetometer:
+      GetBiasedMagnetometer:
+      GetBiasedAccelerometer:
+      GetRawGyro:
+      GetResetCount:
+      GetResetFlags:
+      GetFirmVers:
+      HasResetOccurred:
+      ConfigSetCustomParam:
+      ConfigGetCustomParam:
+      ConfigSetParameter:
+      ConfigGetParameter:
+        overloads:
+          ctre::phoenix::ParamEnum, int, int:
+          ParamEnum, int32_t, int32_t&, uint8_t&, int32_t, int32_t:
+      SetStatusFramePeriod:
+      GetStatusFramePeriod:
+      SetControlFramePeriod:
+      GetFirmwareVersion:
+      ClearStickyFaults:
+      GetLowLevelHandle:
+      ConfigAllSettings:
+      GetAllConfigs:
+      ConfigFactoryDefault:
+      GetSimCollection:

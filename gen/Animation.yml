@@ -1,0 +1,17 @@
+---
+
+extra_includes:
+- ctre/phoenix/led/BaseStandardAnimation.h
+- ctre/phoenix/led/BaseTwoSizeAnimation.h
+
+classes:
+  Animation:
+    methods:
+      Animation:
+      SetSpeed:
+      SetNumLed:
+      GetBaseStandardAnimation:
+      GetBaseTwoSizeAnimation:
+      GetAnimationIdx:
+      GetSpeed:
+      GetNumLed:

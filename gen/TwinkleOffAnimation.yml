@@ -1,0 +1,11 @@
+---
+
+classes:
+  TwinkleOffAnimation:
+    typealias:
+    - ctre::phoenix::led::TwinkleOffAnimation::TwinkleOffPercent
+    enums:
+      TwinkleOffPercent:
+    methods:
+      TwinkleOffAnimation:
+      SetDivider:

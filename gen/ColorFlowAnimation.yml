@@ -1,0 +1,11 @@
+---
+
+classes:
+  ColorFlowAnimation:
+    typealias:
+    - ctre::phoenix::led::ColorFlowAnimation::Direction
+    enums:
+      Direction:
+    methods:
+      ColorFlowAnimation:
+      SetDirection:

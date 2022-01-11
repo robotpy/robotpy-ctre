@@ -1,0 +1,8 @@
+---
+
+classes:
+  FireAnimation:
+    methods:
+      FireAnimation:
+      SetSparking:
+      SetCooling:

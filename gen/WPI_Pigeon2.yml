@@ -1,0 +1,18 @@
+---
+
+extra_includes:
+- wpi/sendable/SendableBuilder.h
+
+classes:
+  WPI_Pigeon2:
+    force_no_trampoline: true
+    ignored_bases:
+    - wpi::SendableHelper<WPI_Pigeon2>
+    methods:
+      WPI_Pigeon2:
+      InitSendable:
+      Calibrate:
+      Reset:
+      GetAngle:
+      GetRate:
+      GetRotation2d:

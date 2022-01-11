@@ -1,0 +1,41 @@
+---
+
+classes:
+  Pigeon2Configuration:
+    typealias:
+    - ctre::phoenix::CustomParamConfiguration
+    force_no_trampoline: true
+    methods:
+      Pigeon2Configuration:
+      toString:
+        overloads:
+          "":
+          std::string:
+  Pigeon2ConfigUtils:
+    force_no_trampoline: true
+    methods:
+      MountPoseYawDifferent:
+      MountPosePitchDifferent:
+      MountPoseRollDifferent:
+      EnableCompassDifferent:
+      DisableTemperatureCompensationDifferent:
+      DisableNoMotionCalibrationDifferent:
+      CustomParam0Different:
+      CustomParam1Different:
+  Pigeon2:
+    force_no_trampoline: true
+    methods:
+      Pigeon2:
+      GetFaults:
+      GetStickyFaults:
+      ConfigMountPose:
+      ConfigMountPoseYaw:
+      ConfigMountPosePitch:
+      ConfigMountPoseRoll:
+      ConfigEnableCompass:
+      ConfigDisableTemperatureCompensation:
+      ConfigDisableNoMotionCalibration:
+      ZeroGyroBiasNow:
+      GetGravityVector:
+      ConfigAllSettings:
+      GetAllConfigs:

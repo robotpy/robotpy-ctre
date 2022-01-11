@@ -1,0 +1,20 @@
+---
+
+classes:
+  BaseTwoSizeAnimation:
+    methods:
+      BaseTwoSizeAnimation:
+      GetBaseStandardAnimation:
+      GetBaseTwoSizeAnimation:
+      SetR:
+      SetG:
+      SetB:
+      SetW:
+      SetDirection:
+      SetSize:
+      GetR:
+      GetG:
+      GetB:
+      GetW:
+      GetDirection:
+      GetSize:

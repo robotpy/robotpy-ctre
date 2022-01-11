@@ -1,9 +1,14 @@
 ---
 
+extra_includes:
+- ctre/phoenix/motorcontrol/can/BaseMotorController.h
+
 classes:
   VictorSPXSimCollection:
     shared_ptr: true
     methods:
       VictorSPXSimCollection:
         ignore: true
+      GetLastError:
+      GetMotorOutputLeadVoltage:
       SetBusVoltage:

@@ -1,0 +1,21 @@
+---
+
+extra_includes:
+- wpi/sendable/SendableBuilder.h
+
+classes:
+  WPI_PigeonIMU:
+    force_no_trampoline: true
+    ignored_bases:
+    - wpi::SendableHelper<WPI_PigeonIMU>
+    methods:
+      WPI_PigeonIMU:
+        overloads:
+          int:
+          ctre::phoenix::motorcontrol::can::TalonSRX&:
+      InitSendable:
+      Calibrate:
+      Reset:
+      GetAngle:
+      GetRate:
+      GetRotation2d:

@@ -89,6 +89,10 @@ classes:
       GetStatorCurrent:
       GetSupplyCurrent:
       ConfigVelocityMeasurementPeriod:
+        overloads:
+          ctre::phoenix::sensors::SensorVelocityMeasPeriod, int:
+          VelocityMeasPeriod, int:
+            ignore: true
       ConfigVelocityMeasurementWindow:
       ConfigForwardLimitSwitchSource:
         overloads:
@@ -104,6 +108,7 @@ classes:
       GetTalonSRXSensorCollection:
       GetTalonFXSensorCollection:
       GetTalonSRXSimCollection:
+      GetTalonFXSimCollection:
       ConfigurePID:
       GetPIDConfigs:
       BaseTalonConfigAllSettings:

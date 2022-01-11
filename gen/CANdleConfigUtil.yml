@@ -1,0 +1,10 @@
+---
+
+classes:
+  CANdleConfigUtil:
+    methods:
+      StripTypeDifferent:
+      BrightnessScalarDifferent:
+      DisableWhenLOSDifferent:
+      StatusLedOffWhenActiveDifferent:
+      VBatOutputModeDifferent:

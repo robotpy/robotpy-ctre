@@ -1,6 +1,7 @@
-# ---
-# extra_includes:
-#   - ctre/phoenix/motorcontrol/IMotorController.h
+---
+extra_includes:
+- ctre/phoenix/motorcontrol/can/BaseTalon.h
+
 classes:
   BasePIDSetConfiguration:
     shared_ptr: true
@@ -211,6 +212,7 @@ classes:
         overloads:
           int, RemoteSensorSource, int, int:
           ctre::phoenix::sensors::CANCoder&, int, int:
+          ctre::phoenix::motorcontrol::can::BaseTalon&, int, int:
       ConfigSensorTerm:
         overloads:
           SensorTerm, FeedbackDevice, int:
@@ -228,6 +230,10 @@ classes:
           StatusFrame, int:
           StatusFrameEnhanced, int:
       ConfigVelocityMeasurementPeriod:
+        overloads:
+          ctre::phoenix::sensors::SensorVelocityMeasPeriod, int:
+          VelocityMeasPeriod, int:
+            ignore: true
       ConfigVelocityMeasurementWindow:
       ConfigForwardLimitSwitchSource:
         overloads:

@@ -1,0 +1,21 @@
+---
+
+classes:
+  SequentialScheduler:
+    attributes:
+      _running:
+      _loops:
+      _idx:
+      _iterated:
+    methods:
+      SequentialScheduler:
+      Add:
+      GetCurrent:
+      RemoveAll:
+      Start:
+      Stop:
+      Process:
+      OnStart:
+      OnLoop:
+      OnStop:
+      IsDone:

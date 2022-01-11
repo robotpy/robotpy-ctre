@@ -15,6 +15,7 @@ classes:
           std::string:
   PigeonIMUConfigUtils:
     shared_ptr: true
+    force_no_trampoline: true
     methods:
       CustomParam0Different:
       CustomParam1Different:
@@ -35,6 +36,8 @@ classes:
         overloads:
           int:
           ctre::phoenix::motorcontrol::can::TalonSRX*:
+            ignore: true
+          ctre::phoenix::motorcontrol::can::TalonSRX&:
       DestroyAllPigeonIMUs:
       SetYaw:
       AddYaw:
@@ -95,7 +98,7 @@ classes:
       GetFusedHeading:
         overloads:
           PigeonIMU::FusionStatus&:
-          "":
+          "[const]":
       GetResetCount:
       GetResetFlags:
       GetFirmVers:
@@ -106,6 +109,7 @@ classes:
           ctre::phoenix::sensors::PigeonIMU::CalibrationMode:
       ConfigSetCustomParam:
       ConfigGetCustomParam:
+        ifdef: __FRC_ROBORIO__
       ConfigSetParameter:
       ConfigGetParameter:
         overloads:

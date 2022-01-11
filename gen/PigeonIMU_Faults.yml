@@ -6,7 +6,8 @@ classes:
     methods:
       HasAnyFault:
       ToBitfield:
+      Update:
       PigeonIMU_Faults:
         overloads:
-          int:
+          uint64_t:
           "":

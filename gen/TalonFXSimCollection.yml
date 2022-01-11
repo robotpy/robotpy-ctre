@@ -1,0 +1,19 @@
+---
+
+extra_includes:
+- ctre/phoenix/motorcontrol/can/BaseTalon.h
+
+classes:
+  TalonFXSimCollection:
+    methods:
+      TalonFXSimCollection:
+      GetLastError:
+      GetMotorOutputLeadVoltage:
+      SetBusVoltage:
+      SetSupplyCurrent:
+      SetStatorCurrent:
+      SetLimitFwd:
+      SetLimitRev:
+      SetIntegratedSensorRawPosition:
+      AddIntegratedSensorPosition:
+      SetIntegratedSensorVelocity:

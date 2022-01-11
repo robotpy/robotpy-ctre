@@ -2,6 +2,7 @@
 extra_includes:
   - ctre/phoenix/ErrorCode.h
   - ctre/phoenix/motorcontrol/IFollower.h
+  - ctre/phoenix/motorcontrol/can/BaseTalon.h
 
 classes:
   IMotorController:
@@ -49,6 +50,7 @@ classes:
         overloads:
           int, RemoteSensorSource, int, int:
           ctre::phoenix::sensors::CANCoder&, int, int:
+          ctre::phoenix::motorcontrol::can::BaseTalon&, int, int:
       ConfigSensorTerm:
       GetSelectedSensorPosition:
       GetSelectedSensorVelocity:

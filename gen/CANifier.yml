@@ -47,6 +47,10 @@ classes:
       GetQuadratureVelocity:
       SetQuadraturePosition:
       ConfigVelocityMeasurementPeriod:
+        overloads:
+          ctre::phoenix::sensors::SensorVelocityMeasPeriod, int:
+          CANifierVelocityMeasPeriod, int:
+            ignore: true
       ConfigVelocityMeasurementWindow:
       ConfigClearPositionOnLimitF:
       ConfigClearPositionOnLimitR:

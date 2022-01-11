@@ -1,11 +1,16 @@
 ---
 
+extra_includes:
+- ctre/phoenix/motorcontrol/can/BaseTalon.h
+
 classes:
   TalonSRXSimCollection:
     shared_ptr: true
     methods:
       TalonSRXSimCollection:
         ignore: true
+      GetLastError:
+      GetMotorOutputLeadVoltage:
       SetBusVoltage:
       SetSupplyCurrent:
       SetStatorCurrent:
