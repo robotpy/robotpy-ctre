@@ -2,6 +2,7 @@
 
 classes:
   CANdle:
+    subpackage: led
     methods:
       CANdle:
       GetBusVoltage:

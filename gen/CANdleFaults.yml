@@ -2,6 +2,7 @@
 
 classes:
   CANdleFaults:
+    subpackage: led
     attributes:
       HardwareFault:
       APIError:
@@ -22,6 +23,7 @@ classes:
           int:
           "":
   CANdleStickyFaults:
+    subpackage: led
     attributes:
       HardwareFault:
       APIError:

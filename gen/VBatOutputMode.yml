@@ -2,3 +2,4 @@
 
 enums:
   VBatOutputMode:
+    subpackage: led

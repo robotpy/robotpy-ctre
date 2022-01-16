@@ -2,6 +2,7 @@
 
 classes:
   CANdleConfigUtil:
+    subpackage: led
     methods:
       StripTypeDifferent:
       BrightnessScalarDifferent:

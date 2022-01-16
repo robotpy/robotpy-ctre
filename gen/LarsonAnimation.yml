@@ -2,6 +2,7 @@
 
 classes:
   LarsonAnimation:
+    subpackage: led
     typealias:
     - ctre::phoenix::led::LarsonAnimation::BounceMode
     enums:

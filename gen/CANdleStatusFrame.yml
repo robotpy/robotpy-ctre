@@ -2,3 +2,4 @@
 
 enums:
   CANdleStatusFrame:
+    subpackage: led

@@ -2,6 +2,7 @@
 
 classes:
   BaseTwoSizeAnimation:
+    subpackage: led
     methods:
       BaseTwoSizeAnimation:
       GetBaseStandardAnimation:

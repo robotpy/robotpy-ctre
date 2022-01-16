@@ -2,5 +2,6 @@
 
 classes:
   StrobeAnimation:
+    subpackage: led
     methods:
       StrobeAnimation:
