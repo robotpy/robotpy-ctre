@@ -56,6 +56,7 @@ libs = ["CTRE_PhoenixCCI"]
 
 [tool.robotpy-build.wrappers."ctre._wpiapi_sim"]
 name = "ctre_wpiapi_sim"
+depends = ["ctre_api_sim", "wpilibc"]
 
 [tool.robotpy-build.wrappers."ctre._wpiapi_sim".override.arch_athena]
 ignore = true
@@ -70,6 +71,7 @@ libs = ["CTRE_Phoenix_WPISim"]
 
 [tool.robotpy-build.wrappers."ctre._apicpp_sim"]
 name = "ctre_api_sim"
+depends = ["ctre_cci_sim"]
 
 [tool.robotpy-build.wrappers."ctre._apicpp_sim".override.arch_athena]
 ignore = true
@@ -84,6 +86,7 @@ libs = ["CTRE_PhoenixSim"]
 
 [tool.robotpy-build.wrappers."ctre._cci_sim"]
 name = "ctre_cci_sim"
+depends = ["ctre_simVictorSPX", "ctre_simTalonSRX", "ctre_simPigeonIMU", "ctre_simTalonFX", "ctre_simCANCoder"]
 
 [tool.robotpy-build.wrappers."ctre._cci_sim".override.arch_athena]
 ignore = true
