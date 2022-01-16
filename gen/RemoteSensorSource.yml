@@ -4,6 +4,7 @@ enums:
   RemoteSensorSource:
 classes:
   RemoteSensorSourceRoutines:
-    shared_ptr: true
+    ignore: true  # enum toString only
+    shared_ptr: false
     methods:
       toString:

@@ -13,6 +13,7 @@ classes:
       toString:
         overloads:
           "":
+            rename: __str__
           std::string:
   CustomParamConfigUtil:
     shared_ptr: true

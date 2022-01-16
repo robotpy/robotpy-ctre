@@ -12,6 +12,7 @@ classes:
       toString:
         overloads:
           "":
+            rename: __str__
           std::string:
   PigeonIMUConfigUtils:
     shared_ptr: true

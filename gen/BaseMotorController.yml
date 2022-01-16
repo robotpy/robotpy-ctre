@@ -12,6 +12,7 @@ classes:
       toString:
         overloads:
           "":
+            rename: __str__
           std::string&:
   FilterConfiguration:
     shared_ptr: true
@@ -23,6 +24,7 @@ classes:
       toString:
         overloads:
           "":
+            rename: __str__
           std::string:
   FilterConfigUtil:
     shared_ptr: true
@@ -47,6 +49,7 @@ classes:
       toString:
         overloads:
           "":
+            rename: __str__
           std::string:
   SlotConfigUtil:
     shared_ptr: true
@@ -105,6 +108,7 @@ classes:
       toString:
         overloads:
           "":
+            rename: __str__
           std::string:
   BaseMotorControllerUtil:
     shared_ptr: true

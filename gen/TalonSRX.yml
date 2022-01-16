@@ -17,6 +17,7 @@ classes:
       toString:
         overloads:
           "":
+            rename: __str__
           std::string:
   TalonSRXConfigUtil:
     shared_ptr: true

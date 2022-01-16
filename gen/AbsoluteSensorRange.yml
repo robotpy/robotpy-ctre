@@ -4,6 +4,7 @@ enums:
   AbsoluteSensorRange:
 classes:
   AbsoluteSensorRangeRoutines:
-    shared_ptr: true
+    ignore: true  # enum toString only
+    shared_ptr: false
     methods:
       toString:

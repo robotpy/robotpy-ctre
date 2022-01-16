@@ -20,6 +20,7 @@ classes:
       toString:
         overloads:
           "":
+            rename: __str__
           std::string:
   TalonFXConfigUtil:
     shared_ptr: true

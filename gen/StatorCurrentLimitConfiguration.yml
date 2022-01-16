@@ -13,8 +13,12 @@ classes:
         overloads:
           "":
           double*, int:
+            ignore: true  # unsafe array
           bool, double, double, double:
       ToString:
+        rename: __str__
       ToArray:
       Deserialize:
+        ignore: true
       Equals:
+        rename: __eq__

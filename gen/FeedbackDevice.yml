@@ -22,7 +22,8 @@ enums:
         ignore: true
 classes:
   FeedbackDeviceRoutines:
-    shared_ptr: true
+    ignore: true  # enum toString only
+    shared_ptr: false
     methods:
       toString:
         overloads:

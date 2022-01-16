@@ -14,7 +14,11 @@ classes:
           "":
           bool, double, double, double:
           double*, int:
+            ignore: true  # unsafe array
       ToString:
+        rename: __str__
       ToArray:
       Deserialize:
+        ignore: true
       Equals:
+        rename: __eq__

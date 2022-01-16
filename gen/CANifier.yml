@@ -15,6 +15,7 @@ classes:
       toString:
         overloads:
           "":
+            rename: __str__
           std::string:
   CANifierConfigUtils:
     shared_ptr: true

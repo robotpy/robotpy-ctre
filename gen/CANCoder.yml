@@ -21,6 +21,7 @@ classes:
       toString:
         overloads:
           "":
+            rename: __str__
           std::string:
   CANCoderConfigUtils:
     shared_ptr: true

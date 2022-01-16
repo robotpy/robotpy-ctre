@@ -6,12 +6,16 @@ enums:
   LimitSwitchNormal:
 classes:
   LimitSwitchRoutines:
-    shared_ptr: true
+    force_no_default_constructor: true
+    shared_ptr: false
     methods:
       Promote:
       IsRemote:
       toString:
         overloads:
           ctre::phoenix::motorcontrol::LimitSwitchSource:
+            ignore: true
           ctre::phoenix::motorcontrol::RemoteLimitSwitchSource:
+            ignore: true
           ctre::phoenix::motorcontrol::LimitSwitchNormal:
+            ignore: true

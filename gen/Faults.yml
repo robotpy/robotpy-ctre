@@ -26,3 +26,4 @@ classes:
           int:
           "":
       ToString:
+        rename: __str__

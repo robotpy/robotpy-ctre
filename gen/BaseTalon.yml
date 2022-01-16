@@ -11,6 +11,7 @@ classes:
       toString:
         overloads:
           "":
+            rename: __str__
           std::string:
   BaseTalonPIDSetConfigUtil:
     shared_ptr: true
@@ -38,6 +39,7 @@ classes:
       toString:
         overloads:
           "":
+            rename: __str__
           std::string:
   BaseTalonConfigUtil:
     shared_ptr: true
