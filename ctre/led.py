@@ -11,6 +11,7 @@ from ._ctre.led import (
     CANdleStickyFaults,
     ColorFlowAnimation,
     FireAnimation,
+    LEDStripType,
     LarsonAnimation,
     RainbowAnimation,
     RgbFadeAnimation,
@@ -18,6 +19,7 @@ from ._ctre.led import (
     StrobeAnimation,
     TwinkleAnimation,
     TwinkleOffAnimation,
+    VBatOutputMode,
 )
 
 __all__ = (
@@ -32,6 +34,7 @@ __all__ = (
     "CANdleStickyFaults",
     "ColorFlowAnimation",
     "FireAnimation",
+    "LEDStripType",
     "LarsonAnimation",
     "RainbowAnimation",
     "RgbFadeAnimation",
@@ -39,4 +42,5 @@ __all__ = (
     "StrobeAnimation",
     "TwinkleAnimation",
     "TwinkleOffAnimation",
+    "VBatOutputMode",
 )
