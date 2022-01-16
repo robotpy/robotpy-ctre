@@ -18,3 +18,4 @@ and we'll try to address the problem.
 .. toctree::
     
     ctre
+    ctre.led
