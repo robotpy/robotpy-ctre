@@ -10,3 +10,4 @@ classes:
     methods:
       CANdleConfiguration:
       toString:
+        rename: __str__
