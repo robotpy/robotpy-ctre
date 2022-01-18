@@ -195,13 +195,13 @@ generation_data = "gen"
 
 [tool.robotpy-build.wrappers."ctre".override.arch_athena]
 depends = [
-    "ctre_wpiapi",
+    "wpiutil",
+    "wpiHal",
+    "wpilibc",
+    "wpilib_core",
     "ctre_cci",
     "ctre_api",
-    "wpilib_core",
-    "wpilibc",
-    "wpiHal",
-    "wpiutil",
+    "ctre_wpiapi",
 ]
 
 [tool.robotpy-build.wrappers."ctre".autogen_headers]
