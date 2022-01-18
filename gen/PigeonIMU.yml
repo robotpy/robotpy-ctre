@@ -110,7 +110,7 @@ classes:
           ctre::phoenix::sensors::PigeonIMU::CalibrationMode:
       ConfigSetCustomParam:
       ConfigGetCustomParam:
-        ifdef: __FRC_ROBORIO__
+        ignore: true
       ConfigSetParameter:
       ConfigGetParameter:
         overloads:
