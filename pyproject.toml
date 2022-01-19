@@ -99,13 +99,13 @@ version = "5.20.2"
 libs = ["CTRE_PhoenixCCISim"]
 
 
-[tool.robotpy-build.wrappers."ctre._simTalonSRX"]
+[tool.robotpy-build.wrappers."ctre._simtalonsrx"]
 name = "ctre_simTalonSRX"
 
-[tool.robotpy-build.wrappers."ctre._simTalonSRX".override.arch_athena]
+[tool.robotpy-build.wrappers."ctre._simtalonsrx".override.arch_athena]
 ignore = true
 
-[tool.robotpy-build.wrappers."ctre._simTalonSRX".maven_lib_download]
+[tool.robotpy-build.wrappers."ctre._simtalonsrx".maven_lib_download]
 artifact_id = "simTalonSRX"
 group_id = "com.ctre.phoenix.sim"
 repo_url = "https://maven.ctr-electronics.com/release"
@@ -113,13 +113,13 @@ version = "5.20.2"
 libs = ["CTRE_SimTalonSRX"]
 
 
-[tool.robotpy-build.wrappers."ctre._simTalonFX"]
+[tool.robotpy-build.wrappers."ctre._simtalonfx"]
 name = "ctre_simTalonFX"
 
-[tool.robotpy-build.wrappers."ctre._simTalonFX".override.arch_athena]
+[tool.robotpy-build.wrappers."ctre._simtalonfx".override.arch_athena]
 ignore = true
 
-[tool.robotpy-build.wrappers."ctre._simTalonFX".maven_lib_download]
+[tool.robotpy-build.wrappers."ctre._simtalonfx".maven_lib_download]
 artifact_id = "simTalonFX"
 group_id = "com.ctre.phoenix.sim"
 repo_url = "https://maven.ctr-electronics.com/release"
@@ -127,13 +127,13 @@ version = "5.20.2"
 libs = ["CTRE_SimTalonFX"]
 
 
-[tool.robotpy-build.wrappers."ctre._simVictorSPX"]
+[tool.robotpy-build.wrappers."ctre._simvictorspx"]
 name = "ctre_simVictorSPX"
 
-[tool.robotpy-build.wrappers."ctre._simVictorSPX".override.arch_athena]
+[tool.robotpy-build.wrappers."ctre._simvictorspx".override.arch_athena]
 ignore = true
 
-[tool.robotpy-build.wrappers."ctre._simVictorSPX".maven_lib_download]
+[tool.robotpy-build.wrappers."ctre._simvictorspx".maven_lib_download]
 artifact_id = "simVictorSPX"
 group_id = "com.ctre.phoenix.sim"
 repo_url = "https://maven.ctr-electronics.com/release"
@@ -141,13 +141,13 @@ version = "5.20.2"
 libs = ["CTRE_SimVictorSPX"]
 
 
-[tool.robotpy-build.wrappers."ctre._simPigeonIMU"]
+[tool.robotpy-build.wrappers."ctre._simpigeonimu"]
 name = "ctre_simPigeonIMU"
 
-[tool.robotpy-build.wrappers."ctre._simPigeonIMU".override.arch_athena]
+[tool.robotpy-build.wrappers."ctre._simpigeonimu".override.arch_athena]
 ignore = true
 
-[tool.robotpy-build.wrappers."ctre._simPigeonIMU".maven_lib_download]
+[tool.robotpy-build.wrappers."ctre._simpigeonimu".maven_lib_download]
 artifact_id = "simPigeonIMU"
 group_id = "com.ctre.phoenix.sim"
 repo_url = "https://maven.ctr-electronics.com/release"
@@ -155,13 +155,13 @@ version = "5.20.2"
 libs = ["CTRE_SimPigeonIMU"]
 
 
-[tool.robotpy-build.wrappers."ctre._simCANCoder"]
+[tool.robotpy-build.wrappers."ctre._simcancoder"]
 name = "ctre_simCANCoder"
 
-[tool.robotpy-build.wrappers."ctre._simCANCoder".override.arch_athena]
+[tool.robotpy-build.wrappers."ctre._simcancoder".override.arch_athena]
 ignore = true
 
-[tool.robotpy-build.wrappers."ctre._simCANCoder".maven_lib_download]
+[tool.robotpy-build.wrappers."ctre._simcancoder".maven_lib_download]
 artifact_id = "simCANCoder"
 group_id = "com.ctre.phoenix.sim"
 repo_url = "https://maven.ctr-electronics.com/release"

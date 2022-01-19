@@ -52,11 +52,11 @@ __pycache__/
 /ctre/_apicpp_sim
 /ctre/_cci
 /ctre/_cci_sim
-/ctre/_simCANCoder
-/ctre/_simPigeonIMU
-/ctre/_simTalonFX
-/ctre/_simTalonSRX
-/ctre/_simVictorSPX
+/ctre/_simcancoder
+/ctre/_simpigeonimu
+/ctre/_simtalonfx
+/ctre/_simtalonsrx
+/ctre/_simvictorspx
 /ctre/_wpiapi
 /ctre/_wpiapi_sim
 
