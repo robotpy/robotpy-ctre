@@ -21,6 +21,7 @@ classes:
   BaseTalonConfiguration:
     shared_ptr: true
     force_no_trampoline: true
+    force_multiple_inheritance: true
     attributes:
       primaryPID:
       auxiliaryPID:

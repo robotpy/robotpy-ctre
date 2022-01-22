@@ -4,6 +4,7 @@ classes:
   WPI_TalonFX:
     shared_ptr: true
     force_no_trampoline: true
+    force_multiple_inheritance: true
     typealias:
       - ctre::phoenix::motorcontrol::ControlMode
       - ctre::phoenix::motorcontrol::DemandType
