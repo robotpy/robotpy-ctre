@@ -4,7 +4,7 @@ import wpilib
 import ctre
 
 
-class MyRobot(wpilib.IterativeRobot):
+class MyRobot(wpilib.TimedRobot):
     """
     This is a short sample program demonstrating how to use the basic throttle
     mode of the TalonSRX

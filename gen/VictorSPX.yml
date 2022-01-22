@@ -63,6 +63,7 @@ classes:
          :class:`WPI_VictorSPX`
     shared_ptr: true
     force_no_trampoline: true
+    force_multiple_inheritance: true
     methods:
       VictorSPX:
       GetPIDConfigs:

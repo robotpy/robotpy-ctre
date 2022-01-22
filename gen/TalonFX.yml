@@ -39,6 +39,7 @@ classes:
          :class:`WPI_TalonFX`
     shared_ptr: true
     force_no_trampoline: true
+    force_multiple_inheritance: true
     typealias:
       - ctre::phoenix::motorcontrol::TalonFXControlMode
       - ctre::phoenix::motorcontrol::TalonFXInvertType
