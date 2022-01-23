@@ -446,5 +446,5 @@ author_email = "robotpy@googlegroups.com"
 url = "https://github.com/robotpy/robotpy-ctre"
 license = "MIT"
 install_requires = [
-    "wpilib<2023.0.0,>=2022.2.1.4",
+    "wpilib<2023.0.0,>=2022.2.1.3",
 ]
