@@ -19,7 +19,7 @@ ignore = false
 artifact_id = "wpiapi-cpp"
 group_id = "com.ctre.phoenix"
 repo_url = "https://maven.ctr-electronics.com/release"
-version = "5.20.2"
+version = "5.21.0"
 libs = ["CTRE_Phoenix_WPI"]
 
 
@@ -34,7 +34,7 @@ ignore = false
 artifact_id = "api-cpp"
 group_id = "com.ctre.phoenix"
 repo_url = "https://maven.ctr-electronics.com/release"
-version = "5.20.2"
+version = "5.21.0"
 libs = ["CTRE_Phoenix"]
 
 
@@ -49,7 +49,7 @@ ignore = false
 artifact_id = "cci"
 group_id = "com.ctre.phoenix"
 repo_url = "https://maven.ctr-electronics.com/release"
-version = "5.20.2"
+version = "5.21.0"
 libs = ["CTRE_PhoenixCCI"]
 
 
@@ -65,7 +65,7 @@ ignore = true
 artifact_id = "wpiapi-cpp-sim"
 group_id = "com.ctre.phoenix.sim"
 repo_url = "https://maven.ctr-electronics.com/release"
-version = "5.20.2"
+version = "5.21.0"
 libs = ["CTRE_Phoenix_WPISim"]
 
 
@@ -80,7 +80,7 @@ ignore = true
 artifact_id = "api-cpp-sim"
 group_id = "com.ctre.phoenix.sim"
 repo_url = "https://maven.ctr-electronics.com/release"
-version = "5.20.2"
+version = "5.21.0"
 libs = ["CTRE_PhoenixSim"]
 
 
@@ -95,7 +95,7 @@ ignore = true
 artifact_id = "cci-sim"
 group_id = "com.ctre.phoenix.sim"
 repo_url = "https://maven.ctr-electronics.com/release"
-version = "5.20.2"
+version = "5.21.0"
 libs = ["CTRE_PhoenixCCISim"]
 
 
@@ -109,7 +109,7 @@ ignore = true
 artifact_id = "simTalonSRX"
 group_id = "com.ctre.phoenix.sim"
 repo_url = "https://maven.ctr-electronics.com/release"
-version = "5.20.2"
+version = "5.21.0"
 libs = ["CTRE_SimTalonSRX"]
 
 
@@ -123,7 +123,7 @@ ignore = true
 artifact_id = "simTalonFX"
 group_id = "com.ctre.phoenix.sim"
 repo_url = "https://maven.ctr-electronics.com/release"
-version = "5.20.2"
+version = "5.21.0"
 libs = ["CTRE_SimTalonFX"]
 
 
@@ -137,7 +137,7 @@ ignore = true
 artifact_id = "simVictorSPX"
 group_id = "com.ctre.phoenix.sim"
 repo_url = "https://maven.ctr-electronics.com/release"
-version = "5.20.2"
+version = "5.21.0"
 libs = ["CTRE_SimVictorSPX"]
 
 
@@ -151,7 +151,7 @@ ignore = true
 artifact_id = "simPigeonIMU"
 group_id = "com.ctre.phoenix.sim"
 repo_url = "https://maven.ctr-electronics.com/release"
-version = "5.20.2"
+version = "5.21.0"
 libs = ["CTRE_SimPigeonIMU"]
 
 
@@ -165,7 +165,7 @@ ignore = true
 artifact_id = "simCANCoder"
 group_id = "com.ctre.phoenix.sim"
 repo_url = "https://maven.ctr-electronics.com/release"
-version = "5.20.2"
+version = "5.21.0"
 libs = ["CTRE_SimCANCoder"]
 
 
