@@ -1,5 +1,8 @@
 ---
 
+enums:
+  AxisDirection:
+
 classes:
   Pigeon2Configuration:
     typealias:
@@ -24,11 +27,16 @@ classes:
       CustomParam1Different:
   Pigeon2:
     force_no_trampoline: true
+    typealias:
+      - ctre::phoenix::ErrorCode
     methods:
       Pigeon2:
       GetFaults:
       GetStickyFaults:
       ConfigMountPose:
+        overloads:
+          ctre::phoenix::sensors::AxisDirection, ctre::phoenix::sensors::AxisDirection, int:
+          double, double, double, int:
       ConfigMountPoseYaw:
       ConfigMountPosePitch:
       ConfigMountPoseRoll:
