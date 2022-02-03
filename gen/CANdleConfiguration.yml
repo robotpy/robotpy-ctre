@@ -12,3 +12,17 @@ classes:
       CANdleConfiguration:
       toString:
         rename: __str__
+
+inline_code: |
+  cls_CANdleConfiguration
+    .def_readwrite("stripType", &ctre::phoenix::led::CANdleConfiguration::stripType,
+      py::doc("What type of LEDs the CANdle controls"))
+    .def_readwrite("brightnessScalar", &ctre::phoenix::led::CANdleConfiguration::brightnessScalar,
+      py::doc("Brightness scalar for all LEDs controlled"))
+    .def_readwrite("disableWhenLOS", &ctre::phoenix::led::CANdleConfiguration::disableWhenLOS,
+      py::doc("True to turn off LEDs when Loss of Signal occurrs"))
+    .def_readwrite("statusLedOffWhenActive", &ctre::phoenix::led::CANdleConfiguration::statusLedOffWhenActive,
+      py::doc("True to turn off Status LED when CANdle is actively being controlled"))
+    .def_readwrite("vBatOutputMode", &ctre::phoenix::led::CANdleConfiguration::vBatOutputMode,
+      py::doc("The behavior of VBat output"))
+  ;
