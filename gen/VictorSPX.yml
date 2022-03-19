@@ -66,6 +66,9 @@ classes:
     force_multiple_inheritance: true
     methods:
       VictorSPX:
+        overloads:
+          int:
+          int, std::string&:
       GetPIDConfigs:
       ConfigAllSettings:
       GetAllConfigs:
