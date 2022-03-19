@@ -264,6 +264,7 @@ classes:
       ConfigClosedLoopPeakOutput:
       ConfigClosedLoopPeriod:
       ConfigAuxPIDPolarity:
+      ConfigureSlot:
       SetIntegralAccumulator:
       GetClosedLoopError:
       GetIntegralAccumulator:

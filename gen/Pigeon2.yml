@@ -23,6 +23,9 @@ classes:
       EnableCompassDifferent:
       DisableTemperatureCompensationDifferent:
       DisableNoMotionCalibrationDifferent:
+      XAxisGyroErrorDifferent:
+      YAxisGyroErrorDifferent:
+      ZAxisGyroErrorDifferent:
       CustomParam0Different:
       CustomParam1Different:
   Pigeon2:
@@ -40,6 +43,9 @@ classes:
       ConfigMountPoseYaw:
       ConfigMountPosePitch:
       ConfigMountPoseRoll:
+      ConfigXAxisGyroError:
+      ConfigYAxisGyroError:
+      ConfigZAxisGyroError:
       ConfigEnableCompass:
       ConfigDisableTemperatureCompensation:
       ConfigDisableNoMotionCalibration:

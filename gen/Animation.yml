@@ -11,8 +11,10 @@ classes:
       Animation:
       SetSpeed:
       SetNumLed:
+      SetLedOffset:
       GetBaseStandardAnimation:
       GetBaseTwoSizeAnimation:
       GetAnimationIdx:
       GetSpeed:
       GetNumLed:
+      GetLedOffset:

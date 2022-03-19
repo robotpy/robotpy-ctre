@@ -10,11 +10,14 @@ classes:
       GetCurrent:
       GetTemperature:
       GetVBatModulation:
+      GetMaxSimultaneousAnimationCount:
       Animate:
         overloads:
           Animation&:
           BaseStandardAnimation&:
           BaseTwoSizeAnimation&:
+      ClearAnimation:
+        ignore: true # TODO
       SetLEDs:
       ModulateVBatOutput:
       ConfigLOSBehavior:
@@ -22,6 +25,7 @@ classes:
       ConfigBrightnessScalar:
       ConfigStatusLedState:
       ConfigVBatOutput:
+      configV5Enabled:
       ConfigGetParameter:
       ConfigSetParameter:
       ConfigGetCustomParam:
