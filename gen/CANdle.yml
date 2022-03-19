@@ -17,6 +17,7 @@ classes:
           BaseStandardAnimation&:
           BaseTwoSizeAnimation&:
       ClearAnimation:
+        ignore: true # TODO
       SetLEDs:
       ModulateVBatOutput:
       ConfigLOSBehavior:
