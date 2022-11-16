@@ -8,6 +8,8 @@ classes:
     force_depends:
     - ctre::phoenix::CustomParamConfiguration
     force_no_trampoline: true
+    base_qualnames:
+      CustomParamConfiguration: ctre::phoenix::CustomParamConfiguration
     methods:
       CANdleConfiguration:
       toString:

@@ -58,7 +58,6 @@ classes:
       ForwardLimitSwitchDifferent:
       ReverseLimitSwitchDifferent:
   BaseTalon:
-    shared_ptr: true
     force_no_trampoline: true
     typealias:
       - ctre::phoenix::motorcontrol::IMotorControllerEnhanced
@@ -69,6 +68,8 @@ classes:
       - ctre::phoenix::motorcontrol::LimitSwitchSource
       - ctre::phoenix::motorcontrol::LimitSwitchNormal
       - ctre::phoenix::motorcontrol::RemoteLimitSwitchSource
+    base_qualnames:
+      IMotorControllerEnhanced: ctre::phoenix::motorcontrol::IMotorControllerEnhanced
     methods:
       BaseTalon:
         overloads:

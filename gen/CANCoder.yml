@@ -2,10 +2,9 @@
 
 classes:
   CANCoderConfiguration:
-    shared_ptr: true
     force_no_trampoline: true
-    force_depends:
-    - ctre::phoenix::CustomParamConfiguration
+    base_qualnames:
+      CustomParamConfiguration: ctre::phoenix::CustomParamConfiguration
     attributes:
       velocityMeasurementPeriod:
       velocityMeasurementWindow:
@@ -24,8 +23,9 @@ classes:
             rename: __str__
           std::string:
   CANCoderConfigUtils:
-    shared_ptr: true
     force_no_trampoline: true
+    base_qualnames:
+      CustomParamConfigUtil: ctre::phoenix::CustomParamConfigUtil
     methods:
       VelocityMeasurementPeriodDifferent:
       VelocityMeasurementWindowDifferent:
@@ -45,6 +45,8 @@ classes:
       - ctre::phoenix::CANBusAddressable
       - ctre::phoenix::ParamEnum
       - ctre::phoenix::ErrorCode
+    base_qualnames:
+      CANBusAddressable: ctre::phoenix::CANBusAddressable
     methods:
       CANCoder:
       DestroyAllCANCoders:

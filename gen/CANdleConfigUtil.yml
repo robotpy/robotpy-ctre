@@ -3,6 +3,8 @@
 classes:
   CANdleConfigUtil:
     subpackage: led
+    base_qualnames:
+      CustomParamConfigUtil: ctre::phoenix::CustomParamConfigUtil
     methods:
       StripTypeDifferent:
       BrightnessScalarDifferent:
