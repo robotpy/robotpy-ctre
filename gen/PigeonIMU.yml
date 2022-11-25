@@ -28,7 +28,8 @@ classes:
       - ctre::phoenix::ErrorCode
       - ctre::phoenix::CustomParamConfiguration
       - ctre::phoenix::CANBusAddressable
-
+    base_qualnames:
+      CustomParamConfiguration: ctre::phoenix::CustomParamConfiguration
     enums:
       CalibrationMode:
       PigeonState:

@@ -10,6 +10,8 @@ classes:
     force_depends:
     - ctre::phoenix::CustomParamConfiguration
     force_no_trampoline: true
+    base_qualnames:
+      CustomParamConfiguration: ctre::phoenix::CustomParamConfiguration
     methods:
       BasePigeonConfiguration:
       toString:
@@ -26,6 +28,8 @@ classes:
     - ctre::phoenix::CANBusAddressable
     force_depends:
     - ctre::phoenix::CANBusAddressable
+    base_qualnames:
+      CANBusAddressable: ctre::phoenix::CANBusAddressable
     force_no_trampoline: true
     methods:
       BasePigeon:

@@ -9,10 +9,11 @@ on:
 
 jobs:
   ci:
-    uses: robotpy/build-actions/.github/workflows/package-ci.yml@v2022
+    uses: robotpy/build-actions/.github/workflows/package-ci.yml@v2023
     with:
       enable_raspbian: false
       enable_sphinx_check: false
+      fail_fast: false
     secrets:
       SSH_USER: ${{ secrets.SSH_USER }}
       SSH_KEY: ${{ secrets.SSH_KEY }}
