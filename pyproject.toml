@@ -315,6 +315,12 @@ libs = [
 [tool.robotpy-build.wrappers."ctre"]
 name = "ctre"
 depends = [
+    "wpiutil",
+    "wpinet",
+    "wpimath_cpp",
+    "wpiHal",
+    "ntcore",
+    "wpilibc",
     "ctre_wpiapi_cpp_sim",
     "ctre_api_cpp_sim",
     "ctre_cci_sim",
@@ -337,6 +343,12 @@ generation_data = "gen"
 
 [tool.robotpy-build.wrappers."ctre".override.arch_athena]
 depends = [
+    "wpiutil",
+    "wpinet",
+    "wpimath_cpp",
+    "wpiHal",
+    "ntcore",
+    "wpilibc",
     "ctre_wpiapi_cpp",
     "ctre_api_cpp",
     "ctre_cci",
