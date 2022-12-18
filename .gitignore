@@ -47,21 +47,11 @@ __pycache__/
 /ctre/pkgcfg.py
 /ctre/rpy-include
 /ctre/version.py
-
-/ctre/_api
-/ctre/_apicpp_sim
-/ctre/_cci
-/ctre/_cci_sim
-/ctre/_simcancoder
-/ctre/_simpigeonimu
-/ctre/_simtalonfx
-/ctre/_simtalonsrx
-/ctre/_simvictorspx
-/ctre/_tools_sim
-/ctre/_wpiapi
-/ctre/_wpiapi_sim
-
 /ctre/py.typed
+
+/ctre/_*/_init_*.py
+/ctre/_*/pkgcfg.py
+/ctre/_*/include
 
 
 # Distribution / packaging
