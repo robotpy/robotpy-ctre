@@ -5,6 +5,7 @@ extra_includes:
 
 classes:
   CANCoderSimCollection:
+    subpackage: sensors
     methods:
       CANCoderSimCollection:
       SetBusVoltage:

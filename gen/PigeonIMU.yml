@@ -5,6 +5,7 @@ extra_includes:
 
 classes:
   PigeonIMUConfiguration:
+    subpackage: sensors
     shared_ptr: true
     force_no_trampoline: true
     methods:
@@ -15,12 +16,14 @@ classes:
             rename: __str__
           std::string:
   PigeonIMUConfigUtils:
+    subpackage: sensors
     shared_ptr: true
     force_no_trampoline: true
     methods:
       CustomParam0Different:
       CustomParam1Different:
   PigeonIMU:
+    subpackage: sensors
     shared_ptr: true
     force_no_trampoline: true
     typealias:
