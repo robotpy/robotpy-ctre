@@ -138,3 +138,4 @@ root = abspath(dirname(__file__))
 
 gen_package(root, "ctre")
 gen_package(root, "ctre.led")
+gen_package(root, "ctre.sensors")

@@ -2,8 +2,10 @@
 
 enums:
   SensorTimeBase:
+    subpackage: sensors
 classes:
   SensorTimeBaseRoutines:
+    subpackage: sensors
     ignore: true  # enum toString only
     shared_ptr: false
     methods:

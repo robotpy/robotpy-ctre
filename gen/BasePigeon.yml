@@ -5,6 +5,7 @@ extra_includes:
 
 classes:
   BasePigeonConfiguration:
+    subpackage: sensors
     typealias:
     - ctre::phoenix::CustomParamConfiguration
     force_depends:
@@ -19,10 +20,12 @@ classes:
           "":
           std::string:
   BasePigeonConfigUtils:
+    subpackage: sensors
     methods:
       CustomParam0Different:
       CustomParam1Different:
   BasePigeon:
+    subpackage: sensors
     typealias:
     - ctre::phoenix::ParamEnum
     - ctre::phoenix::CANBusAddressable

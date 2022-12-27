@@ -2,8 +2,10 @@
 
 enums:
   SensorInitializationStrategy:
+    subpackage: sensors
 classes:
   SensorInitializationStrategyRoutines:
+    subpackage: sensors
     ignore: true  # enum toString only
     shared_ptr: false
     methods:

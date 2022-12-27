@@ -2,8 +2,10 @@
 
 enums:
   AbsoluteSensorRange:
+    subpackage: sensors
 classes:
   AbsoluteSensorRangeRoutines:
+    subpackage: sensors
     ignore: true  # enum toString only
     shared_ptr: false
     methods:

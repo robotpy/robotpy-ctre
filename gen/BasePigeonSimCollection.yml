@@ -5,6 +5,7 @@ extra_includes:
 
 classes:
   BasePigeonSimCollection:
+    subpackage: sensors
     methods:
       BasePigeonSimCollection:
       SetRawHeading:

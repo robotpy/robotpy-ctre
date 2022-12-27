@@ -2,3 +2,4 @@
 
 enums:
   PigeonIMU_StatusFrame:
+    subpackage: sensors

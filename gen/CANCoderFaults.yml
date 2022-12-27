@@ -2,6 +2,7 @@
 
 classes:
   CANCoderFaults:
+    subpackage: sensors
     shared_ptr: true
     attributes:
       HardwareFault:

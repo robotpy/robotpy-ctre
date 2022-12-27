@@ -2,8 +2,10 @@
 
 enums:
   SensorVelocityMeasPeriod:
+    subpackage: sensors
 classes:
   SensorVelocityMeasPeriodRoutines:
+    subpackage: sensors
     ignore: true  # enum toString only
     shared_ptr: false
     methods:

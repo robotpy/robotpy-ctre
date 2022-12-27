@@ -2,6 +2,7 @@
 
 classes:
   CANCoderConfiguration:
+    subpackage: sensors
     force_no_trampoline: true
     base_qualnames:
       CustomParamConfiguration: ctre::phoenix::CustomParamConfiguration
@@ -23,6 +24,7 @@ classes:
             rename: __str__
           std::string:
   CANCoderConfigUtils:
+    subpackage: sensors
     force_no_trampoline: true
     base_qualnames:
       CustomParamConfigUtil: ctre::phoenix::CustomParamConfigUtil
@@ -37,6 +39,7 @@ classes:
       UnitStringDifferent:
       SensorTimeBaseDifferent:
   CANCoder:
+    subpackage: sensors
     shared_ptr: true
     force_no_trampoline: true
     typealias:

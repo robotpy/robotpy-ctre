@@ -2,6 +2,7 @@
 
 classes:
   PigeonIMU_StickyFaults:
+    subpackage: sensors
     shared_ptr: true
     methods:
       HasAnyFault:

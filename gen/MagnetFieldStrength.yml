@@ -2,3 +2,4 @@
 
 enums:
   MagnetFieldStrength:
+    subpackage: sensors

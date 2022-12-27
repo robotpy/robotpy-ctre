@@ -19,3 +19,4 @@ and we'll try to address the problem.
     
     ctre
     ctre.led
+    ctre.sensors

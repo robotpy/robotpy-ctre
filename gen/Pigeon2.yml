@@ -2,9 +2,11 @@
 
 enums:
   AxisDirection:
+    subpackage: sensors
 
 classes:
   Pigeon2Configuration:
+    subpackage: sensors
     typealias:
     - ctre::phoenix::CustomParamConfiguration
     force_no_trampoline: true
@@ -17,6 +19,7 @@ classes:
           "":
           std::string:
   Pigeon2ConfigUtils:
+    subpackage: sensors
     force_no_trampoline: true
     methods:
       MountPoseYawDifferent:
@@ -31,6 +34,7 @@ classes:
       CustomParam0Different:
       CustomParam1Different:
   Pigeon2:
+    subpackage: sensors
     force_no_trampoline: true
     typealias:
       - ctre::phoenix::ErrorCode
