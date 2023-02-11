@@ -18,12 +18,11 @@
  * Tweak the PID gains accordingly.
 """
 
-from ctre import WPI_TalonSRX
+import ctre
 import wpilib
 
 
-class Robot(wpilib.IterativeRobot):
-
+class Robot(wpilib.TimedRobot):
     #: Which PID slot to pull gains from. Starting 2018, you can choose from
     #: 0,1,2 or 3. Only the first two (0,1) are visible in web-based
     #: configuration.
@@ -38,7 +37,7 @@ class Robot(wpilib.IterativeRobot):
     kTimeoutMs = 10
 
     def robotInit(self):
-        self.talon = WPI_TalonSRX(3)
+        self.talon = ctre.WPI_TalonSRX(3)
         self.joy = wpilib.Joystick(0)
 
         self.loops = 0
@@ -47,7 +46,7 @@ class Robot(wpilib.IterativeRobot):
 
         # choose the sensor and sensor direction
         self.talon.configSelectedFeedbackSensor(
-            WPI_TalonSRX.FeedbackDevice.CTRE_MagEncoder_Relative,
+            ctre.FeedbackDevice.CTRE_MagEncoder_Relative,
             self.kPIDLoopIdx,
             self.kTimeoutMs,
         )
@@ -107,14 +106,14 @@ class Robot(wpilib.IterativeRobot):
 
             # 10 Rotations * 4096 u/rev in either direction
             self.targetPos = leftYstick * 4096 * 10.0
-            self.talon.set(WPI_TalonSRX.ControlMode.Position, self.targetPos)
+            self.talon.set(ctre.ControlMode.Position, self.targetPos)
 
         # on button2 just straight drive
         if button2:
             # Percent voltage mode
-            self.talon.set(WPI_TalonSRX.ControlMode.PercentOutput, leftYstick)
+            self.talon.set(ctre.ControlMode.PercentOutput, leftYstick)
 
-        if self.talon.getControlMode() == WPI_TalonSRX.ControlMode.Position:
+        if self.talon.getControlMode() == ctre.ControlMode.Position:
             # append more signals to print when in speed mode.
             sb.append("\terr: %s" % self.talon.getClosedLoopError(self.kPIDLoopIdx))
             sb.append("\ttrg: %.3f" % self.targetPos)

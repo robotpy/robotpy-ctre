@@ -23,8 +23,7 @@ from ctre import WPI_TalonSRX
 import wpilib
 
 
-class Robot(wpilib.IterativeRobot):
-
+class Robot(wpilib.TimedRobot):
     #: Which PID slot to pull gains from. Starting 2018, you can choose from
     #: 0,1,2 or 3. Only the first two (0,1) are visible in web-based
     #: configuration.
@@ -112,7 +111,6 @@ class Robot(wpilib.IterativeRobot):
         self.processInstrumentation(self.talon, sb)
 
     def processInstrumentation(self, tal, sb):
-
         # smart dash plots
         wpilib.SmartDashboard.putNumber(
             "SensorVel", tal.getSelectedSensorVelocity(self.kPIDLoopIdx)
