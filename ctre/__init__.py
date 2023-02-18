@@ -201,9 +201,9 @@ from .version import version as __version__
 # TODO: remove in 2024
 def __getattr__(name):
     if name != "sensors":
-        from .sensors import __all__
+        from .sensors import __all__ as sensors_all
 
-        if name in __all__:
+        if name in sensors_all:
             import warnings
             from . import sensors
 
