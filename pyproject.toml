@@ -6,13 +6,15 @@ author_email = "robotpy@googlegroups.com"
 url = "https://github.com/robotpy/robotpy-ctre"
 license = "MIT"
 install_requires = [
-    "wpilib<2024.0.0,>=2023.1.1.0",
+    "wpilib<2025.0.0,>=2024.0.0b2",
+    "phoenix6~=24.0.0b2",
 ]
 
 [build-system]
 requires = [
-    "robotpy-build<2024.0.0,>=2023.0.0",
-    "wpilib<2024.0.0,>=2023.1.1.0",
+    "robotpy-build<2025.0.0,>=2024.0.0b4",
+    "wpilib<2025.0.0,>=2024.0.0b2",
+    "phoenix6~=24.0.0b2",
 ]
 
 [tool.robotpy-build]
@@ -44,7 +46,7 @@ depends = [
 artifact_id = "wpiapi-cpp"
 group_id = "com.ctre.phoenix"
 repo_url = "https://maven.ctr-electronics.com/release"
-version = "5.30.4"
+version = "5.32.0-beta-1"
 libs = [
     "CTRE_Phoenix_WPI",
 ]
@@ -64,7 +66,7 @@ depends = [
 artifact_id = "api-cpp"
 group_id = "com.ctre.phoenix"
 repo_url = "https://maven.ctr-electronics.com/release"
-version = "5.30.4"
+version = "5.32.0-beta-1"
 libs = [
     "CTRE_Phoenix",
 ]
@@ -83,7 +85,7 @@ depends = [
 artifact_id = "cci"
 group_id = "com.ctre.phoenix"
 repo_url = "https://maven.ctr-electronics.com/release"
-version = "5.30.4"
+version = "5.32.0-beta-1"
 libs = [
     "CTRE_PhoenixCCI",
 ]
@@ -97,9 +99,9 @@ ignore = false
 
 [tool.robotpy-build.wrappers."ctre._tools".maven_lib_download]
 artifact_id = "tools"
-group_id = "com.ctre.phoenixpro"
+group_id = "com.ctre.phoenix6"
 repo_url = "https://maven.ctr-electronics.com/release"
-version = "23.0.8"
+version = "24.0.0-beta-2"
 libs = [
     "CTRE_PhoenixTools",
 ]
@@ -121,7 +123,7 @@ ignore = true
 artifact_id = "wpiapi-cpp-sim"
 group_id = "com.ctre.phoenix.sim"
 repo_url = "https://maven.ctr-electronics.com/release"
-version = "5.30.4"
+version = "5.32.0-beta-1"
 libs = [
     "CTRE_Phoenix_WPISim",
 ]
@@ -140,7 +142,7 @@ ignore = true
 artifact_id = "api-cpp-sim"
 group_id = "com.ctre.phoenix.sim"
 repo_url = "https://maven.ctr-electronics.com/release"
-version = "5.30.4"
+version = "5.32.0-beta-1"
 libs = [
     "CTRE_PhoenixSim",
 ]
@@ -158,7 +160,7 @@ ignore = true
 artifact_id = "cci-sim"
 group_id = "com.ctre.phoenix.sim"
 repo_url = "https://maven.ctr-electronics.com/release"
-version = "5.30.4"
+version = "5.32.0-beta-1"
 libs = [
     "CTRE_PhoenixCCISim",
 ]
@@ -181,12 +183,13 @@ ignore = true
 
 [tool.robotpy-build.wrappers."ctre._tools_sim".maven_lib_download]
 artifact_id = "tools-sim"
-group_id = "com.ctre.phoenixpro.sim"
+group_id = "com.ctre.phoenix6.sim"
 repo_url = "https://maven.ctr-electronics.com/release"
-version = "23.0.8"
-libs = [
-    "CTRE_PhoenixTools_Sim",
-]
+version = "24.0.0-beta-2"
+libs = []
+# libs = [
+#     "CTRE_PhoenixTools_Sim",
+# ]
 
 [tool.robotpy-build.wrappers."ctre._simtalonsrx"]
 name = "ctre_simtalonsrx"
@@ -196,12 +199,13 @@ ignore = true
 
 [tool.robotpy-build.wrappers."ctre._simtalonsrx".maven_lib_download]
 artifact_id = "simTalonSRX"
-group_id = "com.ctre.phoenixpro.sim"
+group_id = "com.ctre.phoenix6.sim"
 repo_url = "https://maven.ctr-electronics.com/release"
-version = "23.0.8"
-libs = [
-    "CTRE_SimTalonSRX",
-]
+version = "24.0.0-beta-2"
+libs = []
+# libs = [
+#     "CTRE_SimTalonSRX",
+# ]
 
 [tool.robotpy-build.wrappers."ctre._simtalonfx"]
 name = "ctre_simtalonfx"
@@ -211,12 +215,13 @@ ignore = true
 
 [tool.robotpy-build.wrappers."ctre._simtalonfx".maven_lib_download]
 artifact_id = "simTalonFX"
-group_id = "com.ctre.phoenixpro.sim"
+group_id = "com.ctre.phoenix6.sim"
 repo_url = "https://maven.ctr-electronics.com/release"
-version = "23.0.8"
-libs = [
-    "CTRE_SimTalonFX",
-]
+version = "24.0.0-beta-2"
+libs = []
+# libs = [
+#     "CTRE_SimTalonFX",
+# ]
 
 [tool.robotpy-build.wrappers."ctre._simvictorspx"]
 name = "ctre_simvictorspx"
@@ -226,12 +231,13 @@ ignore = true
 
 [tool.robotpy-build.wrappers."ctre._simvictorspx".maven_lib_download]
 artifact_id = "simVictorSPX"
-group_id = "com.ctre.phoenixpro.sim"
+group_id = "com.ctre.phoenix6.sim"
 repo_url = "https://maven.ctr-electronics.com/release"
-version = "23.0.8"
-libs = [
-    "CTRE_SimVictorSPX",
-]
+version = "24.0.0-beta-2"
+libs = []
+# libs = [
+#     "CTRE_SimVictorSPX",
+# ]
 
 [tool.robotpy-build.wrappers."ctre._simpigeonimu"]
 name = "ctre_simpigeonimu"
@@ -241,12 +247,13 @@ ignore = true
 
 [tool.robotpy-build.wrappers."ctre._simpigeonimu".maven_lib_download]
 artifact_id = "simPigeonIMU"
-group_id = "com.ctre.phoenixpro.sim"
+group_id = "com.ctre.phoenix6.sim"
 repo_url = "https://maven.ctr-electronics.com/release"
-version = "23.0.8"
-libs = [
-    "CTRE_SimPigeonIMU",
-]
+version = "24.0.0-beta-2"
+libs = []
+# libs = [
+#     "CTRE_SimPigeonIMU",
+# ]
 
 [tool.robotpy-build.wrappers."ctre._simcancoder"]
 name = "ctre_simcancoder"
@@ -256,12 +263,13 @@ ignore = true
 
 [tool.robotpy-build.wrappers."ctre._simcancoder".maven_lib_download]
 artifact_id = "simCANCoder"
-group_id = "com.ctre.phoenixpro.sim"
+group_id = "com.ctre.phoenix6.sim"
 repo_url = "https://maven.ctr-electronics.com/release"
-version = "23.0.8"
-libs = [
-    "CTRE_SimCANCoder",
-]
+version = "24.0.0-beta-2"
+libs = []
+# libs = [
+#     "CTRE_SimCANCoder",
+# ]
 
 [tool.robotpy-build.wrappers."ctre._simprotalonfx"]
 name = "ctre_simprotalonfx"
@@ -271,12 +279,13 @@ ignore = true
 
 [tool.robotpy-build.wrappers."ctre._simprotalonfx".maven_lib_download]
 artifact_id = "simProTalonFX"
-group_id = "com.ctre.phoenixpro.sim"
+group_id = "com.ctre.phoenix6.sim"
 repo_url = "https://maven.ctr-electronics.com/release"
-version = "23.0.8"
-libs = [
-    "CTRE_SimProTalonFX",
-]
+version = "24.0.0-beta-2"
+libs = []
+# libs = [
+#     "CTRE_SimProTalonFX",
+# ]
 
 [tool.robotpy-build.wrappers."ctre._simprocancoder"]
 name = "ctre_simprocancoder"
@@ -286,12 +295,13 @@ ignore = true
 
 [tool.robotpy-build.wrappers."ctre._simprocancoder".maven_lib_download]
 artifact_id = "simProCANcoder"
-group_id = "com.ctre.phoenixpro.sim"
+group_id = "com.ctre.phoenix6.sim"
 repo_url = "https://maven.ctr-electronics.com/release"
-version = "23.0.8"
-libs = [
-    "CTRE_SimProCANcoder",
-]
+version = "24.0.0-beta-2"
+libs = []
+# libs = [
+#     "CTRE_SimProCANcoder",
+# ]
 
 [tool.robotpy-build.wrappers."ctre._simpropigeon2"]
 name = "ctre_simpropigeon2"
@@ -301,12 +311,13 @@ ignore = true
 
 [tool.robotpy-build.wrappers."ctre._simpropigeon2".maven_lib_download]
 artifact_id = "simProPigeon2"
-group_id = "com.ctre.phoenixpro.sim"
+group_id = "com.ctre.phoenix6.sim"
 repo_url = "https://maven.ctr-electronics.com/release"
-version = "23.0.8"
-libs = [
-    "CTRE_SimProPigeon2",
-]
+version = "24.0.0-beta-2"
+libs = []
+# libs = [
+#     "CTRE_SimProPigeon2",
+# ]
 
 
 # End autogenerated TOML

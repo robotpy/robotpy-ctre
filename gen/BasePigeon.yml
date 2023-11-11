@@ -55,8 +55,6 @@ classes:
       GetCompassHeading:
       GetCompassFieldStrength:
       GetTemp:
-        overloads:
-          '[const]':
       GetUpTime:
       GetRawMagnetometer:
       GetBiasedMagnetometer:
@@ -79,6 +77,7 @@ classes:
       GetFirmwareVersion:
       ClearStickyFaults:
       GetLowLevelHandle:
+        ignore: true
       ConfigAllSettings:
       GetAllConfigs:
       ConfigFactoryDefault:

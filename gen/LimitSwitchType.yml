@@ -13,9 +13,9 @@ classes:
       IsRemote:
       toString:
         overloads:
-          ctre::phoenix::motorcontrol::LimitSwitchSource:
+          LimitSwitchSource:
             ignore: true
-          ctre::phoenix::motorcontrol::RemoteLimitSwitchSource:
+          RemoteLimitSwitchSource:
             ignore: true
-          ctre::phoenix::motorcontrol::LimitSwitchNormal:
+          LimitSwitchNormal:
             ignore: true

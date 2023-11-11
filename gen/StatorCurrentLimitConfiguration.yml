@@ -12,7 +12,7 @@ classes:
       StatorCurrentLimitConfiguration:
         overloads:
           "":
-          double*, int:
+          const double*, int:
             ignore: true  # unsafe array
           bool, double, double, double:
       ToString:

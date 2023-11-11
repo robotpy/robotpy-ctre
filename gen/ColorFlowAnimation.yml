@@ -3,8 +3,6 @@
 classes:
   ColorFlowAnimation:
     subpackage: led
-    typealias:
-    - ctre::phoenix::led::ColorFlowAnimation::Direction
     enums:
       Direction:
     methods:
