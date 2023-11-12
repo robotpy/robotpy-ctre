@@ -45,7 +45,7 @@ classes:
       TalonSRX:
         overloads:
           int:
-          int, std::string&:
+          int, const std::string&:
           "":
             ignore: true
       ConfigSelectedFeedbackSensor:

@@ -12,6 +12,16 @@ classes:
     force_no_trampoline: true
     base_qualnames:
       CustomParamConfiguration: ctre::phoenix::CustomParamConfiguration
+    attributes:
+      MountPoseYaw:
+      MountPosePitch:
+      MountPoseRoll:
+      EnableCompass:
+      DisableTemperatureCompensation:
+      DisableNoMotionCalibration:
+      XAxisGyroError:
+      YAxisGyroError:
+      ZAxisGyroError:
     methods:
       Pigeon2Configuration:
       toString:
@@ -44,7 +54,7 @@ classes:
       GetStickyFaults:
       ConfigMountPose:
         overloads:
-          ctre::phoenix::sensors::AxisDirection, ctre::phoenix::sensors::AxisDirection, int:
+          AxisDirection, AxisDirection, int:
           double, double, double, int:
       ConfigMountPoseYaw:
       ConfigMountPosePitch:

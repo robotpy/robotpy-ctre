@@ -3,8 +3,6 @@
 classes:
   TwinkleOffAnimation:
     subpackage: led
-    typealias:
-    - ctre::phoenix::led::TwinkleOffAnimation::TwinkleOffPercent
     enums:
       TwinkleOffPercent:
     methods:

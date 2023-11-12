@@ -11,16 +11,18 @@ on:
 
 jobs:
   ci:
-    uses: robotpy/build-actions/.github/workflows/package-ci.yml@v2023
+    uses: robotpy/build-actions/.github/workflows/package-ci.yml@v2024
     with:
       enable_raspbian: false
       enable_sphinx_check: false
+      artifactory_repo_type: vendor
       fail_fast: false
+      python_versions: >-
+        ["3.9", "3.10", "3.11", "3.12"]
     secrets:
-      SSH_USER: ${{ secrets.SSH_USER }}
-      SSH_KEY: ${{ secrets.SSH_KEY }}
-      SSH_PASSPHRASE: ${{ secrets.SSH_PASSPHRASE }}
       META_REPO_ACCESS_TOKEN: ${{ secrets.REPO_ACCESS_TOKEN }}
       RTD_TOKEN: ${{ secrets.RTD_TOKEN }}
       RTD_WEBHOOK: ${{ secrets.RTD_WEBHOOK }}
+      WPI_ARTIFACTORY_USERNAME: ${{ secrets.WPI_ARTIFACTORY_USERNAME }}
+      WPI_ARTIFACTORY_TOKEN: ${{ secrets.WPI_ARTIFACTORY_TOKEN }}
       PYPI_API_TOKEN: ${{ secrets.PYPI_PASSWORD }}

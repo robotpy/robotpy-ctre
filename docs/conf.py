@@ -6,7 +6,7 @@ import os
 
 from os.path import abspath, join, dirname
 
-import ctre
+import phoenix5
 
 # -- RTD configuration ------------------------------------------------
 
@@ -136,6 +136,6 @@ generate_sidebar(
 
 root = abspath(dirname(__file__))
 
-gen_package(root, "ctre")
-gen_package(root, "ctre.led")
-gen_package(root, "ctre.sensors")
+gen_package(root, "phoenix5")
+gen_package(root, "phoenix5.led")
+gen_package(root, "phoenix5.sensors")

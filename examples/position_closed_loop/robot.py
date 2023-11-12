@@ -18,7 +18,7 @@
  * Tweak the PID gains accordingly.
 """
 
-import ctre
+import phoenix5
 import wpilib
 
 
@@ -37,7 +37,7 @@ class Robot(wpilib.TimedRobot):
     kTimeoutMs = 10
 
     def robotInit(self):
-        self.talon = ctre.WPI_TalonSRX(3)
+        self.talon = phoenix5.WPI_TalonSRX(3)
         self.joy = wpilib.Joystick(0)
 
         self.loops = 0
@@ -46,7 +46,7 @@ class Robot(wpilib.TimedRobot):
 
         # choose the sensor and sensor direction
         self.talon.configSelectedFeedbackSensor(
-            ctre.FeedbackDevice.CTRE_MagEncoder_Relative,
+            phoenix5.FeedbackDevice.CTRE_MagEncoder_Relative,
             self.kPIDLoopIdx,
             self.kTimeoutMs,
         )
@@ -106,14 +106,14 @@ class Robot(wpilib.TimedRobot):
 
             # 10 Rotations * 4096 u/rev in either direction
             self.targetPos = leftYstick * 4096 * 10.0
-            self.talon.set(ctre.ControlMode.Position, self.targetPos)
+            self.talon.set(phoenix5.ControlMode.Position, self.targetPos)
 
         # on button2 just straight drive
         if button2:
             # Percent voltage mode
-            self.talon.set(ctre.ControlMode.PercentOutput, leftYstick)
+            self.talon.set(phoenix5.ControlMode.PercentOutput, leftYstick)
 
-        if self.talon.getControlMode() == ctre.ControlMode.Position:
+        if self.talon.getControlMode() == phoenix5.ControlMode.Position:
             # append more signals to print when in speed mode.
             sb.append("\terr: %s" % self.talon.getClosedLoopError(self.kPIDLoopIdx))
             sb.append("\ttrg: %.3f" % self.targetPos)

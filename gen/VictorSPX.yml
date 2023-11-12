@@ -68,7 +68,7 @@ classes:
       VictorSPX:
         overloads:
           int:
-          int, std::string&:
+          int, const std::string&:
       GetPIDConfigs:
       ConfigAllSettings:
       GetAllConfigs:

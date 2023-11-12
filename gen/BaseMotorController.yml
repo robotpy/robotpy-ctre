@@ -13,7 +13,7 @@ classes:
         overloads:
           "":
             rename: __str__
-          std::string&:
+          const std::string&:
   FilterConfiguration:
     shared_ptr: true
     attributes:
@@ -322,6 +322,7 @@ classes:
       GetSlotConfigs:
       GetFilterConfigs:
       GetHandle:
+        ignore: true
       GetVictorSPXSimCollection:
       BaseConfigAllSettings:
       BaseGetAllConfigs:

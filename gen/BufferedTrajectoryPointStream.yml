@@ -8,6 +8,7 @@ classes:
       Clear:
       Write:
         overloads:
-          TrajectoryPoint&:
-          TrajectoryPoint*, uint32_t:
+          const TrajectoryPoint&:
+          const TrajectoryPoint*, uint32_t:
       GetHandle:
+        ignore: true

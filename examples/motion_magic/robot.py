@@ -19,7 +19,7 @@
  * use button1 to motion-magic servo to target position specified by the gamepad stick.
 """
 
-from ctre import WPI_TalonSRX
+from phoenix5 import WPI_TalonSRX
 import wpilib
 
 

@@ -1,7 +1,7 @@
 robotpy-ctre
 ============
 
-This is a python wrapper around the CTRE Phoenix library. The RobotPy project
+This is a python wrapper around the CTRE Phoenix v5 API. The RobotPy project
 is not associated with or endorsed by Cross The Road Electronics.
 
 **NOTE**: CTRE only supports simulation for the following platforms:

@@ -102,7 +102,7 @@ classes:
             default: "{0,0,0}"
       GetFusedHeading:
         overloads:
-          PigeonIMU::FusionStatus&:
+          FusionStatus&:
           "[const]":
       GetResetCount:
       GetResetFlags:
@@ -110,8 +110,8 @@ classes:
       HasResetOccurred:
       ToString:
         overloads:
-          ctre::phoenix::sensors::PigeonIMU::PigeonState:
-          ctre::phoenix::sensors::PigeonIMU::CalibrationMode:
+          PigeonIMU::PigeonState:
+          CalibrationMode:
       ConfigSetCustomParam:
       ConfigGetCustomParam:
         ignore: true

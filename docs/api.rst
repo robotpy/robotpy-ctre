@@ -17,6 +17,6 @@ and we'll try to address the problem.
 
 .. toctree::
     
-    ctre
-    ctre.led
-    ctre.sensors
+    phoenix5
+    phoenix5.led
+    phoenix5.sensors
