@@ -12,7 +12,7 @@ install_requires = [
 
 [build-system]
 requires = [
-    "robotpy-build<2025.0.0,>=2024.0.0b4",
+    "robotpy-build<2025.0.0,>=2024.0.0b5",
     "wpilib<2025.0.0,>=2024.0.0b2",
     "phoenix6~=24.0.0b2",
 ]
@@ -151,6 +151,12 @@ libs = [
 name = "ctre_cci_sim"
 depends = [
     "ctre_tools_sim",
+]
+
+[tool.robotpy-build.wrappers."ctre._cci_sim".override.os_osx]
+depends = [
+    "ctre_tools_sim",
+    "phoenix6_workaround"
 ]
 
 [tool.robotpy-build.wrappers."ctre._cci_sim".override.arch_athena]
