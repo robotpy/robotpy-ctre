@@ -1,15 +1,15 @@
 import pytest
 
-import ctre.sensors
+import phoenix5.sensors
 
 
 def test_cancoder():
-    enc = ctre.sensors.CANCoder(0)
+    enc = phoenix5.sensors.CANCoder(0)
     enc.getPosition()
 
 
 def test_deprecated_import():
     with pytest.warns(FutureWarning, match="moved"):
-        from ctre import CANCoder
+        from phoenix5 import CANCoder
 
-    assert CANCoder is ctre.sensors.CANCoder
+    assert CANCoder is phoenix5.sensors.CANCoder

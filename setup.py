@@ -10,7 +10,7 @@ if sys.platform.startswith("darwin"):
     def entry_points_hook(*args, **kwargs):
         ep = EntryPoint(
             name="phoenix6_workaround",
-            value="ctre._osx_phoenix6_pkgcfg",
+            value="phoenix5._osx_phoenix6_pkgcfg",
             group="robotpybuild",
         )
 

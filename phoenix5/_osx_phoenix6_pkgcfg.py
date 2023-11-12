@@ -7,7 +7,7 @@ import phoenix6
 
 _root = abspath(dirname(phoenix6.__file__))
 
-libinit_import = "ctre._init_phoenix6"
+libinit_import = "phoenix5._init_phoenix6"
 depends = []
 pypi_package = "phoenix6"
 

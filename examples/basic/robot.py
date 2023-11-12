@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 import wpilib
-import ctre
+import phoenix5
 
 
 class MyRobot(wpilib.TimedRobot):
@@ -11,7 +11,7 @@ class MyRobot(wpilib.TimedRobot):
     """
 
     def robotInit(self):
-        self.motor = ctre.WPI_TalonSRX(1)  # Initialize the TalonSRX on device 1.
+        self.motor = phoenix5.WPI_TalonSRX(1)  # Initialize the TalonSRX on device 1.
 
     def disabledPeriodic(self):
         self.motor.disable()

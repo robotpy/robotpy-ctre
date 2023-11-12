@@ -7,7 +7,7 @@
 
 import wpilib
 import wpilib.drive
-import ctre
+import phoenix5
 
 
 class MyRobot(wpilib.TimedRobot):
@@ -16,8 +16,8 @@ class MyRobot(wpilib.TimedRobot):
         This function is called upon program startup and
         should be used for any initialization code.
         """
-        self.leftDrive = ctre.WPI_TalonFX(1)
-        self.rightDrive = ctre.WPI_TalonFX(2)
+        self.leftDrive = phoenix5.WPI_TalonFX(1)
+        self.rightDrive = phoenix5.WPI_TalonFX(2)
         self.robotDrive = wpilib.drive.DifferentialDrive(
             self.leftDrive, self.rightDrive
         )
