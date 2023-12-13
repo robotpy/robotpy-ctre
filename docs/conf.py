@@ -54,9 +54,9 @@ intersphinx_mapping = {
 # built documents.
 #
 # The short X.Y version.
-version = ".".join(ctre.__version__.split(".")[:2])
+version = ".".join(phoenix5.__version__.split(".")[:2])
 # The full version, including alpha/beta/rc tags.
-release = ctre.__version__
+release = phoenix5.__version__
 
 autoclass_content = "both"
 
