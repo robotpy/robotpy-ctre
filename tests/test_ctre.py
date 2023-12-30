@@ -1,9 +1,6 @@
 import phoenix5
-import sys
-import pytest
 
 
-@pytest.mark.skipif(sys.platform == "darwin", reason="OSX CI failure")
 def test_wpi_talonsrx():
     m = phoenix5.WPI_TalonSRX(0)
     m.setNeutralMode(phoenix5.NeutralMode.Brake)
@@ -12,7 +9,6 @@ def test_wpi_talonsrx():
     del m
 
 
-@pytest.mark.skipif(sys.platform == "darwin", reason="OSX CI failure")
 def test_wpi_talonfx():
     m = phoenix5.WPI_TalonFX(1)
     m.setNeutralMode(phoenix5.NeutralMode.Brake)
@@ -21,7 +17,6 @@ def test_wpi_talonfx():
     del m
 
 
-@pytest.mark.skipif(sys.platform == "darwin", reason="OSX CI failure")
 def test_wpi_victorspx():
     m = phoenix5.WPI_VictorSPX(2)
     m.setNeutralMode(phoenix5.NeutralMode.Brake)
@@ -30,7 +25,6 @@ def test_wpi_victorspx():
     del m
 
 
-@pytest.mark.skipif(sys.platform == "darwin", reason="OSX CI failure")
 def test_follow():
     m1 = phoenix5.WPI_TalonFX(3)
     m2 = phoenix5.WPI_TalonFX(4)
