@@ -196,20 +196,3 @@ __all__ = [
 
 
 from .version import version as __version__
-
-
-# backwards compat
-# TODO: remove in 2024
-def __getattr__(name):
-    if name != "sensors":
-        from .sensors import __all__ as sensors_all
-
-        if name in sensors_all:
-            import warnings
-            from . import sensors
-
-            message = f"{__name__}.{name} has moved to {__name__}.sensors"
-            warnings.warn(message, FutureWarning, stacklevel=2)
-            return getattr(sensors, name)
-
-    raise AttributeError(f"module {__name__!r} has no attribute {name!r}")
