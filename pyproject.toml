@@ -102,9 +102,7 @@ artifact_id = "tools"
 group_id = "com.ctre.phoenix6"
 repo_url = "https://maven.ctr-electronics.com/release"
 version = "24.1.0"
-libs = [
-    "CTRE_PhoenixTools",
-]
+libs = []
 
 [tool.robotpy-build.wrappers."phoenix5._wpiapi_cpp_sim"]
 name = "ctre_wpiapi_cpp_sim"
