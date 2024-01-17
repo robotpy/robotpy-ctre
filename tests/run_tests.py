@@ -6,10 +6,11 @@ import sys
 import subprocess
 
 if __name__ == "__main__":
-    # CTRE's library tends to crash on OSX at program exit, so
-    # don't bother running the tests in CI
-    if sys.platform != "darwin":
-        root = abspath(dirname(__file__))
-        os.chdir(root)
+    root = abspath(dirname(__file__))
+    os.chdir(root)
 
+    try:
         subprocess.check_call([sys.executable, "-m", "pytest"])
+    except subprocess.CalledProcessError as e:
+        if not (sys.platform == "darwin" and e.returncode == 137):
+            raise
