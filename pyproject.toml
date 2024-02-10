@@ -172,14 +172,6 @@ libs = [
 [tool.robotpy-build.wrappers."phoenix5._tools_sim"]
 name = "ctre_tools_sim"
 depends = [
-    "ctre_simpropigeon2",
-    "ctre_simprocancoder",
-    "ctre_simprotalonfx",
-    "ctre_simcancoder",
-    "ctre_simtalonfx",
-    "ctre_simpigeonimu",
-    "ctre_simtalonsrx",
-    "ctre_simvictorspx",
 ]
 
 [tool.robotpy-build.wrappers."phoenix5._tools_sim".override.arch_athena]
@@ -193,134 +185,6 @@ version = "24.1.0"
 libs = []
 # libs = [
 #     "CTRE_PhoenixTools_Sim",
-# ]
-
-[tool.robotpy-build.wrappers."phoenix5._simtalonsrx"]
-name = "ctre_simtalonsrx"
-
-[tool.robotpy-build.wrappers."phoenix5._simtalonsrx".override.arch_athena]
-ignore = true
-
-[tool.robotpy-build.wrappers."phoenix5._simtalonsrx".maven_lib_download]
-artifact_id = "simTalonSRX"
-group_id = "com.ctre.phoenix6.sim"
-repo_url = "https://maven.ctr-electronics.com/release"
-version = "24.1.0"
-libs = []
-# libs = [
-#     "CTRE_SimTalonSRX",
-# ]
-
-[tool.robotpy-build.wrappers."phoenix5._simtalonfx"]
-name = "ctre_simtalonfx"
-
-[tool.robotpy-build.wrappers."phoenix5._simtalonfx".override.arch_athena]
-ignore = true
-
-[tool.robotpy-build.wrappers."phoenix5._simtalonfx".maven_lib_download]
-artifact_id = "simTalonFX"
-group_id = "com.ctre.phoenix6.sim"
-repo_url = "https://maven.ctr-electronics.com/release"
-version = "24.1.0"
-libs = []
-# libs = [
-#     "CTRE_SimTalonFX",
-# ]
-
-[tool.robotpy-build.wrappers."phoenix5._simvictorspx"]
-name = "ctre_simvictorspx"
-
-[tool.robotpy-build.wrappers."phoenix5._simvictorspx".override.arch_athena]
-ignore = true
-
-[tool.robotpy-build.wrappers."phoenix5._simvictorspx".maven_lib_download]
-artifact_id = "simVictorSPX"
-group_id = "com.ctre.phoenix6.sim"
-repo_url = "https://maven.ctr-electronics.com/release"
-version = "24.1.0"
-libs = []
-# libs = [
-#     "CTRE_SimVictorSPX",
-# ]
-
-[tool.robotpy-build.wrappers."phoenix5._simpigeonimu"]
-name = "ctre_simpigeonimu"
-
-[tool.robotpy-build.wrappers."phoenix5._simpigeonimu".override.arch_athena]
-ignore = true
-
-[tool.robotpy-build.wrappers."phoenix5._simpigeonimu".maven_lib_download]
-artifact_id = "simPigeonIMU"
-group_id = "com.ctre.phoenix6.sim"
-repo_url = "https://maven.ctr-electronics.com/release"
-version = "24.1.0"
-libs = []
-# libs = [
-#     "CTRE_SimPigeonIMU",
-# ]
-
-[tool.robotpy-build.wrappers."phoenix5._simcancoder"]
-name = "ctre_simcancoder"
-
-[tool.robotpy-build.wrappers."phoenix5._simcancoder".override.arch_athena]
-ignore = true
-
-[tool.robotpy-build.wrappers."phoenix5._simcancoder".maven_lib_download]
-artifact_id = "simCANCoder"
-group_id = "com.ctre.phoenix6.sim"
-repo_url = "https://maven.ctr-electronics.com/release"
-version = "24.1.0"
-libs = []
-# libs = [
-#     "CTRE_SimCANCoder",
-# ]
-
-[tool.robotpy-build.wrappers."phoenix5._simprotalonfx"]
-name = "ctre_simprotalonfx"
-
-[tool.robotpy-build.wrappers."phoenix5._simprotalonfx".override.arch_athena]
-ignore = true
-
-[tool.robotpy-build.wrappers."phoenix5._simprotalonfx".maven_lib_download]
-artifact_id = "simProTalonFX"
-group_id = "com.ctre.phoenix6.sim"
-repo_url = "https://maven.ctr-electronics.com/release"
-version = "24.1.0"
-libs = []
-# libs = [
-#     "CTRE_SimProTalonFX",
-# ]
-
-[tool.robotpy-build.wrappers."phoenix5._simprocancoder"]
-name = "ctre_simprocancoder"
-
-[tool.robotpy-build.wrappers."phoenix5._simprocancoder".override.arch_athena]
-ignore = true
-
-[tool.robotpy-build.wrappers."phoenix5._simprocancoder".maven_lib_download]
-artifact_id = "simProCANcoder"
-group_id = "com.ctre.phoenix6.sim"
-repo_url = "https://maven.ctr-electronics.com/release"
-version = "24.1.0"
-libs = []
-# libs = [
-#     "CTRE_SimProCANcoder",
-# ]
-
-[tool.robotpy-build.wrappers."phoenix5._simpropigeon2"]
-name = "ctre_simpropigeon2"
-
-[tool.robotpy-build.wrappers."phoenix5._simpropigeon2".override.arch_athena]
-ignore = true
-
-[tool.robotpy-build.wrappers."phoenix5._simpropigeon2".maven_lib_download]
-artifact_id = "simProPigeon2"
-group_id = "com.ctre.phoenix6.sim"
-repo_url = "https://maven.ctr-electronics.com/release"
-version = "24.1.0"
-libs = []
-# libs = [
-#     "CTRE_SimProPigeon2",
 # ]
 
 
@@ -340,14 +204,6 @@ depends = [
     "ctre_api_cpp_sim",
     "ctre_cci_sim",
     "ctre_tools_sim",
-    "ctre_simtalonsrx",
-    "ctre_simtalonfx",
-    "ctre_simvictorspx",
-    "ctre_simpigeonimu",
-    "ctre_simcancoder",
-    "ctre_simprotalonfx",
-    "ctre_simprocancoder",
-    "ctre_simpropigeon2",
 ]
 
 sources = [
