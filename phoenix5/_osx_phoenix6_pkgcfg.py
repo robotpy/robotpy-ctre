@@ -32,7 +32,6 @@ def get_library_names():
         "CTRE_SimProCANcoder",
         "CTRE_SimProPigeon2",
         "CTRE_SimProTalonFX",
-        "CTRE_SimTalonFX",
         "CTRE_SimTalonSRX",
         "CTRE_SimVictorSPX",
     ]
@@ -46,7 +45,6 @@ def get_library_full_names():
         "libCTRE_SimProCANcoder.dylib",
         "libCTRE_SimProPigeon2.dylib",
         "libCTRE_SimProTalonFX.dylib",
-        "libCTRE_SimTalonFX.dylib",
         "libCTRE_SimTalonSRX.dylib",
         "libCTRE_SimVictorSPX.dylib",
     ]

@@ -6,15 +6,15 @@ author_email = "robotpy@googlegroups.com"
 url = "https://github.com/robotpy/robotpy-ctre"
 license = "MIT"
 install_requires = [
-    "wpilib<2025.0.0,>=2024.3.2",
-    "phoenix6~=24.2",
+    "wpilib~=2025.0.0b1",
+    "phoenix6~=25.0.0b2",
 ]
 
 [build-system]
 requires = [
-    "robotpy-build<2025.0.0,>=2024.0.0",
-    "wpilib<2025.0.0,>=2024.3.2",
-    "phoenix6~=24.2",
+    "robotpy-build<2025.0.0b1,~=2025.0.0a1",
+    "wpilib~=2025.0.0b1",
+    "phoenix6~=25.0.0b2",
 ]
 
 [tool.robotpy-build]
@@ -46,7 +46,7 @@ depends = [
 artifact_id = "wpiapi-cpp"
 group_id = "com.ctre.phoenix"
 repo_url = "https://maven.ctr-electronics.com/release"
-version = "5.33.1"
+version = "5.34.0-beta-2"
 libs = [
     "CTRE_Phoenix_WPI",
 ]
@@ -66,7 +66,7 @@ depends = [
 artifact_id = "api-cpp"
 group_id = "com.ctre.phoenix"
 repo_url = "https://maven.ctr-electronics.com/release"
-version = "5.33.1"
+version = "5.34.0-beta-2"
 libs = [
     "CTRE_Phoenix",
 ]
@@ -85,7 +85,7 @@ depends = [
 artifact_id = "cci"
 group_id = "com.ctre.phoenix"
 repo_url = "https://maven.ctr-electronics.com/release"
-version = "5.33.1"
+version = "5.34.0-beta-2"
 libs = [
     "CTRE_PhoenixCCI",
 ]
@@ -101,7 +101,7 @@ ignore = false
 artifact_id = "tools"
 group_id = "com.ctre.phoenix6"
 repo_url = "https://maven.ctr-electronics.com/release"
-version = "24.2.0"
+version = "25.0.0-beta-2"
 libs = []
 
 [tool.robotpy-build.wrappers."phoenix5._wpiapi_cpp_sim"]
@@ -121,7 +121,7 @@ ignore = true
 artifact_id = "wpiapi-cpp-sim"
 group_id = "com.ctre.phoenix.sim"
 repo_url = "https://maven.ctr-electronics.com/release"
-version = "5.33.1"
+version = "5.34.0-beta-2"
 libs = [
     "CTRE_Phoenix_WPISim",
 ]
@@ -140,7 +140,7 @@ ignore = true
 artifact_id = "api-cpp-sim"
 group_id = "com.ctre.phoenix.sim"
 repo_url = "https://maven.ctr-electronics.com/release"
-version = "5.33.1"
+version = "5.34.0-beta-2"
 libs = [
     "CTRE_PhoenixSim",
 ]
@@ -164,7 +164,7 @@ ignore = true
 artifact_id = "cci-sim"
 group_id = "com.ctre.phoenix.sim"
 repo_url = "https://maven.ctr-electronics.com/release"
-version = "5.33.1"
+version = "5.34.0-beta-2"
 libs = [
     "CTRE_PhoenixCCISim",
 ]
@@ -181,7 +181,7 @@ ignore = true
 artifact_id = "tools-sim"
 group_id = "com.ctre.phoenix6.sim"
 repo_url = "https://maven.ctr-electronics.com/release"
-version = "24.2.0"
+version = "25.0.0-beta-2"
 libs = []
 # libs = [
 #     "CTRE_PhoenixTools_Sim",
@@ -235,13 +235,13 @@ depends = [
 
 # ctre/phoenix/motorcontrol/can
 WPI_BaseMotorController = "ctre/phoenix/motorcontrol/can/WPI_BaseMotorController.h"
-WPI_TalonFX = "ctre/phoenix/motorcontrol/can/WPI_TalonFX.h"
+# WPI_TalonFX = "ctre/phoenix/motorcontrol/can/WPI_TalonFX.h"
 WPI_TalonSRX = "ctre/phoenix/motorcontrol/can/WPI_TalonSRX.h"
 WPI_VictorSPX = "ctre/phoenix/motorcontrol/can/WPI_VictorSPX.h"
 
 # ctre/phoenix/sensors
 WPI_CANCoder = "ctre/phoenix/sensors/WPI_CANCoder.h"
-WPI_Pigeon2 = "ctre/phoenix/sensors/WPI_Pigeon2.h"
+# WPI_Pigeon2 = "ctre/phoenix/sensors/WPI_Pigeon2.h"
 WPI_PigeonIMU = "ctre/phoenix/sensors/WPI_PigeonIMU.h"
 
 # ctre/phoenix/tasking
@@ -291,20 +291,20 @@ IFollower = "ctre/phoenix/motorcontrol/IFollower.h"
 IMotorController = "ctre/phoenix/motorcontrol/IMotorController.h"
 IMotorControllerEnhanced = "ctre/phoenix/motorcontrol/IMotorControllerEnhanced.h"
 SensorCollection = "ctre/phoenix/motorcontrol/SensorCollection.h"
-TalonFXSensorCollection = "ctre/phoenix/motorcontrol/TalonFXSensorCollection.h"
-TalonFXSimCollection = "ctre/phoenix/motorcontrol/TalonFXSimCollection.h"
+# TalonFXSensorCollection = "ctre/phoenix/motorcontrol/TalonFXSensorCollection.h"
+# TalonFXSimCollection = "ctre/phoenix/motorcontrol/TalonFXSimCollection.h"
 TalonSRXSimCollection = "ctre/phoenix/motorcontrol/TalonSRXSimCollection.h"
 VictorSPXSimCollection = "ctre/phoenix/motorcontrol/VictorSPXSimCollection.h"
 
 # ctre/phoenix/motorcontrol/can
 BaseMotorController = "ctre/phoenix/motorcontrol/can/BaseMotorController.h"
 BaseTalon = "ctre/phoenix/motorcontrol/can/BaseTalon.h"
-TalonFX = "ctre/phoenix/motorcontrol/can/TalonFX.h"
+# TalonFX = "ctre/phoenix/motorcontrol/can/TalonFX.h"
 TalonSRX = "ctre/phoenix/motorcontrol/can/TalonSRX.h"
 VictorSPX = "ctre/phoenix/motorcontrol/can/VictorSPX.h"
 
 # ctre/phoenix/music
-Orchestra = "ctre/phoenix/music/Orchestra.h"
+# Orchestra = "ctre/phoenix/music/Orchestra.h"
 
 # ctre/phoenix/platform/can
 # PlatformCAN = "ctre/phoenix/platform/can/PlatformCAN.h"
@@ -314,7 +314,7 @@ BasePigeon = "ctre/phoenix/sensors/BasePigeon.h"
 BasePigeonSimCollection = "ctre/phoenix/sensors/BasePigeonSimCollection.h"
 CANCoder = "ctre/phoenix/sensors/CANCoder.h"
 CANCoderSimCollection = "ctre/phoenix/sensors/CANCoderSimCollection.h"
-Pigeon2 = "ctre/phoenix/sensors/Pigeon2.h"
+# Pigeon2 = "ctre/phoenix/sensors/Pigeon2.h"
 PigeonIMU = "ctre/phoenix/sensors/PigeonIMU.h"
 
 # ctre/phoenix/signals
@@ -417,11 +417,11 @@ FeedbackDevice = "ctre/phoenix/motorcontrol/FeedbackDevice.h"
 FollowerType = "ctre/phoenix/motorcontrol/FollowerType.h"
 InvertType = "ctre/phoenix/motorcontrol/InvertType.h"
 LimitSwitchType = "ctre/phoenix/motorcontrol/LimitSwitchType.h"
-MotorCommutation = "ctre/phoenix/motorcontrol/MotorCommutation.h"
+# MotorCommutation = "ctre/phoenix/motorcontrol/MotorCommutation.h"
 NeutralMode = "ctre/phoenix/motorcontrol/NeutralMode.h"
 RemoteSensorSource = "ctre/phoenix/motorcontrol/RemoteSensorSource.h"
 SensorTerm = "ctre/phoenix/motorcontrol/SensorTerm.h"
-StatorCurrentLimitConfiguration = "ctre/phoenix/motorcontrol/StatorCurrentLimitConfiguration.h"
+# StatorCurrentLimitConfiguration = "ctre/phoenix/motorcontrol/StatorCurrentLimitConfiguration.h"
 StatusFrame = "ctre/phoenix/motorcontrol/StatusFrame.h"
 StickyFaults = "ctre/phoenix/motorcontrol/StickyFaults.h"
 SupplyCurrentLimitConfiguration = "ctre/phoenix/motorcontrol/SupplyCurrentLimitConfiguration.h"
@@ -445,8 +445,8 @@ CANCoderFaults = "ctre/phoenix/sensors/CANCoderFaults.h"
 CANCoderStatusFrame = "ctre/phoenix/sensors/CANCoderStatusFrame.h"
 CANCoderStickyFaults = "ctre/phoenix/sensors/CANCoderStickyFaults.h"
 MagnetFieldStrength = "ctre/phoenix/sensors/MagnetFieldStrength.h"
-Pigeon2_Faults = "ctre/phoenix/sensors/Pigeon2_Faults.h"
-Pigeon2_StickyFaults = "ctre/phoenix/sensors/Pigeon2_StickyFaults.h"
+# Pigeon2_Faults = "ctre/phoenix/sensors/Pigeon2_Faults.h"
+# Pigeon2_StickyFaults = "ctre/phoenix/sensors/Pigeon2_StickyFaults.h"
 PigeonIMU_ControlFrame = "ctre/phoenix/sensors/PigeonIMU_ControlFrame.h"
 PigeonIMU_Faults = "ctre/phoenix/sensors/PigeonIMU_Faults.h"
 PigeonIMU_StatusFrame = "ctre/phoenix/sensors/PigeonIMU_StatusFrame.h"
