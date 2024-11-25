@@ -6,14 +6,14 @@ author_email = "robotpy@googlegroups.com"
 url = "https://github.com/robotpy/robotpy-ctre"
 license = "MIT"
 install_requires = [
-    "wpilib~=2025.0.0b1",
+    "wpilib~=2025.0.0b2",
     "phoenix6~=25.0.0b2",
 ]
 
 [build-system]
 requires = [
     "robotpy-build<2025.0.0b1,~=2025.0.0a1",
-    "wpilib~=2025.0.0b1",
+    "wpilib~=2025.0.0b2",
     "phoenix6~=25.0.0b2",
 ]
 
