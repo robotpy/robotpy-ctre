@@ -9,7 +9,7 @@ build:
     python: "3.11"
   jobs:
     post_install:
-    - python -m robotpy_sphinx.download_and_install robotpy robotpy-ctre main dist dist-Linux
+    - python -m robotpy_sphinx.download_and_install robotpy robotpy-ctre main dist pypi-Linux-3.11
 
 python:
   install:
