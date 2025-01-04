@@ -6,15 +6,15 @@ author_email = "robotpy@googlegroups.com"
 url = "https://github.com/robotpy/robotpy-ctre"
 license = "MIT"
 install_requires = [
-    "wpilib~=2025.0.0b2",
-    "phoenix6~=25.0.0b2",
+    "wpilib>2025.0.0b2",
+    "phoenix6~=25.1.0",
 ]
 
 [build-system]
 requires = [
-    "robotpy-build<2025.0.0b1,~=2025.0.0a1",
-    "wpilib~=2025.0.0b2",
-    "phoenix6~=25.0.0b2",
+    "robotpy-build~=2025.0.0",
+    "wpilib<2026.0.0,>=2025.1.1",
+    "phoenix6~=25.1.0",
 ]
 
 [tool.robotpy-build]
@@ -46,7 +46,7 @@ depends = [
 artifact_id = "wpiapi-cpp"
 group_id = "com.ctre.phoenix"
 repo_url = "https://maven.ctr-electronics.com/release"
-version = "5.34.0-beta-2"
+version = "5.35.0"
 libs = [
     "CTRE_Phoenix_WPI",
 ]
@@ -66,7 +66,7 @@ depends = [
 artifact_id = "api-cpp"
 group_id = "com.ctre.phoenix"
 repo_url = "https://maven.ctr-electronics.com/release"
-version = "5.34.0-beta-2"
+version = "5.35.0"
 libs = [
     "CTRE_Phoenix",
 ]
@@ -85,7 +85,7 @@ depends = [
 artifact_id = "cci"
 group_id = "com.ctre.phoenix"
 repo_url = "https://maven.ctr-electronics.com/release"
-version = "5.34.0-beta-2"
+version = "5.35.0"
 libs = [
     "CTRE_PhoenixCCI",
 ]
@@ -101,7 +101,7 @@ ignore = false
 artifact_id = "tools"
 group_id = "com.ctre.phoenix6"
 repo_url = "https://maven.ctr-electronics.com/release"
-version = "25.0.0-beta-2"
+version = "25.1.0"
 libs = []
 
 [tool.robotpy-build.wrappers."phoenix5._wpiapi_cpp_sim"]
@@ -121,7 +121,7 @@ ignore = true
 artifact_id = "wpiapi-cpp-sim"
 group_id = "com.ctre.phoenix.sim"
 repo_url = "https://maven.ctr-electronics.com/release"
-version = "5.34.0-beta-2"
+version = "5.35.0"
 libs = [
     "CTRE_Phoenix_WPISim",
 ]
@@ -140,7 +140,7 @@ ignore = true
 artifact_id = "api-cpp-sim"
 group_id = "com.ctre.phoenix.sim"
 repo_url = "https://maven.ctr-electronics.com/release"
-version = "5.34.0-beta-2"
+version = "5.35.0"
 libs = [
     "CTRE_PhoenixSim",
 ]
@@ -164,7 +164,7 @@ ignore = true
 artifact_id = "cci-sim"
 group_id = "com.ctre.phoenix.sim"
 repo_url = "https://maven.ctr-electronics.com/release"
-version = "5.34.0-beta-2"
+version = "5.35.0"
 libs = [
     "CTRE_PhoenixCCISim",
 ]
@@ -181,7 +181,7 @@ ignore = true
 artifact_id = "tools-sim"
 group_id = "com.ctre.phoenix6.sim"
 repo_url = "https://maven.ctr-electronics.com/release"
-version = "25.0.0-beta-2"
+version = "25.1.0"
 libs = []
 # libs = [
 #     "CTRE_PhoenixTools_Sim",
