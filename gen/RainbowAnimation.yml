@@ -1,7 +1,0 @@
----
-
-classes:
-  RainbowAnimation:
-    subpackage: led
-    methods:
-      RainbowAnimation:

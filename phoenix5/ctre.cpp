@@ -1,5 +1,5 @@
-#include <rpygen_wrapper.hpp>
+#include <semiwrap_init.phoenix5._ctre.hpp>
 
-RPYBUILD_PYBIND11_MODULE(m) {
+SEMIWRAP_PYBIND11_MODULE(m) {
     initWrapper(m);
 }

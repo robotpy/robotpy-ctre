@@ -1,0 +1,45 @@
+
+extra_includes:
+- wpi/SmallString.h
+
+classes:
+  ctre::phoenix::motorcontrol::can::WPI_BaseMotorController:
+    force_no_trampoline: true
+    ignored_bases:
+    - wpi::SendableHelper<WPI_BaseMotorController>
+    typealias:
+    - ctre::phoenix::motorcontrol::ControlMode
+    - ctre::phoenix::motorcontrol::DemandType
+    - ctre::phoenix::motorcontrol::InvertType
+    methods:
+      WPI_BaseMotorController:
+        overloads:
+          int, char*:
+            ignore: true
+          "":
+            ignore: true
+      Set:
+        overloads:
+          double:
+          ControlMode, double:
+          ControlMode, double, double:
+          ControlMode, double, DemandType, double:
+      PIDWrite:
+      Get:
+      SetVoltage:
+      SetInverted:
+        overloads:
+          bool:
+          InvertType:
+      GetInverted:
+      Disable:
+      StopMotor:
+      GetDescription:
+      Feed:
+      SetExpiration:
+      GetExpiration:
+      IsAlive:
+      SetSafetyEnabled:
+      IsSafetyEnabled:
+      GetMotorSafety:
+      InitSendable:

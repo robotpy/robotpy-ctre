@@ -1,0 +1,329 @@
+extra_includes:
+- ctre/phoenix/motorcontrol/can/BaseTalon.h
+
+classes:
+  ctre::phoenix::motorcontrol::can::BasePIDSetConfiguration:
+    attributes:
+      selectedFeedbackCoefficient:
+    methods:
+      BasePIDSetConfiguration:
+      toString:
+        overloads:
+          "":
+            rename: __str__
+          const std::string&:
+  ctre::phoenix::motorcontrol::can::FilterConfiguration:
+    attributes:
+      remoteSensorDeviceID:
+      remoteSensorSource:
+    methods:
+      FilterConfiguration:
+      toString:
+        overloads:
+          "":
+            rename: __str__
+          std::string:
+  ctre::phoenix::motorcontrol::can::FilterConfigUtil:
+    methods:
+      RemoteSensorDeviceIDDifferent:
+      RemoteSensorSourceDifferent:
+      FilterConfigurationDifferent:
+  ctre::phoenix::motorcontrol::can::SlotConfiguration:
+    attributes:
+      kP:
+      kI:
+      kD:
+      kF:
+      integralZone:
+      allowableClosedloopError:
+      maxIntegralAccumulator:
+      closedLoopPeakOutput:
+      closedLoopPeriod:
+    methods:
+      SlotConfiguration:
+      toString:
+        overloads:
+          "":
+            rename: __str__
+          std::string:
+  ctre::phoenix::motorcontrol::can::SlotConfigUtil:
+    methods:
+      KPDifferent:
+      KIDifferent:
+      KDDifferent:
+      KFDifferent:
+      IntegralZoneDifferent:
+      AllowableClosedloopErrorDifferent:
+      MaxIntegralAccumulatorDifferent:
+      ClosedLoopPeakOutputDifferent:
+      ClosedLoopPeriodDifferent:
+  ctre::phoenix::motorcontrol::can::BaseMotorControllerConfiguration:
+    force_no_trampoline: true
+    force_multiple_inheritance: true
+    attributes:
+      openloopRamp:
+      closedloopRamp:
+      peakOutputForward:
+      peakOutputReverse:
+      nominalOutputForward:
+      nominalOutputReverse:
+      neutralDeadband:
+      voltageCompSaturation:
+      voltageMeasurementFilter:
+      velocityMeasurementPeriod:
+      velocityMeasurementWindow:
+      forwardSoftLimitThreshold:
+      reverseSoftLimitThreshold:
+      forwardSoftLimitEnable:
+      reverseSoftLimitEnable:
+      slot0:
+      slot1:
+      slot2:
+      slot3:
+      auxPIDPolarity:
+      remoteFilter0:
+      remoteFilter1:
+      motionCruiseVelocity:
+      motionAcceleration:
+      motionCurveStrength:
+      motionProfileTrajectoryPeriod:
+      feedbackNotContinuous:
+      remoteSensorClosedLoopDisableNeutralOnLOS:
+      clearPositionOnLimitF:
+      clearPositionOnLimitR:
+      clearPositionOnQuadIdx:
+      limitSwitchDisableNeutralOnLOS:
+      softLimitDisableNeutralOnLOS:
+      pulseWidthPeriod_EdgesPerRot:
+      pulseWidthPeriod_FilterWindowSz:
+      trajectoryInterpolationEnable:
+    methods:
+      BaseMotorControllerConfiguration:
+      toString:
+        overloads:
+          "":
+            rename: __str__
+          std::string:
+  ctre::phoenix::motorcontrol::can::BaseMotorControllerUtil:
+    force_no_trampoline: true
+    methods:
+      OpenloopRampDifferent:
+      ClosedloopRampDifferent:
+      PeakOutputForwardDifferent:
+      PeakOutputReverseDifferent:
+      NominalOutputForwardDifferent:
+      NominalOutputReverseDifferent:
+      NeutralDeadbandDifferent:
+      VoltageCompSaturationDifferent:
+      VoltageMeasurementFilterDifferent:
+      VelocityMeasurementPeriodDifferent:
+      VelocityMeasurementWindowDifferent:
+      ForwardSoftLimitThresholdDifferent:
+      ReverseSoftLimitThresholdDifferent:
+      ForwardSoftLimitEnableDifferent:
+      ReverseSoftLimitEnableDifferent:
+      AuxPIDPolarityDifferent:
+      MotionCruiseVelocityDifferent:
+      MotionAccelerationDifferent:
+      MotionSCurveStrength:
+      MotionProfileTrajectoryPeriodDifferent:
+      FeedbackNotContinuousDifferent:
+      RemoteSensorClosedLoopDisableNeutralOnLOSDifferent:
+      ClearPositionOnLimitFDifferent:
+      ClearPositionOnLimitRDifferent:
+      ClearPositionOnQuadIdxDifferent:
+      LimitSwitchDisableNeutralOnLOSDifferent:
+      SoftLimitDisableNeutralOnLOSDifferent:
+      PulseWidthPeriod_EdgesPerRotDifferent:
+      PulseWidthPeriod_FilterWindowSzDifferent:
+      TrajectoryInterpolationEnableDifferent:
+  ctre::phoenix::motorcontrol::can::BaseMotorController:
+    force_no_trampoline: true
+    base_qualnames:
+      IMotorController: ctre::phoenix::motorcontrol::IMotorController
+    typealias:
+    - ctre::phoenix::ErrorCode
+    - ctre::phoenix::ParamEnum
+    - ctre::phoenix::motorcontrol::IMotorController
+    - ctre::phoenix::motorcontrol::ControlMode
+    - ctre::phoenix::motorcontrol::DemandType
+    - ctre::phoenix::motorcontrol::InvertType
+    - ctre::phoenix::motorcontrol::RemoteFeedbackDevice
+    - ctre::phoenix::motorcontrol::FeedbackDevice
+    - ctre::phoenix::motorcontrol::RemoteSensorSource
+    - ctre::phoenix::motorcontrol::SensorTerm
+    - ctre::phoenix::motorcontrol::StatusFrame
+    - ctre::phoenix::motorcontrol::StatusFrameEnhanced
+    - ctre::phoenix::motorcontrol::RemoteLimitSwitchSource
+    - ctre::phoenix::motorcontrol::LimitSwitchNormal
+    - ctre::phoenix::motorcontrol::LimitSwitchSource
+    methods:
+      BaseMotorController:
+        overloads:
+          int, char*:
+            ignore: true
+          "":
+            ignore: true
+      DestroyAllMotControllers:
+      GetDeviceID:
+      Set:
+        overloads:
+          ControlMode, double:
+          ControlMode, double, double:
+            # deprecated
+            ignore: true
+          ControlMode, double, DemandType, double:
+      NeutralOutput:
+      SetNeutralMode:
+      EnableHeadingHold:
+      SelectDemandType:
+      SetSensorPhase:
+      SetInverted:
+        overloads:
+          bool:
+          InvertType:
+      GetInverted:
+      ConfigFactoryDefault:
+      ConfigOpenloopRamp:
+      ConfigClosedloopRamp:
+      ConfigPeakOutputForward:
+      ConfigPeakOutputReverse:
+      ConfigNominalOutputForward:
+      ConfigNominalOutputReverse:
+      ConfigNeutralDeadband:
+      ConfigVoltageCompSaturation:
+      ConfigVoltageMeasurementFilter:
+      EnableVoltageCompensation:
+      IsVoltageCompensationEnabled:
+      GetBusVoltage:
+      GetMotorOutputPercent:
+      GetMotorOutputVoltage:
+      GetTemperature:
+      ConfigSelectedFeedbackSensor:
+        overloads:
+          RemoteFeedbackDevice, int, int:
+          FeedbackDevice, int, int:
+      ConfigSelectedFeedbackCoefficient:
+      ConfigRemoteFeedbackFilter:
+        overloads:
+          int, RemoteSensorSource, int, int:
+          ctre::phoenix::sensors::CANCoder&, int, int:
+          ctre::phoenix::motorcontrol::can::BaseTalon&, int, int:
+      ConfigSensorTerm:
+        overloads:
+          SensorTerm, FeedbackDevice, int:
+          SensorTerm, RemoteFeedbackDevice, int:
+      GetSelectedSensorPosition:
+      GetSelectedSensorVelocity:
+      SetSelectedSensorPosition:
+      SetControlFramePeriod:
+      SetStatusFramePeriod:
+        overloads:
+          StatusFrame, uint8_t, int:
+          StatusFrameEnhanced, uint8_t, int:
+      GetStatusFramePeriod:
+        overloads:
+          StatusFrame, int:
+          StatusFrameEnhanced, int:
+      ConfigVelocityMeasurementPeriod:
+        overloads:
+          ctre::phoenix::sensors::SensorVelocityMeasPeriod, int:
+          VelocityMeasPeriod, int:
+            ignore: true
+      ConfigVelocityMeasurementWindow:
+      ConfigForwardLimitSwitchSource:
+        overloads:
+          RemoteLimitSwitchSource, LimitSwitchNormal, int, int:
+          LimitSwitchSource, LimitSwitchNormal, int:
+      ConfigReverseLimitSwitchSource:
+        overloads:
+          RemoteLimitSwitchSource, LimitSwitchNormal, int, int:
+          LimitSwitchSource, LimitSwitchNormal, int:
+      OverrideLimitSwitchesEnable:
+      ConfigForwardSoftLimitThreshold:
+      ConfigReverseSoftLimitThreshold:
+      ConfigForwardSoftLimitEnable:
+      ConfigReverseSoftLimitEnable:
+      OverrideSoftLimitsEnable:
+      Config_kP:
+      Config_kI:
+      Config_kD:
+      Config_kF:
+      Config_IntegralZone:
+      ConfigAllowableClosedloopError:
+      ConfigMaxIntegralAccumulator:
+      ConfigClosedLoopPeakOutput:
+      ConfigClosedLoopPeriod:
+      ConfigAuxPIDPolarity:
+      ConfigureSlot:
+      SetIntegralAccumulator:
+      GetClosedLoopError:
+      GetIntegralAccumulator:
+      GetErrorDerivative:
+      SelectProfileSlot:
+      GetClosedLoopTarget:
+      GetActiveTrajectoryPosition:
+      GetActiveTrajectoryVelocity:
+      GetActiveTrajectoryArbFeedFwd:
+      GetActiveTrajectoryHeading:
+      ConfigMotionCruiseVelocity:
+      ConfigMotionAcceleration:
+      ConfigMotionSCurveStrength:
+      ClearMotionProfileTrajectories:
+      GetMotionProfileTopLevelBufferCount:
+      PushMotionProfileTrajectory:
+      StartMotionProfile:
+      IsMotionProfileFinished:
+      IsMotionProfileTopLevelBufferFull:
+      ProcessMotionProfileBuffer:
+      GetMotionProfileStatus:
+      ClearMotionProfileHasUnderrun:
+      ChangeMotionControlFramePeriod:
+      ConfigMotionProfileTrajectoryPeriod:
+      ConfigMotionProfileTrajectoryInterpolationEnable:
+      ConfigFeedbackNotContinuous:
+      ConfigRemoteSensorClosedLoopDisableNeutralOnLOS:
+      ConfigClearPositionOnLimitF:
+      ConfigClearPositionOnLimitR:
+      ConfigClearPositionOnQuadIdx:
+      ConfigLimitSwitchDisableNeutralOnLOS:
+      ConfigSoftLimitDisableNeutralOnLOS:
+      ConfigPulseWidthPeriod_EdgesPerRot:
+      ConfigPulseWidthPeriod_FilterWindowSz:
+      GetLastError:
+      GetFaults:
+      GetStickyFaults:
+      ClearStickyFaults:
+      GetFirmwareVersion:
+      HasResetOccurred:
+      ConfigSetCustomParam:
+      ConfigGetCustomParam:
+      ConfigSetParameter:
+      ConfigGetParameter:
+        overloads:
+          ctre::phoenix::ParamEnum, int, int:
+          ParamEnum, int32_t, int32_t&, uint8_t&, int32_t, int32_t:
+      GetBaseID:
+      GetControlMode:
+      Follow:
+        overloads:
+          IMotorController&, ctre::phoenix::motorcontrol::FollowerType:
+          IMotorController&:
+      ValueUpdated:
+      GetSlotConfigs:
+      GetFilterConfigs:
+      GetHandle:
+        ignore: true
+      GetVictorSPXSimCollection:
+      BaseConfigAllSettings:
+      BaseGetAllConfigs:
+      BaseGetPIDConfigs:
+      GetOutputCurrent:
+
+inline_code: |
+  cls_BaseMotorController
+    .def("__repr__", [](py::handle self) {
+      py::object type_name = self.get_type().attr("__qualname__");
+      int channel = self.cast<BaseMotorController&>().GetDeviceID();
+      return py::str("<{} {}>").format(type_name, channel);
+    });

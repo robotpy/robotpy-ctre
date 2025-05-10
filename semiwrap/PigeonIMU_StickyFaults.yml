@@ -1,0 +1,12 @@
+
+classes:
+  ctre::phoenix::sensors::PigeonIMU_StickyFaults:
+    subpackage: sensors
+    methods:
+      HasAnyFault:
+      ToBitfield:
+      Update:
+      PigeonIMU_StickyFaults:
+        overloads:
+          uint64_t:
+          "":

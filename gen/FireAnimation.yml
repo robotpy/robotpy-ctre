@@ -1,9 +1,0 @@
----
-
-classes:
-  FireAnimation:
-    subpackage: led
-    methods:
-      FireAnimation:
-      SetSparking:
-      SetCooling:

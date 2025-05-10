@@ -1,0 +1,27 @@
+
+extra_includes:
+- ctre/phoenix/motorcontrol/can/BaseTalon.h
+
+classes:
+  ctre::phoenix::motorcontrol::TalonSRXSimCollection:
+    methods:
+      TalonSRXSimCollection:
+        ignore: true
+      GetLastError:
+      GetMotorOutputLeadVoltage:
+      SetBusVoltage:
+      SetSupplyCurrent:
+      SetStatorCurrent:
+      SetLimitFwd:
+      SetLimitRev:
+      SetAnalogPosition:
+      AddAnalogPosition:
+      SetAnalogVelocity:
+      SetPulseWidthConnected:
+      SetPulseWidthRiseToRiseUs:
+      SetPulseWidthPosition:
+      AddPulseWidthPosition:
+      SetPulseWidthVelocity:
+      SetQuadratureRawPosition:
+      AddQuadraturePosition:
+      SetQuadratureVelocity:

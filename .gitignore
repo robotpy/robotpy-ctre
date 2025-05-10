@@ -43,15 +43,14 @@ __pycache__/
 *$py.class
 
 # C extensions
-/phoenix5/_init_ctre.py
-/phoenix5/pkgcfg.py
-/phoenix5/rpy-include
+/phoenix5/_init__ctre.py
+/phoenix5/_init_phoenix5_api.py
+/phoenix5/phoenix5.pc
+/phoenix5/phoenix5_api.pc
+/phoenix5/include
+/phoenix5/lib
+/phoenix5/trampolines
 /phoenix5/version.py
-/phoenix5/py.typed
-
-/phoenix5/_*/_init_*.py
-/phoenix5/_*/pkgcfg.py
-/phoenix5/_*/include
 
 
 # Distribution / packaging

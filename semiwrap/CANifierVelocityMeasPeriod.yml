@@ -1,0 +1,8 @@
+
+enums:
+  CANifierVelocityMeasPeriod:
+classes:
+  ctre::phoenix::CANifierVelocityMeasPeriodRoutines:
+    ignore: true  # enum toString only
+    methods:
+      toString:

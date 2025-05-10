@@ -1,0 +1,114 @@
+
+classes:
+  ctre::phoenix::motorcontrol::can::BaseTalonPIDSetConfiguration:
+    force_no_trampoline: true
+    attributes:
+      selectedFeedbackSensor:
+    methods:
+      BaseTalonPIDSetConfiguration:
+      toString:
+        overloads:
+          "":
+            rename: __str__
+          std::string:
+  ctre::phoenix::motorcontrol::can::BaseTalonPIDSetConfigUtil:
+    methods:
+      SelectedFeedbackSensorDifferent:
+      SelectedFeedbackCoefficientDifferent:
+  ctre::phoenix::motorcontrol::can::BaseTalonConfiguration:
+    force_no_trampoline: true
+    force_multiple_inheritance: true
+    attributes:
+      primaryPID:
+      auxiliaryPID:
+      forwardLimitSwitchSource:
+      reverseLimitSwitchSource:
+      forwardLimitSwitchDeviceID:
+      reverseLimitSwitchDeviceID:
+      forwardLimitSwitchNormal:
+      reverseLimitSwitchNormal:
+      sum0Term:
+      sum1Term:
+      diff0Term:
+      diff1Term:
+    methods:
+      BaseTalonConfiguration:
+      toString:
+        overloads:
+          "":
+            rename: __str__
+          std::string:
+  ctre::phoenix::motorcontrol::can::BaseTalonConfigUtil:
+    methods:
+      ForwardLimitSwitchSourceDifferent:
+      ReverseLimitSwitchSourceDifferent:
+      ForwardLimitSwitchDeviceIDDifferent:
+      ReverseLimitSwitchDeviceIDDifferent:
+      ForwardLimitSwitchNormalDifferent:
+      ReverseLimitSwitchNormalDifferent:
+      Sum0TermDifferent:
+      Sum1TermDifferent:
+      Diff0TermDifferent:
+      Diff1TermDifferent:
+      ForwardLimitSwitchDifferent:
+      ReverseLimitSwitchDifferent:
+  ctre::phoenix::motorcontrol::can::BaseTalon:
+    force_no_trampoline: true
+    typealias:
+    - ctre::phoenix::motorcontrol::IMotorControllerEnhanced
+    - ctre::phoenix::motorcontrol::FeedbackDevice
+    - ctre::phoenix::motorcontrol::RemoteFeedbackDevice
+    - ctre::phoenix::motorcontrol::StatusFrameEnhanced
+    - ctre::phoenix::motorcontrol::StatusFrame
+    - ctre::phoenix::motorcontrol::LimitSwitchSource
+    - ctre::phoenix::motorcontrol::LimitSwitchNormal
+    - ctre::phoenix::motorcontrol::RemoteLimitSwitchSource
+    base_qualnames:
+      IMotorControllerEnhanced: ctre::phoenix::motorcontrol::IMotorControllerEnhanced
+    methods:
+      BaseTalon:
+        overloads:
+          int, char*:
+            ignore: true
+          "":
+            ignore: true
+      ConfigSelectedFeedbackSensor:
+        overloads:
+          FeedbackDevice, int, int:
+          RemoteFeedbackDevice, int, int:
+      SetStatusFramePeriod:
+        overloads:
+          StatusFrameEnhanced, uint8_t, int:
+          StatusFrame, uint8_t, int:
+      GetStatusFramePeriod:
+        overloads:
+          StatusFrameEnhanced, int:
+          StatusFrame, int:
+      GetOutputCurrent:
+      GetStatorCurrent:
+      GetSupplyCurrent:
+      ConfigVelocityMeasurementPeriod:
+        overloads:
+          ctre::phoenix::sensors::SensorVelocityMeasPeriod, int:
+          VelocityMeasPeriod, int:
+            ignore: true
+      ConfigVelocityMeasurementWindow:
+      ConfigForwardLimitSwitchSource:
+        overloads:
+          LimitSwitchSource, LimitSwitchNormal, int:
+          RemoteLimitSwitchSource, LimitSwitchNormal, int, int:
+      ConfigReverseLimitSwitchSource:
+        overloads:
+          LimitSwitchSource, LimitSwitchNormal, int:
+          RemoteLimitSwitchSource, LimitSwitchNormal, int, int:
+      ConfigSupplyCurrentLimit:
+      IsFwdLimitSwitchClosed:
+      IsRevLimitSwitchClosed:
+      GetTalonSRXSensorCollection:
+      GetTalonFXSensorCollection:
+      GetTalonSRXSimCollection:
+      GetTalonFXSimCollection:
+      ConfigurePID:
+      GetPIDConfigs:
+      BaseTalonConfigAllSettings:
+      BaseTalonGetAllConfigs:
