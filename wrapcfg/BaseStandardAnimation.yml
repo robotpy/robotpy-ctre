@@ -1,0 +1,16 @@
+
+classes:
+  ctre::phoenix::led::BaseStandardAnimation:
+    subpackage: led
+    methods:
+      BaseStandardAnimation:
+      GetBaseStandardAnimation:
+      GetBaseTwoSizeAnimation:
+      SetBrightness:
+      SetParam4:
+      SetParam5:
+      SetReverseDirection:
+      GetBrightness:
+      GetParam4:
+      GetParam5:
+      GetReverseDirection:

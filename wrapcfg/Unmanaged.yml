@@ -1,0 +1,10 @@
+
+classes:
+  ctre::phoenix::unmanaged::Unmanaged:
+    force_no_default_constructor: true
+    methods:
+      FeedEnable:
+      GetEnableState:
+      GetPhoenixVersion:
+      LoadPhoenix:
+      SetPhoenixDiagnosticsStartTime:

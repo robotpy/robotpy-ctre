@@ -1,0 +1,148 @@
+
+extra_includes:
+- ctre/phoenix/motorcontrol/can/TalonSRX.h
+
+classes:
+  ctre::phoenix::sensors::PigeonIMUConfiguration:
+    subpackage: sensors
+    force_no_trampoline: true
+    methods:
+      PigeonIMUConfiguration:
+      toString:
+        overloads:
+          "":
+            rename: __str__
+          std::string:
+  ctre::phoenix::sensors::PigeonIMUConfigUtils:
+    subpackage: sensors
+    force_no_trampoline: true
+    methods:
+      CustomParam0Different:
+      CustomParam1Different:
+  ctre::phoenix::sensors::PigeonIMU:
+    subpackage: sensors
+    force_no_trampoline: true
+    typealias:
+    - ctre::phoenix::ParamEnum
+    - ctre::phoenix::ErrorCode
+    - ctre::phoenix::CustomParamConfiguration
+    - ctre::phoenix::CANBusAddressable
+    base_qualnames:
+      CustomParamConfiguration: ctre::phoenix::CustomParamConfiguration
+    enums:
+      CalibrationMode:
+      PigeonState:
+    methods:
+      PigeonIMU:
+        overloads:
+          int:
+          ctre::phoenix::motorcontrol::can::TalonSRX*:
+            ignore: true
+          ctre::phoenix::motorcontrol::can::TalonSRX&:
+      DestroyAllPigeonIMUs:
+      SetYaw:
+      AddYaw:
+      SetYawToCompass:
+      SetFusedHeading:
+      AddFusedHeading:
+      SetFusedHeadingToCompass:
+      SetAccumZAngle:
+      ConfigTemperatureCompensationEnable:
+      SetTemperatureCompensationDisable:
+      SetCompassDeclination:
+      SetCompassAngle:
+      EnterCalibrationMode:
+      GetGeneralStatus:
+      GetLastError:
+      Get6dQuaternion:
+        param_override:
+          wxyz:
+            default: "{0,0,0,0}"
+      GetYawPitchRoll:
+        param_override:
+          ypr:
+            default: "{0,0,0}"
+      GetAccumGyro:
+        param_override:
+          xyz_deg:
+            default: "{0,0,0}"
+      GetAbsoluteCompassHeading:
+      GetCompassHeading:
+      GetCompassFieldStrength:
+      GetTemp:
+        overloads:
+          "":
+      GetState:
+        overloads:
+          "":
+      GetUpTime:
+      GetRawMagnetometer:
+        param_override:
+          rm_xyz:
+            default: "{0,0,0}"
+      GetBiasedMagnetometer:
+        param_override:
+          bm_xyz:
+            default: "{0,0,0}"
+      GetBiasedAccelerometer:
+        param_override:
+          ba_xyz:
+            default: "{0,0,0}"
+      GetRawGyro:
+        param_override:
+          xyz_dps:
+            default: "{0,0,0}"
+      GetAccelerometerAngles:
+        param_override:
+          tiltAngles:
+            default: "{0,0,0}"
+      GetFusedHeading:
+        overloads:
+          FusionStatus&:
+          "[const]":
+      GetResetCount:
+      GetResetFlags:
+      GetFirmVers:
+      HasResetOccurred:
+      ToString:
+        overloads:
+          PigeonIMU::PigeonState:
+          CalibrationMode:
+      ConfigSetCustomParam:
+      ConfigGetCustomParam:
+        ignore: true
+      ConfigSetParameter:
+      ConfigGetParameter:
+        overloads:
+          ctre::phoenix::ParamEnum, int, int:
+          ParamEnum, int32_t, int32_t&, uint8_t&, int32_t, int32_t:
+      SetStatusFramePeriod:
+      GetStatusFramePeriod:
+      SetControlFramePeriod:
+      GetFirmwareVersion:
+      GetFaults:
+      GetStickyFaults:
+      ClearStickyFaults:
+      GetLowLevelHandle:
+      ConfigAllSettings:
+      GetAllConfigs:
+      ConfigFactoryDefault:
+  ctre::phoenix::sensors::PigeonIMU::FusionStatus:
+    attributes:
+      heading:
+      bIsValid:
+      bIsFusing:
+      description:
+      lastError:
+  ctre::phoenix::sensors::PigeonIMU::GeneralStatus:
+    attributes:
+      state:
+      currentMode:
+      calibrationError:
+      bCalIsBooting:
+      description:
+      tempC:
+      upTimeSec:
+      noMotionBiasCount:
+      tempCompensationCount:
+      lastError:

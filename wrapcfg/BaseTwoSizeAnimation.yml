@@ -1,0 +1,20 @@
+
+classes:
+  ctre::phoenix::led::BaseTwoSizeAnimation:
+    subpackage: led
+    methods:
+      BaseTwoSizeAnimation:
+      GetBaseStandardAnimation:
+      GetBaseTwoSizeAnimation:
+      SetR:
+      SetG:
+      SetB:
+      SetW:
+      SetDirection:
+      SetSize:
+      GetR:
+      GetG:
+      GetB:
+      GetW:
+      GetDirection:
+      GetSize:

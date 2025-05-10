@@ -1,0 +1,44 @@
+
+classes:
+  ctre::phoenix::led::CANdleFaults:
+    subpackage: led
+    attributes:
+      HardwareFault:
+      APIError:
+      BootDuringEnable:
+      VBatTooLow:
+      VBatTooHigh:
+      V5TooLow:
+      V5TooHigh:
+      SoftwareFuse:
+      ThermalFault:
+      ShortCircuit:
+    methods:
+      HasAnyFault:
+      ToBitfield:
+      Update:
+      CANdleFaults:
+        overloads:
+          int:
+          "":
+  ctre::phoenix::led::CANdleStickyFaults:
+    subpackage: led
+    attributes:
+      HardwareFault:
+      APIError:
+      BootDuringEnable:
+      VBatTooLow:
+      VBatTooHigh:
+      V5TooLow:
+      V5TooHigh:
+      SoftwareFuse:
+      ThermalFault:
+      ShortCircuit:
+    methods:
+      HasAnyFault:
+      ToBitfield:
+      Update:
+      CANdleStickyFaults:
+        overloads:
+          int:
+          "":

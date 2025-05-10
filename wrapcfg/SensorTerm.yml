@@ -1,0 +1,8 @@
+
+enums:
+  SensorTerm:
+classes:
+  ctre::phoenix::motorcontrol::SensorTermRoutines:
+    ignore: true  # enum toString only
+    methods:
+      toString:

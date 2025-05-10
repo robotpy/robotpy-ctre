@@ -1,0 +1,13 @@
+
+extra_includes:
+- ctre/phoenix/sensors/CANCoder.h
+
+classes:
+  ctre::phoenix::sensors::CANCoderSimCollection:
+    subpackage: sensors
+    methods:
+      CANCoderSimCollection:
+      SetBusVoltage:
+      SetRawPosition:
+      AddPosition:
+      SetVelocity:

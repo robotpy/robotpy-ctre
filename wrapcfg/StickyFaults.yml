@@ -1,0 +1,26 @@
+
+classes:
+  ctre::phoenix::motorcontrol::StickyFaults:
+    attributes:
+      UnderVoltage:
+      ForwardLimitSwitch:
+      ReverseLimitSwitch:
+      ForwardSoftLimit:
+      ReverseSoftLimit:
+      ResetDuringEn:
+      SensorOverflow:
+      SensorOutOfPhase:
+      HardwareESDReset:
+      RemoteLossOfSignal:
+      APIError:
+      SupplyOverV:
+      SupplyUnstable:
+    methods:
+      HasAnyFault:
+      ToBitfield:
+      StickyFaults:
+        overloads:
+          int:
+          "":
+      ToString:
+        rename: __str__

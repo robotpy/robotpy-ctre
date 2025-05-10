@@ -1,0 +1,10 @@
+
+enums:
+  SensorInitializationStrategy:
+    subpackage: sensors
+classes:
+  ctre::phoenix::sensors::SensorInitializationStrategyRoutines:
+    subpackage: sensors
+    ignore: true  # enum toString only
+    methods:
+      toString:

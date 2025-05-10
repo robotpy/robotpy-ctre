@@ -1,7 +1,0 @@
----
-
-classes:
-  SingleFadeAnimation:
-    subpackage: led
-    methods:
-      SingleFadeAnimation:

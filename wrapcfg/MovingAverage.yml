@@ -1,0 +1,11 @@
+
+classes:
+  ctre::phoenix::signals::MovingAverage:
+    methods:
+      MovingAverage:
+      Process:
+      Clear:
+      Push:
+      Pop:
+      GetSum:
+      GetCount:

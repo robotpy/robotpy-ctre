@@ -1,0 +1,10 @@
+
+enums:
+  SensorVelocityMeasPeriod:
+    subpackage: sensors
+classes:
+  ctre::phoenix::sensors::SensorVelocityMeasPeriodRoutines:
+    subpackage: sensors
+    ignore: true  # enum toString only
+    methods:
+      toString:

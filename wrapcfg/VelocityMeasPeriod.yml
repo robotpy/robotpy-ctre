@@ -1,0 +1,8 @@
+
+enums:
+  VelocityMeasPeriod:
+classes:
+  ctre::phoenix::motorcontrol::VelocityMeasPeriodRoutines:
+    ignore: true  # enum toString only
+    methods:
+      toString:

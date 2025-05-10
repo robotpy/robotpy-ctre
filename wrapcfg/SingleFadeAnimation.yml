@@ -1,0 +1,6 @@
+
+classes:
+  ctre::phoenix::led::SingleFadeAnimation:
+    subpackage: led
+    methods:
+      SingleFadeAnimation:

@@ -1,0 +1,8 @@
+extra_includes:
+- ctre/phoenix/motorcontrol/IMotorController.h
+classes:
+  ctre::phoenix::motorcontrol::IFollower:
+    force_multiple_inheritance: true
+    methods:
+      Follow:
+      ValueUpdated:

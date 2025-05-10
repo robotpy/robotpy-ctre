@@ -1,0 +1,31 @@
+
+enums:
+  FeedbackDevice:
+  TalonSRXFeedbackDevice:
+  TalonFXFeedbackDevice:
+  RemoteFeedbackDevice:
+    values:
+      RemoteFeedbackDevice_FactoryDefaultOff:
+        ignore: true
+      RemoteFeedbackDevice_SensorSum:
+        ignore: true
+      RemoteFeedbackDevice_SensorDifference:
+        ignore: true
+      RemoteFeedbackDevice_RemoteSensor0:
+        ignore: true
+      RemoteFeedbackDevice_RemoteSensor1:
+        ignore: true
+      RemoteFeedbackDevice_None:
+        ignore: true
+      RemoteFeedbackDevice_SoftwareEmulatedSensor:
+        ignore: true
+classes:
+  ctre::phoenix::motorcontrol::FeedbackDeviceRoutines:
+    ignore: true  # enum toString only
+    methods:
+      toString:
+        overloads:
+          ctre::phoenix::motorcontrol::FeedbackDevice:
+          ctre::phoenix::motorcontrol::TalonSRXFeedbackDevice:
+          ctre::phoenix::motorcontrol::TalonFXFeedbackDevice:
+          ctre::phoenix::motorcontrol::RemoteFeedbackDevice:

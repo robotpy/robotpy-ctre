@@ -1,0 +1,8 @@
+
+enums:
+  RemoteSensorSource:
+classes:
+  ctre::phoenix::motorcontrol::RemoteSensorSourceRoutines:
+    ignore: true  # enum toString only
+    methods:
+      toString:

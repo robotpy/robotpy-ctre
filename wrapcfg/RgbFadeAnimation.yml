@@ -1,0 +1,6 @@
+
+classes:
+  ctre::phoenix::led::RgbFadeAnimation:
+    subpackage: led
+    methods:
+      RgbFadeAnimation:

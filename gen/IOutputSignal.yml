@@ -1,7 +1,0 @@
----
-
-classes:
-  IOutputSignal:
-    shared_ptr: true
-    methods:
-      Set:

@@ -1,0 +1,5 @@
+
+classes:
+  ctre::phoenix::tasking::IProcessable:
+    methods:
+      Process:

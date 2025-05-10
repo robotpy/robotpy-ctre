@@ -1,0 +1,11 @@
+
+extra_includes:
+- ctre/phoenix/sensors/BasePigeon.h
+
+classes:
+  ctre::phoenix::sensors::BasePigeonSimCollection:
+    subpackage: sensors
+    methods:
+      BasePigeonSimCollection:
+      SetRawHeading:
+      AddHeading:

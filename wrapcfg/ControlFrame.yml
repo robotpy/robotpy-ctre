@@ -1,0 +1,7 @@
+
+enums:
+  ControlFrame:
+  ControlFrameEnhanced:
+classes:
+  ctre::phoenix::motorcontrol::ControlFrameRoutines:
+    ignore: true  # TODO: Promote

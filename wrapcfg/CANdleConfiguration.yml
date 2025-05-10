@@ -1,0 +1,22 @@
+
+classes:
+  ctre::phoenix::led::CANdleConfiguration:
+    subpackage: led
+    typealias:
+    - ctre::phoenix::CustomParamConfiguration
+    force_depends:
+    - ctre::phoenix::CustomParamConfiguration
+    force_no_trampoline: true
+    base_qualnames:
+      CustomParamConfiguration: ctre::phoenix::CustomParamConfiguration
+    attributes:
+      stripType:
+      brightnessScalar:
+      disableWhenLOS:
+      statusLedOffWhenActive:
+      vBatOutputMode:
+      v5Enabled:
+    methods:
+      CANdleConfiguration:
+      toString:
+        rename: __str__

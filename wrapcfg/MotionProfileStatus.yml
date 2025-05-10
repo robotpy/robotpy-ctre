@@ -1,0 +1,15 @@
+
+classes:
+  ctre::phoenix::motion::MotionProfileStatus:
+    attributes:
+      topBufferRem:
+      topBufferCnt:
+      btmBufferCnt:
+      hasUnderrun:
+      isUnderrun:
+      activePointValid:
+      isLast:
+      profileSlotSelect0:
+      profileSlotSelect1:
+      outputEnable:
+      timeDurMs:

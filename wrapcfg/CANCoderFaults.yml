@@ -1,0 +1,18 @@
+
+classes:
+  ctre::phoenix::sensors::CANCoderFaults:
+    subpackage: sensors
+    attributes:
+      HardwareFault:
+      APIError:
+      UnderVoltage:
+      ResetDuringEn:
+      MagnetTooWeak:
+    methods:
+      HasAnyFault:
+      ToBitfield:
+      Update:
+      CANCoderFaults:
+        overloads:
+          int:
+          "":

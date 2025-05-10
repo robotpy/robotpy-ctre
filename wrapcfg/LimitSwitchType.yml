@@ -1,0 +1,19 @@
+
+enums:
+  LimitSwitchSource:
+  RemoteLimitSwitchSource:
+  LimitSwitchNormal:
+classes:
+  ctre::phoenix::motorcontrol::LimitSwitchRoutines:
+    force_no_default_constructor: true
+    methods:
+      Promote:
+      IsRemote:
+      toString:
+        overloads:
+          LimitSwitchSource:
+            ignore: true
+          RemoteLimitSwitchSource:
+            ignore: true
+          LimitSwitchNormal:
+            ignore: true

@@ -1,0 +1,19 @@
+
+classes:
+  ctre::phoenix::CustomParamConfiguration:
+    force_no_trampoline: true
+    attributes:
+      customParam0:
+      customParam1:
+      enableOptimizations:
+    methods:
+      CustomParamConfiguration:
+      toString:
+        overloads:
+          "":
+            rename: __str__
+          std::string:
+  ctre::phoenix::CustomParamConfigUtil:
+    methods:
+      CustomParam0Different:
+      CustomParam1Different:

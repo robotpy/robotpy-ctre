@@ -1,0 +1,10 @@
+
+enums:
+  SensorTimeBase:
+    subpackage: sensors
+classes:
+  ctre::phoenix::sensors::SensorTimeBaseRoutines:
+    subpackage: sensors
+    ignore: true  # enum toString only
+    methods:
+      toString:

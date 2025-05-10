@@ -1,7 +1,0 @@
----
-
-classes:
-  RgbFadeAnimation:
-    subpackage: led
-    methods:
-      RgbFadeAnimation:

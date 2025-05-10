@@ -1,0 +1,10 @@
+
+classes:
+  ctre::phoenix::CANifierStickyFaults:
+    methods:
+      HasAnyFault:
+      ToBitfield:
+      CANifierStickyFaults:
+        overloads:
+          int:
+          "":
