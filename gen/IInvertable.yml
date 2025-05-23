@@ -1,8 +1,0 @@
----
-
-classes:
-  IInvertable:
-    shared_ptr: true
-    methods:
-      SetInverted:
-      GetInverted:

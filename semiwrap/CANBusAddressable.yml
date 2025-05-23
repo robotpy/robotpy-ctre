@@ -1,0 +1,6 @@
+
+classes:
+  ctre::phoenix::CANBusAddressable:
+    methods:
+      CANBusAddressable:
+      GetDeviceNumber:

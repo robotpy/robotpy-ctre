@@ -1,0 +1,9 @@
+
+classes:
+  ctre::phoenix::led::ColorFlowAnimation:
+    subpackage: led
+    enums:
+      Direction:
+    methods:
+      ColorFlowAnimation:
+      SetDirection:

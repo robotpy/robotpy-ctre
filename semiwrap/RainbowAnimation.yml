@@ -1,0 +1,6 @@
+
+classes:
+  ctre::phoenix::led::RainbowAnimation:
+    subpackage: led
+    methods:
+      RainbowAnimation:

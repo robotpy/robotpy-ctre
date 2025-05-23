@@ -1,0 +1,8 @@
+
+classes:
+  ctre::phoenix::tasking::ILoopable:
+    methods:
+      OnStart:
+      OnLoop:
+      IsDone:
+      OnStop:

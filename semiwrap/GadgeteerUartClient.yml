@@ -1,0 +1,19 @@
+
+classes:
+  IGadgeteerUartClient:
+    enums:
+      GadgeteerProxyType:
+      GadgeteerConnection:
+    methods:
+      IGadgeteerUartClient:
+      GetGadgeteerStatus:
+      ToString:
+        overloads:
+          IGadgeteerUartClient::GadgeteerProxyType:
+          IGadgeteerUartClient::GadgeteerConnection:
+  IGadgeteerUartClient::GadgeteerUartStatus:
+    attributes:
+      type:
+      conn:
+      bitrate:
+      resetCount:

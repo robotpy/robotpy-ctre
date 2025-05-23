@@ -1,0 +1,6 @@
+
+classes:
+  ctre::phoenix::led::StrobeAnimation:
+    subpackage: led
+    methods:
+      StrobeAnimation:

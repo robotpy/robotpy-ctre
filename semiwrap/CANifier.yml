@@ -1,0 +1,93 @@
+
+classes:
+  ctre::phoenix::CANifierConfiguration:
+    force_no_trampoline: true
+    attributes:
+      velocityMeasurementPeriod:
+      velocityMeasurementWindow:
+      clearPositionOnLimitF:
+      clearPositionOnLimitR:
+      clearPositionOnQuadIdx:
+    methods:
+      CANifierConfiguration:
+      toString:
+        overloads:
+          "":
+            rename: __str__
+          std::string:
+  ctre::phoenix::CANifierConfigUtils:
+    methods:
+      VelocityMeasurementPeriodDifferent:
+      VelocityMeasurementWindowDifferent:
+      ClearPositionOnLimitFDifferent:
+      ClearPositionOnLimitRDifferent:
+      ClearPositionOnQuadIdxDifferent:
+      CustomParam0Different:
+      CustomParam1Different:
+  ctre::phoenix::CANifier:
+    force_no_trampoline: true
+    attributes:
+      PWMChannelCount:
+    enums:
+      LEDChannel:
+      PWMChannel:
+      GeneralPin:
+    methods:
+      CANifier:
+      DestroyAllCANifiers:
+      SetLEDOutput:
+      SetGeneralOutput:
+      SetGeneralOutputs:
+      GetGeneralInputs:
+      GetGeneralInput:
+      GetQuadraturePosition:
+      GetQuadratureVelocity:
+      SetQuadraturePosition:
+      ConfigVelocityMeasurementPeriod:
+        overloads:
+          ctre::phoenix::sensors::SensorVelocityMeasPeriod, int:
+          CANifierVelocityMeasPeriod, int:
+            ignore: true
+      ConfigVelocityMeasurementWindow:
+      ConfigClearPositionOnLimitF:
+      ConfigClearPositionOnLimitR:
+      ConfigClearPositionOnQuadIdx:
+      GetBusVoltage:
+      GetLastError:
+      SetPWMOutput:
+      EnablePWMOutput:
+      GetPWMInput:
+        param_override:
+          pulseWidthAndPeriod:
+            array_size: 2
+      ConfigSetCustomParam:
+      ConfigGetCustomParam:
+      ConfigSetParameter:
+      ConfigGetParameter:
+        overloads:
+          ParamEnum, int, int:
+          ParamEnum, int32_t, int32_t&, uint8_t&, int32_t, int32_t:
+      SetStatusFramePeriod:
+      GetStatusFramePeriod:
+      SetControlFramePeriod:
+      GetFirmwareVersion:
+      HasResetOccurred:
+      GetFaults:
+      GetStickyFaults:
+      ClearStickyFaults:
+      ConfigAllSettings:
+      GetAllConfigs:
+      ConfigFactoryDefault:
+  ctre::phoenix::CANifier::PinValues:
+    attributes:
+      QUAD_IDX:
+      QUAD_B:
+      QUAD_A:
+      LIMR:
+      LIMF:
+      SDA:
+      SCL:
+      SPI_CS_PWM3:
+      SPI_MISO_PWM2:
+      SPI_MOSI_PWM1:
+      SPI_CLK_PWM0:

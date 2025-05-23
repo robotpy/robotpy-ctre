@@ -1,0 +1,22 @@
+
+classes:
+  ctre::phoenix::motorcontrol::SupplyCurrentLimitConfiguration:
+    attributes:
+      enable:
+      currentLimit:
+      triggerThresholdCurrent:
+      triggerThresholdTime:
+    methods:
+      SupplyCurrentLimitConfiguration:
+        overloads:
+          "":
+          bool, double, double, double:
+          const double*, int:
+            ignore: true  # unsafe array
+      ToString:
+        rename: __str__
+      ToArray:
+      Deserialize:
+        ignore: true
+      Equals:
+        rename: __eq__

@@ -1,0 +1,8 @@
+
+classes:
+  ctre::phoenix::led::FireAnimation:
+    subpackage: led
+    methods:
+      FireAnimation:
+      SetSparking:
+      SetCooling:

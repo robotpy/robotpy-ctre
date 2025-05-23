@@ -1,0 +1,9 @@
+
+enums:
+  StatusFrameEnhanced:
+  StatusFrame:
+classes:
+  ctre::phoenix::motorcontrol::StatusFrameRoutines:
+    force_no_default_constructor: true
+    methods:
+      Promote:

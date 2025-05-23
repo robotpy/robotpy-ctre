@@ -1,0 +1,9 @@
+
+classes:
+  ctre::phoenix::led::TwinkleOffAnimation:
+    subpackage: led
+    enums:
+      TwinkleOffPercent:
+    methods:
+      TwinkleOffAnimation:
+      SetDivider:

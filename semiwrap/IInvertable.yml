@@ -1,0 +1,6 @@
+
+classes:
+  ctre::phoenix::signals::IInvertable:
+    methods:
+      SetInverted:
+      GetInverted:

@@ -1,9 +1,0 @@
----
-
-enums:
-  ControlFrame:
-  ControlFrameEnhanced:
-classes:
-  ControlFrameRoutines:
-    ignore: true  # TODO: Promote
-    shared_ptr: true

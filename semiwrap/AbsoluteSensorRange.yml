@@ -1,0 +1,10 @@
+
+enums:
+  AbsoluteSensorRange:
+    subpackage: sensors
+classes:
+  ctre::phoenix::sensors::AbsoluteSensorRangeRoutines:
+    subpackage: sensors
+    ignore: true  # enum toString only
+    methods:
+      toString:

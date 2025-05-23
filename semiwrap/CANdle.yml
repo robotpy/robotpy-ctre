@@ -1,0 +1,42 @@
+
+classes:
+  ctre::phoenix::led::CANdle:
+    subpackage: led
+    methods:
+      CANdle:
+      GetBusVoltage:
+      Get5VRailVoltage:
+      GetCurrent:
+      GetTemperature:
+      GetVBatModulation:
+      GetMaxSimultaneousAnimationCount:
+      Animate:
+        overloads:
+          Animation&:
+          BaseStandardAnimation&:
+          BaseTwoSizeAnimation&:
+      ClearAnimation:
+        ignore: true # TODO
+      SetLEDs:
+      ModulateVBatOutput:
+      ConfigLOSBehavior:
+      ConfigLEDType:
+      ConfigBrightnessScalar:
+      ConfigStatusLedState:
+      ConfigVBatOutput:
+      configV5Enabled:
+      ConfigGetParameter:
+      ConfigSetParameter:
+      ConfigGetCustomParam:
+      ConfigSetCustomParam:
+      ConfigFactoryDefault:
+      GetFaults:
+      GetStickyFaults:
+      ClearStickyFaults:
+      HasResetOccurred:
+      SetStatusFramePeriod:
+      GetStatusFramePeriod:
+      SetControlFramePeriod:
+      ConfigAllSettings:
+      GetAllConfigs:
+      GetLastError:

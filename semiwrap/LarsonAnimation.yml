@@ -1,0 +1,10 @@
+
+classes:
+  ctre::phoenix::led::LarsonAnimation:
+    subpackage: led
+    enums:
+      BounceMode:
+    methods:
+      LarsonAnimation:
+      SetBounceMode:
+      SetSize:

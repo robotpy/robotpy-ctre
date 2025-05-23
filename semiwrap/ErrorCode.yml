@@ -1,0 +1,6 @@
+
+enums:
+  ErrorCode:
+classes:
+  ctre::phoenix::ErrorCollection:
+    ignore: true

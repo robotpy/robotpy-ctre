@@ -1,0 +1,88 @@
+
+classes:
+  ctre::phoenix::sensors::CANCoderConfiguration:
+    subpackage: sensors
+    force_no_trampoline: true
+    base_qualnames:
+      CustomParamConfiguration: ctre::phoenix::CustomParamConfiguration
+    attributes:
+      velocityMeasurementPeriod:
+      velocityMeasurementWindow:
+      absoluteSensorRange:
+      magnetOffsetDegrees:
+      sensorDirection:
+      initializationStrategy:
+      sensorCoefficient:
+      unitString:
+      sensorTimeBase:
+    methods:
+      CANCoderConfiguration:
+      toString:
+        overloads:
+          "":
+            rename: __str__
+          std::string:
+  ctre::phoenix::sensors::CANCoderConfigUtils:
+    subpackage: sensors
+    force_no_trampoline: true
+    base_qualnames:
+      CustomParamConfigUtil: ctre::phoenix::CustomParamConfigUtil
+    methods:
+      VelocityMeasurementPeriodDifferent:
+      VelocityMeasurementWindowDifferent:
+      AbsoluteSensorRangeDifferent:
+      MagnetOffsetDegreesDifferent:
+      SensorDirectionDifferent:
+      InitializationStrategyDifferent:
+      SensorCoefficientDifferent:
+      UnitStringDifferent:
+      SensorTimeBaseDifferent:
+  ctre::phoenix::sensors::CANCoder:
+    subpackage: sensors
+    force_no_trampoline: true
+    typealias:
+    - ctre::phoenix::CustomParamConfiguration
+    - ctre::phoenix::CustomParamConfigUtil
+    - ctre::phoenix::CANBusAddressable
+    - ctre::phoenix::ParamEnum
+    - ctre::phoenix::ErrorCode
+    base_qualnames:
+      CANBusAddressable: ctre::phoenix::CANBusAddressable
+    methods:
+      CANCoder:
+      DestroyAllCANCoders:
+      GetPosition:
+      GetVelocity:
+      SetPosition:
+      SetPositionToAbsolute:
+      GetAbsolutePosition:
+      ConfigVelocityMeasurementPeriod:
+      ConfigVelocityMeasurementWindow:
+      ConfigAbsoluteSensorRange:
+      ConfigMagnetOffset:
+      ConfigSensorInitializationStrategy:
+      ConfigFeedbackCoefficient:
+      GetBusVoltage:
+      GetMagnetFieldStrength:
+      ConfigSensorDirection:
+      GetLastError:
+      GetLastUnitString:
+      GetLastTimestamp:
+      ConfigSetCustomParam:
+      ConfigGetCustomParam:
+      ConfigSetParameter:
+      ConfigGetParameter:
+        overloads:
+          ParamEnum, int, int:
+          ParamEnum, int32_t, int32_t&, uint8_t&, int32_t, int32_t:
+      SetStatusFramePeriod:
+      GetStatusFramePeriod:
+      GetFirmwareVersion:
+      HasResetOccurred:
+      GetFaults:
+      GetStickyFaults:
+      ClearStickyFaults:
+      ConfigAllSettings:
+      GetAllConfigs:
+      ConfigFactoryDefault:
+      GetSimCollection:

@@ -1,0 +1,83 @@
+
+extra_includes:
+- ctre/phoenix/motorcontrol/can/TalonSRX.h
+
+classes:
+  ctre::phoenix::sensors::BasePigeonConfiguration:
+    subpackage: sensors
+    typealias:
+    - ctre::phoenix::CustomParamConfiguration
+    force_depends:
+    - ctre::phoenix::CustomParamConfiguration
+    force_no_trampoline: true
+    base_qualnames:
+      CustomParamConfiguration: ctre::phoenix::CustomParamConfiguration
+    methods:
+      BasePigeonConfiguration:
+      toString:
+        overloads:
+          "":
+          std::string:
+  ctre::phoenix::sensors::BasePigeonConfigUtils:
+    subpackage: sensors
+    methods:
+      CustomParam0Different:
+      CustomParam1Different:
+  ctre::phoenix::sensors::BasePigeon:
+    subpackage: sensors
+    typealias:
+    - ctre::phoenix::ParamEnum
+    - ctre::phoenix::CANBusAddressable
+    force_depends:
+    - ctre::phoenix::CANBusAddressable
+    base_qualnames:
+      CANBusAddressable: ctre::phoenix::CANBusAddressable
+    force_no_trampoline: true
+    methods:
+      BasePigeon:
+        overloads:
+          int, std::string&, std::string&:
+          ctre::phoenix::motorcontrol::can::TalonSRX&:
+      DestroyAllBasePigeons:
+      SetYaw:
+      AddYaw:
+      SetYawToCompass:
+      SetAccumZAngle:
+      GetLastError:
+      Get6dQuaternion:
+      GetYawPitchRoll:
+      GetYaw:
+      GetPitch:
+      GetRoll:
+      GetAccumGyro:
+      GetAbsoluteCompassHeading:
+      GetCompassHeading:
+      GetCompassFieldStrength:
+      GetTemp:
+      GetUpTime:
+      GetRawMagnetometer:
+      GetBiasedMagnetometer:
+      GetBiasedAccelerometer:
+      GetRawGyro:
+      GetResetCount:
+      GetResetFlags:
+      GetFirmVers:
+      HasResetOccurred:
+      ConfigSetCustomParam:
+      ConfigGetCustomParam:
+      ConfigSetParameter:
+      ConfigGetParameter:
+        overloads:
+          ctre::phoenix::ParamEnum, int, int:
+          ParamEnum, int32_t, int32_t&, uint8_t&, int32_t, int32_t:
+      SetStatusFramePeriod:
+      GetStatusFramePeriod:
+      SetControlFramePeriod:
+      GetFirmwareVersion:
+      ClearStickyFaults:
+      GetLowLevelHandle:
+        ignore: true
+      ConfigAllSettings:
+      GetAllConfigs:
+      ConfigFactoryDefault:
+      GetSimCollection:

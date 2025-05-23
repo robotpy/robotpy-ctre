@@ -1,0 +1,75 @@
+
+classes:
+  ctre::phoenix::motorcontrol::can::VictorSPXPIDSetConfiguration:
+    force_no_trampoline: true
+    attributes:
+      selectedFeedbackSensor:
+    methods:
+      VictorSPXPIDSetConfiguration:
+      toString:
+        overloads:
+          "":
+            rename: __str__
+          std::string:
+  ctre::phoenix::motorcontrol::can::VictorSPXPIDSetConfigUtil:
+    methods:
+      SelectedFeedbackSensorDifferent:
+      SelectedFeedbackCoefficientDifferent:
+  ctre::phoenix::motorcontrol::can::VictorSPXConfiguration:
+    force_no_trampoline: true
+    attributes:
+      primaryPID:
+      auxiliaryPID:
+      forwardLimitSwitchSource:
+      reverseLimitSwitchSource:
+      forwardLimitSwitchDeviceID:
+      reverseLimitSwitchDeviceID:
+      forwardLimitSwitchNormal:
+      reverseLimitSwitchNormal:
+      sum0Term:
+      sum1Term:
+      diff0Term:
+      diff1Term:
+    methods:
+      VictorSPXConfiguration:
+      toString:
+        overloads:
+          "":
+            rename: __str__
+          std::string:
+  ctre::phoenix::motorcontrol::can::VictorConfigUtil:
+    methods:
+      ForwardLimitSwitchSourceDifferent:
+      ReverseLimitSwitchSourceDifferent:
+      ForwardLimitSwitchDeviceIDDifferent:
+      ReverseLimitSwitchDeviceIDDifferent:
+      ForwardLimitSwitchNormalDifferent:
+      ReverseLimitSwitchNormalDifferent:
+      Sum0TermDifferent:
+      Sum1TermDifferent:
+      Diff0TermDifferent:
+      Diff1TermDifferent:
+      ForwardLimitSwitchDifferent:
+      ReverseLimitSwitchDifferent:
+  ctre::phoenix::motorcontrol::can::VictorSPX:
+    doc_append: |2
+
+      .. seealso::
+         :class:`WPI_VictorSPX`
+    force_no_trampoline: true
+    force_multiple_inheritance: true
+    methods:
+      VictorSPX:
+        overloads:
+          int:
+          int, const std::string&:
+      GetPIDConfigs:
+      ConfigAllSettings:
+      GetAllConfigs:
+      GetSimCollection:
+      Set:
+        overloads:
+          ctre::phoenix::motorcontrol::VictorSPXControlMode, double:
+          ctre::phoenix::motorcontrol::VictorSPXControlMode, double, ctre::phoenix::motorcontrol::DemandType, double:
+          ctre::phoenix::motorcontrol::ControlMode, double:
+          ctre::phoenix::motorcontrol::ControlMode, double, ctre::phoenix::motorcontrol::DemandType, double:

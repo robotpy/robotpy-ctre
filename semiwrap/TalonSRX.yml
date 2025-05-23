@@ -1,0 +1,71 @@
+
+classes:
+  ctre::phoenix::motorcontrol::can::TalonSRXPIDSetConfiguration:
+    force_no_trampoline: true
+    force_no_default_constructor: true
+  ctre::phoenix::motorcontrol::can::TalonSRXConfiguration:
+    force_no_trampoline: true
+    attributes:
+      peakCurrentLimit:
+      peakCurrentDuration:
+      continuousCurrentLimit:
+    methods:
+      TalonSRXConfiguration:
+      toString:
+        overloads:
+          "":
+            rename: __str__
+          std::string:
+  ctre::phoenix::motorcontrol::can::TalonSRXConfigUtil:
+    force_no_trampoline: true
+    methods:
+      PeakCurrentLimitDifferent:
+      PeakCurrentDurationDifferent:
+      ContinuousCurrentLimitDifferent:
+  ctre::phoenix::motorcontrol::can::TalonSRX:
+    doc_append: |2
+
+      .. seealso::
+         :class:`WPI_TalonSRX`
+    force_no_trampoline: true
+    force_multiple_inheritance: true
+    typealias:
+    - ctre::phoenix::motorcontrol::ControlMode
+    - ctre::phoenix::motorcontrol::DemandType
+    - ctre::phoenix::motorcontrol::FeedbackDevice
+    - ctre::phoenix::motorcontrol::RemoteFeedbackDevice
+    - ctre::phoenix::motorcontrol::TalonSRXControlMode
+    - ctre::phoenix::motorcontrol::TalonSRXFeedbackDevice
+    methods:
+      TalonSRX:
+        overloads:
+          int:
+          int, const std::string&:
+          "":
+            ignore: true
+      ConfigSelectedFeedbackSensor:
+        overloads:
+          TalonSRXFeedbackDevice, int, int:
+          FeedbackDevice, int, int:
+          RemoteFeedbackDevice, int, int:
+      ConfigSupplyCurrentLimit:
+      ConfigPeakCurrentLimit:
+      ConfigPeakCurrentDuration:
+      ConfigContinuousCurrentLimit:
+      EnableCurrentLimit:
+      GetSensorCollection:
+      ConfigurePID:
+      GetSimCollection:
+      GetPIDConfigs:
+      ConfigAllSettings:
+      GetAllConfigs:
+      Set:
+        overloads:
+          TalonSRXControlMode, double:
+          TalonSRXControlMode, double, DemandType, double:
+          ControlMode, double:
+          ControlMode, double, DemandType, double:
+
+inline_code: |
+  cls_TalonSRXPIDSetConfiguration
+    .def(py::init<FeedbackDevice>(), py::arg("defaultFeedbackDevice"), release_gil());
