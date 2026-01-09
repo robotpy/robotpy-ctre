@@ -1,5 +1,0 @@
----
-
-enums:
-  MagnetFieldStrength:
-    subpackage: sensors

@@ -47,7 +47,6 @@ classes:
       ConfigRemoteFeedbackFilter:
         overloads:
           int, RemoteSensorSource, int, int:
-          ctre::phoenix::sensors::CANCoder&, int, int:
           ctre::phoenix::motorcontrol::can::BaseTalon&, int, int:
       ConfigSensorTerm:
       GetSelectedSensorPosition:

@@ -1,8 +1,6 @@
-import pytest
-
 import phoenix5.sensors
 
 
-def test_cancoder():
-    enc = phoenix5.sensors.CANCoder(0)
-    enc.getPosition()
+def test_pigeon():
+    imu = phoenix5.sensors.PigeonIMU(0)
+    imu.getFusedHeading()

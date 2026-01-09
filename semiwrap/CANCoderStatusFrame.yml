@@ -1,5 +1,0 @@
----
-
-enums:
-  CANCoderStatusFrame:
-    subpackage: sensors
