@@ -7,8 +7,8 @@ requires = [
     "hatch-meson~=0.1.0",
     "hatch-nativelib~=0.2.0",
     "hatch-robotpy~=0.2.1",
-    "phoenix6~=26.0.0b1",
-    "wpilib~=2026.1.1b1",
+    "phoenix6~=26.1.0",
+    "wpilib~=2026.1.1",
 ]
 
 
@@ -21,8 +21,8 @@ authors = [
 ]
 license = "MIT"
 dependencies = [
-    "phoenix6~=26.0.0b1",
-    "wpilib~=2026.1.1b1",
+    "phoenix6~=26.1.0",
+    "wpilib>=2026.1.1,<2027",
 ]
 
 [project.urls]
@@ -45,7 +45,7 @@ packages = ["phoenix5"]
 artifact_id = "wpiapi-cpp"
 group_id = "com.ctre.phoenix"
 repo_url = "https://maven.ctr-electronics.com/release"
-version = "5.36.0-beta-1"
+version = "5.36.0"
 libs = [
     "CTRE_Phoenix_WPI",
 ]
@@ -56,7 +56,7 @@ enable_if = "platform_machine=='roborio'"
 artifact_id = "api-cpp"
 group_id = "com.ctre.phoenix"
 repo_url = "https://maven.ctr-electronics.com/release"
-version = "5.36.0-beta-1"
+version = "5.36.0"
 libs = [
     "CTRE_Phoenix",
 ]
@@ -67,7 +67,7 @@ enable_if = "platform_machine=='roborio'"
 artifact_id = "cci"
 group_id = "com.ctre.phoenix"
 repo_url = "https://maven.ctr-electronics.com/release"
-version = "5.36.0-beta-1"
+version = "5.36.0"
 libs = [
     "CTRE_PhoenixCCI",
 ]
@@ -78,7 +78,7 @@ enable_if = "platform_machine=='roborio'"
 artifact_id = "wpiapi-cpp-sim"
 group_id = "com.ctre.phoenix.sim"
 repo_url = "https://maven.ctr-electronics.com/release"
-version = "5.36.0-beta-1"
+version = "5.36.0"
 libs = [
     "CTRE_Phoenix_WPISim",
 ]
@@ -89,7 +89,7 @@ enable_if = "platform_machine!='roborio'"
 artifact_id = "api-cpp-sim"
 group_id = "com.ctre.phoenix.sim"
 repo_url = "https://maven.ctr-electronics.com/release"
-version = "5.36.0-beta-1"
+version = "5.36.0"
 libs = [
     "CTRE_PhoenixSim",
 ]
@@ -100,7 +100,7 @@ enable_if = "platform_machine!='roborio'"
 artifact_id = "cci-sim"
 group_id = "com.ctre.phoenix.sim"
 repo_url = "https://maven.ctr-electronics.com/release"
-version = "5.36.0-beta-1"
+version = "5.36.0"
 libs = [
     "CTRE_PhoenixCCISim",
 ]
@@ -119,7 +119,7 @@ enable_if = "platform_machine!='roborio'"
 artifact_id = "tools"
 group_id = "com.ctre.phoenix6"
 repo_url = "https://maven.ctr-electronics.com/release"
-version = "26.0.0-beta-1"
+version = "26.1.0"
 libs = []
 extract_to = "phoenix5"
 enable_if = "platform_machine=='roborio'"
@@ -128,7 +128,7 @@ enable_if = "platform_machine=='roborio'"
 artifact_id = "tools-sim"
 group_id = "com.ctre.phoenix6.sim"
 repo_url = "https://maven.ctr-electronics.com/release"
-version = "26.0.0-beta-1"
+version = "26.1.0"
 libs = []
 extract_to = "phoenix5"
 enable_if = "platform_machine!='roborio'"
@@ -140,7 +140,7 @@ enable_if = "platform_machine!='roborio'"
 [[tool.hatch.build.hooks.nativelib.pcfile]]
 pcfile = "phoenix5/phoenix5_api.pc"
 name = "phoenix5_api"
-version = "5.36.0-beta-1"
+version = "5.36.0"
 includedir = "phoenix5/include"
 libdir = "phoenix5/lib"
 shared_libraries = [
@@ -162,7 +162,7 @@ enable_if = "platform_machine=='roborio'"
 [[tool.hatch.build.hooks.nativelib.pcfile]]
 pcfile = "phoenix5/phoenix5_api.pc"
 name = "phoenix5_api"
-version = "5.36.0-beta-1"
+version = "5.36.0"
 includedir = "phoenix5/include"
 libdir = "phoenix5/lib"
 shared_libraries = [
