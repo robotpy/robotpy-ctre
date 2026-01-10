@@ -7,8 +7,8 @@ requires = [
     "hatch-meson~=0.1.0",
     "hatch-nativelib~=0.2.0",
     "hatch-robotpy~=0.2.1",
-    "phoenix6~=26.0.0b1",
-    "wpilib~=2026.1.1b1",
+    "phoenix6~=26.1.0",
+    "wpilib~=2026.1.1",
 ]
 
 
@@ -21,8 +21,8 @@ authors = [
 ]
 license = "MIT"
 dependencies = [
-    "phoenix6~=26.0.0b1",
-    "wpilib~=2026.1.1b1",
+    "phoenix6~=26.1.0",
+    "wpilib>=2026.1.1,<2027",
 ]
 
 [project.urls]
@@ -45,7 +45,7 @@ packages = ["phoenix5"]
 artifact_id = "wpiapi-cpp"
 group_id = "com.ctre.phoenix"
 repo_url = "https://maven.ctr-electronics.com/release"
-version = "5.36.0-beta-1"
+version = "5.36.0"
 libs = [
     "CTRE_Phoenix_WPI",
 ]
@@ -56,7 +56,7 @@ enable_if = "platform_machine=='roborio'"
 artifact_id = "api-cpp"
 group_id = "com.ctre.phoenix"
 repo_url = "https://maven.ctr-electronics.com/release"
-version = "5.36.0-beta-1"
+version = "5.36.0"
 libs = [
     "CTRE_Phoenix",
 ]
@@ -67,7 +67,7 @@ enable_if = "platform_machine=='roborio'"
 artifact_id = "cci"
 group_id = "com.ctre.phoenix"
 repo_url = "https://maven.ctr-electronics.com/release"
-version = "5.36.0-beta-1"
+version = "5.36.0"
 libs = [
     "CTRE_PhoenixCCI",
 ]
@@ -78,7 +78,7 @@ enable_if = "platform_machine=='roborio'"
 artifact_id = "wpiapi-cpp-sim"
 group_id = "com.ctre.phoenix.sim"
 repo_url = "https://maven.ctr-electronics.com/release"
-version = "5.36.0-beta-1"
+version = "5.36.0"
 libs = [
     "CTRE_Phoenix_WPISim",
 ]
@@ -89,7 +89,7 @@ enable_if = "platform_machine!='roborio'"
 artifact_id = "api-cpp-sim"
 group_id = "com.ctre.phoenix.sim"
 repo_url = "https://maven.ctr-electronics.com/release"
-version = "5.36.0-beta-1"
+version = "5.36.0"
 libs = [
     "CTRE_PhoenixSim",
 ]
@@ -100,7 +100,7 @@ enable_if = "platform_machine!='roborio'"
 artifact_id = "cci-sim"
 group_id = "com.ctre.phoenix.sim"
 repo_url = "https://maven.ctr-electronics.com/release"
-version = "5.36.0-beta-1"
+version = "5.36.0"
 libs = [
     "CTRE_PhoenixCCISim",
 ]
@@ -119,7 +119,7 @@ enable_if = "platform_machine!='roborio'"
 artifact_id = "tools"
 group_id = "com.ctre.phoenix6"
 repo_url = "https://maven.ctr-electronics.com/release"
-version = "26.0.0-beta-1"
+version = "26.1.0"
 libs = []
 extract_to = "phoenix5"
 enable_if = "platform_machine=='roborio'"
@@ -128,7 +128,7 @@ enable_if = "platform_machine=='roborio'"
 artifact_id = "tools-sim"
 group_id = "com.ctre.phoenix6.sim"
 repo_url = "https://maven.ctr-electronics.com/release"
-version = "26.0.0-beta-1"
+version = "26.1.0"
 libs = []
 extract_to = "phoenix5"
 enable_if = "platform_machine!='roborio'"
@@ -140,7 +140,7 @@ enable_if = "platform_machine!='roborio'"
 [[tool.hatch.build.hooks.nativelib.pcfile]]
 pcfile = "phoenix5/phoenix5_api.pc"
 name = "phoenix5_api"
-version = "5.36.0-beta-1"
+version = "5.36.0"
 includedir = "phoenix5/include"
 libdir = "phoenix5/lib"
 shared_libraries = [
@@ -162,7 +162,7 @@ enable_if = "platform_machine=='roborio'"
 [[tool.hatch.build.hooks.nativelib.pcfile]]
 pcfile = "phoenix5/phoenix5_api.pc"
 name = "phoenix5_api"
-version = "5.36.0-beta-1"
+version = "5.36.0"
 includedir = "phoenix5/include"
 libdir = "phoenix5/lib"
 shared_libraries = [
@@ -242,7 +242,6 @@ WPI_TalonSRX = "ctre/phoenix/motorcontrol/can/WPI_TalonSRX.h"
 WPI_VictorSPX = "ctre/phoenix/motorcontrol/can/WPI_VictorSPX.h"
 
 # ctre/phoenix/sensors
-# WPI_Pigeon2 = "ctre/phoenix/sensors/WPI_Pigeon2.h"
 WPI_PigeonIMU = "ctre/phoenix/sensors/WPI_PigeonIMU.h"
 
 # ctre/phoenix/tasking
@@ -301,16 +300,12 @@ BaseTalon = "ctre/phoenix/motorcontrol/can/BaseTalon.h"
 TalonSRX = "ctre/phoenix/motorcontrol/can/TalonSRX.h"
 VictorSPX = "ctre/phoenix/motorcontrol/can/VictorSPX.h"
 
-# ctre/phoenix/music
-# Orchestra = "ctre/phoenix/music/Orchestra.h"
-
 # ctre/phoenix/platform/can
 # PlatformCAN = "ctre/phoenix/platform/can/PlatformCAN.h"
 
 # ctre/phoenix/sensors
 BasePigeon = "ctre/phoenix/sensors/BasePigeon.h"
 BasePigeonSimCollection = "ctre/phoenix/sensors/BasePigeonSimCollection.h"
-# Pigeon2 = "ctre/phoenix/sensors/Pigeon2.h"
 PigeonIMU = "ctre/phoenix/sensors/PigeonIMU.h"
 
 # ctre/phoenix/signals
@@ -340,7 +335,6 @@ Unmanaged = "ctre/phoenix/unmanaged/Unmanaged.h"
 # ConfigParseValue = "ctre/configparams/ConfigParseValue.h"
 # ConfigTypes = "ctre/configparams/ConfigTypes.h"
 # DecoratedConfigGroupSerializer = "ctre/configparams/DecoratedConfigGroupSerializer.h"
-# Pigeon2JsonGenerator = "ctre/configparams/Pigeon2JsonGenerator.h"
 
 # ctre/diagnostics
 # diag_framing = "ctre/diagnostics/diag_framing.h"
@@ -367,7 +361,6 @@ ErrorCode = "ctre/phoenix/ErrorCode.h"
 # Diagnostics_CCI = "ctre/phoenix/cci/Diagnostics_CCI.h"
 # Logger_CCI = "ctre/phoenix/cci/Logger_CCI.h"
 # MotController_CCI = "ctre/phoenix/cci/MotController_CCI.h"
-# Orchestra_CCI = "ctre/phoenix/cci/Orchestra_CCI.h"
 # PDP_CCI = "ctre/phoenix/cci/PDP_CCI.h"
 # PigeonIMU_CCI = "ctre/phoenix/cci/PigeonIMU_CCI.h"
 # PlatformCAN_CCI = "ctre/phoenix/cci/PlatformCAN_CCI.h"
@@ -383,7 +376,6 @@ GadgeteerUartClient = "ctre/phoenix/core/GadgeteerUartClient.h"
 # ctre/phoenix/jni
 # com_ctre_phoenix_CANifierJNI = "ctre/phoenix/jni/com_ctre_phoenix_CANifierJNI.h"
 # com_ctre_phoenix_CTRLoggerJNI = "ctre/phoenix/jni/com_ctre_phoenix_CTRLoggerJNI.h"
-# com_ctre_phoenix_OrchestraJNI = "ctre/phoenix/jni/com_ctre_phoenix_OrchestraJNI.h"
 # com_ctre_phoenix_led_CANdleJNI = "ctre/phoenix/jni/com_ctre_phoenix_led_CANdleJNI.h"
 # com_ctre_phoenix_motion_BuffTrajPointStreamJNI = "ctre/phoenix/jni/com_ctre_phoenix_motion_BuffTrajPointStreamJNI.h"
 # com_ctre_phoenix_motorcontrol_can_MotControllerJNI = "ctre/phoenix/jni/com_ctre_phoenix_motorcontrol_can_MotControllerJNI.h"
@@ -411,11 +403,9 @@ FeedbackDevice = "ctre/phoenix/motorcontrol/FeedbackDevice.h"
 FollowerType = "ctre/phoenix/motorcontrol/FollowerType.h"
 InvertType = "ctre/phoenix/motorcontrol/InvertType.h"
 LimitSwitchType = "ctre/phoenix/motorcontrol/LimitSwitchType.h"
-# MotorCommutation = "ctre/phoenix/motorcontrol/MotorCommutation.h"
 NeutralMode = "ctre/phoenix/motorcontrol/NeutralMode.h"
 RemoteSensorSource = "ctre/phoenix/motorcontrol/RemoteSensorSource.h"
 SensorTerm = "ctre/phoenix/motorcontrol/SensorTerm.h"
-# StatorCurrentLimitConfiguration = "ctre/phoenix/motorcontrol/StatorCurrentLimitConfiguration.h"
 StatusFrame = "ctre/phoenix/motorcontrol/StatusFrame.h"
 StickyFaults = "ctre/phoenix/motorcontrol/StickyFaults.h"
 SupplyCurrentLimitConfiguration = "ctre/phoenix/motorcontrol/SupplyCurrentLimitConfiguration.h"
@@ -434,8 +424,6 @@ paramEnum = "ctre/phoenix/paramEnum.h"
 # canivore_device = "ctre/phoenix/platform/canivore_device.h"
 
 # ctre/phoenix/sensors
-# Pigeon2_Faults = "ctre/phoenix/sensors/Pigeon2_Faults.h"
-# Pigeon2_StickyFaults = "ctre/phoenix/sensors/Pigeon2_StickyFaults.h"
 PigeonIMU_ControlFrame = "ctre/phoenix/sensors/PigeonIMU_ControlFrame.h"
 PigeonIMU_Faults = "ctre/phoenix/sensors/PigeonIMU_Faults.h"
 PigeonIMU_StatusFrame = "ctre/phoenix/sensors/PigeonIMU_StatusFrame.h"
