@@ -242,7 +242,6 @@ WPI_TalonSRX = "ctre/phoenix/motorcontrol/can/WPI_TalonSRX.h"
 WPI_VictorSPX = "ctre/phoenix/motorcontrol/can/WPI_VictorSPX.h"
 
 # ctre/phoenix/sensors
-# WPI_Pigeon2 = "ctre/phoenix/sensors/WPI_Pigeon2.h"
 WPI_PigeonIMU = "ctre/phoenix/sensors/WPI_PigeonIMU.h"
 
 # ctre/phoenix/tasking
@@ -310,7 +309,6 @@ VictorSPX = "ctre/phoenix/motorcontrol/can/VictorSPX.h"
 # ctre/phoenix/sensors
 BasePigeon = "ctre/phoenix/sensors/BasePigeon.h"
 BasePigeonSimCollection = "ctre/phoenix/sensors/BasePigeonSimCollection.h"
-# Pigeon2 = "ctre/phoenix/sensors/Pigeon2.h"
 PigeonIMU = "ctre/phoenix/sensors/PigeonIMU.h"
 
 # ctre/phoenix/signals
@@ -340,7 +338,6 @@ Unmanaged = "ctre/phoenix/unmanaged/Unmanaged.h"
 # ConfigParseValue = "ctre/configparams/ConfigParseValue.h"
 # ConfigTypes = "ctre/configparams/ConfigTypes.h"
 # DecoratedConfigGroupSerializer = "ctre/configparams/DecoratedConfigGroupSerializer.h"
-# Pigeon2JsonGenerator = "ctre/configparams/Pigeon2JsonGenerator.h"
 
 # ctre/diagnostics
 # diag_framing = "ctre/diagnostics/diag_framing.h"
@@ -434,8 +431,6 @@ paramEnum = "ctre/phoenix/paramEnum.h"
 # canivore_device = "ctre/phoenix/platform/canivore_device.h"
 
 # ctre/phoenix/sensors
-# Pigeon2_Faults = "ctre/phoenix/sensors/Pigeon2_Faults.h"
-# Pigeon2_StickyFaults = "ctre/phoenix/sensors/Pigeon2_StickyFaults.h"
 PigeonIMU_ControlFrame = "ctre/phoenix/sensors/PigeonIMU_ControlFrame.h"
 PigeonIMU_Faults = "ctre/phoenix/sensors/PigeonIMU_Faults.h"
 PigeonIMU_StatusFrame = "ctre/phoenix/sensors/PigeonIMU_StatusFrame.h"
