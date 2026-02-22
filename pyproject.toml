@@ -3,12 +3,12 @@ build-backend = "hatchling.build"
 requires = [
     "hatchling",
     "hatch-vcs",
-    "semiwrap~=0.2.1",
+    "semiwrap~=0.3.0",
     "hatch-meson~=0.1.0",
     "hatch-nativelib~=0.2.0",
     "hatch-robotpy~=0.2.1",
-    "phoenix6~=26.1.0",
-    "wpilib~=2026.1.1",
+    "phoenix6~=26.1.1",
+    "wpilib~=2026.2.1",
 ]
 
 
@@ -21,8 +21,8 @@ authors = [
 ]
 license = "MIT"
 dependencies = [
-    "phoenix6~=26.1.0",
-    "wpilib>=2026.1.1,<2027",
+    "phoenix6~=26.1.1",
+    "wpilib>=2026.2.1,<2027",
 ]
 
 [project.urls]
